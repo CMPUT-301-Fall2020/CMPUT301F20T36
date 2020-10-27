@@ -15,14 +15,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "MainActivity";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // Access a Cloud Firestore instance from your Activity
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
     }
 }
