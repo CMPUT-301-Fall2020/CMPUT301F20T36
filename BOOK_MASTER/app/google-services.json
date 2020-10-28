@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "284821630833",
+    "firebase_url": "https://book-master-c3227.firebaseio.com",
+    "project_id": "book-master-c3227",
+    "storage_bucket": "book-master-c3227.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:284821630833:android:94e8080d03a53de96210d0",
+        "android_client_info": {
+          "package_name": "com.example.book_master"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "284821630833-hbc3qhqb2eacha45ugbs5fm762p7a42u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDGCT35tkDdArwB6RsiLDqwfkppQ4HmmQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "284821630833-hbc3qhqb2eacha45ugbs5fm762p7a42u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
