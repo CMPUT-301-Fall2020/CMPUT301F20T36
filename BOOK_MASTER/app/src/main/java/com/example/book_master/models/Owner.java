@@ -10,6 +10,13 @@ public class Owner extends User {
     private ArrayList<message> messagelist;
     private ArrayList<Book> ownedBooks;
 
+    public Owner(String name){
+        super(name);
+    }
+
+    public Owner(String n, String c, String p){
+        super(n, c, p);
+    }
     public Boolean Add_Book_Owned(Book book){
         if (ownedBooks.contains(book)){
             return false;
@@ -55,9 +62,40 @@ public class Owner extends User {
     }
 
 
-    public Boolean Show_Requested_User(){
+    public Boolean Show_Requested_User(Book book){
+        /* it is supposed to fetch the requests and the user from fire store */
         return false;
     }
 
 
+    public Boolean Accepte_Requesting(Borrower borrwoer, Book book, Location location){
+        /* it is supposed to fetch the requests and the user from fire store */
+        return false;
+    }
+
+    public Boolean Decline_Requesting(Borrower borrower, Book borrower){
+        /* it is supposed to fetch the requests and the user from fire store */
+        return false;
+    }
+
+    public Boolean Hand_Over_Book(){
+
+    }
+
+    Boolean Confirm_Return(){
+
+    }
+
+    void Show_Message(){
+
+    }
+
+    public Book Search_Book(String name) {
+        for (int i =0; i< ownedBooks.size(); i++){
+            if(ownedBooks.get(i).gettite() == name){
+                return ownedBooks.get(i);
+            }
+        }
+        return null;
+    }
 }
