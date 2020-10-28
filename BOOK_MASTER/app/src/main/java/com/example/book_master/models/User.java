@@ -1,6 +1,6 @@
 package com.example.book_master.models;
 
-public class User implements Comparable<User>{
+public class  User implements Comparable<User>{
     private String userName;
     private String contactInfo;
     private String password;
