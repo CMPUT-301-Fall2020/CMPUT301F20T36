@@ -4,18 +4,22 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class Database {
     private FirebaseFirestore db;
-
     private static final String TAG = "Database";
+
+    public Object obj;
 
     public void Database() {
         // Access a Cloud Firestore instance from your Activity
@@ -23,19 +27,15 @@ public class Database {
     }
 
     /**
-     * Set attributes for an instance
-     * @param className     class name, referring to one collection in Firebase
-     * @param instanceName  instance name, referring to one document in Firebase
-     * @param key           key, accessing the object need to be stored
-     * @param obj           the object to be stored
+     * Update the instance on the cloud
+     * @param className     class name, referring to one collection on Firebase
+     * @param key           instance name, referring to one document 0n Firebase
+     * @param instance      instance
      */
-    public void setAttribute(String className, String instanceName, String key, Object obj) {
-        Map<String, Object> item = new HashMap<>();
-        item.put(key, obj);
-
+    public void setInstance(String className, String key, Object instance) {
         db.collection(className)
-                .document(instanceName)
-                .set(item)
+                .document(key)
+                .set(instance)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -51,14 +51,47 @@ public class Database {
     }
 
     /**
-     * Update attributes for an instance
-     * @param className     class name, referring to one collection in Firebase
-     * @param instanceName  instance name, referring to one document in Firebase
-     * @param key           key, accessing the object need to be stored
-     * @param obj           the object to be updated
+     * Delete the instance on the cloud
+     * @param className     class name, referring to one collection on Firebase
+     * @param key           instance name, referring to one document on Firebase
      */
-    public void updateAttribute (String className, String instanceName, String key, Object obj) {
-        DocumentReference ref = db.collection(className).document(instanceName);
-        ref.update(key, obj);
+    public void deleteInstance(String className, String key) {
+        db.collection(className)
+                .document(key)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error deleting document", e);
+                    }
+                });
+    }
+
+    /**
+     *
+     */
+    public void getInstance(String className, String instanceName, String key) {
+        DocumentReference ref = db.collection("cities").document("SF");
+        ref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
     }
 }
