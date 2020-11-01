@@ -19,7 +19,7 @@ import javax.annotation.Nullable;
 public class RegisterFrag extends DialogFragment {
     private EditText emailText;
     private EditText passwordText;
-    private EditText userNameText;
+    private EditText usernameText;
     private EditText contactInfoText;
 
     private DBHelper mDBHelper;
@@ -63,7 +63,7 @@ public class RegisterFrag extends DialogFragment {
 
         emailText = view.findViewById(R.id.email_register);
         passwordText = view.findViewById(R.id.password_register);
-        userNameText = view.findViewById(R.id.userName_register);
+        usernameText = view.findViewById(R.id.username_register);
         contactInfoText = view.findViewById(R.id.contactInfo_register);
 
         final String email = (String) getArguments().getSerializable("email");
@@ -81,7 +81,7 @@ public class RegisterFrag extends DialogFragment {
                     public void onClick(DialogInterface dialog, int i) {
                         String email = emailText.getText().toString();
                         String password = passwordText.getText().toString();
-                        String userName = userNameText.getText().toString();
+                        String userName = usernameText.getText().toString();
                         String contactInfo = contactInfoText.getText().toString();
 
                         mDBHelper.createAccount(email, password, userName, contactInfo);
