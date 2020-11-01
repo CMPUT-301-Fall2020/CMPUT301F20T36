@@ -18,6 +18,7 @@ public class Booklist {
     public static boolean addBook(Book book, User Owner) {
         booklist.add(book);
         book.setOwner(Owner);
+//      add to database
         return true;
     }
 
@@ -29,11 +30,16 @@ public class Booklist {
             return false;
 
         booklist.remove(temp);
+//      delete to database
         return true;
     }
 
     public static Boolean deleteBook(Book book) {
+        if (booklist.contains(book) == false)
+            return false;
+
         booklist.remove(book);
+//      delete to database
         return true;
     }
 
@@ -44,6 +50,7 @@ public class Booklist {
                 return book;
             }
         }
+
         return null;
     }
 
