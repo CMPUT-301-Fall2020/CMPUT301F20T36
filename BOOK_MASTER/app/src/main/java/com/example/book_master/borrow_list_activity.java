@@ -9,6 +9,6 @@ public class borrow_list_activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.borrow_list1);
+        setContentView(R.layout.borrow_list);
     }
 }

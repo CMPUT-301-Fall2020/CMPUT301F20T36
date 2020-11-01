@@ -9,6 +9,6 @@ public class borrow_return_activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_borrow_return_activity);
+        setContentView(R.layout.borrower_return);
     }
 }

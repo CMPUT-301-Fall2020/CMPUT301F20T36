@@ -9,6 +9,6 @@ public class owner_receive_activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_owner_receive_activity);
+        setContentView(R.layout.owner_receive);
     }
 }

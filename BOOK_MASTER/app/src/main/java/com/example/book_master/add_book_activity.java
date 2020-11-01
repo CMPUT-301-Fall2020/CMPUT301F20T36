@@ -9,6 +9,6 @@ public class add_book_activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_book_activity);
+        setContentView(R.layout.add_edit_book);
     }
 }

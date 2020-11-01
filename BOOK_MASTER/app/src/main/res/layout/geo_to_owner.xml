@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/geo_deliver_map"
+        android:layout_width="406dp"
+        android:layout_height="584dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Geo_borrower_Bookname"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="BookName"
+        app:layout_constraintTop_toBottomOf="@+id/geo_deliver_map"
+        tools:layout_editor_absoluteX="118dp" />
+
+    <TextView
+        android:id="@+id/Geo_ISBN"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="ISBN"
+        app:layout_constraintTop_toBottomOf="@+id/Geo_Loaner_name"
+        tools:layout_editor_absoluteX="-2dp" />
+
+    <Button
+        android:id="@+id/Go_button_to_borrower"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Go"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Geo_ISBN" />
+
+    <TextView
+        android:id="@+id/Geo_Loaner_name"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="Loaner"
+        app:layout_constraintTop_toBottomOf="@+id/Geo_borrower_Bookname"
+        tools:layout_editor_absoluteX="-2dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

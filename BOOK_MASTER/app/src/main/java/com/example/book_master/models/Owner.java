@@ -1,3 +1,4 @@
+/*
 package com.example.book_master.models;
 
 
@@ -64,17 +65,17 @@ public class Owner extends User {
 
     public Boolean Show_Requested_User(Book book){
         /* it is supposed to fetch the requests and the user from fire store */
-        return false;
+  /*      return false;
     }
 
 
     public Boolean Accepte_Requesting(Borrower borrwoer, Book book, Location location){
-        /* it is supposed to fetch the requests and the user from fire store */
+        // it is supposed to fetch the requests and the user from fire store
         return false;
     }
 
     public Boolean Decline_Requesting(Borrower borrower, Book borrower){
-        /* it is supposed to fetch the requests and the user from fire store */
+        //it is supposed to fetch the requests and the user from fire store
         return false;
     }
 
@@ -99,3 +100,4 @@ public class Owner extends User {
         return null;
     }
 }
+*/

@@ -1,4 +1,4 @@
-package com.example.practice_ropo;
+/*package com.example.practice_ropo;
 
 public class Book {
     enum Status {avaliable, requested, accepted, borrowed, confirming_B, confirming_R};
@@ -79,3 +79,4 @@ public class Book {
         this.status = status;
     }
 }
+*/
