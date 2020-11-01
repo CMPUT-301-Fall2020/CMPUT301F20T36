@@ -1,11 +1,16 @@
 package com.example.book_master.models;
 
-import java.io.Serializable;
+import android.location.Location;
 
-public class  User implements Comparable<User>, Serializable {
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class  User implements Comparable<User>, Serializable, Owner, Borrower {
     private String userName;
     private String contactInfo;
     private String password;
+    private ArrayList<Message> messagelist;
+    private ArrayList<Book> ownedBooks;
 
     public User() {
         userName = "";
@@ -52,6 +57,116 @@ public class  User implements Comparable<User>, Serializable {
         // do we need to chack the login again?
         return false;
     }
+
+
+    // -----------------BEGIN of Borrower Code---------------------------------------------
+    public ArrayList<Book> Search_Book(String keyword){
+        return Booklist.searchBook(keyword);
+    }
+
+    public ArrayList<Book> Show_Requesting_Book(Book book) {
+//        ArrayList<Book> books = new ArrayList<Book>();
+//        if (Requesting(book) == true) {
+//            return books;
+//        }
+        return null;
+    }
+
+    public ArrayList<Book> Show_Accepted_Book(Book book) {
+//        ArrayList<Book> books = new ArrayList<Book>();
+        return null;
+    }
+
+    public Boolean Confirm_Borrowed(Book book) {
+        return false;
+    }
+
+    public Boolean Return_Borrowed_Book(Book book) {
+        return false;
+    }
+
+    public void Show_Message() {
+    }
+    // -----------------END of Borrower Code---------------------------------------------
+
+
+
+    // -----------------BEGIN of Owner Code---------------------------------------------
+    public Boolean Add_Book_Owned(Book book){
+        if (ownedBooks.contains(book) || book == null){
+            return false;
+        }
+        else {
+            ownedBooks.add(book);
+            Booklist.addBook(book, this);
+            return true;
+        }
+    }
+
+
+    public ArrayList<Book> Get_Owned_Books(Book.Status status){ // Must and only select one status
+        ArrayList<Book> books = new ArrayList<Book>();
+        for (int i=0; i<ownedBooks.size(); i++){
+            if (ownedBooks.get(i).getStatus() == status.toString()){
+                books.add(ownedBooks.get(i));
+            }
+        }
+        return books;
+    }
+
+
+    public Boolean Remove_Owned_Books(Book book){
+        if (ownedBooks.contains(book)){
+            ownedBooks.remove(book);
+            Booklist.deleteBook(book.getISBN());
+            return true;
+        }
+
+        return false;
+    }
+
+
+    public Boolean Set_Book_description(String isbn, String title, String author, Book book){
+        if (ownedBooks.contains(book) == false)
+            return false;
+
+        book.setISBN(isbn);
+        book.setAuthor(author);
+        book.setTitle(title);
+        return true;
+    }
+
+
+    public Boolean Show_Requested_User(Book book){
+        /* it is supposed to fetch the requests and the user from fire store */
+        return false;
+    }
+
+
+    public Boolean Accepte_Requesting(Borrower borrwoer, Book book, Location location){
+        /* it is supposed to fetch the requests and the user from fire store */
+        return false;
+    }
+
+    public Boolean Decline_Requesting(Borrower borrower, Book book){
+        /* it is supposed to fetch the requests and the user from fire store */
+        return false;
+    }
+
+    public Boolean Hand_Over_Book(){
+        return false;
+    }
+
+    public Boolean Confirm_Return(){
+        return false;
+    }
+
+    public Book Search_Book_By_ISBN() {
+        String ISBN = "123-4";
+        return Booklist.getBookDetails(ISBN);  // NUllable, error in activity
+    }
+    // -----------------END of Owner Code---------------------------------------------
+
 
     @Override
     public int compareTo(User u){
