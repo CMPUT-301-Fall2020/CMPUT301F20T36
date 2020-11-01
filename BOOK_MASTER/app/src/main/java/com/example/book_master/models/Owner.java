@@ -1,3 +1,4 @@
+
 package com.example.book_master.models;
 
 import android.location.Location;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 
 import javax.net.ssl.SSLEngineResult;
 
-public class Owner extends User  implements Serializable {
+public class Owner extends User implements Serializable {
     private String username;
     private ArrayList<Message> messagelist;
     private ArrayList<Book> ownedBooks;

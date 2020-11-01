@@ -1,6 +1,5 @@
 package com.example.book_master.models;
 
-
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

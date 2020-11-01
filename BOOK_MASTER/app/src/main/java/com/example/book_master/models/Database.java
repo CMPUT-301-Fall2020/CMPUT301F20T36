@@ -1,6 +1,5 @@
 package com.example.book_master.models;
 
-import com.example.book_master.models.*;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
