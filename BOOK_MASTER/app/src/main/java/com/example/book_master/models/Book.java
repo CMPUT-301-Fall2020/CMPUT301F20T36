@@ -1,14 +1,27 @@
-package com.example.practice_ropo;
+package com.example.book_master.models;
 
-public class Book {
-    enum Status {avaliable, requested, accepted, borrowed, confirming_B, confirming_R};
+import java.io.Serializable;
+
+public class Book implements Serializable {
+    enum Status {
+        available("available"), requested("requested"), accepted("accepted"), borrowed("borrowed"), confirming_B("confirming_B"), confirming_R("confirming_R");
+        private String statusName;
+        private Status(String s){
+            this.statusName = s;
+        }
+        @Override
+        public String toString(){
+            return statusName;
+        }
+
+    };
     private String title;
     private String author;
     private int ISBN;
     private User owner;
     private User holder;
     private Photographlist photolist;
-    private Status status = Status.avaliable;
+    private Status status = Status.available;
 
     public Book(String title, String author, int ISBN) {
         this.title = title;
@@ -71,8 +84,8 @@ public class Book {
 //        this.photolist = photolist;
 //    }
 
-    public Status getStatus() {
-        return status;
+    public String getStatus() {
+        return status.toString();
     }
 
     public void setStatus(Status status) {
