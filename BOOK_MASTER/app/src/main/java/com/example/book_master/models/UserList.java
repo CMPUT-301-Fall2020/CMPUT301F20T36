@@ -1,11 +1,12 @@
 package com.example.book_master.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class UserList {
+public class UserList implements Serializable {
     private ArrayList<User> userList= new ArrayList<>();
-
-    private User get_User(String name){
+    
+    public User get_User(String name){
         User u = new User(name);
         if(userList.contains(u)){
             int index = userList.indexOf(u);

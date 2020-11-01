@@ -1,5 +1,6 @@
-package com.example.practice_ropo;
+package com.example.book_master.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Booklist {
@@ -9,7 +10,7 @@ public class Booklist {
         booklist = new ArrayList<Book>();
     }
 
-    public boolean addBook(String title, String author, int ISBN, User Owner) {
+    public boolean addBook(String title, String author, String ISBN, User Owner) {
         Book temp = new Book(title, author, ISBN, Owner);
         booklist.add(temp);
         return true;
@@ -21,12 +22,12 @@ public class Booklist {
     }
 
     public Book getBookDetails(int ISBN) {
-        Book temp = new Book("Temp", "Temp", 1234);
+        Book temp = new Book("Temp", "Temp", "1234");
         return temp;
     }
 
     public Book searchBook(String keyword) {
-        Book temp = new Book("Temp", "Temp", 1234);
+        Book temp = new Book("Temp", "Temp", "1234");
         return temp;
     }
 
