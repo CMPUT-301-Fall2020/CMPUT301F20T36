@@ -1,6 +1,8 @@
 package com.example.book_master.models;
 
-public class Book {
+import java.io.Serializable;
+
+public class Book implements Serializable {
     enum Status {
         available("available"), requested("requested"), accepted("accepted"), borrowed("borrowed"), confirming_B("confirming_B"), confirming_R("confirming_R");
         private String statusName;
@@ -11,27 +13,36 @@ public class Book {
         public String toString(){
             return statusName;
         }
-
     };
+
     private String title;
     private String author;
-    private int ISBN;
+    private String ISBN;
     private User owner;
     private User holder;
-    private Photographlist photolist;
-    private Status status = Status.avaliable;
+    private PhotographList photolist;
+    private Status status = Status.available;
 
-    public Book(String title, String author, int ISBN) {
+    public Book() {
+        title = "";
+        author = "";
+        ISBN = "";
+    }
+
+    public Book(String title, String author, String ISBN) {
         this.title = title;
         this.author = author;
         this.ISBN = ISBN;
+        this.owner = null;
+        this.holder = null;
     }
 
-    public Book(String title, String author, int ISBN, User owner) {
+    public Book(String title, String author, String ISBN, User owner) {
         this.title = title;
         this.author = author;
         this.ISBN = ISBN;
         this.owner = owner;
+        this.holder = owner;
     }
 
     public String getTitle() {
@@ -50,11 +61,11 @@ public class Book {
         this.author = author;
     }
 
-    public int getISBN() {
+    public String getISBN() {
         return ISBN;
     }
 
-    public void setISBN(int ISBN) {
+    public void setISBN(String ISBN) {
         this.ISBN = ISBN;
     }
 
@@ -74,7 +85,7 @@ public class Book {
         this.holder = holder;
     }
 
-    public Photographlist getPhotolist() {
+    public PhotographList getPhotolist() {
         return photolist;
     }
 
@@ -82,12 +93,11 @@ public class Book {
 //        this.photolist = photolist;
 //    }
 
-    public Status getStatus() {
-        return status;
+    public String getStatus() {
+        return status.toString();
     }
 
     public void setStatus(Status status) {
         this.status = status;
     }
 }
->>>>>>> Stashed changes

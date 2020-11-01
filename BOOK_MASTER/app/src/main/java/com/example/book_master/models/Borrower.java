@@ -1,8 +1,11 @@
 package com.example.book_master.models;
 
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Borrower extends User{
+public class Borrower extends User implements Serializable {
+    private ArrayList<Message> messageList;
+
     public Borrower(String name){
         super(name);
     }
@@ -11,13 +14,8 @@ public class Borrower extends User{
         super(name, contact_info, password);
     }
 
-    public Boolean Search_Book(String keyword){
-        if(Search_Book(keyword)){
-            return true;
-        }
-        else{
-            return false;
-        }
+    public ArrayList<Book> Search_Book(String keyword){
+        return Booklist.searchBook(keyword);
     }
 
     public ArrayList<Book> Show_Requesting_Book(Book book) {

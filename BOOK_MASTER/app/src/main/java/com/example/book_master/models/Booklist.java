@@ -5,8 +5,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Booklist {
+public class Booklist implements Serializable {
     private static ArrayList<Book> booklist = new ArrayList<Book>();;
 
 //    public static boolean addBook(String title, String author, String ISBN, User Owner) {

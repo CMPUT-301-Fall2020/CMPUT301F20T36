@@ -1,11 +1,12 @@
 package com.example.book_master.models;
 
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class UserList {
+public class UserList  implements Serializable {
     private static ArrayList<User> userList= new ArrayList<>();
 
-    private static User get_User(String username){
+    public static User get_User(String username){
         // when we search, do we care about casing
         User user = new User(username);
         if(userList.contains(user)){
@@ -29,17 +30,18 @@ public class UserList {
 
     public static User Delete_User(String username, String password){
         User u = get_User(username);
-        if(Login(username, password)){
-            userList.remove(u);
-        }
+//        if(Login(username, password)){  // Don't forgot to check if he is able to delete
+//            userList.remove(u);
+//        }
+        // delete from data base
         return u;
     }
 
-    public static boolean Login(String username, String password){
-        User u = get_User(username);
-        if(u != null){
-            return u.Login(password);
-        }
-        return false;
-    }
+//    public static boolean Login(String username, String password){ CHange to Database
+//        User u = get_User(username);
+//        if(u != null){
+//            return u.Login(password);
+//        }
+//        return false;
+//    }
 }

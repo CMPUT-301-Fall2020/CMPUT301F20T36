@@ -1,6 +1,7 @@
 package com.example.book_master.models;
 
 import android.location.Location;
+import java.io.Serializable;
 
 import com.example.book_master.models.*;
 
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 
 import javax.net.ssl.SSLEngineResult;
 
-public class Owner extends User {
+public class Owner extends User  implements Serializable {
     private String username;
     private ArrayList<Message> messagelist;
     private ArrayList<Book> ownedBooks;
@@ -22,32 +23,24 @@ public class Owner extends User {
     }
 
     public Boolean Add_Book_Owned(Book book){
-        if (ownedBooks.contains(book)){
+        if (ownedBooks.contains(book) || book == null){
             return false;
         }
         else {
             ownedBooks.add(book);
-            // add to library
             Booklist.addBook(book, this);
             return true;
         }
     }
 
 
-    public ArrayList<Book> Get_Owned_Books(Book.Status status){
+    public ArrayList<Book> Get_Owned_Books(Book.Status status){ // Must and only select one status
         ArrayList<Book> books = new ArrayList<Book>();
         for (int i=0; i<ownedBooks.size(); i++){
-            if (ownedBooks.get(i).getStatus() == status){
+            if (ownedBooks.get(i).getStatus() == status.toString()){
                 books.add(ownedBooks.get(i));
             }
         }
-//        Just demonstrating another way to implement
-//        for (Book book : ownedBooks) {
-//            if (book.getStatus() == status) {
-//                books.add(book);
-//            }
-//        }
-
         return books;
     }
 
@@ -55,7 +48,6 @@ public class Owner extends User {
     public Boolean Remove_Owned_Books(Book book){
         if (ownedBooks.contains(book)){
             ownedBooks.remove(book);
-            // also need to remove from the library
             Booklist.deleteBook(book.getISBN());
             return true;
         }
@@ -65,15 +57,13 @@ public class Owner extends User {
 
 
     public Boolean Set_Book_description(String isbn, String title, String author, Book book){
-        int index = ownedBooks.indexOf(book);
-        if (index != -1){
-            ownedBooks.get(index).setISBN(isbn);
-            ownedBooks.get(index).setAuthor(author);
-            ownedBooks.get(index).setTitle(title);
-            return true;
-            //This can be done just by calling book.setISBN(isbn) ....
-        }
-        return false;
+        if (ownedBooks.contains(book) == false)
+            return false;
+
+        book.setISBN(isbn);
+        book.setAuthor(author);
+        book.setTitle(title);
+        return true;
     }
 
 
@@ -115,8 +105,12 @@ public class Owner extends User {
 //    }
 
     public Book Search_Book_By_ISBN() {
-        //The following ISBN should be obtained by calling ISBN scan function
         String ISBN = "123-4";
-        return Booklist.getBookDetails(ISBN);
+        return Booklist.getBookDetails(ISBN);  // NUllable, error in activity
     }
+
+//    Delete() {
+//        for (Book book : ownedBooks)
+//            Booklist.deleteBook(book);
+//    }
 }
