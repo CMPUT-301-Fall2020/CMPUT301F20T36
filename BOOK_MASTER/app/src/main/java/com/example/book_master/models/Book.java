@@ -13,8 +13,8 @@ public class Book implements Serializable {
         public String toString(){
             return statusName;
         }
-
     };
+  
     private String title;
     private String author;
     private String ISBN;
@@ -23,10 +23,18 @@ public class Book implements Serializable {
     private PhotographList photolist;
     private Status status = Status.available;
 
+    public Book() {
+        title = "";
+        author = "";
+        ISBN = "";
+    }
+  
     public Book(String title, String author, String ISBN) {
         this.title = title;
         this.author = author;
         this.ISBN = ISBN;
+        this.owner = null;
+        this.holder = null;
     }
 
     public Book(String title, String author, String ISBN, User owner) {
@@ -34,6 +42,7 @@ public class Book implements Serializable {
         this.author = author;
         this.ISBN = ISBN;
         this.owner = owner;
+        this.holder = owner;
     }
 
     public String getTitle() {
@@ -92,4 +101,3 @@ public class Book implements Serializable {
         this.status = status;
     }
 }
-*/
