@@ -17,19 +17,19 @@ public class Book implements Serializable {
     };
     private String title;
     private String author;
-    private int ISBN;
+    private String ISBN;
     private User owner;
     private User holder;
-    private Photographlist photolist;
+    private PhotographList photolist;
     private Status status = Status.available;
 
-    public Book(String title, String author, int ISBN) {
+    public Book(String title, String author, String ISBN) {
         this.title = title;
         this.author = author;
         this.ISBN = ISBN;
     }
 
-    public Book(String title, String author, int ISBN, User owner) {
+    public Book(String title, String author, String ISBN, User owner) {
         this.title = title;
         this.author = author;
         this.ISBN = ISBN;
@@ -52,11 +52,11 @@ public class Book implements Serializable {
         this.author = author;
     }
 
-    public int getISBN() {
+    public String getISBN() {
         return ISBN;
     }
 
-    public void setISBN(int ISBN) {
+    public void setISBN(String ISBN) {
         this.ISBN = ISBN;
     }
 
@@ -76,7 +76,7 @@ public class Book implements Serializable {
         this.holder = holder;
     }
 
-    public Photographlist getPhotolist() {
+    public PhotographList getPhotolist() {
         return photolist;
     }
 
