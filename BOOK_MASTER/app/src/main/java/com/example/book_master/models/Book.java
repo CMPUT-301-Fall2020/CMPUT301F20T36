@@ -1,29 +1,37 @@
 package com.example.book_master.models;
 
 public class Book {
-    enum Status {unbooked, requested, accepted, borrowed, confirming_B, confirming_R};
+    enum Status {
+        available("available"), requested("requested"), accepted("accepted"), borrowed("borrowed"), confirming_B("confirming_B"), confirming_R("confirming_R");
+        private String statusName;
+        private Status(String s){
+            this.statusName = s;
+        }
+        @Override
+        public String toString(){
+            return statusName;
+        }
+
+    };
     private String title;
     private String author;
-    private String ISBN;
+    private int ISBN;
     private User owner;
     private User holder;
-//    private Photographlist photolist;
-    private Status status = Status.unbooked;
+    private Photographlist photolist;
+    private Status status = Status.avaliable;
 
-    public Book(String title, String author, String ISBN) {
+    public Book(String title, String author, int ISBN) {
         this.title = title;
         this.author = author;
         this.ISBN = ISBN;
-        this.owner = null;
-        this.holder = null;
     }
 
-    public Book(String title, String author, String ISBN, User owner) {
+    public Book(String title, String author, int ISBN, User owner) {
         this.title = title;
         this.author = author;
         this.ISBN = ISBN;
         this.owner = owner;
-        this.holder = owner;
     }
 
     public String getTitle() {
@@ -42,11 +50,11 @@ public class Book {
         this.author = author;
     }
 
-    public String getISBN() {
+    public int getISBN() {
         return ISBN;
     }
 
-    public void setISBN(String ISBN) {
+    public void setISBN(int ISBN) {
         this.ISBN = ISBN;
     }
 
@@ -66,9 +74,9 @@ public class Book {
         this.holder = holder;
     }
 
-//    public Photographlist getPhotolist() {
-//        return photolist;
-//    }
+    public Photographlist getPhotolist() {
+        return photolist;
+    }
 
 //    public void addPhotolist(Photographlist photolist) {
 //        this.photolist = photolist;
@@ -82,3 +90,4 @@ public class Book {
         this.status = status;
     }
 }
+>>>>>>> Stashed changes
