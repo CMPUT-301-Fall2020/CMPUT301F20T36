@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="92dp"
+        android:layout_height="113dp"
+        app:srcCompat="@drawable/a"
+        android:layout_marginTop="100dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/BookTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BookTitle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"
+        />
+    <TextView
+        android:id="@+id/text_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="Author:"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/BookTitle"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="100dp"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/BookAuthor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BookAuthor"
+        app:layout_constraintLeft_toRightOf="@id/text_author"
+        app:layout_constraintTop_toBottomOf="@id/BookTitle"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="15sp"
+        />
+    <TextView
+        android:id="@+id/text_isbn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ISBN:"
+
+        app:layout_constraintRight_toRightOf="@+id/text_author"
+        app:layout_constraintTop_toBottomOf="@id/text_author"
+        android:layout_marginTop="15dp"
+
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/BookISBN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BookISBN"
+        app:layout_constraintLeft_toRightOf="@id/text_isbn"
+        app:layout_constraintTop_toBottomOf="@id/BookAuthor"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="15sp"
+        />
+    <TextView
+        android:id="@+id/textStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status:"
+        app:layout_constraintRight_toRightOf="@+id/text_author"
+        app:layout_constraintTop_toBottomOf="@id/text_isbn"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/BookStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BookStatus"
+        app:layout_constraintLeft_toRightOf="@id/textStatus"
+        app:layout_constraintTop_toBottomOf="@id/BookISBN"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="20sp"
+        />
+    <TextView
+        android:id="@+id/textBorrower"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="@+id/text_author"
+        app:layout_constraintTop_toBottomOf="@id/textStatus"
+        android:text="Current Borrower:"
+        android:textSize="20sp"
+        android:layout_marginTop="30dp"
+        />
+    <TextView
+        android:id="@+id/CurrentBorrower"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Current Borrower"
+        app:layout_constraintLeft_toRightOf="@id/textBorrower"
+        app:layout_constraintTop_toBottomOf="@id/BookStatus"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="20sp"
+        />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
