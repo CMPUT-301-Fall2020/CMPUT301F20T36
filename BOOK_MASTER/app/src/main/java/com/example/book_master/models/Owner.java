@@ -1,3 +1,4 @@
+
 package com.example.book_master.models;
 
 import android.location.Location;

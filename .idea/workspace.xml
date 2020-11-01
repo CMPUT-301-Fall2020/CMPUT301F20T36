@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="62c31a27-9852-443f-bd1a-dfbd95ae162d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/gen/com/example/book_master/BuildConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/gen/com/example/book_master/Manifest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/gen/com/example/book_master/R.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/annotations-18.0.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/Booklist.java" beforeDir="false" afterPath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/Booklist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/Borrower.java" beforeDir="false" afterPath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/Borrower.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/Owner.java" beforeDir="false" afterPath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/Owner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/UserList.java" beforeDir="false" afterPath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/UserList.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1jgBSPlWSssrmbp1himHI6SyENp" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="true" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="62c31a27-9852-443f-bd1a-dfbd95ae162d" name="Default Changelist" comment="" />
+      <created>1604215853749</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1604215853749</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser" timestamp="1604219872778">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1604219872778" />
+    <state x="664" y="413" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1604217617129">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="664" y="413" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1604217617129" />
+  </component>
+</project>
