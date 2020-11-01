@@ -31,23 +31,17 @@ import java.util.ArrayList;
 import javax.annotation.Nullable;
 
 public class DBHelper {
-    public final String TAG = getClass().getSimpleName();
-    private FirebaseAuth mAuth;
-    private FirebaseFirestore mDB;
-    private Context context;
+    private static final String TAG = DBHelper.class.getSimpleName();
+    private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private static FirebaseFirestore mDB = FirebaseFirestore.getInstance();
 
-    private ArrayList<User> userList;
+    private static ArrayList<User> userList = new ArrayList<>();
 
-    public DBHelper(Context context) {
-        mAuth = FirebaseAuth.getInstance();
-        mDB = FirebaseFirestore.getInstance();
-        this.context = context;
-
-        userList = new ArrayList<>();
-        collectionListener();
-    }
-
-    public void createAccount(final String email, String password, final String username, final String contactInfo) {
+    public static void createAccount(final String email,
+                              String password,
+                              final String username,
+                              final String contactInfo,
+                              final Context context) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener((Activity) context, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -58,7 +52,7 @@ public class DBHelper {
                             Toast.makeText(context, "Authentication succeeded.",
                                     Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
-                            setUserDoc(user.getUid(), new User(username, contactInfo));
+                            setUserDoc(user.getUid(), new User(username, contactInfo), context);
                         } else {
                             // create account fail
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
@@ -69,7 +63,7 @@ public class DBHelper {
                 });
     }
 
-    public void signIn(String email, String password) {
+    public static void signIn(String email, String password, final Context context) {
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener((Activity) context, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -92,13 +86,13 @@ public class DBHelper {
                 });
     }
 
-    public void signOut() {
+    public static void signOut(final Context context) {
         mAuth.signOut();
         Intent intent = new Intent(context, LoginActivity.class);
         context.startActivity(intent);
     }
 
-    public void deleteAccount() {
+    public static void deleteAccount(final Context context) {
         FirebaseUser user = mAuth.getCurrentUser();
         user.delete()
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -115,7 +109,7 @@ public class DBHelper {
         context.startActivity(intent);
     }
 
-    public void setUserDoc(String doc, User user) {
+    static void setUserDoc(String doc, User user, final Context context) {
         mDB.collection("User")
                 .document(doc)
                 .set(user)
@@ -151,7 +145,7 @@ public class DBHelper {
 //        });
 //    }
 
-    private void collectionListener() {
+    public static void collectionListener() {
         CollectionReference mCollectionRef = mDB.collection("User");
         mCollectionRef.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -161,13 +155,12 @@ public class DBHelper {
                     String username = (String) doc.getData().get("username");
                     String contactInfo = (String) doc.getData().get("contactInfo");
                     userList.add(new User(username, contactInfo));
-//                    Toast.makeText(context, userList.get(0).getUsername(), Toast.LENGTH_LONG).show();
                 }
             }
         });
     }
 
-    public ArrayList<User> getUserList() {
+    public static ArrayList<User> getUserList() {
         return userList;
     }
 }

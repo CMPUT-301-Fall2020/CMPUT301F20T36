@@ -10,14 +10,10 @@ import android.widget.EditText;
 import com.example.book_master.models.DBHelper;
 
 public class LoginActivity extends AppCompatActivity implements RegisterFrag.OnFragmentInteractionListener {
-    private DBHelper mDBHelper;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        mDBHelper = new DBHelper(LoginActivity.this);
 
         final EditText emailText = (EditText) findViewById(R.id.email_login);
         final EditText passwordText = (EditText) findViewById(R.id.password_login);
@@ -25,7 +21,7 @@ public class LoginActivity extends AppCompatActivity implements RegisterFrag.OnF
         final Button loginBtn = findViewById(R.id.btn_login);
         loginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                mDBHelper.signIn(emailText.getText().toString(), passwordText.getText().toString());
+                DBHelper.signIn(emailText.getText().toString(), passwordText.getText().toString(), LoginActivity.this);
             }
         });
 

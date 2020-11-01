@@ -22,8 +22,6 @@ public class RegisterFrag extends DialogFragment {
     private EditText usernameText;
     private EditText contactInfoText;
 
-    private DBHelper mDBHelper;
-
     private OnFragmentInteractionListener listener;
     public interface OnFragmentInteractionListener {
 //        void onRegisterPressed();
@@ -47,7 +45,6 @@ public class RegisterFrag extends DialogFragment {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
             listener = (OnFragmentInteractionListener) context;
-            mDBHelper = new DBHelper(context);
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -59,7 +56,7 @@ public class RegisterFrag extends DialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         // return super.onCreateDialog(savedInstanceState);
         // inflate the layout for this fragment
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.frag_register, null);
+        final View view = LayoutInflater.from(getActivity()).inflate(R.layout.frag_register, null);
 
         emailText = view.findViewById(R.id.email_register);
         passwordText = view.findViewById(R.id.password_register);
@@ -84,7 +81,7 @@ public class RegisterFrag extends DialogFragment {
                         String userName = usernameText.getText().toString();
                         String contactInfo = contactInfoText.getText().toString();
 
-                        mDBHelper.createAccount(email, password, userName, contactInfo);
+                        DBHelper.createAccount(email, password, userName, contactInfo, view.getContext());
                     }
                 }).create();
     }

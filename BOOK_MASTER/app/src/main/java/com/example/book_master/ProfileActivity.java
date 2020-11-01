@@ -14,7 +14,6 @@ import com.example.book_master.models.User;
 import java.util.ArrayList;
 
 public class ProfileActivity extends AppCompatActivity {
-    private DBHelper mDBHelper;
     private ArrayList<User> userList;
 
     @Override
@@ -24,16 +23,14 @@ public class ProfileActivity extends AppCompatActivity {
 
         userList = new ArrayList<>();
 
-        mDBHelper = new DBHelper(ProfileActivity.this);
-
-        userList = mDBHelper.getUserList();
+        userList = DBHelper.getUserList();
 
         Toast.makeText(this, userList.get(0).getUsername(), Toast.LENGTH_LONG).show();
-//        User currentUser = userList.get(0);
-//        final TextView emailText = (TextView) findViewById(R.id.email_profile);
-//        final TextView userNameText = (TextView) findViewById(R.id.username_profile);
-//        final TextView contactInfoText = (TextView) findViewById(R.id.contactInfo_profile);
-//        userNameText.setText(currentUser.getUsername());
-//        contactInfoText.setText(currentUser.getContactInfo());
+        User currentUser = userList.get(0);
+        final TextView emailText = (TextView) findViewById(R.id.email_profile);
+        final TextView userNameText = (TextView) findViewById(R.id.username_profile);
+        final TextView contactInfoText = (TextView) findViewById(R.id.contactInfo_profile);
+        userNameText.setText(currentUser.getUsername());
+        contactInfoText.setText(currentUser.getContactInfo());
     }
 }
