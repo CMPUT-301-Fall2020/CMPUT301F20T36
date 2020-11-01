@@ -2,13 +2,14 @@
 package com.example.book_master.models;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.net.ssl.SSLEngineResult;
 
-public class Owner extends User {
+public class Owner extends User implements Serializable {
     private String username;
-    private ArrayList<message> messagelist;
+    private ArrayList<Message> messagelist;
     private ArrayList<Book> ownedBooks;
 
     public Owner(String name){
@@ -32,11 +33,10 @@ public class Owner extends User {
     public ArrayList<Book> Get_Owned_Books(Enum status){
         ArrayList<Book> books = new ArrayList<Book>();
         for (int i=0; i<ownedBooks.size(); i++){
-            if (ownedBooks.get(i).getstatus() == status){
+            if (ownedBooks.get(i).getStatus() == status){
                 books.add(ownedBooks.get(i));
             }
         }
-
         return books;
     }
 
