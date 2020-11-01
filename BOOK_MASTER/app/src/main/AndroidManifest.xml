@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".add_book_activity"></activity>
+        <activity android:name=".profile_page_edit_activity"></activity>
+        <activity android:name=".profile_page_activity" />
+        <activity android:name=".add_book_activity" />
         <activity android:name=".search_page_activity" />
         <activity android:name=".owner_receive_activity" />
         <activity android:name=".borrow_return_activity" />

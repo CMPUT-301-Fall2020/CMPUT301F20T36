@@ -14,6 +14,8 @@ public class main_menu_activity extends AppCompatActivity {
     Button log_out_button;
     Button receive_button;
     Button search_button;
+    Button profile_check_button;
+    Button profile_edit_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,8 @@ public class main_menu_activity extends AppCompatActivity {
         log_out_button = findViewById(R.id.Logout_main_button);
         receive_button = findViewById(R.id.Receive_main_button);
         search_button = findViewById(R.id.Search_main_button);
+        profile_check_button = findViewById(R.id.profile_main_button);
+        profile_edit_button = findViewById(R.id.Profile_main_edit);
 
         check_mylist_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,8 +78,20 @@ public class main_menu_activity extends AppCompatActivity {
                 startActivity(search_page__intent);
             }
         });
-
-
+        profile_check_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent profile_check__intent = new Intent(main_menu_activity.this, profile_page_activity.class);
+                startActivity(profile_check__intent);
+            }
+        });
+        profile_edit_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent profile_edit__intent = new Intent(main_menu_activity.this, profile_page_edit_activity.class);
+                startActivity(profile_edit__intent);
+            }
+        });
 
     }
 }
