@@ -1,13 +1,13 @@
-package com.example.practice_ropo;
+package com.example.book_master.models;
 
 import java.util.ArrayList;
 
 public class PhotographList{
-    private ArrayList<File_Path> File_Paths;
+    private ArrayList<String> File_Paths;
 
 
     public PhotographList() {
-        File_Paths = new ArrayList<File_Path>();
+        File_Paths = new ArrayList<String>();
     }
 
     public void Create(){

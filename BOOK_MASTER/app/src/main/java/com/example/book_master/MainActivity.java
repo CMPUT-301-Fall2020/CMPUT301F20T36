@@ -5,7 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.book_master.models.DBHelper;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -17,15 +21,28 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
+    EditText username;
+    EditText password;
+    Button   login;
+    Button   sign_up;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        DBHelper.collectionListener();
+        username = findViewById(R.id.editTextTextPersonName2);
+        password = findViewById(R.id.editTextTextPassword);
 
-        // start from LoginActivity
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+        login  = findViewById(R.id.login_button);
+        sign_up = findViewById(R.id.sign_up_button);
+
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, main_menu_activity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

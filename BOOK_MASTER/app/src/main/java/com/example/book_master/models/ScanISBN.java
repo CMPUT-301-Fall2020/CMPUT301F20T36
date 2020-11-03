@@ -1,16 +1,15 @@
-package com.example.practice_ropo;
+package com.example.book_master.models;
 
-public class scanISBN {
+public class ScanISBN {
     public int Scan_ISBN;
 
-
     /* Constructor */
-    public scanISBN(int scan_ISBN) {
+    public ScanISBN(int scan_ISBN) {
         Scan_ISBN = scan_ISBN;
     }
 
     /**
-     * @param scan_ISBN: the unique identification code for the book
+     * @param Scan_ISBN: the unique identification code for the book
      */
 
     /* getter and setter */
