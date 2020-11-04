@@ -3,7 +3,7 @@ package com.example.book_master.models;
 import java.io.Serializable;
 
 public class Book implements Serializable {
-    enum Status {
+    public enum Status {
         available("available"), requested("requested"), accepted("accepted"), borrowed("borrowed"), confirming_B("confirming_B"), confirming_R("confirming_R");
         private String statusName;
         private Status(String s){
