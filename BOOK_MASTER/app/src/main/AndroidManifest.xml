@@ -9,12 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".View_accepted_books"></activity>
         <activity android:name=".main_menu_activity" />
-
-        <activity android:name=".RetrieveProfile"/>
+        <activity android:name=".RetrieveProfile" />
         <activity android:name=".BookInfo" />
-        <activity android:name=".ViewBook" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

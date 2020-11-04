@@ -13,7 +13,7 @@ public class BookInfo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_book_info);
+        setContentView(R.layout.book_description);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         Book book = (Book) bundle.getSerializable("book");
@@ -21,11 +21,11 @@ public class BookInfo extends AppCompatActivity {
         BookAuthor = findViewById(R.id.BookAuthor);
         BookISBN = findViewById(R.id.BookISBN);
         BookStatus = findViewById(R.id.BookStatus);
-        CurrentBorrower = findViewById(R.id.CurrentBorrower);
+        //CurrentBorrower = findViewById(R.id.CurrentBorrower);
         BookTitle.setText(book.getTitle());
         BookAuthor.setText(book.getAuthor());
         BookISBN.setText(book.getISBN());
         BookStatus.setText(book.getStatus());
-        CurrentBorrower.setText(book.getHolder().getUserName());
+        //CurrentBorrower.setText(book.getHolder().getUserName());
     }
 }

@@ -10,8 +10,8 @@ public class Borrower extends User implements Serializable {
         super(name);
     }
 
-    public Borrower(String name, String contact_info, String password){
-        super(name, contact_info, password);
+    public Borrower(String name, String contact_info, String password, String email){
+        super(name, contact_info, password, email);
     }
 
     public ArrayList<Book> Search_Book(String keyword){

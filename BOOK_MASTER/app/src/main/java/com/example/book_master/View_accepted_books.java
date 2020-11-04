@@ -8,33 +8,29 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.example.book_master.models.*;
 
-import java.util.ArrayList;
+import java.util.*;
 
-public class ViewBook extends AppCompatActivity {
+public class View_accepted_books extends AppCompatActivity {
     ListView bookList;
     ArrayList<Book> bookData;
     ArrayAdapter<Book> bookAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        TextView top = findViewById(R.id.top);
-        bookList = findViewById(R.id.books);
-        top.setTextColor(android.graphics.Color.BLUE);
-        setContentView(R.layout.activity_view_book);
+        setContentView(R.layout.activity_view_accepted_books);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        Owner owner =(Owner) bundle.getSerializable("owner");
-        bookData = owner.Get_Owned_Books();
+        bookData = (ArrayList<Book>) bundle.getSerializable("accepted_books");
         bookAdapter = new CustomBookList(this, bookData);
+        bookList.findViewById(R.id.accepted_book);
         bookList.setAdapter(bookAdapter);
         bookList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                Intent intent = new Intent(ViewBook.this, BookInfo.class);
+                Intent intent = new Intent(View_accepted_books.this, BookInfo.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("book", bookData.get(position));
                 intent.putExtras(bundle);

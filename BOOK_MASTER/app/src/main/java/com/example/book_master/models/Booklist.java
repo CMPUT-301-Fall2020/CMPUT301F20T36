@@ -1,7 +1,8 @@
 package com.example.book_master.models;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 
 import java.util.ArrayList;
 import java.io.Serializable;
@@ -22,7 +23,7 @@ public class Booklist implements Serializable {
         return true;
     }
 
-    @NotNull
+    @NonNull
     public static Boolean deleteBook(String ISBN) {
         // search booklist
         Book temp = getBookDetails(ISBN);

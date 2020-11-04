@@ -22,14 +22,8 @@
         android:layout_height="30dp"
         android:text="Books                                Descriptions                             Status       " />
 
-    <Button
-        android:id="@+id/check_list_add"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ADD" />
-
     <ListView
-        android:id="@+id/books"
+        android:id="@+id/accepted_book"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:baselineAligned="false"
