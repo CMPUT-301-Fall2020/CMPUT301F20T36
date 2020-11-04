@@ -19,8 +19,8 @@ public class Owner extends User implements Serializable {
         super(name);
     }
 
-    public Owner(String userName, String contactInfo, String password){
-        super(userName, contactInfo, password);
+    public Owner(String userName, String contactInfo, String password, String email){
+        super(userName, contactInfo, password, email);
     }
 
     public Boolean Add_Book_Owned(Book book){

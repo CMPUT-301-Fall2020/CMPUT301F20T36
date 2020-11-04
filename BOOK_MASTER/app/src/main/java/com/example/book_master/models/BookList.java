@@ -1,4 +1,5 @@
 package com.example.book_master.models;
+import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.io.Serializable;
@@ -19,6 +20,7 @@ public class BookList implements Serializable {
         return true;
     }
 
+    @NonNull
     public static Boolean deleteBook(String ISBN) {
         // search bookList
         Book temp = getBookDetails(ISBN);
