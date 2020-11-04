@@ -7,7 +7,7 @@ import java.io.Serializable;
 public class UserList  implements Serializable {
     private static ArrayList<User> userList= new ArrayList<>();
 
-    public static User get_User(String username){
+    public static User getUser(String username){
         // when we search, do we care about casing
         User user = new User(username);
         if(userList.contains(user)){
@@ -18,7 +18,7 @@ public class UserList  implements Serializable {
         }
     }
 
-    public static User Add_User(String username, String password, String contact){
+    public static User addUser(String username, String password, String contact){
         // need to guarantee the username is unique
         User new_user = new User(username, password, contact);
         if(!userList.contains(new_user)) {  // This will check properly if it is repeat
@@ -29,8 +29,8 @@ public class UserList  implements Serializable {
         }
     }
 
-    public static User Delete_User(String username, String password){
-        User u = get_User(username);
+    public static User deleteUser(String username, String password){
+        User u = getUser(username);
 //        if(Login(username, password)){  // Don't forgot to check if he is able to delete
 //            userList.remove(u);
 //        }
@@ -38,11 +38,10 @@ public class UserList  implements Serializable {
         return u;
     }
 
-//    public static boolean Login(String username, String password){ CHange to Database
-//        User u = get_User(username);
-//        if(u != null){
-//            return u.Login(password);
-//        }
-//        return false;
-//    }
+    /**
+     * clear the list, required by DBHelper
+     */
+    public static void clearList(){
+        userList.clear();
+    }
 }

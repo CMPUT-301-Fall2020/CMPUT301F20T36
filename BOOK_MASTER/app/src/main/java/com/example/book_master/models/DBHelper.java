@@ -30,12 +30,13 @@ import java.util.ArrayList;
 
 import javax.annotation.Nullable;
 
+/**
+ * o(*≧▽≦)ツ┏━┓
+ */
 public class DBHelper {
     private static final String TAG = DBHelper.class.getSimpleName();
     private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private static FirebaseFirestore mDB = FirebaseFirestore.getInstance();
-
-    private static ArrayList<User> userList = new ArrayList<>();
 
     public static void createAccount(final String email,
                               String password,
@@ -150,17 +151,13 @@ public class DBHelper {
         mCollectionRef.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException error) {
-                userList.clear();
+                UserList.clear();
                 for(QueryDocumentSnapshot doc: queryDocumentSnapshots) {
                     String username = (String) doc.getData().get("username");
                     String contactInfo = (String) doc.getData().get("contactInfo");
-                    userList.add(new User(username, contactInfo));
+                    UserList.add(new User(username, contactInfo));
                 }
             }
         });
-    }
-
-    public static ArrayList<User> getUserList() {
-        return userList;
     }
 }
