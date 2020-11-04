@@ -7,6 +7,7 @@ public class User implements Comparable<User>, Serializable {
     private String contactInfo;
     private String password;
     private String email;
+
     public User() {
         userName = "";
         contactInfo = "";

@@ -1,23 +1,20 @@
 package com.example.book_master.models;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 
 import java.util.ArrayList;
 import java.io.Serializable;
 
-public class Booklist implements Serializable {
-    private static ArrayList<Book> booklist = new ArrayList<Book>();;
+public class BookList implements Serializable {
+    private static ArrayList<Book> bookList = new ArrayList<Book>();;
 
 //    public static boolean addBook(String title, String author, String ISBN, User Owner) {
 //        Book temp = new Book(title, author, ISBN, Owner);
-//        booklist.add(temp);
+//        bookList.add(temp);
 //        return true;
 //    }
 
     public static boolean addBook(Book book, User Owner) {
-        booklist.add(book);
+        bookList.add(book);
         book.setOwner(Owner);
 //      add to database
         return true;
@@ -25,28 +22,27 @@ public class Booklist implements Serializable {
 
     @NonNull
     public static Boolean deleteBook(String ISBN) {
-        // search booklist
+        // search bookList
         Book temp = getBookDetails(ISBN);
         if (temp == null)
             return false;
 
-        booklist.remove(temp);
+        bookList.remove(temp);
 //      delete to database
         return true;
     }
 
     public static Boolean deleteBook(Book book) {
-        if (booklist.contains(book) == false)
+        if (bookList.contains(book) == false)
             return false;
 
-        booklist.remove(book);
+        bookList.remove(book);
 //      delete to database
         return true;
     }
 
-    @Nullable
     public static Book getBookDetails(String ISBN) {
-        for (Book book : booklist) {
+        for (Book book : bookList) {
             if (book.getISBN() == ISBN) {
                 return book;
             }
@@ -57,7 +53,7 @@ public class Booklist implements Serializable {
 
     public static ArrayList<Book> searchBook(String keyword) {
         ArrayList<Book> temp_list = new ArrayList<Book>();
-        for (Book book : booklist) {
+        for (Book book : bookList) {
             if (book.getISBN().equalsIgnoreCase(keyword) ||
                     book.getAuthor().toLowerCase().contains(keyword.toLowerCase()) ||
                     book.getTitle().toLowerCase().contains(keyword.toLowerCase())) {
@@ -91,5 +87,12 @@ public class Booklist implements Serializable {
 
         temp.setHolder(holder);
         return true;
+    }
+
+    /**
+     * clear the list, required by DBHelper
+     */
+    public static void clearList(){
+        bookList.clear();
     }
 }

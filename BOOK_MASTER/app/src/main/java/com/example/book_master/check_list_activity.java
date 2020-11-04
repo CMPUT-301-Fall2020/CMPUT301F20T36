@@ -22,6 +22,7 @@ public class check_list_activity extends AppCompatActivity {
     ListView bookList;
     ArrayList<Book> bookData;
     ArrayAdapter<Book> bookAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +37,6 @@ public class check_list_activity extends AppCompatActivity {
         });
 
         bookList = findViewById(R.id.books);
-
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         Owner owner =(Owner) bundle.getSerializable("owner");
