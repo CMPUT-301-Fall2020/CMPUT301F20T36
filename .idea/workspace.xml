@@ -2,25 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62c31a27-9852-443f-bd1a-dfbd95ae162d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/gen/com/example/book_master/BuildConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/gen/com/example/book_master/Manifest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/gen/com/example/book_master/R.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/annotations-18.0.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/Booklist.java" beforeDir="false" afterPath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/Booklist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/Borrower.java" beforeDir="false" afterPath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/Borrower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/Owner.java" beforeDir="false" afterPath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/Owner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/UserList.java" beforeDir="false" afterPath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/UserList.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +27,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="SvnConfiguration">
     <configuration />

@@ -47,9 +47,13 @@ public class  User implements Comparable<User>, Serializable {
 ////        }
 ////    }
 
-    public boolean Set_contactInfo(){
-        // do we need to chack the login again?
-        return false;
+    public boolean Set_contactInfo(String userName, String contactInfo) {
+        // do we need to check the login again?
+        if(userName != null && contactInfo != null) {
+            this.userName = userName;
+            this.contactInfo = contactInfo;
+            return true;
+        } else return false;
     }
 
     @Override

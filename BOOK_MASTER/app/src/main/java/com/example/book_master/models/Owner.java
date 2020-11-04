@@ -67,21 +67,72 @@ public class Owner extends User implements Serializable {
         return true;
     }
 
+    public Boolean Get_Book_description(){
+        if (ownedBooks.contains(book) == false)
+            return false;
 
-    public Boolean Show_Requested_User(Book book){
-        /* it is supposed to fetch the requests and the user from fire store */
-        return false;
+        String myISBN = book.getISBN();
+        String myAuthor = book.getAuthor();
+        String myBookTitle = book.getTitle();
+
+        return true;
     }
 
 
-    public Boolean Accepte_Requesting(Borrower borrwoer, Book book, Location location){
+    public ArrayList<User> Show_Requested_User(Book book) {
         /* it is supposed to fetch the requests and the user from fire store */
-        return false;
+        ArrayList<User> users = new ArrayList<User>();
+
+        for (int i = 0; i < ownedBooks.size(); i++) {
+            if (ownedBooks.get(i).getISBN() == book.getISBN()) {
+                if (ownedBooks.get(i).getStatus() != "requeted") {
+                    return users.set(0) == null;
+                } else {
+                    return ???; /* Is there user list for requested borrowers? */
+                }
+            }
+
+        }
+    }
+
+
+    public Boolean Accepte_Requesting(Borrower borrower, Book book, Location location){
+        /* it is supposed to fetch the requests and the user from fire store */
+        if (ownedBooks.contains(book) == false)
+            return false;
+
+        /* US 09.01.01 specify a geolocation */
+
+        // ownedBooks.get(book.getISBN()).setStatus("accepted")
+        for (int i=0; i<ownedBooks.size(); i++){
+            if (ownedBooks.get(i).getISBN() == book.getISBN()){
+                if (ownedBooks.get(i).getStatus() == "accepted")
+                    Decline_Requesting(borrower, book);
+                return false;
+                else ownedBooks.get(i).setStatus("accepted");
+            }
+        }
+
     }
 
     public Boolean Decline_Requesting(Borrower borrower, Book book){
         /* it is supposed to fetch the requests and the user from fire store */
-        return false;
+        if (ownedBooks.contains(book) == false)
+            return false;
+
+        Message declineMessage = new Message();
+        declineMessage.Add_New_Message("Declined!!");
+    }
+
+    public Boolean Hand_Over_Book(int ISBN) {
+        if (ownedBooks.contains(book) == false)
+            return false;
+        ScanISBN handoverBookISBN = new ScanISBN(ISBN);
+        for (int i=0; i<ownedBooks.size(); i++) {
+            if (ownedBooks.get(i).getISBN() == handoverBookISBN.getScan_ISBN())
+                ownedBooks.setStatus("borrowed");
+        }
+
     }
 
     public Boolean Hand_Over_Book(){
