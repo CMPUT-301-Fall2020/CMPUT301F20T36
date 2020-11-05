@@ -2,6 +2,9 @@ package com.example.book_master.models;
 
 import java.io.Serializable;
 
+/**
+ * Store one specific book info
+ */
 public class Book implements Serializable {
     public final static String AVAILABLE = "AVAILABLE";
     public final static String REQUESTED = "REQUESTED";
@@ -22,22 +25,41 @@ public class Book implements Serializable {
     // status: available, requested, accepted, borrowed, confirming_B, confirming_R
     private String status;
 
+    /**
+     * Empty constructor required by Firebase
+     */
     public Book() {
         title = "";
         author = "";
         ISBN = "";
         status = AVAILABLE;
+        owner = "";
+        borrower = "";
     }
-  
+
+    /**
+     * Constructor
+     * @param title: book title
+     * @param author: book author
+     * @param ISBN: book ISBN, unique
+     */
     public Book(String title, String author, String ISBN) {
         this.title = title;
         this.author = author;
         this.ISBN = ISBN;
-        status = AVAILABLE;
+        this.status = AVAILABLE;
         this.owner = null;
         this.borrower = null;
     }
 
+    /**
+     * Constructor
+     * @param title: book title
+     * @param author: book author
+     * @param ISBN: book ISBN, unique
+     * @param owner: current owner
+     * @param borrower: current borrower
+     */
     public Book(String title, String author, String ISBN, String owner, String borrower) {
         this.title = title;
         this.author = author;
@@ -47,31 +69,68 @@ public class Book implements Serializable {
         status = AVAILABLE;
     }
 
+    /**
+     * @return book title
+     */
     public String getTitle() { return title; }
 
+    /**
+     * @param title book title
+     */
     public void setTitle(String title) { this.title = title; }
 
+    /**
+     * @return book author
+     */
     public String getAuthor() { return author; }
 
+    /**
+     * @param author: book author
+     */
     public void setAuthor(String author) { this.author = author; }
 
+    /**
+     * @return book ISBN
+     */
     public String getISBN() { return ISBN; }
 
+    /**
+     * @param ISBN: book ISBN
+     */
     public void setISBN(String ISBN) { this.ISBN = ISBN; }
 
+    /**
+     * @return current owner
+     */
     public String getOwner() { return owner; }
 
+    /**
+     * @param owner: current owner
+     */
     public void setOwner(String owner) { this.owner = owner; }
 
+    /**
+     * @return current borrower
+     */
     public String getBorrower() { return borrower; }
 
+    /**
+     * @param borrower: current borrower
+     */
     public void setBorrower(String borrower) { this.borrower = borrower; }
 
 //    public PhotographList getPhotographList() { return photographList; }
 //
 //    public void setPhotographList(PhotographList photographList) { this.photographList = photographList; }
 
+    /**
+     * @return current status
+     */
     public String getStatus() { return status; }
 
+    /**
+     *
+     * @param status: current status
+     */
     public void setStatus(String status) { this.status = status; }
 }
