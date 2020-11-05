@@ -86,6 +86,18 @@ public class BookList {
         return null;
     }
 
+
+    public static ArrayList<Book> getAvailableBook(){
+        ArrayList<Book> temp = new ArrayList<Book>();
+        for(Book book : bookList){
+            if(book.getStatus().equals(Book.AVALIABLE)){
+                temp.add(book);
+            }
+        }
+        return temp;
+    }
+
+
     /**
      * Get all Books that which has the description specified
      * @param keyword: keyword in description

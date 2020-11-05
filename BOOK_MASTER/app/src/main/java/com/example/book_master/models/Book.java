@@ -6,6 +6,7 @@ import java.io.Serializable;
  * Store one specific book info
  */
 public class Book implements Serializable {
+
     public final static String AVAILABLE = "AVAILABLE";
     public final static String REQUESTED = "REQUESTED";
     public final static String ACCEPTED = "ACCEPTED";
