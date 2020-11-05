@@ -8,12 +8,23 @@ import java.util.ArrayList;
 public class Message implements Serializable {
     private String sender;
     private String receiver;
-    private String content;
+    private String ISBN;
+    private String status;
+    private String longitude;
+    private String latitude;
 
-    public Message(String sender, String receiver, String content) {
+    public Message(String sender,
+                   String receiver,
+                   String ISBN,
+                   String status,
+                   String longitude,
+                   String latitude) {
         this.sender = sender;
         this.receiver = receiver;
-        this.content = content;
+        this.ISBN = ISBN;
+        this.status = status;
+        this.longitude = longitude;
+        this.latitude = latitude;
     }
 
     public String getSender() {return sender;}
@@ -24,11 +35,23 @@ public class Message implements Serializable {
 
     public void setReceiver(String receiver) {this.receiver = receiver;}
 
-    public String getContent() {return content;}
+    public String getISBN() {return ISBN;}
 
-    public void setContent(String content) {this.content = content;}
+    public void setISBN(String ISBN) {this.ISBN = ISBN;}
+
+    public String getStatus() {return status;}
+
+    public void setStatus(String status) {this.status = status;}
+
+    public String getLongitude() {return longitude;}
+
+    public void setLongitude(String longitude) {this.longitude = longitude;}
+
+    public String getLatitude() {return latitude;}
+
+    public void setLatitude(String latitude) {this.receiver = latitude;}
 
     // identifier
-    public int hashCode() { return sender.hashCode() * receiver.hashCode() * content.hashCode(); }
+    public int hashCode() { return sender.hashCode() * receiver.hashCode() * ISBN.hashCode(); }
 }
 

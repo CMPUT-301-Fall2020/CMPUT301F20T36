@@ -379,8 +379,11 @@ public class DBHelper {
 
                     String sender = (String) doc.getData().get("sender");
                     String receiver = (String) doc.getData().get("receiver");
-                    String content = (String) doc.getData().get("content");
-                    MessageList.addMessage(new Message(sender, receiver, content));
+                    String ISBN = (String) doc.getData().get("ISBN");
+                    String status = (String) doc.getData().get("status");
+                    String longitude = (String) doc.getData().get("longitude");
+                    String latitude = (String) doc.getData().get("latitude");
+                    MessageList.addMessage(new Message(sender, receiver, ISBN, status, longitude, latitude));
                 }
             }
         });
