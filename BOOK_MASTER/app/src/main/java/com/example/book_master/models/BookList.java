@@ -33,6 +33,11 @@ public class BookList {
         return temp;
     }
 
+    /**
+     *
+     * @param username
+     * @return
+     */
     public static ArrayList<Book> getBorrowedBook (String username) {
         ArrayList<Book> temp = new ArrayList<Book>();
         for (Book book : bookList) {

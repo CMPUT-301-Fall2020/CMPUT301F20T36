@@ -118,6 +118,8 @@ public class DBHelper {
 
                             // update the current user
                             UserList.setCurrentUser(email);
+
+//                            FirebaseUser user = mAuth.getCurrentUser();
                             // TODO: direct UI to main menu activity
                             Intent intent = new Intent(context, main_menu_activity.class);
                             context.startActivity(intent);
@@ -149,7 +151,7 @@ public class DBHelper {
      * @param user
      * @param context
      */
-    static void setUserDoc(final String doc, final User user, final Context context) {
+    public static void setUserDoc(final String doc, final User user, final Context context) {
         FirebaseFirestore mDB = FirebaseFirestore.getInstance();
         mDB.collection("User")
                 .document(doc)
@@ -179,7 +181,7 @@ public class DBHelper {
      * @param book
      * @param context
      */
-    static void setBookDoc(final String doc, final Book book, final Context context) {
+    public static void setBookDoc(final String doc, final Book book, final Context context) {
         FirebaseFirestore mDB = FirebaseFirestore.getInstance();
         mDB.collection("Book")
                 .document(doc)
@@ -209,7 +211,7 @@ public class DBHelper {
      * @param msg
      * @param context
      */
-    static void setMessageDoc(final String doc, final Message msg, final Context context) {
+    public static void setMessageDoc(final String doc, final Message msg, final Context context) {
         FirebaseFirestore mDB = FirebaseFirestore.getInstance();
         mDB.collection("Message")
                 .document(doc)

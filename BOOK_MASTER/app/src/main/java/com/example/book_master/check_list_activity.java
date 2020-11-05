@@ -12,8 +12,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.book_master.models.Book;
+import com.example.book_master.models.BookList;
 import com.example.book_master.models.CustomBookList;
 import com.example.book_master.models.Owner;
+import com.example.book_master.models.User;
+import com.example.book_master.models.UserList;
 
 import java.util.*;
 
@@ -37,14 +40,13 @@ public class check_list_activity extends AppCompatActivity {
         });
 
         bookList = findViewById(R.id.books);
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        Owner owner =(Owner) bundle.getSerializable("owner");
-//        for(Book.Status i : Book.Status.values()) {
-//            bookData.addAll((ArrayList<Book>)owner.Get_Owned_Books(i).clone());
-//        }
+
+        User cur = UserList.getCurrentUser();
+        String name = cur.getUsername();
+        bookData = BookList.getOwnedBook(name);
         bookAdapter = new CustomBookList(this, bookData);
         bookList.setAdapter(bookAdapter);
+
         bookList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
@@ -55,7 +57,7 @@ public class check_list_activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        }
+    }
 }
 
 
