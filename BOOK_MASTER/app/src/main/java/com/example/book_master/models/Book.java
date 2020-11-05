@@ -3,12 +3,12 @@ package com.example.book_master.models;
 import java.io.Serializable;
 
 public class Book implements Serializable {
-    private final String AVALIABLE = "AVALIABLE";
-    private final String REQUESTED = "REQUESTED";
-    private final String ACCEPTED = "ACCEPTED";
-    private final String BORROWED = "BORROWED";
-    private final String CONFIRM_BORROWED = "CONFIRM_BORROWED";
-    private final String CONFIRM_RETURN = "CONFIRM_RETURN";
+    public static final String AVALIABLE = "AVALIABLE";
+    public static final String REQUESTED = "REQUESTED";
+    public static final String ACCEPTED = "ACCEPTED";
+    public static final String BORROWED = "BORROWED";
+    public static final String CONFIRM_BORROWED = "CONFIRM_BORROWED";
+    public static final String CONFIRM_RETURN = "CONFIRM_RETURN";
 
     private String title;
     private String author;

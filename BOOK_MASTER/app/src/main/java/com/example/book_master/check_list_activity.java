@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.book_master.models.Book;
@@ -25,7 +26,8 @@ public class check_list_activity extends AppCompatActivity {
     ListView bookList;
     ArrayList<Book> bookData;
     ArrayAdapter<Book> bookAdapter;
-
+    ArrayAdapter<String> spinnerAdapter;
+    Spinner spinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +43,7 @@ public class check_list_activity extends AppCompatActivity {
 
         bookList = findViewById(R.id.books);
         User cur = UserList.getCurrentUser();
-        String name = cur.getUsername();
+        final String name = cur.getUsername();
         bookData = BookList.getOwnedBook(name);
         bookAdapter = new CustomBookList(this, bookData);
         bookList.setAdapter(bookAdapter);
@@ -56,6 +58,32 @@ public class check_list_activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        spinner = findViewById(R.id.status_spinner);
+        final String[] status = {"All", Book.AVALIABLE, Book.REQUESTED, Book.ACCEPTED, Book.BORROWED, Book.CONFIRM_BORROWED, Book.CONFIRM_RETURN};
+        spinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, status);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(spinnerAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
+                bookAdapter.clear();
+                if(position == 0){
+                    bookData = BookList.getOwnedBook(name);
+                }else{
+                    ArrayList<Book> ownedBook = BookList.getOwnedBook(name);
+                    bookData = UserList.getCurrentUser().Get_Owned_Books(status[position]);
+                }
+                bookAdapter = new CustomBookList(check_list_activity.this, bookData);
+                bookList.setAdapter(bookAdapter);
+                bookAdapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent){
+
+            }
+        });
+
     }
 }
 
