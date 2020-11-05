@@ -57,6 +57,16 @@ public class BookList {
         return null;
     }
 
+    public static ArrayList<Book> getAvailableBook(){
+        ArrayList<Book> temp = new ArrayList<Book>();
+        for(Book book : bookList){
+            if(book.getStatus().equals(Book.AVALIABLE)){
+                temp.add(book);
+            }
+        }
+        return temp;
+    }
+
     public static ArrayList<Book> searchDesc(String keyword) {
         ArrayList<Book> qualifiedBooks = new ArrayList<>();
         for (Book book : bookList) {
