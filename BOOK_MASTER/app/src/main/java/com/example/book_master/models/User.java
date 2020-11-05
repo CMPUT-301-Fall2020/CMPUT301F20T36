@@ -34,7 +34,18 @@ public class User implements Serializable {
 
     public void setUsername(String username) { this.username = username; }
 
+<<<<<<< HEAD
+    public boolean Set_contactInfo(String userName, String contactInfo) {
+        // do we need to check the login again?
+        if(userName != null && contactInfo != null) {
+            this.userName = userName;
+            this.contactInfo = contactInfo;
+            return true;
+        } else return false;
+    }
+=======
     public String getContactInfo() { return contactInfo; }
+>>>>>>> 978652025541111a7bec6ac119f2cd69d4bb0364
 
     public void setContactInfo(String contactInfo) { this.contactInfo = contactInfo; }
 }
