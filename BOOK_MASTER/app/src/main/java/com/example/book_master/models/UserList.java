@@ -84,7 +84,7 @@ public class UserList {
      */
     public static boolean checkUnique(String username) {
         for (User user : userList) {
-            if (user.getUsername() == username) {
+            if (user.getUsername() != null && user.getUsername().equalsIgnoreCase(username)) {
                 return false;
             }
         }
