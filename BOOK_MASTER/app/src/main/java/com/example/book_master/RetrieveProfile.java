@@ -17,7 +17,7 @@ public class RetrieveProfile extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         String userName = (String) bundle.getSerializable("userName");
-        User user = UserList.get_User(userName);
+        User user = UserList.getUser(userName);
         name = findViewById(R.id.user_name_retrieve);
         contact = findViewById(R.id.contact_retrieve);
         phone = findViewById(R.id.phone_retrieve);

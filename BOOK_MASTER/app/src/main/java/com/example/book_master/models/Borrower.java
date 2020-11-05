@@ -15,7 +15,7 @@ public class Borrower extends User implements Serializable {
     }
 
     public ArrayList<Book> Search_Book(String keyword){
-        return Booklist.searchBook(keyword);
+        return BookList.searchBook(keyword);
     }
 
     public ArrayList<Book> Show_Requesting_Book(Book book) {
