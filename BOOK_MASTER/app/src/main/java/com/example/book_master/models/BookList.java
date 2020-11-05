@@ -87,10 +87,10 @@ public class BookList {
     }
 
 
-    public static ArrayList<Book> getAvailableBook(){
+    public static ArrayList<Book> getAvailableBook(String userName){
         ArrayList<Book> temp = new ArrayList<Book>();
         for(Book book : bookList){
-            if(book.getStatus().equals(Book.AVALIABLE)){
+            if(book.getStatus().equals(Book.AVAILABLE) && !book.getOwner().equals(userName)){
                 temp.add(book);
             }
         }
