@@ -355,7 +355,7 @@ public class DBHelper {
 
                     String title = (String) doc.getData().get("title");
                     String author = (String) doc.getData().get("author");
-                    String ISBN = (String) doc.getData().get("ISBN");
+                    String ISBN = (String) doc.getData().get("isbn");
                     String owner = (String) doc.getData().get("owner");
                     String borrower = (String) doc.getData().get("borrower");
                     BookList.addBook(new Book(title, author, ISBN, owner, borrower));
