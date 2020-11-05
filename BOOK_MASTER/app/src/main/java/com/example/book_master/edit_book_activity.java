@@ -49,7 +49,7 @@ public class edit_book_activity extends AppCompatActivity {
                 String book_title = Title.getText().toString();
                 String book_Author = Author.getText().toString();
 
-                if (book_Author != "" && book_title != "") {
+                if (!book_Author.equals("") && !book_title.equals("")) {
                     book.setTitle(book_title);
                     book.setAuthor(book_Author);
 

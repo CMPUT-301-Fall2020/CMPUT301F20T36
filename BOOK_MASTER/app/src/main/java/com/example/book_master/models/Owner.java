@@ -1,6 +1,7 @@
 
 package com.example.book_master.models;
 
+import android.content.Context;
 import android.location.Location;
 import java.io.Serializable;
 
@@ -11,13 +12,11 @@ import java.util.ArrayList;
 import javax.net.ssl.SSLEngineResult;
 
 public interface Owner {
-
-
-    public Boolean Add_Book_Owned(Book book);
+    public Boolean Add_Book_Owned(Book book, Context context);
 
     public ArrayList<Book> Get_Owned_Books(String status);
 
-    public Boolean Remove_Owned_Book(Book book);
+    public void Remove_Owned_Book(String ISBN, Context context);
 
     public Boolean Set_Book_description(String title, String author, Book book);
 
