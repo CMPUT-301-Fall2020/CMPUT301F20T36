@@ -40,7 +40,6 @@ public class check_list_activity extends AppCompatActivity {
         });
 
         bookList = findViewById(R.id.books);
-
         User cur = UserList.getCurrentUser();
         String name = cur.getUsername();
         bookData = BookList.getOwnedBook(name);

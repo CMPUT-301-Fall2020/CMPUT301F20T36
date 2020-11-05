@@ -21,6 +21,7 @@
         <activity android:name=".borrow_list_activity" />
         <activity android:name=".check_list_activity" />
         <activity android:name=".main_menu_activity" />
+        <activity android:name=".BookInfo" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
