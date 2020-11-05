@@ -29,6 +29,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//
+//        DBHelper.collectionListener();
+//        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+//        startActivity(intent);
 
         username = findViewById(R.id.editTextTextPersonName2);
         password = findViewById(R.id.editTextTextPassword);
@@ -39,8 +43,18 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, main_menu_activity.class);
-                startActivity(intent);
+                DBHelper.signIn(username.getText().toString(), password.getText().toString(), MainActivity.this);
+//                Intent intent = new Intent(MainActivity.this, main_menu_activity.class);
+//                startActivity(intent);
+            }
+        });
+
+        sign_up.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RegisterFrag
+                        .newInstance(username.getText().toString(), password.getText().toString())
+                        .show(getSupportFragmentManager(), "Create_Account");
             }
         });
     }

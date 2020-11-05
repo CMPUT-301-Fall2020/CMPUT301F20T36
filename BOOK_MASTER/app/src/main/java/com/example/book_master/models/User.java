@@ -17,11 +17,10 @@ public class  User implements Comparable<User>, Serializable, Owner, Borrower {
         contactInfo = "";
     }
 
-    public User(String userName, String contactInfo, String password){
+    public User(String userName, String contactInfo){
         // how to guarantee this username is unique when create
         this.userName = userName;
         this.contactInfo = contactInfo;
-        this.password = password;
     }
 
     public User(String userName){

@@ -27,15 +27,15 @@ public class CustomBookList extends ArrayAdapter<Book> {
     @Override
     public View getView(int position, @androidx.annotation.Nullable View convertView, @NonNull ViewGroup parent) {
         View view = convertView;
-        if(view == null){
-            view = LayoutInflater.from(context).inflate(R.layout.book_content, parent,false);
-        }
-        Book book = bookData.get(position);
-        TextView title = view.findViewById(R.id.Title);
-        TextView status = view.findViewById(R.id.status);
+//        if(view == null){
+//            view = LayoutInflater.from(context).inflate(R.layout.book_content, parent,false);
+//        }
+//        Book book = bookData.get(position);
+//        TextView title = view.findViewById(R.id.Title);
+//        TextView status = view.findViewById(R.id.status);
 
-        title.setText(book.getTitle());
-        status.setText(book.getStatus());
+//        title.setText(book.getTitle());
+//        status.setText(book.getStatus());
 
         return view;
     }

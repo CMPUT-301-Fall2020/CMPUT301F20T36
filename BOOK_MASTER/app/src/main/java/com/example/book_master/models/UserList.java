@@ -18,9 +18,9 @@ public class UserList  implements Serializable {
         }
     }
 
-    public static User Add_User(String username, String password, String contact){
+    public static User Add_User(String username, String contact){
         // need to guarantee the username is unique
-        User new_user = new User(username, password, contact);
+        User new_user = new User(username, contact);
         if(!userList.contains(new_user)) {  // This will check properly if it is repeat
             userList.add(new_user);
             return new_user;  // what this return for? can we get away from boolean

@@ -1,8 +1,5 @@
 package com.example.book_master.models;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
 import java.util.ArrayList;
 import java.io.Serializable;
 
@@ -22,7 +19,6 @@ public class Booklist implements Serializable {
         return true;
     }
 
-    @NotNull
     public static Boolean deleteBook(String ISBN) {
         // search booklist
         Book temp = getBookDetails(ISBN);
@@ -43,7 +39,6 @@ public class Booklist implements Serializable {
         return true;
     }
 
-    @Nullable
     public static Book getBookDetails(String ISBN) {
         for (Book book : booklist) {
             if (book.getISBN() == ISBN) {
