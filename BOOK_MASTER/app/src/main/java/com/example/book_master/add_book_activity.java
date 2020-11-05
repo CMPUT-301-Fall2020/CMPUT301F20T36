@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.book_master.models.Book;
@@ -20,8 +20,8 @@ import com.google.zxing.integration.android.IntentResult;
 import java.util.Random;
 
 public class add_book_activity extends AppCompatActivity {
-    private TextView Title;
-    private TextView Author;
+    private EditText Title;
+    private EditText Author;
     private Button ScanISBN;
     private Button Confirm;
     private Button Discard;
@@ -32,8 +32,8 @@ public class add_book_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_edit_book);
 
-        Title = (TextView) findViewById(R.id.add_book_name);
-        Author = (TextView) findViewById(R.id.add_book_author);
+        Title = (EditText) findViewById(R.id.add_book_name);
+        Author = (EditText) findViewById(R.id.add_book_author);
         ScanISBN = (Button) findViewById(R.id.scan_isbn_add_book);
         Confirm = (Button) findViewById(R.id.add_confirm_button);
         Discard = (Button) findViewById(R.id.add_discard_buttom);
@@ -41,7 +41,6 @@ public class add_book_activity extends AppCompatActivity {
         // ------For testing------
         Random rand = new Random();
         ISBN = Double.toString(rand.nextDouble());
-        // -----------------------
 
         ScanISBN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,13 +63,11 @@ public class add_book_activity extends AppCompatActivity {
 
                 if (book_Author != "" && book_title != "" && ISBN != ""  && temp == null) {
                     Book book = new Book(book_title, book_Author, ISBN);
-                    UserList.getCurrentUser().Add_Book_Owned(book);
-                    DBHelper.setBookDoc(ISBN, book, add_book_activity.this);
+                    UserList.getCurrentUser().Add_Book_Owned(book, add_book_activity.this);
 
                     Intent intent = new Intent(add_book_activity.this, check_list_activity.class);
                     startActivity(intent);
-                }
-                else {
+                } else {
                     Toast.makeText(add_book_activity.this, "Field is not valid.",
                             Toast.LENGTH_SHORT).show();
                 }
@@ -92,8 +89,7 @@ public class add_book_activity extends AppCompatActivity {
         if (scanningResult != null) {
             if (scanningResult.getContents() != null) {
                  ISBN = scanningResult.getContents();
-            }
-            else {
+            } else {
                 Toast.makeText(this, "No Results", Toast.LENGTH_LONG).show();
             }
         } else {

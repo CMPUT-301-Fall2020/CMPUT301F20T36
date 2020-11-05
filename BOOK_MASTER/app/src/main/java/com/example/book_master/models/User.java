@@ -1,5 +1,6 @@
 package com.example.book_master.models;
 
+import android.content.Context;
 import android.location.Location;
 
 import java.io.Serializable;
@@ -76,10 +77,7 @@ public class User implements Serializable, Owner, Borrower {
      */
     public void setContactInfo(String contactInfo) { this.contactInfo = contactInfo; }
 
-    // Below is borrower
-    public ArrayList<Book> Search_Book(String keyword){
-        return BookList.searchDesc(keyword);
-    }
+    // ------Borrower implementation------
 
     public ArrayList<Book> Show_Requesting_Book(Book book) {
 //        ArrayList<Book> books = new ArrayList<Book>();
@@ -113,24 +111,32 @@ public class User implements Serializable, Owner, Borrower {
 //        }
         return false;
     }
-    // end of borrower
+    // ------End of Borrower------
 
-    // begin of owner
-    public Boolean Add_Book_Owned(Book book){
+    // ------Owner implementation------
+
+    /**
+     * Add one owned book to Firebase
+     * @param book: Book instance to be added
+     * @param context: Context of the window where Toast should be displayed
+     * @return true if the book is successfully added, false otherwise
+     */
+    public Boolean Add_Book_Owned(Book book, Context context) {
+        // the book has been recorded in userList
         if (BookList.getBook(book.getISBN()) != null) {
             return false;
         }
 
-        BookList.addBook(book);
         book.setOwner(username);
+        DBHelper.setBookDoc(book.getISBN(), book, context);
         return true;
     }
 
 
     public ArrayList<Book> Get_Owned_Books(String status){ // Must and only select one status
-        ArrayList<Book> ownbooklist = BookList.getOwnedBook(username);
+        ArrayList<Book> ownedBookList = BookList.getOwnedBook(username);
         ArrayList<Book> temp = new ArrayList<Book>();
-        for (Book book : ownbooklist) {
+        for (Book book : ownedBookList) {
             if (book.getStatus().equalsIgnoreCase(status)) {
                 temp.add(book);
             }
@@ -138,14 +144,14 @@ public class User implements Serializable, Owner, Borrower {
         return temp;
     }
 
-
-    public Boolean Remove_Owned_Book(Book book){
-        if (book == null || book.getOwner() != username) {
-            return false;
-        } else {
-            BookList.deleteBook(book);
-            return true;
-        }
+    /**
+     * Remove one owned book from Firebase
+     * @param ISBN: ISBN of the Book instance to be deleted
+     * @param context: Context of the window where Toast should be displayed
+     * @return true if the book is successfully deleted, false otherwise
+     */
+    public void Remove_Owned_Book(String ISBN, Context context) {
+        DBHelper.deleteBookDoc(ISBN, context);
     }
 
 
@@ -228,4 +234,6 @@ public class User implements Serializable, Owner, Borrower {
     public Boolean Confirm_Return(String ISBN) {
         return false;
     }
+
+    // ------End of Owner------
 }

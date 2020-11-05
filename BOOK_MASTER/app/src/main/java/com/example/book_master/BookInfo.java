@@ -41,19 +41,20 @@ public class BookInfo extends AppCompatActivity {
         Edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1= new Intent(BookInfo.this, edit_book_activity.class);
-                Bundle bundle1 = new Bundle();
-                bundle1.putSerializable("book_edit", book);
-                intent1.putExtras(bundle1);
-                startActivity(intent1);
+                Intent intent= new Intent(BookInfo.this, edit_book_activity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("book_edit", book);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
 
         Delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                BookList.delete(book);
-                DBHelper.deleteBookDoc(book.getISBN(), BookInfo.this);
+                UserList.getCurrentUser().Remove_Owned_Book(book.getISBN(), BookInfo.this);
+                Intent intent = new Intent(BookInfo.this, check_list_activity.class);
+                startActivity(intent);
             }
         });
     }
