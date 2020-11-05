@@ -22,12 +22,14 @@ import com.example.book_master.models.UserList;
 import java.util.*;
 
 public class check_list_activity extends AppCompatActivity {
-    Button add_button;
-    ListView bookList;
-    ArrayList<Book> bookData;
-    ArrayAdapter<Book> bookAdapter;
-    ArrayAdapter<String> spinnerAdapter;
-    Spinner spinner;
+
+    private Button add_button;
+    private ListView bookList;
+    private ArrayList<Book> bookData;
+    private ArrayAdapter<Book> bookAdapter;
+    private ArrayAdapter<String> spinnerAdapter;
+    private Spinner spinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,7 +85,6 @@ public class check_list_activity extends AppCompatActivity {
 
             }
         });
-
     }
 }
 

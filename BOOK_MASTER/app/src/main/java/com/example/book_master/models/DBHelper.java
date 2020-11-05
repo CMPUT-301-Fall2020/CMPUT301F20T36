@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.example.book_master.LoginActivity;
+import com.example.book_master.MainActivity;
 import com.example.book_master.main_menu_activity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -89,7 +89,7 @@ public class DBHelper {
                             // also, delete the correspond User instance in Firebase
                             deleteUserDoc(user.getUid(), context);
                             // TODO: direct UI to login activity
-                            Intent intent = new Intent(context, LoginActivity.class);
+                            Intent intent = new Intent(context, MainActivity.class);
                             context.startActivity(intent);
                         } else {
                             Log.w(TAG, "delete account:failure", task.getException());
@@ -140,7 +140,7 @@ public class DBHelper {
         mAuth.signOut();
 
         // TODO: direct UI to login activity
-        Intent intent = new Intent(context, LoginActivity.class);
+        Intent intent = new Intent(context, MainActivity.class);
         context.startActivity(intent);
     }
 

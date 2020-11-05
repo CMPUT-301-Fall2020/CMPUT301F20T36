@@ -54,8 +54,8 @@ public class add_book_activity extends AppCompatActivity {
             public void onClick(View v) {
                 String book_title = Title.getText().toString();
                 String book_Author = Author.getText().toString();
-
-                if (book_Author != "" && book_title != "" && ISBN != "" && BookList.getBook(ISBN) != null) {
+                Book temp =  BookList.getBook(ISBN);
+                if (book_Author != "" && book_title != "" && ISBN != ""  && temp == null) {
                     Book book = new Book(book_title, book_Author, ISBN);
                     UserList.getCurrentUser().Add_Book_Owned(book);
                     DBHelper.setBookDoc(ISBN, book, add_book_activity.this);
@@ -64,7 +64,7 @@ public class add_book_activity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else {
-                    Toast.makeText(add_book_activity.this, "Field is not filled.",
+                    Toast.makeText(add_book_activity.this, "Field is not valid.",
                             Toast.LENGTH_SHORT).show();
                 }
             }
