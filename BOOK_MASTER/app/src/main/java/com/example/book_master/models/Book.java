@@ -3,25 +3,18 @@ package com.example.book_master.models;
 import java.io.Serializable;
 
 public class Book implements Serializable {
-    public enum Status {
-        available("available"), requested("requested"), accepted("accepted"), borrowed("borrowed"), confirming_B("confirming_B"), confirming_R("confirming_R");
-        private String statusName;
-        private Status(String s){
-            this.statusName = s;
-        }
-        @Override
-        public String toString(){
-            return statusName;
-        }
-    };
-  
     private String title;
     private String author;
     private String ISBN;
-    private User owner;
-    private User holder;
-    private PhotographList photolist;
-    private Status status = Status.available;
+    private String description;
+    // use username to identify the user instance
+    // and then call UserList.getUser(username) to get User instance
+    private String owner;
+    private String holder;
+    // TODO: implement a structure holding photograph
+//    private PhotographList photographList;
+    // status: available, requested, accepted, borrowed, confirming_B, confirming_R
+    private String status;
 
     public Book() {
         title = "";
@@ -29,75 +22,53 @@ public class Book implements Serializable {
         ISBN = "";
     }
   
-    public Book(String title, String author, String ISBN) {
-        this.title = title;
-        this.author = author;
-        this.ISBN = ISBN;
-        this.owner = null;
-        this.holder = null;
-    }
+//    public Book(String title, String author, String ISBN) {
+//        this.title = title;
+//        this.author = author;
+//        this.ISBN = ISBN;
+//        this.description = null;
+//        this.owner = null;
+//        this.holder = null;
+//    }
 
-    public Book(String title, String author, String ISBN, User owner) {
+    public Book(String title, String author, String ISBN, String desc, String owner, String holder) {
         this.title = title;
         this.author = author;
         this.ISBN = ISBN;
+        this.description = desc;
         this.owner = owner;
-        this.holder = owner;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public String getISBN() {
-        return ISBN;
-    }
-
-    public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
-    }
-
-    public User getOwner() {
-        return owner;
-    }
-
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }
-
-    public User getHolder() {
-        return holder;
-    }
-
-    public void setHolder(User holder) {
         this.holder = holder;
     }
 
-    public PhotographList getPhotolist() {
-        return photolist;
-    }
+    public String getTitle() { return title; }
 
-//    public void addPhotolist(Photographlist photolist) {
-//        this.photolist = photolist;
-//    }
+    public void setTitle(String title) { this.title = title; }
 
-    public String getStatus() {
-        return status.toString();
-    }
+    public String getAuthor() { return author; }
 
-    public void setStatus(Status status) {
-        this.status = status;
-    }
+    public void setAuthor(String author) { this.author = author; }
+
+    public String getISBN() { return ISBN; }
+
+    public void setISBN(String ISBN) { this.ISBN = ISBN; }
+
+    public String getDescription() {return description;}
+
+    public void setDescription(String desc) {this.description = desc;}
+
+    public String getOwner() { return owner; }
+
+    public void setOwner(String owner) { this.owner = owner; }
+
+    public String getHolder() { return holder; }
+
+    public void setHolder(String holder) { this.holder = holder; }
+
+//    public PhotographList getPhotographList() { return photographList; }
+//
+//    public void setPhotographList(PhotographList photographList) { this.photographList = photographList; }
+
+    public String getStatus() { return status; }
+
+    public void setStatus(String status) { this.status = status; }
 }
