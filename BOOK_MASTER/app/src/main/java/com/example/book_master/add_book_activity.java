@@ -17,6 +17,8 @@ import com.example.book_master.models.UserList;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.util.Random;
+
 public class add_book_activity extends AppCompatActivity {
     private TextView Title;
     private TextView Author;
@@ -35,7 +37,11 @@ public class add_book_activity extends AppCompatActivity {
         ScanISBN = (Button) findViewById(R.id.scan_isbn_add_book);
         Confirm = (Button) findViewById(R.id.add_confirm_button);
         Discard = (Button) findViewById(R.id.add_discard_buttom);
-        ISBN = "1234";
+        ISBN = "";
+        // ------For testing------
+        Random rand = new Random();
+        ISBN = Double.toString(rand.nextDouble());
+        // -----------------------
 
         ScanISBN.setOnClickListener(new View.OnClickListener() {
             @Override

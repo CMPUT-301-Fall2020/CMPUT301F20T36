@@ -114,10 +114,12 @@ public class User implements Serializable, Owner, Borrower{
 
 
     public Boolean Remove_Owned_Book(Book book){
-        if (book == null || book.getOwner() != username)
+        if (book == null || book.getOwner() != username) {
             return false;
-
-        return BookList.delete(book);
+        } else {
+            BookList.deleteBook(book);
+            return true;
+        }
     }
 
 
