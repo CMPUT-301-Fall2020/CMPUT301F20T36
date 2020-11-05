@@ -39,10 +39,7 @@ public class check_list_activity extends AppCompatActivity {
         bookList = findViewById(R.id.books);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        Owner owner =(Owner) bundle.getSerializable("owner");
-//        for(Book.Status i : Book.Status.values()) {
-//            bookData.addAll((ArrayList<Book>)owner.Get_Owned_Books(i).clone());
-//        }
+
         bookAdapter = new CustomBookList(this, bookData);
         bookList.setAdapter(bookAdapter);
         bookList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
