@@ -5,7 +5,7 @@ import android.location.Location;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class  User implements Comparable<User>, Serializable, Owner, Borrower {
+public class  User implements Comparable<User> {
     private String userName;
     private String contactInfo;
     private String password;
