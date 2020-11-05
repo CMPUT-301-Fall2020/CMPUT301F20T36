@@ -116,6 +116,8 @@ public class DBHelper {
                             Toast.makeText(context, "Authentication succeeded.",
                                     Toast.LENGTH_SHORT).show();
 
+                            // update the current user
+                            UserList.setCurrentUser(email);
                             // TODO: direct UI to main menu activity
                             Intent intent = new Intent(context, ProfileActivity.class);
                             context.startActivity(intent);
@@ -172,7 +174,8 @@ public class DBHelper {
 
     /**
      * Create or modify one Book instance in Firebase
-     * @param doc: the unique ID identifying the book
+     * @param doc: the unique ID identifying the book,
+     *           retrieved via Book.getISBN()
      * @param book
      * @param context
      */
@@ -201,7 +204,8 @@ public class DBHelper {
 
     /**
      * Create or modify one Message instance in Firebase
-     * @param doc: the unique ID identifying the message
+     * @param doc: the unique ID identifying the message,
+     *           retrieved via String.valueOf(Message.hashCode())
      * @param msg
      * @param context
      */
@@ -347,9 +351,13 @@ public class DBHelper {
                 BookList.clearList();
                 for(QueryDocumentSnapshot doc: queryDocumentSnapshots) {
 
-                    // TODO: Add Book instance here
-//                    String title = (String) doc.getData().get("title");
-//                    BookList.addBook(new Book(title));
+                    String title = (String) doc.getData().get("title");
+                    String author = (String) doc.getData().get("author");
+                    String ISBN = (String) doc.getData().get("ISBN");
+                    String desc = (String) doc.getData().get("description");
+                    String owner = (String) doc.getData().get("owner");
+                    String holder = (String) doc.getData().get("holder");
+                    BookList.addBook(new Book(title, author, ISBN, desc, owner, holder));
                 }
             }
         });
@@ -369,9 +377,10 @@ public class DBHelper {
 //                MessageList.clearList();
                 for(QueryDocumentSnapshot doc: queryDocumentSnapshots) {
 
-                    // TODO: Add Message instance here
-//                    String content = (String) doc.getData().get("content");
-//                    BookList.addBook(new Message(content));
+                    String sender = (String) doc.getData().get("sender");
+                    String receiver = (String) doc.getData().get("receiver");
+                    String content = (String) doc.getData().get("content");
+                    MessageList.addMessage(new Message(sender, receiver, content));
                 }
             }
         });
