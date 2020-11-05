@@ -24,6 +24,7 @@ public class View_accepted_books extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         bookData = (ArrayList<Book>) bundle.getSerializable("accepted_books");
+
         bookAdapter = new CustomBookList(this, bookData);
         bookList.findViewById(R.id.accepted_book);
         bookList.setAdapter(bookAdapter);

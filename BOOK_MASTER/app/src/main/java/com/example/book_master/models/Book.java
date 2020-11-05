@@ -3,14 +3,20 @@ package com.example.book_master.models;
 import java.io.Serializable;
 
 public class Book implements Serializable {
+    private final String AVALIABLE = "AVALIABLE";
+    private final String REQUESTED = "REQUESTED";
+    private final String ACCEPTED = "ACCEPTED";
+    private final String BORROWED = "BORROWED";
+    private final String CONFIRM_BORROWED = "CONFIRM_BORROWED";
+    private final String CONFIRM_RETURN = "CONFIRM_RETURN";
+
     private String title;
     private String author;
     private String ISBN;
-    private String description;
     // use username to identify the user instance
     // and then call UserList.getUser(username) to get User instance
     private String owner;
-    private String holder;
+    private String borrower;
     // TODO: implement a structure holding photograph
 //    private PhotographList photographList;
     // status: available, requested, accepted, borrowed, confirming_B, confirming_R
@@ -20,24 +26,25 @@ public class Book implements Serializable {
         title = "";
         author = "";
         ISBN = "";
+        status = AVALIABLE;
     }
   
-//    public Book(String title, String author, String ISBN) {
-//        this.title = title;
-//        this.author = author;
-//        this.ISBN = ISBN;
-//        this.description = null;
-//        this.owner = null;
-//        this.holder = null;
-//    }
-
-    public Book(String title, String author, String ISBN, String desc, String owner, String holder) {
+    public Book(String title, String author, String ISBN) {
         this.title = title;
         this.author = author;
         this.ISBN = ISBN;
-        this.description = desc;
+        status = AVALIABLE;
+        this.owner = null;
+        this.borrower = null;
+    }
+
+    public Book(String title, String author, String ISBN, String owner, String borrower) {
+        this.title = title;
+        this.author = author;
+        this.ISBN = ISBN;
         this.owner = owner;
-        this.holder = holder;
+        this.borrower = null;
+        status = AVALIABLE;
     }
 
     public String getTitle() { return title; }
@@ -52,17 +59,13 @@ public class Book implements Serializable {
 
     public void setISBN(String ISBN) { this.ISBN = ISBN; }
 
-    public String getDescription() {return description;}
-
-    public void setDescription(String desc) {this.description = desc;}
-
     public String getOwner() { return owner; }
 
     public void setOwner(String owner) { this.owner = owner; }
 
-    public String getHolder() { return holder; }
+    public String getBorrower() { return borrower; }
 
-    public void setHolder(String holder) { this.holder = holder; }
+    public void setBorrower(String borrower) { this.borrower = borrower; }
 
 //    public PhotographList getPhotographList() { return photographList; }
 //

@@ -9,7 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.example.book_master.LoginActivity;
-import com.example.book_master.ProfileActivity;
+import com.example.book_master.main_menu_activity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -46,10 +46,10 @@ public class DBHelper {
      * @param context
      */
     public static void createAccount(final String email,
-                              final String password,
-                              final String username,
-                              final String contactInfo,
-                              final Context context) {
+                                     final String password,
+                                     final String username,
+                                     final String contactInfo,
+                                     final Context context) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener((Activity) context, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -119,7 +119,7 @@ public class DBHelper {
                             // update the current user
                             UserList.setCurrentUser(email);
                             // TODO: direct UI to main menu activity
-                            Intent intent = new Intent(context, ProfileActivity.class);
+                            Intent intent = new Intent(context, main_menu_activity.class);
                             context.startActivity(intent);
                         } else {
                             Log.w(TAG, "signInWithEmailAndPassword:failure", task.getException());
@@ -354,10 +354,9 @@ public class DBHelper {
                     String title = (String) doc.getData().get("title");
                     String author = (String) doc.getData().get("author");
                     String ISBN = (String) doc.getData().get("ISBN");
-                    String desc = (String) doc.getData().get("description");
                     String owner = (String) doc.getData().get("owner");
-                    String holder = (String) doc.getData().get("holder");
-                    BookList.addBook(new Book(title, author, ISBN, desc, owner, holder));
+                    String borrower = (String) doc.getData().get("borrower");
+                    BookList.addBook(new Book(title, author, ISBN, owner, borrower));
                 }
             }
         });
@@ -379,8 +378,11 @@ public class DBHelper {
 
                     String sender = (String) doc.getData().get("sender");
                     String receiver = (String) doc.getData().get("receiver");
-                    String content = (String) doc.getData().get("content");
-                    MessageList.addMessage(new Message(sender, receiver, content));
+                    String ISBN = (String) doc.getData().get("ISBN");
+                    String status = (String) doc.getData().get("status");
+                    String longitude = (String) doc.getData().get("longitude");
+                    String latitude = (String) doc.getData().get("latitude");
+                    MessageList.addMessage(new Message(sender, receiver, ISBN, status, longitude, latitude));
                 }
             }
         });

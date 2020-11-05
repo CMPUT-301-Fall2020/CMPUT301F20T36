@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class UserList {
     private static ArrayList<User> userList= new ArrayList<>();
+
     private static User currentUser;
 
     public static void addUser(User user) {userList.add(user);}
@@ -16,6 +17,7 @@ public class UserList {
     public static void clearList(){
         userList.clear();
     }
+
     public static User addUser(String username, String password, String contact, String email) {
         // need to guarantee the username is unique
         User new_user = new User(username, password, contact, email);
@@ -44,5 +46,13 @@ public class UserList {
                 return;
             }
         }
+    }
+
+    public static boolean checkUnique(String username) {
+        for (User user : userList) {
+            if (user.getUsername() == username)
+                return false;
+        }
+        return true;
     }
 }

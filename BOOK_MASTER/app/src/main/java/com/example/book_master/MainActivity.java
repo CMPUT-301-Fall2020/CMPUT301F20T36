@@ -37,9 +37,10 @@ public class MainActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, main_menu_activity.class);
-                startActivity(intent);
+                DBHelper.signIn(emailText.getText().toString(), passwordText.getText().toString(), MainActivity.this);
             }
         });
+
+
     }
 }
