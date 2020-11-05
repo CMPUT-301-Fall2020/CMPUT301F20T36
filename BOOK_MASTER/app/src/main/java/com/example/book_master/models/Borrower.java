@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.io.Serializable;
 
 public interface Borrower{
-
-    public ArrayList<Book> Search_Book(String keyword);
-
     public ArrayList<Book> Show_Requesting_Book(Book book);
 
     public ArrayList<Book> Show_Accepted_Book(Book book);
