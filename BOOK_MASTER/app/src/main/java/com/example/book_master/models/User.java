@@ -5,50 +5,76 @@ import android.location.Location;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class User implements Serializable, Owner, Borrower{
+/**
+ * Store one specific user info
+ * Could invoke methods as Owner & Borrower
+ */
+public class User implements Serializable, Owner, Borrower {
     private String email;
     private String password;
     private String username;
     private String contactInfo;
 
     /**
-     * Required by Firebase
+     * Empty constructor required by Firebase
      */
     public User() {
-        username = "";
-        password = "";
-        contactInfo = "";
         email = "";
+        password = "";
+        username = "";
+        contactInfo = "";
     }
 
+    /**
+     * Constructor
+     * @param email: user email, unique
+     * @param password: user password
+     * @param username: username, its uniqueness is checked in RegisterFrag
+     * @param contactInfo: user contact information
+     */
     public User(String email, String password, String username, String contactInfo){
-        this.email = email;
-        this.password = password;
-        // TODO: check if the username is unique
+        this.email = email;         // could not be modified
+        this.password = password;   // could not be modified
         this.username = username;
         this.contactInfo = contactInfo;
     }
 
+    /**
+     * @return user email
+     */
     public String getEmail() { return email; }
 
+    /**
+     * @return user password
+     */
     public String getPassword() { return password; }
 
+    /**
+     * @return username
+     */
     public String getUsername() { return username; }
 
-    public void setUsername(String username) { this.username = username; }
-
-    public String getContactInfo() {
-        return contactInfo;
-    }
-
-    public boolean Set_contactInfo(String contactInfo) {
-        // do we need to check the login again?
-        if(contactInfo != null) {
-            this.contactInfo = contactInfo;
+    /**
+     * @param username: the modified username
+     * @return true if the username is successfully set (i.e., it is unique), false otherwise
+     */
+    public boolean setUsername(String username) {
+        if (UserList.checkUnique(username)) {
+            this.username = username;
             return true;
-        } else
-            return false;
+        }
+        return false;
     }
+
+    /**
+     * @return user contact information
+     */
+    public String getContactInfo() { return contactInfo; }
+
+    /**
+     * @param contactInfo: user contact information
+     */
+    public void setContactInfo(String contactInfo) { this.contactInfo = contactInfo; }
 
     // Below is borrower
     public ArrayList<Book> Search_Book(String keyword){

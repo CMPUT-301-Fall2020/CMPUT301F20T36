@@ -8,11 +8,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.book_master.models.DBHelper;
+import com.example.book_master.models.UserList;
 
 import javax.annotation.Nullable;
 
@@ -78,10 +80,16 @@ public class RegisterFrag extends DialogFragment {
                     public void onClick(DialogInterface dialog, int i) {
                         String email = emailText.getText().toString();
                         String password = passwordText.getText().toString();
-                        String userName = usernameText.getText().toString();
+                        String username = usernameText.getText().toString();
                         String contactInfo = contactInfoText.getText().toString();
 
-                        DBHelper.createAccount(email, password, userName, contactInfo, view.getContext());
+                        // check if the username is unique
+                        if (UserList.checkUnique(username)) {
+                            Toast.makeText(view.getContext(), "Username already existed.",
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+                            DBHelper.createAccount(email, password, username, contactInfo, view.getContext());
+                        }
                     }
                 }).create();
     }

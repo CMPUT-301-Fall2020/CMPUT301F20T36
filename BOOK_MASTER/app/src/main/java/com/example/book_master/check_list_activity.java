@@ -61,7 +61,7 @@ public class check_list_activity extends AppCompatActivity {
         });
 
         spinner = findViewById(R.id.status_spinner);
-        final String[] status = {"All", Book.AVALIABLE, Book.REQUESTED, Book.ACCEPTED, Book.BORROWED, Book.CONFIRM_BORROWED, Book.CONFIRM_RETURN};
+        final String[] status = {"All", Book.AVAILABLE, Book.REQUESTED, Book.ACCEPTED, Book.BORROWED, Book.CONFIRM_BORROWED, Book.CONFIRM_RETURN};
         spinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, status);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(spinnerAdapter);

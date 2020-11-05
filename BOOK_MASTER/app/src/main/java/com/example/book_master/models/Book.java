@@ -3,7 +3,7 @@ package com.example.book_master.models;
 import java.io.Serializable;
 
 public class Book implements Serializable {
-    public final static String AVALIABLE = "AVALIABLE";
+    public final static String AVAILABLE = "AVAILABLE";
     public final static String REQUESTED = "REQUESTED";
     public final static String ACCEPTED = "ACCEPTED";
     public final static String BORROWED = "BORROWED";
@@ -26,14 +26,14 @@ public class Book implements Serializable {
         title = "";
         author = "";
         ISBN = "";
-        status = AVALIABLE;
+        status = AVAILABLE;
     }
   
     public Book(String title, String author, String ISBN) {
         this.title = title;
         this.author = author;
         this.ISBN = ISBN;
-        status = AVALIABLE;
+        status = AVAILABLE;
         this.owner = null;
         this.borrower = null;
     }
@@ -44,7 +44,7 @@ public class Book implements Serializable {
         this.ISBN = ISBN;
         this.owner = owner;
         this.borrower = null;
-        status = AVALIABLE;
+        status = AVAILABLE;
     }
 
     public String getTitle() { return title; }
