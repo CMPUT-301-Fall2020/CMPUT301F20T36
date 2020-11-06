@@ -6,12 +6,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.book_master.models.UserList;
-import com.google.zxing.integration.android.IntentIntegrator;
 
+/**
+ * This activity class will show the user's username, contact info, & email and prompt a button to
+ * allow user to edit his profile
+ */
 public class profile_page_activity extends AppCompatActivity {
     private Button edit, back;
     private TextView username, contact_info, email;
@@ -31,6 +32,7 @@ public class profile_page_activity extends AppCompatActivity {
         contact_info.setText("Contact_info: " + UserList.getCurrentUser().getContactInfo());
         email.setText("Email: " + UserList.getCurrentUser().getEmail());
 
+        // close the activity and back to main menu
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,6 +40,7 @@ public class profile_page_activity extends AppCompatActivity {
             }
         });
 
+        // allow the user to go to edit profile page
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

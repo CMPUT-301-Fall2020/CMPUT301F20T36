@@ -130,6 +130,16 @@
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <Button
+        android:id="@+id/main_menu_request"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Request"
+        app:layout_constraintEnd_toStartOf="@+id/Return_main_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Receive_main_button" />
+  
+  <Button
         android:id="@+id/main_menu_borrower_show_requested"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -139,4 +149,5 @@
         android:text="Show Requested"
         app:layout_constraintStart_toEndOf="@+id/Return_main_button"
         app:layout_constraintTop_toBottomOf="@+id/Borrow_main_button" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
