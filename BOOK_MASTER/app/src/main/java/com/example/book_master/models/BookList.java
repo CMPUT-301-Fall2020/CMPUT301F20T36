@@ -28,16 +28,6 @@ public class BookList {
     }
 
     /**
-     * Delete one Book instance in bookList
-     * @param book: Book instance to be deleted
-     */
-    public static void deleteBook(Book book) {
-        if (bookList.contains(book)) {
-            bookList.remove(book);
-        }
-    }
-
-    /**
      * clear the list, required by DBHelper
      */
     public static void clearList() { bookList.clear(); }
