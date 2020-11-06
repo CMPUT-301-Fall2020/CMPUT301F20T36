@@ -22,8 +22,10 @@ public class MessageTest {
     }
 
     /**
-     * getSender(), setSender(String sender), getReceiver(), setReceiver(String receiver)
-     * getISBN(), setISBN(String ISBN), getStatus(), setStatus(String status),
+     * Test:    getSender(), setSender(String sender),
+     * getReceiver(), setReceiver(String receiver)
+     * getISBN(), setISBN(String ISBN),
+     * getStatus(), setStatus(String status),
      * getLongitude(), setLongitude(String longitude),
      * getLatitude(), setLatitude(String latitude)
      */
@@ -44,10 +46,22 @@ public class MessageTest {
         temp.setLongitude("47° 55' W");
         temp.setLatitude("2° 29' E");
         assertTrue(temp.getSender().equalsIgnoreCase("shrike's friend"));
-        // assertTrue(temp.getReceiver().equalsIgnoreCase("shrike"));
+        assertTrue(temp.getReceiver().equalsIgnoreCase("shrike"));
         assertTrue(temp.getISBN().equalsIgnoreCase("978-3-16-148410-2"));
         assertTrue(temp.getStatus().equalsIgnoreCase("REQUESTED"));
         assertTrue(temp.getLongitude().equalsIgnoreCase("47° 55' W"));
         assertTrue(temp.getLatitude().equalsIgnoreCase("2° 29' E"));
+    }
+
+    /**
+     * Test: hashCode()
+     */
+    @Test
+    void testHashCode() {
+        Message temp1 = mockMsg();
+        Message temp2 = mockMsg();
+        temp2.setISBN("978-3-16-148410-2");
+
+        assertTrue(temp1.hashCode() != temp2.hashCode());
     }
 }

@@ -25,7 +25,7 @@ public class BookListTest {
     }
 
     /**
-     * addBook(Book book), getBook(String ISBN)
+     * Test: addBook(Book book), getBook(String ISBN)
      */
     @Test
     void testSetGet() {
@@ -37,7 +37,7 @@ public class BookListTest {
     }
 
     /**
-     * clearList()
+     * Test: clearList()
      */
     @Test
     void testClear() {
@@ -51,7 +51,7 @@ public class BookListTest {
     }
 
     /**
-     * getOwnedBook(String username), getBorrowedBook(String username)
+     * Test: getOwnedBook(String username), getBorrowedBook(String username)
      */
     @Test
     void testGetOwnedBorrowed() {
@@ -68,7 +68,7 @@ public class BookListTest {
     }
 
     /**
-     * getAvailableBook(String username)
+     * Test: getAvailableBook(String username)
      */
     @Test
     void testGetAvailableBook() {
@@ -85,7 +85,7 @@ public class BookListTest {
     }
 
     /**
-     * searchDesc(String keyword, String username)
+     * Test: searchDesc(String keyword, String username)
      */
     @Test
     void testSearchDesc() {

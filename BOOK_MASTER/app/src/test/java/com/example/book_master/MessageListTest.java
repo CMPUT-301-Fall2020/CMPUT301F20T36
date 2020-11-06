@@ -25,7 +25,7 @@ public class MessageListTest {
     }
 
     /**
-     * ddMessage(Message msg), SearchISBN(), clearList()
+     * Test: addMessage(Message msg), SearchISBN(), clearList()
      */
     @Test
     void testAddSearchISBNClear() {
@@ -36,10 +36,13 @@ public class MessageListTest {
         ArrayList<Message> qualified;
         qualified = MessageList.searchISBN(ISBN);
         assertTrue(qualified.size() != 0 && qualified.get(0).getISBN().equalsIgnoreCase(ISBN));
+        MessageList.clearList();
+        qualified = MessageList.searchISBN(ISBN);
+        assertTrue(qualified.size() == 0);
     }
 
     /**
-     * searchSender(String sender), searchReceiver(String receiver)
+     * Test: searchSender(String sender), searchReceiver(String receiver)
      */
     @Test
     void testSearchSenderReceiver() {
