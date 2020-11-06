@@ -39,6 +39,7 @@ public class check_list_activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent check_list_intent = new Intent(check_list_activity.this, add_book_activity.class);
                 startActivity(check_list_intent);
+                finish();
             }
         });
 
@@ -55,6 +56,7 @@ public class check_list_activity extends AppCompatActivity {
                 Intent intent = new Intent(check_list_activity.this, BookInfo.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("book", bookData.get(position));
+                bundle.putInt("VISIBILITY", 1);  // 1 for show Edit button
                 intent.putExtras(bundle);
                 startActivity(intent);
                 finish();
