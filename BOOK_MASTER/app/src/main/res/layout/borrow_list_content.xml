@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/Borrow_list_name"
-        android:layout_width="152dp"
+        android:layout_width="250dp"
         android:layout_height="35dp"
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
@@ -19,8 +19,8 @@
 
     <TextView
         android:id="@+id/Borrow_list_author"
-        android:layout_width="153dp"
-        android:layout_height="36dp"
+        android:layout_width="150dp"
+        android:layout_height="35dp"
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
         android:layout_marginTop="4dp"
@@ -28,13 +28,4 @@
         app:layout_constraintStart_toEndOf="@+id/Borrow_list_name"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/Borrow_list_borrow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:layout_marginRight="4dp"
-        android:text="Borrow"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
