@@ -37,17 +37,7 @@ public class CustomBorrowList extends ArrayAdapter<Book> {
         TextView author = view.findViewById(R.id.Borrow_list_author);
         name.setText(book.getTitle());
         author.setText(book.getAuthor());
-        Button borrow = view.findViewById(R.id.Borrow_list_borrow);
-        borrow.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Message m = new Message(UserList.getCurrentUser().getUsername(), book.getAuthor(), book.getISBN(), Book.REQUESTED, "0", "0");
-                DBHelper.setMessageDoc(String.valueOf(m.hashCode()), m, context);
-                Toast.makeText(context, "Request sent", Toast.LENGTH_SHORT).show();
-                book.setStatus(Book.REQUESTED);
-                DBHelper.setBookDoc(book.getISBN(), book, context);
-            }
-        });
+
         return view;
     }
 }
