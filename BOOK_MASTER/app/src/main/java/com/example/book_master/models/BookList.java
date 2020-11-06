@@ -97,7 +97,9 @@ public class BookList {
             if (book.getAuthor().toLowerCase().contains(keyword.toLowerCase()) ||
                     book.getTitle().toLowerCase().contains(keyword.toLowerCase()) ||
                     book.getISBN().contains(keyword)) {
-                temp.add(book);
+                if (book.getStatus() == Book.AVAILABLE || book.getStatus() == Book.REQUESTED) {
+                    temp.add(book);
+                }
             }
         }
         return temp;

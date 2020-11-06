@@ -67,6 +67,7 @@ public class add_book_activity extends AppCompatActivity {
 
                     Intent intent = new Intent(add_book_activity.this, check_list_activity.class);
                     startActivity(intent);
+                    finish();
                 } else {
                     Toast.makeText(add_book_activity.this, "Field is not valid.",
                             Toast.LENGTH_SHORT).show();
@@ -79,6 +80,7 @@ public class add_book_activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(add_book_activity.this, check_list_activity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
