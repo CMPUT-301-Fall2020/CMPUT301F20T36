@@ -10,11 +10,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.book_master.models.Book;
 import com.example.book_master.models.BookList;
 import com.example.book_master.adapter.CustomBookList;
 import com.example.book_master.models.UserList;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import java.util.*;
 
@@ -23,6 +26,7 @@ import java.util.*;
  */
 public class check_list_activity extends AppCompatActivity {
     private Button add_button;
+    private Button scan_ISBN;
     private ListView bookList;
     private ArrayList<Book> bookData;
     private ArrayAdapter<Book> bookAdapter;
@@ -33,6 +37,19 @@ public class check_list_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.check_my_list);
+
+        scan_ISBN = (Button) findViewById(R.id.check_my_list_title_scan);
+        scan_ISBN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IntentIntegrator integrator = new IntentIntegrator(check_list_activity.this);
+                integrator.setCaptureActivity(capture_activity.class);
+                integrator.setOrientationLocked(false);
+                integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
+                integrator.setPrompt("Scanning ISBN");
+                integrator.initiateScan();
+            }
+        });
 
         add_button = findViewById(R.id.check_list_add);
         add_button.setOnClickListener(new View.OnClickListener(){
@@ -91,6 +108,43 @@ public class check_list_activity extends AppCompatActivity {
 
             }
         });
+    }
+
+    /**
+     * this will handle the result pass back from ISBN scanner which is used ZXing API
+     * @param requestCode the requested code that call this function
+     * @param resultCode the result code that is send to this function
+     * @param intent the intent which contains the data in regular case
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        IntentResult scanISBN = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+        if (scanISBN != null) {
+            if (scanISBN.getContents() != null) {
+                String ISBN = scanISBN.getContents();
+                Book book = BookList.getBook(ISBN);
+                if (book== null) {
+                    Toast.makeText(this, "Book Does not Exist", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Intent book_info_intent = new Intent(check_list_activity.this, BookInfo.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("book", book);
+                    if (book.getOwner().equalsIgnoreCase(UserList.getCurrentUser().getUsername())) {
+                        bundle.putInt("VISIBILITY", 1);  // 1 for show Edit button
+                    }
+                    else {
+                        bundle.putInt("VISIBILITY", 2);  // 2 for not show Edit button
+                    }
+                    book_info_intent.putExtras(bundle);
+                    startActivity(book_info_intent);
+                }
+            } else {
+                Toast.makeText(this, "No Results", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, intent);
+        }
     }
 }
 

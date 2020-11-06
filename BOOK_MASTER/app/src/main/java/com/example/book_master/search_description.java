@@ -37,11 +37,11 @@ public class search_description extends AppCompatActivity {
         status = findViewById(R.id.Borrow_BookStatus);
         owner = findViewById(R.id.Borrow_BookOwner);
 
-        title.setText(book.getTitle());
-        author.setText(book.getAuthor());
-        isbn.setText(book.getISBN());
-        status.setText(book.getStatus());
-        owner.setText(book.getOwner());
+        title.setText("Title: " + book.getTitle());
+        author.setText("Author: " + book.getAuthor());
+        isbn.setText("ISBN: " + book.getISBN());
+        status.setText("States: " + book.getStatus());
+        owner.setText("Owner: " + book.getOwner());
 
         // will send the request to owner for requesting the book
         borrow.setOnClickListener(new View.OnClickListener(){
@@ -52,8 +52,9 @@ public class search_description extends AppCompatActivity {
                 Toast.makeText(search_description.this, "Request sent", Toast.LENGTH_SHORT).show();
                 book.setStatus(Book.REQUESTED);
                 DBHelper.setBookDoc(book.getISBN(), book, search_description.this);
-                Intent intent = new Intent(search_description.this, borrower_requested_list_activity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(search_description.this, borrower_requested_list_activity.class);
+//                startActivity(intent);
+                setResult(RESULT_OK);
                 finish();
             }
         });
@@ -62,8 +63,8 @@ public class search_description extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(search_description.this, borrower_requested_list_activity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(search_description.this, borrower_requested_list_activity.class);
+//                startActivity(intent);
                 finish();
             }
         });
