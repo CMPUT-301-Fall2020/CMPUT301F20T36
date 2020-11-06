@@ -11,10 +11,14 @@ import android.widget.Toast;
 
 import com.example.book_master.models.*;
 
+/**
+ * This activity page will dispay all description to user and ask user if he want to borrow it
+ * User can click on Borrow to send a request to the owner
+ */
 public class search_description extends AppCompatActivity {
-    Book book;
-    TextView title, author, isbn, status, owner;
-    Button borrow, back;
+    private Book book;
+    private TextView title, author, isbn, status, owner;
+    private Button borrow, back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,23 +43,26 @@ public class search_description extends AppCompatActivity {
         status.setText(book.getStatus());
         owner.setText(book.getOwner());
 
+        // will send the request to owner for requesting the book
         borrow.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Message m = new Message(UserList.getCurrentUser().getUsername(), book.getAuthor(), book.getISBN(), Book.REQUESTED, "0", "0");
+                Message m = new Message(UserList.getCurrentUser().getUsername(), book.getOwner(), book.getISBN(), Book.REQUESTED, "0", "0");
                 DBHelper.setMessageDoc(String.valueOf(m.hashCode()), m, search_description.this);
                 Toast.makeText(search_description.this, "Request sent", Toast.LENGTH_SHORT).show();
                 book.setStatus(Book.REQUESTED);
                 DBHelper.setBookDoc(book.getISBN(), book, search_description.this);
-                Intent intent = new Intent(search_description.this, borrow_list_activity.class);
+                Intent intent = new Intent(search_description.this, borrower_requested_list_activity.class);
                 startActivity(intent);
                 finish();
             }
         });
+
+        // back to main menu.
         back.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(search_description.this, borrow_list_activity.class);
+                Intent intent = new Intent(search_description.this, borrower_requested_list_activity.class);
                 startActivity(intent);
                 finish();
             }

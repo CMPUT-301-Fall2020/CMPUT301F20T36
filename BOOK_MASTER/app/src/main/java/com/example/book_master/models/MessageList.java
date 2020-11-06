@@ -30,7 +30,7 @@ public class MessageList {
     /**
      * clear the list, required by DBHelper
      */
-    public static void clearList(){ messageList.clear(); }
+    public static void clearList() { messageList.clear(); }
 
     /**
      * Get all Messages that one User sent

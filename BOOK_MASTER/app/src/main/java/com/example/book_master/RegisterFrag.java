@@ -18,6 +18,9 @@ import com.example.book_master.models.UserList;
 
 import javax.annotation.Nullable;
 
+/**
+ * This fragment will all the user to sign up with all required inputs
+ */
 public class RegisterFrag extends DialogFragment {
     private EditText emailText;
     private EditText passwordText;

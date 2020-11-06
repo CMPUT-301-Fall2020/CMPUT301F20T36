@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import com.example.book_master.models.*;
 
+/**
+ * This activity class will show the user profile without the edit button
+ */
 public class RetrieveProfile extends AppCompatActivity {
     TextView name, contact, email;
     Button back;

@@ -106,7 +106,7 @@ public class Message implements Serializable {
     /**
      * @param latitude: latitude of the receiver location
      */
-    public void setLatitude(String latitude) {this.receiver = latitude;}
+    public void setLatitude(String latitude) {this.latitude = latitude;}
 
     /**
      * Message identifier

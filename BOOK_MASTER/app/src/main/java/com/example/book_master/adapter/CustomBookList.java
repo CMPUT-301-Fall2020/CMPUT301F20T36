@@ -1,4 +1,4 @@
-package com.example.book_master.Adpater;
+package com.example.book_master.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

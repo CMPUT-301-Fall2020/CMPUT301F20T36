@@ -13,14 +13,15 @@ import android.widget.Spinner;
 
 import com.example.book_master.models.Book;
 import com.example.book_master.models.BookList;
-import com.example.book_master.Adpater.CustomBookList;
-import com.example.book_master.models.User;
+import com.example.book_master.adapter.CustomBookList;
 import com.example.book_master.models.UserList;
 
 import java.util.*;
 
+/**
+ * this activity class will show the owner what he owned (can be filtered by status)
+ */
 public class check_list_activity extends AppCompatActivity {
-
     private Button add_button;
     private ListView bookList;
     private ArrayList<Book> bookData;
@@ -39,28 +40,31 @@ public class check_list_activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent check_list_intent = new Intent(check_list_activity.this, add_book_activity.class);
                 startActivity(check_list_intent);
+                finish();
             }
         });
 
         bookList = findViewById(R.id.books);
-        User cur = UserList.getCurrentUser();
-        final String name = cur.getUsername();
+        final String name = UserList.getCurrentUser().getUsername();
         bookData = BookList.getOwnedBook(name);
         bookAdapter = new CustomBookList(this, bookData);
         bookList.setAdapter(bookAdapter);
 
+        // if user click on a book, then display the entire dscription
         bookList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
                 Intent intent = new Intent(check_list_activity.this, BookInfo.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("book", bookData.get(position));
+                bundle.putInt("VISIBILITY", 1);  // 1 for show Edit button
                 intent.putExtras(bundle);
                 startActivity(intent);
                 finish();
             }
         });
 
+        // Owner can filtered book by status which is handled by spinner
         spinner = findViewById(R.id.status_spinner);
         final String[] status = {"All", Book.AVAILABLE, Book.REQUESTED, Book.ACCEPTED, Book.BORROWED, Book.CONFIRM_BORROWED, Book.CONFIRM_RETURN};
         spinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, status);
@@ -81,6 +85,7 @@ public class check_list_activity extends AppCompatActivity {
                 bookList.setAdapter(bookAdapter);
                 bookAdapter.notifyDataSetChanged();
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent){
 
