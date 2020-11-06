@@ -1,4 +1,4 @@
-package com.example.book_master.models;
+package com.example.book_master.Adpater;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.example.book_master.R;
+import com.example.book_master.models.Book;
 
 import java.util.ArrayList;
 

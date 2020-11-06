@@ -7,6 +7,7 @@ import java.io.Serializable;
  * The book info includes Status as one of  available, requested, accepted, or borrowed.
  */
 public class Book implements Serializable {
+
     public final static String AVAILABLE = "AVAILABLE";
     public final static String REQUESTED = "REQUESTED";
     public final static String ACCEPTED = "ACCEPTED";

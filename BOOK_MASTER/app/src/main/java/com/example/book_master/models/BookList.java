@@ -28,16 +28,6 @@ public class BookList {
     }
 
     /**
-     * Delete one Book instance in bookList
-     * @param book: Book instance to be deleted
-     */
-    public static void deleteBook(Book book) {
-        if (bookList.contains(book)) {
-            bookList.remove(book);
-        }
-    }
-
-    /**
      * clear the list, required by DBHelper
      */
     public static void clearList() { bookList.clear(); }
@@ -86,18 +76,32 @@ public class BookList {
         return null;
     }
 
+
+    public static ArrayList<Book> getAvailableBook(String userName){
+        ArrayList<Book> temp = new ArrayList<Book>();
+        for(Book book : bookList){
+            if((book.getStatus().equals(Book.AVAILABLE) || book.getStatus().equalsIgnoreCase(Book.REQUESTED)) && !book.getOwner().equals(userName)){
+                temp.add(book);
+            }
+        }
+        return temp;
+    }
+
+
     /**
      * Get all Books that which has the description specified
      * @param keyword: keyword in description
      * @return ArrayList<Book>
      */
-    public static ArrayList<Book> searchDesc(String keyword) {
+    public static ArrayList<Book> searchDesc(String keyword, String username) {
         ArrayList<Book> temp = new ArrayList<>();
         for (Book book : bookList) {
             if (book.getAuthor().toLowerCase().contains(keyword.toLowerCase()) ||
                     book.getTitle().toLowerCase().contains(keyword.toLowerCase()) ||
                     book.getISBN().contains(keyword)) {
-                temp.add(book);
+                if((book.getStatus().equals(Book.AVAILABLE) || book.getStatus().equalsIgnoreCase(Book.REQUESTED)) && !book.getOwner().equals(username)) {
+                    temp.add(book);
+                }
             }
         }
         return temp;

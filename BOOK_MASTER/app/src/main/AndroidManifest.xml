@@ -2,12 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.book_master">
 
+
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-feature android:name="android.hardware.camera"/>
     <uses-feature android:name="android.hardware.camera.autofocus"/>
+    <uses-configuration android:noHistory = "true"/>
+
 
     <application
         android:allowBackup="true"
+        android:noHistory = "true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -15,8 +19,15 @@
         android:theme="@style/AppTheme">
         <activity android:name=".add_book_activity"></activity>
         <activity android:name=".edit_book_activity"></activity>
+        <activity android:name=".edit_profile_activity"></activity>
+        <activity android:name=".profile_page_activity"></activity>
+        <activity android:name=".RetrieveProfile"></activity>
+        <activity android:name=".retrieve_username_activity"></activity>
+        <activity android:name=".search_description"></activity>
+
         <activity android:name=".search_page_activity" />
         <!--        <activity android:name=".owner_receive_activity" />-->
+
         <activity android:name=".borrow_return_activity" />
         <activity android:name=".return_activity" />
         <activity android:name=".borrow_list_activity" />
@@ -30,14 +41,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".owner_receive_activity"
+        <activity
+            android:name=".owner_receive_activity"
             android:screenOrientation="fullSensor"
             android:stateNotNeeded="true"
-            android:windowSoftInputMode="stateAlwaysHidden"></activity>
-        <activity android:name=".capture_activity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".capture_activity"
             android:screenOrientation="fullSensor"
             android:stateNotNeeded="true"
-            android:windowSoftInputMode="stateAlwaysHidden"></activity>
+            android:windowSoftInputMode="stateAlwaysHidden" />
     </application>
 
 </manifest>

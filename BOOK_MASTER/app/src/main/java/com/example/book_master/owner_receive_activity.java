@@ -40,6 +40,7 @@ public class owner_receive_activity extends AppCompatActivity{
                 integrator.initiateScan();
             }
         });
+
         Confirm_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

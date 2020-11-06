@@ -78,13 +78,13 @@ public class RegisterFrag extends DialogFragment {
                 .setPositiveButton("Create", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                        String email = emailText.getText().toString();
-                        String password = passwordText.getText().toString();
-                        String username = usernameText.getText().toString();
-                        String contactInfo = contactInfoText.getText().toString();
+                        final String email = emailText.getText().toString();
+                        final String password = passwordText.getText().toString();
+                        final String username = usernameText.getText().toString();
+                        final String contactInfo = contactInfoText.getText().toString();
 
                         // check if the username is unique
-                        if (UserList.checkUnique(username)) {
+                        if (UserList.checkUnique(username) == false) {
                             Toast.makeText(view.getContext(), "Username already existed.",
                                     Toast.LENGTH_SHORT).show();
                         } else {

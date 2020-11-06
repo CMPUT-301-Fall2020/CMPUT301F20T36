@@ -30,16 +30,6 @@ public class UserList {
     }
 
     /**
-     * Delete one User instance in userList
-     * @param user: User instance to be deleted
-     */
-    public static void deleteUser(User user) {
-        if (userList.contains(user)) {
-            userList.remove(user);
-        }
-    }
-
-    /**
      * clear the list, required by DBHelper
      */
     public static void clearList() { userList.clear(); }
@@ -84,7 +74,7 @@ public class UserList {
      */
     public static boolean checkUnique(String username) {
         for (User user : userList) {
-            if (user.getUsername() == username) {
+            if (user.getUsername() != null && user.getUsername().equalsIgnoreCase(username)) {
                 return false;
             }
         }
