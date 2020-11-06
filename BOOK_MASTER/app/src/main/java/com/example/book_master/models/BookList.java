@@ -37,7 +37,7 @@ public class BookList {
      * @param username: username of the desired User
      * @return ArrayList<Book>
      */
-    public static ArrayList<Book> getOwnedBook (String username) {
+    public static ArrayList<Book> getOwnedBook(String username) {
         ArrayList<Book> temp = new ArrayList<>();
         for (Book book : bookList) {
             if (book.getOwner().equalsIgnoreCase(username)) {
@@ -52,7 +52,7 @@ public class BookList {
      * @param username: username of the desired User
      * @return ArrayList<Book>
      */
-    public static ArrayList<Book> getBorrowedBook (String username) {
+    public static ArrayList<Book> getBorrowedBook(String username) {
         ArrayList<Book> temp = new ArrayList<>();
         for (Book book : bookList) {
             if (book.getBorrower().equalsIgnoreCase(username)) {
@@ -76,11 +76,17 @@ public class BookList {
         return null;
     }
 
-
-    public static ArrayList<Book> getAvailableBook(String userName){
-        ArrayList<Book> temp = new ArrayList<Book>();
+    /**
+     * Get all available Books which are NOT owned by one user
+     * @param username: username of the desired User
+     * @return ArrayList<Book>
+     */
+    public static ArrayList<Book> getAvailableBook(String username) {
+        ArrayList<Book> temp = new ArrayList<>();
         for(Book book : bookList){
-            if((book.getStatus().equals(Book.AVAILABLE) || book.getStatus().equalsIgnoreCase(Book.REQUESTED)) && !book.getOwner().equals(userName)){
+            if((book.getStatus().equalsIgnoreCase(Book.AVAILABLE) ||
+                    book.getStatus().equalsIgnoreCase(Book.REQUESTED)) &&
+                    !book.getOwner().equals(username)) {
                 temp.add(book);
             }
         }
@@ -89,7 +95,7 @@ public class BookList {
 
 
     /**
-     * Get all Books that which has the description specified
+     * Get all Books which have the description specified and are NOT owned by one user
      * @param keyword: keyword in description
      * @return ArrayList<Book>
      */

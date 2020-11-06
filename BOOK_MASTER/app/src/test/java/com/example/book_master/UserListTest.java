@@ -20,7 +20,7 @@ public class UserListTest {
     }
 
     /**
-     * UserList.addUser(User user) & UserList.getUser(String username)
+     * Test: addUser(User user), getUser(String username)
      */
     @Test
     void testAddGet() {
@@ -36,7 +36,7 @@ public class UserListTest {
     }
 
     /**
-     * UserList.clearList()
+     * Test: clearList()
      */
     @Test
     void testClear() {
@@ -49,16 +49,31 @@ public class UserListTest {
         assertNull(retrieved);
     }
 
-//    /**
-//     * UserList.setCurrentUser(String email) & UserList.getCurrentUser()
-//     */
-//    @Test
-//    void testSetGetCurrentUser() {
-//        User temp = mockUser();
-//        String username = temp.getUsername();
-//
-//        UserList.addUser(temp);
-//        UserList.setCurrentUser(username);
-//        User retrieved = UserList.getCurrentUser();
-//    }
+    /**
+     * Test: setCurrentUser(String email), getCurrentUser()
+     */
+    @Test
+    void testSetGetCurrentUser() {
+        User temp = mockUser();
+        String email = temp.getEmail();
+        String username = temp.getUsername();
+
+        UserList.addUser(temp);
+        UserList.setCurrentUser(email);
+        User retrieved = UserList.getCurrentUser();
+        assertTrue(retrieved.getUsername().equalsIgnoreCase(username));
+    }
+
+    /**
+     * Test: checkUnique(String username)
+     */
+    @Test
+    void testCheckUnique() {
+        User temp = mockUser();
+        String username = temp.getUsername();
+
+        assertTrue(UserList.checkUnique(username));
+        UserList.addUser(temp);
+        assertFalse(UserList.checkUnique(username));
+    }
 }
