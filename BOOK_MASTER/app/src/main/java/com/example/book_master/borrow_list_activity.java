@@ -8,39 +8,65 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.book_master.models.Book;
 import com.example.book_master.models.BookList;
 import com.example.book_master.Adpater.CustomBorrowList;
+import com.example.book_master.models.Message;
+import com.example.book_master.models.MessageList;
 import com.example.book_master.models.UserList;
 
 import java.util.ArrayList;
 
 public class borrow_list_activity extends AppCompatActivity {
-//    ArrayList<Book> bookData;
-//    ArrayAdapter<Book> bookAdapter;
-//    ListView bookList;
+    private ArrayList<Book> bookData;
+    private ArrayAdapter<Book> bookAdapter;
+    private ListView bookList;
+    private ArrayList<Message> messagelist;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.borrow_list);
-//        bookList = findViewById(R.id.Borrow_list);
-//        bookData = BookList.getAvailableBook(UserList.getCurrentUser().getUsername());
-//        bookAdapter = new CustomBorrowList(borrow_list_activity.this, bookData);
-//        bookList.setAdapter(bookAdapter);
-//        bookAdapter.notifyDataSetChanged();
-//
-//        bookList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-//                Intent intent = new Intent(borrow_list_activity.this, search_description.class);
-//                Bundle bundle = new Bundle();
-//                bundle.putSerializable("book", bookData.get(position));
-//                intent.putExtras(bundle);
-//                startActivity(intent);
-//                finish();
-//            }
-//        });
+
+        bookList = findViewById(R.id.Borrow_list);
+
+        messagelist = MessageList.searchSender(UserList.getCurrentUser().getUsername());
+        bookData = new ArrayList<Book>();
+
+        if (messagelist != null || messagelist.size() > 0) {
+            Book temp;
+            for (Message msg : messagelist) {
+                temp = BookList.getBook(msg.getISBN());
+                if (temp == null) {
+                    Toast.makeText(borrow_list_activity.this, "Error from reading message", Toast.LENGTH_SHORT).show();
+                }
+                else if (temp.getStatus().equalsIgnoreCase(Book.REQUESTED) == false) {
+                    Toast.makeText(borrow_list_activity.this, "Book is not in requesting status", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    bookData.add(temp);
+                }
+            }
+        }
+
+        bookAdapter = new CustomBorrowList(borrow_list_activity.this, bookData);
+        bookList.setAdapter(bookAdapter);
+        bookAdapter.notifyDataSetChanged();
+
+        bookList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+                Intent intent = new Intent(borrow_list_activity.this, BookInfo.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("book", bookData.get(position));
+                bundle.putInt("VISIBILITY", 2);  // 2 for not show Edit button
+                intent.putExtras(bundle);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
 }

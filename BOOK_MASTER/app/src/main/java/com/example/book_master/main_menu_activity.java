@@ -18,6 +18,7 @@ public class main_menu_activity extends AppCompatActivity {
     private Button search_button;
     private Button edit_profile;
     private Button retrieve_profile;
+    private Button show_requested;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public class main_menu_activity extends AppCompatActivity {
         search_button = (Button) findViewById(R.id.Search_main_button);
         edit_profile = (Button) findViewById(R.id.view_profile_button);
         retrieve_profile = (Button) findViewById(R.id.main_menu_retrieve_profile);
+        show_requested = (Button) findViewById(R.id.main_menu_borrower_show_requested);
 
         check_mylist_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,5 +101,12 @@ public class main_menu_activity extends AppCompatActivity {
             }
         });
 
+        show_requested.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent borrow_list__intent = new Intent(main_menu_activity.this, borrow_list_activity.class);
+                startActivity(borrow_list__intent);
+            }
+        });
     }
 }

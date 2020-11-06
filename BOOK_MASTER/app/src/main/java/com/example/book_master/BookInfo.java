@@ -12,9 +12,10 @@ import java.util.*;
 import com.example.book_master.models.*;
 
 public class BookInfo extends AppCompatActivity {
-    TextView BookTitle, BookAuthor, BookISBN, BookStatus, CurrentBorrower;
-    Button Edit, Delete;
-    Book book;
+    private TextView BookTitle, BookAuthor, BookISBN, BookStatus, CurrentBorrower;
+    private Button Edit, Delete;
+    private Book book;
+    private int visibility;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,7 @@ public class BookInfo extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         book = (Book) bundle.getSerializable("book");
+        visibility = (int) bundle.getInt("VISIBILITY");
 
         BookTitle = findViewById(R.id.BookTitle);
         BookAuthor = findViewById(R.id.BookAuthor);
@@ -37,6 +39,13 @@ public class BookInfo extends AppCompatActivity {
         BookISBN.setText("ISBN: " + book.getISBN());
         BookStatus.setText("Status: " + book.getStatus());
         CurrentBorrower.setText("Currnet Borrower: " + book.getBorrower());
+
+        if (visibility == 2) {
+            Edit.setVisibility(View.INVISIBLE);
+        }
+        else {
+            Edit.setVisibility(View.VISIBLE);
+        }
 
         Edit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,4 +69,5 @@ public class BookInfo extends AppCompatActivity {
             }
         });
     }
+
 }
