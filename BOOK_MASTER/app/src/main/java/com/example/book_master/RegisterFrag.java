@@ -84,7 +84,7 @@ public class RegisterFrag extends DialogFragment {
                         final String contactInfo = contactInfoText.getText().toString();
 
                         // check if the username is unique
-                        if (!UserList.checkUnique(username)) {
+                        if (UserList.checkUnique(username) == false) {
                             Toast.makeText(view.getContext(), "Username already existed.",
                                     Toast.LENGTH_SHORT).show();
                         } else {

@@ -46,6 +46,7 @@ public class BookInfo extends AppCompatActivity {
                 bundle.putSerializable("book_edit", book);
                 intent.putExtras(bundle);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -55,6 +56,7 @@ public class BookInfo extends AppCompatActivity {
                 UserList.getCurrentUser().Remove_Owned_Book(book.getISBN(), BookInfo.this);
                 Intent intent = new Intent(BookInfo.this, check_list_activity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

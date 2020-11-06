@@ -121,6 +121,7 @@ public class DBHelper {
                             // direct UI to main menu activity
                             Intent intent = new Intent(context, main_menu_activity.class);
                             context.startActivity(intent);
+                            ((Activity) context).finish();
                         } else {
                             Log.w(TAG, "signInWithEmailAndPassword:failure", task.getException());
                             Toast.makeText(context, "Authentication failed.",
@@ -138,8 +139,8 @@ public class DBHelper {
         mAuth.signOut();
 
         // direct UI to login activity
-        Intent intent = new Intent(context, MainActivity.class);
-        context.startActivity(intent);
+//        Intent intent = new Intent(context, MainActivity.class);
+//        context.startActivity(intent);
     }
 
     /**
@@ -150,6 +151,7 @@ public class DBHelper {
     public static void setUserDoc(final User user, final Context context) {
         final FirebaseUser temp = mAuth.getCurrentUser();
         FirebaseFirestore mDB = FirebaseFirestore.getInstance();
+
         mDB.collection("User")
                 .document(temp.getUid())
                 .set(user)

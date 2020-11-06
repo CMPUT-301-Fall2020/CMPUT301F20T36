@@ -22,6 +22,7 @@ import com.example.book_master.models.UserList;
 import java.util.*;
 
 public class check_list_activity extends AppCompatActivity {
+
     private Button add_button;
     private ListView bookList;
     private ArrayList<Book> bookData;
@@ -57,6 +58,7 @@ public class check_list_activity extends AppCompatActivity {
                 bundle.putSerializable("book", bookData.get(position));
                 intent.putExtras(bundle);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -65,6 +67,7 @@ public class check_list_activity extends AppCompatActivity {
         spinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, status);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(spinnerAdapter);
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
