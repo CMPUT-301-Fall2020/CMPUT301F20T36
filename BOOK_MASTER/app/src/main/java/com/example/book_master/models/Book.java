@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 /**
  * Store one specific book info
+ * The book info includes Status as one of  available, requested, accepted, or borrowed.
  */
 public class Book implements Serializable {
     public final static String AVAILABLE = "AVAILABLE";
@@ -129,7 +130,6 @@ public class Book implements Serializable {
     public String getStatus() { return status; }
 
     /**
-     *
      * @param status: current status
      */
     public void setStatus(String status) { this.status = status; }

@@ -73,6 +73,7 @@ public class User implements Serializable, Owner, Borrower {
     public String getContactInfo() { return contactInfo; }
 
     /**
+     * User can edit contect info in my profile
      * @param contactInfo: user contact information
      */
     public void setContactInfo(String contactInfo) { this.contactInfo = contactInfo; }
@@ -131,8 +132,9 @@ public class User implements Serializable, Owner, Borrower {
         DBHelper.setBookDoc(book.getISBN(), book, context);
         return true;
     }
-
-
+    /**
+     * Owner view a list of all my books filtered by status
+     */
     public ArrayList<Book> Get_Owned_Books(String status){ // Must and only select one status
         ArrayList<Book> ownedBookList = BookList.getOwnedBook(username);
         ArrayList<Book> temp = new ArrayList<Book>();
@@ -145,7 +147,7 @@ public class User implements Serializable, Owner, Borrower {
     }
 
     /**
-     * Remove one owned book from Firebase
+     * Owner remove one owned book from Firebase
      * @param ISBN: ISBN of the Book instance to be deleted
      * @param context: Context of the window where Toast should be displayed
      * @return true if the book is successfully deleted, false otherwise
@@ -154,7 +156,9 @@ public class User implements Serializable, Owner, Borrower {
         DBHelper.deleteBookDoc(ISBN, context);
     }
 
-
+    /**
+     * Owner can set/edit the book description in my books
+     */
     public Boolean Set_Book_description(String title, String author, Book book){
         if (BookList.getBook(book.getISBN()) == null)
             return false;
@@ -163,7 +167,9 @@ public class User implements Serializable, Owner, Borrower {
         book.setTitle(title);
         return true;
     }
-
+    /**
+     * Owner can view the book description in my books
+     */
     public Boolean Get_Book_description(Book book){
         if (book == null || book.getOwner() != username)
             return false;
