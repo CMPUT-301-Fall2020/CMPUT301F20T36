@@ -61,7 +61,6 @@ public class DBHelper {
                                     Toast.LENGTH_SHORT).show();
 
                             // include the user in the Firebase
-                            FirebaseUser user = mAuth.getCurrentUser();
                             setUserDoc(new User(email, password, username, contactInfo), context);
                         } else {
                             Log.w(TAG, "createUserWithEmailAndPassword:failure", task.getException());
@@ -138,20 +137,16 @@ public class DBHelper {
      */
     public static void signOut(final Context context) {
         mAuth.signOut();
-
-        // direct UI to login activity
-//        Intent intent = new Intent(context, MainActivity.class);
-//        context.startActivity(intent);
     }
 
     /**
-     * Create or modify one User instance in Firebase
+     * Create or modify the User instance for the current user in Firebase
      * @param user: new (or updated) User instance
      * @param context: Context of the window where Toast should be displayed
      */
     public static void setUserDoc(final User user, final Context context) {
-        FirebaseFirestore mDB = FirebaseFirestore.getInstance();
         final FirebaseUser temp = mAuth.getCurrentUser();
+        FirebaseFirestore mDB = FirebaseFirestore.getInstance();
 
         mDB.collection("User")
                 .document(temp.getUid())
