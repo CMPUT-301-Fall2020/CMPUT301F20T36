@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="62c31a27-9852-443f-bd1a-dfbd95ae162d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/BOOK_MASTER/app/src/main/java/com/example/book_master/models/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +45,15 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1604219872778" />
+    <state x="259" y="23" key="CommitChangelistDialog2" timestamp="1604631187124">
+      <screen x="0" y="23" width="1280" height="729" />
+    </state>
+    <state x="259" y="23" key="CommitChangelistDialog2/0.23.1280.729@0.23.1280.729" timestamp="1604631187124" />
+    <state x="143" y="80" width="1080" height="530" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1604632567159">
+      <screen x="0" y="23" width="1280" height="728" />
+    </state>
+    <state x="143" y="80" width="1080" height="529" key="com.android.tools.idea.avdmanager.AvdListDialog/0.23.1280.727@0.23.1280.727" timestamp="1604632509507" />
+    <state x="143" y="80" width="1080" height="530" key="com.android.tools.idea.avdmanager.AvdListDialog/0.23.1280.728@0.23.1280.728" timestamp="1604632567159" />
     <state x="289" y="218" key="com.intellij.ide.util.TipDialog" timestamp="1604617685193">
       <screen x="0" y="23" width="1280" height="726" />
     </state>
