@@ -1,4 +1,4 @@
-package com.example.book_master.Adpater;
+package com.example.book_master.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.book_master.R;
-import com.example.book_master.models.Book;
 import com.example.book_master.models.BookList;
 import com.example.book_master.models.Message;
 

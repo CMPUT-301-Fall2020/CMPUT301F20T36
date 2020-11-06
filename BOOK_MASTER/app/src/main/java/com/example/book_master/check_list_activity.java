@@ -13,8 +13,7 @@ import android.widget.Spinner;
 
 import com.example.book_master.models.Book;
 import com.example.book_master.models.BookList;
-import com.example.book_master.Adpater.CustomBookList;
-import com.example.book_master.models.User;
+import com.example.book_master.adapter.CustomBookList;
 import com.example.book_master.models.UserList;
 
 import java.util.*;

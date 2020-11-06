@@ -12,8 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.book_master.Adpater.CustomBookList;
-import com.example.book_master.Adpater.CustomBorrowList;
+import com.example.book_master.adapter.CustomBorrowList;
 import com.example.book_master.models.Book;
 import com.example.book_master.models.BookList;
 import com.example.book_master.models.UserList;
