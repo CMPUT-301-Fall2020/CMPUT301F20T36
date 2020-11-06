@@ -17,7 +17,7 @@
         android:textSize="30sp" />
 
     <include
-        android:id="search_page_include"
+        android:id="@+id/search_page_include"
         layout="@layout/search_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

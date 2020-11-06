@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.book_master.Adpater.CustomBookList;
 import com.example.book_master.Adpater.CustomBorrowList;
 import com.example.book_master.models.Book;
 import com.example.book_master.models.BookList;
@@ -43,12 +44,14 @@ public class search_page_activity extends AppCompatActivity {
 
         ISBN = "";
         bookData = bookData = BookList.getAvailableBook(UserList.getCurrentUser().getUsername());
-        bookAdapter = new CustomBorrowList(search_page_activity.this, bookData);bookList.setAdapter(bookAdapter);
+        bookAdapter = new CustomBorrowList(search_page_activity.this, bookData);
+        bookList.setAdapter(bookAdapter);
+        bookAdapter.notifyDataSetChanged();
 
         bookList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                Intent intent = new Intent(search_page_activity.this, BookInfo.class);
+                Intent intent = new Intent(search_page_activity.this, search_description.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("book", bookData.get(position));
                 intent.putExtras(bundle);
@@ -56,7 +59,55 @@ public class search_page_activity extends AppCompatActivity {
                 finish();
             }
         });
+
+        scan_ISBN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IntentIntegrator integrator = new IntentIntegrator(search_page_activity.this);
+                integrator.setCaptureActivity(capture_activity.class);
+                integrator.setOrientationLocked(false);
+                integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
+                integrator.setPrompt("Scanning ISBN");
+                integrator.initiateScan();
+            }
+        });
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String text = keyword.getText().toString();
+
+                bookAdapter.clear();
+                if (text == null) {
+                    Toast.makeText(search_page_activity.this, "The input is null", Toast.LENGTH_SHORT).show();
+                }
+                else if (text.equalsIgnoreCase("")) {
+                    bookData = BookList.getAvailableBook(UserList.getCurrentUser().getUsername());
+                    Toast.makeText(search_page_activity.this, "Show all Book", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    bookData = BookList.searchDesc(text, UserList.getCurrentUser().getUsername());
+                }
+                bookAdapter = new CustomBorrowList(search_page_activity.this, bookData);
+                bookList.setAdapter(bookAdapter);
+                bookAdapter.notifyDataSetChanged();
+            }
+        });
     }
+
+//    public void Search() {
+////        String text = keyword.getText().toString();
+////        if (text == null) {
+////            Toast.makeText(search_page_activity.this, "The input is null", Toast.LENGTH_SHORT).show();
+////        }
+////        else if (text == "") {
+////            bookData = bookData = BookList.getAvailableBook(UserList.getCurrentUser().getUsername());
+////        }
+////        else {
+////            bookData = BookList.searchDesc(text);
+////        }
+////        bookAdapter.notifyDataSetChanged();
+////    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {

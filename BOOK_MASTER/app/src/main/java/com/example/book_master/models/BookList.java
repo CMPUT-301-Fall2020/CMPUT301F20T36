@@ -90,7 +90,7 @@ public class BookList {
     public static ArrayList<Book> getAvailableBook(String userName){
         ArrayList<Book> temp = new ArrayList<Book>();
         for(Book book : bookList){
-            if(book.getStatus().equals(Book.AVAILABLE) && !book.getOwner().equals(userName)){
+            if((book.getStatus().equals(Book.AVAILABLE) || book.getStatus().equalsIgnoreCase(Book.REQUESTED)) && !book.getOwner().equals(userName)){
                 temp.add(book);
             }
         }
@@ -103,13 +103,13 @@ public class BookList {
      * @param keyword: keyword in description
      * @return ArrayList<Book>
      */
-    public static ArrayList<Book> searchDesc(String keyword) {
+    public static ArrayList<Book> searchDesc(String keyword, String username) {
         ArrayList<Book> temp = new ArrayList<>();
         for (Book book : bookList) {
             if (book.getAuthor().toLowerCase().contains(keyword.toLowerCase()) ||
                     book.getTitle().toLowerCase().contains(keyword.toLowerCase()) ||
                     book.getISBN().contains(keyword)) {
-                if (book.getStatus() == Book.AVAILABLE || book.getStatus() == Book.REQUESTED) {
+                if((book.getStatus().equals(Book.AVAILABLE) || book.getStatus().equalsIgnoreCase(Book.REQUESTED)) && !book.getOwner().equals(username)) {
                     temp.add(book);
                 }
             }

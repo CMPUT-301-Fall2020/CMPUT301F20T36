@@ -23,6 +23,7 @@
         <activity android:name=".profile_page_activity"></activity>
         <activity android:name=".RetrieveProfile"></activity>
         <activity android:name=".retrieve_username_activity"></activity>
+        <activity android:name=".search_description"></activity>
 
         <activity android:name=".search_page_activity" />
         <!--        <activity android:name=".owner_receive_activity" />-->

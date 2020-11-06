@@ -10,9 +10,10 @@
         android:id="@+id/Borrow_BookTitle"
         android:layout_width="199dp"
         android:layout_height="36dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
         android:layout_marginTop="60dp"
         android:text="title"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,9 +21,10 @@
         android:id="@+id/Borrow_BookAuthor"
         android:layout_width="201dp"
         android:layout_height="40dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
         android:layout_marginTop="36dp"
         android:text="Author"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Borrow_BookTitle" />
 
@@ -44,12 +46,12 @@
         android:id="@+id/Borrow_BookISBN"
         android:layout_width="203dp"
         android:layout_height="45dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="36dp"
         android:text="ISBN"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Borrow_BookAuthor" />
+        app:layout_constraintTop_toBottomOf="@+id/Borrow_BookOwner" />
 
     <Button
         android:id="@+id/Borrow_borrow_button"
@@ -61,6 +63,30 @@
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Borrow_BookISBN" />
+
+    <TextView
+        android:id="@+id/Borrow_BookStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:hint="Status"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Borrow_BookAuthor" />
+
+    <TextView
+        android:id="@+id/Borrow_BookOwner"
+        android:layout_width="165dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:hint="Owner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Borrow_BookStatus" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

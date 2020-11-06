@@ -46,7 +46,7 @@
         android:id="@+id/Logout_main_button"
         android:layout_width="111dp"
         android:layout_height="46dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="40dp"
         android:text="Log Out"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +65,7 @@
     <Button
         android:id="@+id/Receive_main_button"
         android:layout_width="116dp"
-        android:layout_height="46dp"
+        android:layout_height="60dp"
         android:layout_marginStart="80dp"
         android:layout_marginLeft="80dp"
         android:layout_marginTop="40dp"
@@ -76,7 +76,7 @@
     <Button
         android:id="@+id/Borrow_main_button"
         android:layout_width="111dp"
-        android:layout_height="46dp"
+        android:layout_height="60dp"
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="40dp"
@@ -87,7 +87,7 @@
     <Button
         android:id="@+id/CHECKMYLIST_button"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginStart="80dp"
         android:layout_marginLeft="80dp"
         android:layout_marginTop="40dp"
@@ -97,8 +97,8 @@
 
     <Button
         android:id="@+id/Search_main_button"
-        android:layout_width="111dp"
-        android:layout_height="46dp"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="40dp"
@@ -109,7 +109,7 @@
     <Button
         android:id="@+id/view_profile_button"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginStart="80dp"
         android:layout_marginLeft="80dp"
         android:layout_marginTop="60dp"
@@ -119,8 +119,8 @@
 
     <Button
         android:id="@+id/main_menu_retrieve_profile"
-        android:layout_width="139dp"
-        android:layout_height="51dp"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="60dp"
