@@ -5,19 +5,30 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.book_master.Adpater.CustomBorrowList;
+import com.example.book_master.models.Book;
+import com.example.book_master.models.BookList;
+import com.example.book_master.models.UserList;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.util.ArrayList;
+
 public class search_page_activity extends AppCompatActivity {
-    private Button Scan_Button;
-    private Button Confirm_Button;
-    private Button Back_Button;
-    private TextView Keyword;
+    private Button scan_ISBN;
+    private Button search;
+    private TextView keyword;
     private String ISBN;
+    private ArrayList<Book> bookData;
+    private ArrayAdapter<Book> bookAdapter;
+    private ListView bookList;
 
 
     @Override
@@ -25,20 +36,24 @@ public class search_page_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_page);
 
-        ISBN = "";
-        Scan_Button = (Button) findViewById(R.id.Search_Scan_ISBN);
-        Confirm_Button = (Button) findViewById(R.id.Seach_button);
-        Keyword = (TextView) findViewById(R.id.search_keyword);
+        bookList = (ListView) findViewById(R.id.search_page_booklist);
+        scan_ISBN = (Button) findViewById(R.id.search_bar_ISBN);
+        search = (Button) findViewById(R.id.search_bar_confirm);
+        keyword = (TextView) findViewById(R.id.search_bar_keyword);
 
-        Scan_Button.setOnClickListener(new View.OnClickListener() {
+        ISBN = "";
+        bookData = bookData = BookList.getAvailableBook(UserList.getCurrentUser().getUsername());
+        bookAdapter = new CustomBorrowList(search_page_activity.this, bookData);bookList.setAdapter(bookAdapter);
+
+        bookList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
-            public void onClick(View v) {
-                IntentIntegrator integrator = new IntentIntegrator(search_page_activity.this);
-                integrator.setCaptureActivity(capture_activity.class);
-                integrator.setOrientationLocked(false);
-                integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
-                integrator.setPrompt("Scanning ISBN");
-                integrator.initiateScan();
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+                Intent intent = new Intent(search_page_activity.this, BookInfo.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("book", bookData.get(position));
+                intent.putExtras(bundle);
+                startActivity(intent);
+                finish();
             }
         });
     }
@@ -49,7 +64,7 @@ public class search_page_activity extends AppCompatActivity {
         if (scanningResult != null) {
             if (scanningResult.getContents() != null) {
                 String ISBN = scanningResult.getContents();
-                Keyword.setText("ISBN: " + ISBN);
+                keyword.setText(ISBN);
             }
             else {
                 Toast.makeText(this, "No Results", Toast.LENGTH_LONG).show();

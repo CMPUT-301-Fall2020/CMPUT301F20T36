@@ -1,4 +1,4 @@
-package com.example.book_master.models;
+package com.example.book_master.Adpater;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +14,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.book_master.R;
+import com.example.book_master.models.Book;
+import com.example.book_master.models.DBHelper;
+import com.example.book_master.models.Message;
+import com.example.book_master.models.UserList;
 
 import java.util.ArrayList;
 
@@ -27,7 +31,7 @@ public class CustomBorrowList extends ArrayAdapter<Book> {
     }
     @Nullable
     @Override
-    public View getView(int position, @androidx.annotation.Nullable View convertView, @NonNull ViewGroup parent){
+    public View getView(int position, @androidx.annotation.Nullable View convertView, @NonNull final ViewGroup parent){
         View view = convertView;
         if(view == null){
             view = LayoutInflater.from(context).inflate(R.layout.borrow_list_content, parent,false);

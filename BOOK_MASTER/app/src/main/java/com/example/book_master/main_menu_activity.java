@@ -10,26 +10,28 @@ import android.widget.Button;
 import com.example.book_master.models.DBHelper;
 
 public class main_menu_activity extends AppCompatActivity {
-    Button check_mylist_button;
-    Button borrow_button;
-    Button return_button;
-    Button log_out_button;
-    Button receive_button;
-    Button search_button;
-    Button edit_profile;
+    private Button check_mylist_button;
+    private Button borrow_button;
+    private Button return_button;
+    private Button log_out_button;
+    private Button receive_button;
+    private Button search_button;
+    private Button edit_profile;
+    private Button retrieve_profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
 
-        check_mylist_button = findViewById(R.id.CHECKMYLIST_button);
-        borrow_button = findViewById(R.id.Borrow_main_button);
-        return_button = findViewById(R.id.Return_main_button);
-        log_out_button = findViewById(R.id.Logout_main_button);
-        receive_button = findViewById(R.id.Receive_main_button);
-        search_button = findViewById(R.id.Search_main_button);
+        check_mylist_button = (Button) findViewById(R.id.CHECKMYLIST_button);
+        borrow_button = (Button) findViewById(R.id.Borrow_main_button);
+        return_button = (Button) findViewById(R.id.Return_main_button);
+        log_out_button = (Button) findViewById(R.id.Logout_main_button);
+        receive_button = (Button) findViewById(R.id.Receive_main_button);
+        search_button = (Button) findViewById(R.id.Search_main_button);
         edit_profile = (Button) findViewById(R.id.view_profile_button);
+        retrieve_profile = (Button) findViewById(R.id.main_menu_retrieve_profile);
 
         check_mylist_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +88,14 @@ public class main_menu_activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent edit_profile__intent = new Intent(main_menu_activity.this, profile_page_activity.class);
                 startActivity(edit_profile__intent);
+            }
+        });
+
+        retrieve_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent retrieve_profile__intent = new Intent(main_menu_activity.this, retrieve_username_activity.class);
+                startActivity(retrieve_profile__intent);
             }
         });
 
