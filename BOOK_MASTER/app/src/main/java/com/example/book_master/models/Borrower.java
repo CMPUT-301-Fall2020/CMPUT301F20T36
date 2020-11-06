@@ -3,6 +3,9 @@ package com.example.book_master.models;
 import java.util.ArrayList;
 import java.io.Serializable;
 
+/**
+ * Borrower methods
+ */
 public interface Borrower{
     public ArrayList<Book> Show_Requesting_Book(Book book);
 

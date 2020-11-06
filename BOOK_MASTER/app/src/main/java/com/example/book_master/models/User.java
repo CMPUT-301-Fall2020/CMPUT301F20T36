@@ -28,10 +28,10 @@ public class User implements Serializable, Owner, Borrower {
 
     /**
      * Constructor
-     * @param email: user email, unique
-     * @param password: user password
-     * @param username: username, its uniqueness is checked in RegisterFrag
-     * @param contactInfo: user contact information
+     * @param email user email, unique
+     * @param password user password
+     * @param username username, its uniqueness is checked in RegisterFrag
+     * @param contactInfo user contact information
      */
     public User(String email, String password, String username, String contactInfo){
         this.email = email;         // could not be modified
@@ -56,7 +56,7 @@ public class User implements Serializable, Owner, Borrower {
     public String getUsername() { return username; }
 
     /**
-     * @param username: the modified username
+     * @param username the modified username
      * @return true if the username is successfully set (i.e., it is unique), false otherwise
      */
     public boolean setUsername(String username) {
@@ -73,7 +73,7 @@ public class User implements Serializable, Owner, Borrower {
     public String getContactInfo() { return contactInfo; }
 
     /**
-     * @param contactInfo: user contact information
+     * @param contactInfo user contact information
      */
     public void setContactInfo(String contactInfo) { this.contactInfo = contactInfo; }
 
@@ -117,8 +117,8 @@ public class User implements Serializable, Owner, Borrower {
 
     /**
      * Add one owned book to Firebase
-     * @param book: Book instance to be added
-     * @param context: Context of the window where Toast should be displayed
+     * @param book Book instance to be added
+     * @param context Context of the window where Toast should be displayed
      * @return true if the book is successfully added, false otherwise
      */
     public Boolean Add_Book_Owned(Book book, Context context) {
@@ -131,7 +131,6 @@ public class User implements Serializable, Owner, Borrower {
         DBHelper.setBookDoc(book.getISBN(), book, context);
         return true;
     }
-
 
     public ArrayList<Book> Get_Owned_Books(String status){ // Must and only select one status
         ArrayList<Book> ownedBookList = BookList.getOwnedBook(username);
@@ -146,9 +145,8 @@ public class User implements Serializable, Owner, Borrower {
 
     /**
      * Remove one owned book from Firebase
-     * @param ISBN: ISBN of the Book instance to be deleted
-     * @param context: Context of the window where Toast should be displayed
-     * @return true if the book is successfully deleted, false otherwise
+     * @param ISBN ISBN of the Book instance to be deleted
+     * @param context Context of the window where Toast should be displayed
      */
     public void Remove_Owned_Book(String ISBN, Context context) {
         DBHelper.deleteBookDoc(ISBN, context);
@@ -190,7 +188,7 @@ public class User implements Serializable, Owner, Borrower {
     }
 
 
-    public Boolean Accepte_Requesting(Borrower borrower, Book book, Location location){
+    public Boolean Accept_Requesting(Borrower borrower, Book book, Location location){
         /* it is supposed to fetch the requests and the user from fire store */
         if (book == null || book.getOwner() != username)
             return false;

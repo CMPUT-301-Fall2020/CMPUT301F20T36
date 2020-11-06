@@ -39,11 +39,11 @@ public class DBHelper {
 
     /**
      * Create an new user account through Firebase Authentication
-     * @param email: user email, unique
-     * @param password: user password
-     * @param username: username, unique
-     * @param contactInfo: user contact information
-     * @param context: Context of the window where Toast should be displayed,
+     * @param email user email, unique
+     * @param password user password
+     * @param username username, unique
+     * @param contactInfo user contact information
+     * @param context Context of the window where Toast should be displayed,
      *               e.g., in MainActivity, invoke MainActivity.this
      */
     public static void createAccount(final String email,
@@ -73,7 +73,7 @@ public class DBHelper {
 
     /**
      * Delete the current user account
-     * @param context: Context of the window where Toast should be displayed
+     * @param context Context of the window where Toast should be displayed
      */
     public static void deleteAccount(final Context context) {
         final FirebaseUser user = mAuth.getCurrentUser();
@@ -102,9 +102,9 @@ public class DBHelper {
 
     /**
      * Sign in the user account if it is recorded in Firebase
-     * @param email: user email, unique
-     * @param password: user password
-     * @param context: Context of the window where Toast should be displayed
+     * @param email user email, unique
+     * @param password user password
+     * @param context Context of the window where Toast should be displayed
      */
     public static void signIn(final String email, final String password, final Context context) {
         mAuth.signInWithEmailAndPassword(email, password)
@@ -133,7 +133,7 @@ public class DBHelper {
 
     /**
      * Sign out the current user account
-     * @param context: Context of the window where Toast should be displayed
+     * @param context Context of the window where Toast should be displayed
      */
     public static void signOut(final Context context) {
         mAuth.signOut();
@@ -141,8 +141,8 @@ public class DBHelper {
 
     /**
      * Create or modify the User instance for the current user in Firebase
-     * @param user: new (or updated) User instance
-     * @param context: Context of the window where Toast should be displayed
+     * @param user new (or updated) User instance
+     * @param context Context of the window where Toast should be displayed
      */
     public static void setUserDoc(final User user, final Context context) {
         final FirebaseUser temp = mAuth.getCurrentUser();
@@ -171,10 +171,10 @@ public class DBHelper {
 
     /**
      * Create or modify one Book instance in Firebase
-     * @param doc: the unique ID identifying the book,
+     * @param doc the unique ID identifying the book,
      *           retrieved via Book.getISBN()
-     * @param book: new (or updated) Book instance
-     * @param context: Context of the window where Toast should be displayed
+     * @param book new (or updated) Book instance
+     * @param context Context of the window where Toast should be displayed
      */
     public static void setBookDoc(final String doc, final Book book, final Context context) {
         FirebaseFirestore mDB = FirebaseFirestore.getInstance();
@@ -201,10 +201,10 @@ public class DBHelper {
 
     /**
      * Create or modify one Message instance in Firebase
-     * @param doc: the unique ID identifying the message,
+     * @param doc the unique ID identifying the message,
      *           retrieved via String.valueOf(Message.hashCode())
-     * @param msg: new (or updated) Message instance
-     * @param context: Context of the window where Toast should be displayed
+     * @param msg new (or updated) Message instance
+     * @param context Context of the window where Toast should be displayed
      */
     public static void setMessageDoc(final String doc, final Message msg, final Context context) {
         FirebaseFirestore mDB = FirebaseFirestore.getInstance();
@@ -231,7 +231,7 @@ public class DBHelper {
 
     /**
      * Delete one User instance from Firebase
-     * @param context: Context of the window where Toast should be displayed
+     * @param context Context of the window where Toast should be displayed
      */
     public static void deleteUserDoc(final Context context) {
         final FirebaseUser user = mAuth.getCurrentUser();
@@ -259,8 +259,8 @@ public class DBHelper {
 
     /**
      * Delete one Book instance from Firebase
-     * @param doc: the unique ID identifying the book
-     * @param context: Context of the window where Toast should be displayed
+     * @param doc the unique ID identifying the book
+     * @param context Context of the window where Toast should be displayed
      */
     public static void deleteBookDoc(final String doc, final Context context) {
         FirebaseFirestore mDB = FirebaseFirestore.getInstance();
@@ -287,8 +287,8 @@ public class DBHelper {
 
     /**
      * Delete one Message instance from Firebase
-     * @param doc: the unique ID identifying the message
-     * @param context: Context of the window where Toast should be displayed
+     * @param doc the unique ID identifying the message
+     * @param context Context of the window where Toast should be displayed
      */
     public static void deleteMessageDoc(final String doc, final Context context) {
         FirebaseFirestore mDB = FirebaseFirestore.getInstance();

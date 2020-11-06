@@ -27,12 +27,12 @@ public class Message implements Serializable {
 
     /**
      * Constructor
-     * @param sender: message sender
-     * @param receiver: message receiver
-     * @param ISBN: related Book ISBN
-     * @param status: related Book status
-     * @param longitude: longitude of the sender location
-     * @param latitude: latitude of the receiver location
+     * @param sender message sender
+     * @param receiver message receiver
+     * @param ISBN related Book ISBN
+     * @param status related Book status
+     * @param longitude longitude of the sender location
+     * @param latitude latitude of the receiver location
      */
     public Message(String sender,
                    String receiver,
@@ -54,7 +54,7 @@ public class Message implements Serializable {
     public String getSender() {return sender;}
 
     /**
-     * @param sender: message sender
+     * @param sender message sender
      */
     public void setSender(String sender) {this.sender = sender;}
 
@@ -64,7 +64,7 @@ public class Message implements Serializable {
     public String getReceiver() {return receiver;}
 
     /**
-     * @param receiver: message receiver
+     * @param receiver message receiver
      */
     public void setReceiver(String receiver) {this.receiver = receiver;}
 
@@ -74,7 +74,7 @@ public class Message implements Serializable {
     public String getISBN() {return ISBN;}
 
     /**
-     * @param ISBN: related Book ISBN
+     * @param ISBN related Book ISBN
      */
     public void setISBN(String ISBN) {this.ISBN = ISBN;}
 
@@ -84,7 +84,7 @@ public class Message implements Serializable {
     public String getStatus() {return status;}
 
     /**
-     * @param status: related Book status
+     * @param status related Book status
      */
     public void setStatus(String status) {this.status = status;}
 
@@ -94,7 +94,7 @@ public class Message implements Serializable {
     public String getLongitude() {return longitude;}
 
     /**
-     * @param longitude: longitude of the sender location
+     * @param longitude longitude of the sender location
      */
     public void setLongitude(String longitude) {this.longitude = longitude;}
 
@@ -104,7 +104,7 @@ public class Message implements Serializable {
     public String getLatitude() {return latitude;}
 
     /**
-     * @param latitude: latitude of the receiver location
+     * @param latitude latitude of the receiver location
      */
     public void setLatitude(String latitude) {this.latitude = latitude;}
 
