@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.book_master.models.DBHelper;
+
 public class main_menu_activity extends AppCompatActivity {
     Button check_mylist_button;
     Button borrow_button;
@@ -14,6 +16,7 @@ public class main_menu_activity extends AppCompatActivity {
     Button log_out_button;
     Button receive_button;
     Button search_button;
+    Button edit_profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,7 @@ public class main_menu_activity extends AppCompatActivity {
         log_out_button = findViewById(R.id.Logout_main_button);
         receive_button = findViewById(R.id.Receive_main_button);
         search_button = findViewById(R.id.Search_main_button);
+        edit_profile = (Button) findViewById(R.id.view_profile_button);
 
         check_mylist_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +59,9 @@ public class main_menu_activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent log_out_intent = new Intent(main_menu_activity.this, MainActivity.class);
+                DBHelper.signOut(main_menu_activity.this);
                 startActivity(log_out_intent);
+                finish();
             }
         });
 
@@ -75,7 +81,13 @@ public class main_menu_activity extends AppCompatActivity {
             }
         });
 
-
+        edit_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent edit_profile__intent = new Intent(main_menu_activity.this, profile_page_activity.class);
+                startActivity(edit_profile__intent);
+            }
+        });
 
     }
 }
