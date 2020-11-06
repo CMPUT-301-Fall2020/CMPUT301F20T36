@@ -22,6 +22,7 @@ public class main_menu_activity extends AppCompatActivity {
     private Button search_button;
     private Button edit_profile;
     private Button retrieve_profile;
+    private Button request;
     private Button show_requested;
 
     @Override
@@ -37,6 +38,9 @@ public class main_menu_activity extends AppCompatActivity {
         search_button = (Button) findViewById(R.id.Search_main_button);
         edit_profile = (Button) findViewById(R.id.view_profile_button);
         retrieve_profile = (Button) findViewById(R.id.main_menu_retrieve_profile);
+
+        request = (Button) findViewById(R.id.main_menu_request);
+
         show_requested = (Button) findViewById(R.id.main_menu_borrower_show_requested);
 
         // this will lead the user to view and edit the book one owned
@@ -110,6 +114,13 @@ public class main_menu_activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent retrieve_profile__intent = new Intent(main_menu_activity.this, retrieve_username_activity.class);
                 startActivity(retrieve_profile__intent);
+            }
+        });
+        request.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(main_menu_activity.this, request_list.class);
+                startActivity(intent);
             }
         });
 

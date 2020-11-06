@@ -47,7 +47,7 @@ public class search_description extends AppCompatActivity {
         borrow.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Message m = new Message(UserList.getCurrentUser().getUsername(), book.getAuthor(), book.getISBN(), Book.REQUESTED, "0", "0");
+                Message m = new Message(UserList.getCurrentUser().getUsername(), book.getOwner(), book.getISBN(), Book.REQUESTED, "0", "0");
                 DBHelper.setMessageDoc(String.valueOf(m.hashCode()), m, search_description.this);
                 Toast.makeText(search_description.this, "Request sent", Toast.LENGTH_SHORT).show();
                 book.setStatus(Book.REQUESTED);
