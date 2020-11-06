@@ -137,10 +137,6 @@ public class DBHelper {
      */
     public static void signOut(final Context context) {
         mAuth.signOut();
-
-        // direct UI to login activity
-//        Intent intent = new Intent(context, MainActivity.class);
-//        context.startActivity(intent);
     }
 
     /**
