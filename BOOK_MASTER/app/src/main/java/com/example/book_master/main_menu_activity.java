@@ -9,6 +9,10 @@ import android.widget.Button;
 
 import com.example.book_master.models.DBHelper;
 
+/**
+ * This activity class will be handle all switching activity. The user can click on the button
+ * to direct to the page they wants
+ */
 public class main_menu_activity extends AppCompatActivity {
     private Button check_mylist_button;
     private Button borrow_button;
@@ -35,6 +39,7 @@ public class main_menu_activity extends AppCompatActivity {
         retrieve_profile = (Button) findViewById(R.id.main_menu_retrieve_profile);
         show_requested = (Button) findViewById(R.id.main_menu_borrower_show_requested);
 
+        // this will lead the user to view and edit the book one owned
         check_mylist_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,14 +48,16 @@ public class main_menu_activity extends AppCompatActivity {
             }
         });
 
+        // this button is not implemented yet
         borrow_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent borrow_list_intent = new Intent(main_menu_activity.this, borrow_list_activity.class);
+                Intent borrow_list_intent = new Intent(main_menu_activity.this, borrow_return_activity.class);
                 startActivity(borrow_list_intent);
             }
         });
 
+        // this button is not implemented
         return_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,6 +66,7 @@ public class main_menu_activity extends AppCompatActivity {
             }
         });
 
+        // this button will log out the current user and ask user to log in
         log_out_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,6 +77,7 @@ public class main_menu_activity extends AppCompatActivity {
             }
         });
 
+        // This button did not implemented yet
         receive_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,6 +86,7 @@ public class main_menu_activity extends AppCompatActivity {
             }
         });
 
+        // this button will lead the search book and ask to borrow.
         search_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,6 +95,7 @@ public class main_menu_activity extends AppCompatActivity {
             }
         });
 
+        // this will let the user to see his own profile and edit
         edit_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,6 +104,7 @@ public class main_menu_activity extends AppCompatActivity {
             }
         });
 
+        // this button will let user to search for other usr
         retrieve_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,10 +113,11 @@ public class main_menu_activity extends AppCompatActivity {
             }
         });
 
+        // this button will let borrower see what he has requested
         show_requested.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent borrow_list__intent = new Intent(main_menu_activity.this, borrow_list_activity.class);
+                Intent borrow_list__intent = new Intent(main_menu_activity.this, borrower_requested_list_activity.class);
                 startActivity(borrow_list__intent);
             }
         });

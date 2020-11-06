@@ -22,6 +22,10 @@ import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
 
+/**
+ * This activity class will let the user search the book which is not owned by him, and is not in
+ * accepted and borrowed status
+ */
 public class search_page_activity extends AppCompatActivity {
     private Button scan_ISBN;
     private Button search;
@@ -30,7 +34,6 @@ public class search_page_activity extends AppCompatActivity {
     private ArrayList<Book> bookData;
     private ArrayAdapter<Book> bookAdapter;
     private ListView bookList;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +45,13 @@ public class search_page_activity extends AppCompatActivity {
         search = (Button) findViewById(R.id.search_bar_confirm);
         keyword = (TextView) findViewById(R.id.search_bar_keyword);
 
-        ISBN = "";
+        ISBN = "";  // pre define it to be empty
         bookData = bookData = BookList.getAvailableBook(UserList.getCurrentUser().getUsername());
         bookAdapter = new CustomBorrowList(search_page_activity.this, bookData);
         bookList.setAdapter(bookAdapter);
         bookAdapter.notifyDataSetChanged();
 
+        // if user click on a book, he will be direct to page with full info and send the request
         bookList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
@@ -60,6 +64,7 @@ public class search_page_activity extends AppCompatActivity {
             }
         });
 
+        // scan the ISBN from the book and store it in the keyword textview
         scan_ISBN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,18 +77,21 @@ public class search_page_activity extends AppCompatActivity {
             }
         });
 
+        // search for matching book and update arrayadapter
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String text = keyword.getText().toString();
-
                 bookAdapter.clear();
-                if (text == null) {
+
+                if (text == null) {  // check if the text is reading error
                     Toast.makeText(search_page_activity.this, "The input is null", Toast.LENGTH_SHORT).show();
                 }
                 else if (text.equalsIgnoreCase("")) {
                     bookData = BookList.getAvailableBook(UserList.getCurrentUser().getUsername());
-                    Toast.makeText(search_page_activity.this, "Show all Book", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(search_page_activity.this,
+                            "Show all Book",
+                            Toast.LENGTH_SHORT).show();
                 }
                 else {
                     bookData = BookList.searchDesc(text, UserList.getCurrentUser().getUsername());
@@ -95,27 +103,19 @@ public class search_page_activity extends AppCompatActivity {
         });
     }
 
-//    public void Search() {
-////        String text = keyword.getText().toString();
-////        if (text == null) {
-////            Toast.makeText(search_page_activity.this, "The input is null", Toast.LENGTH_SHORT).show();
-////        }
-////        else if (text == "") {
-////            bookData = bookData = BookList.getAvailableBook(UserList.getCurrentUser().getUsername());
-////        }
-////        else {
-////            bookData = BookList.searchDesc(text);
-////        }
-////        bookAdapter.notifyDataSetChanged();
-////    }
-
+    /**
+     * this will handle the result pass back from ISBN scanner which is used ZXing API
+     * @param requestCode the requested code that call this function
+     * @param resultCode the result code that is send to this function
+     * @param intent the intent which contains the data in regular case
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
-        if (scanningResult != null) {
-            if (scanningResult.getContents() != null) {
-                String ISBN = scanningResult.getContents();
-                keyword.setText(ISBN);
+        IntentResult scanISBN = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+        if (scanISBN != null) {
+            if (scanISBN.getContents() != null) {
+                String ISBN = scanISBN.getContents();
+                keyword.setText(ISBN);  // display the ISBN to keyword textview
             }
             else {
                 Toast.makeText(this, "No Results", Toast.LENGTH_LONG).show();

@@ -30,7 +30,7 @@
 
         <activity android:name=".borrow_return_activity" />
         <activity android:name=".return_activity" />
-        <activity android:name=".borrow_list_activity" />
+        <activity android:name=".borrower_requested_list_activity" />
         <activity android:name=".check_list_activity" />
         <activity android:name=".main_menu_activity" />
         <activity android:name=".BookInfo" />
