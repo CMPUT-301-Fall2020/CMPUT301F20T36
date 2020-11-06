@@ -39,7 +39,7 @@ public class main_menu_activity extends AppCompatActivity {
         request = (Button) findViewById(R.id.main_menu_request);
 
         show_requested = (Button) findViewById(R.id.main_menu_borrower_show_requested);
-        
+
         check_mylist_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
