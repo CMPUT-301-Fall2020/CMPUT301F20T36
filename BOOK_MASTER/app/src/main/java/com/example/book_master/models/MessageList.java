@@ -28,16 +28,6 @@ public class MessageList {
     }
 
     /**
-     * Delete one Message instance in messageList
-     * @param msg: Message instance to be deleted
-     */
-    public static void deleteMessage(Message msg) {
-        if (messageList.contains(msg)) {
-            messageList.remove(msg);
-        }
-    }
-
-    /**
      * clear the list, required by DBHelper
      */
     public static void clearList(){ messageList.clear(); }
