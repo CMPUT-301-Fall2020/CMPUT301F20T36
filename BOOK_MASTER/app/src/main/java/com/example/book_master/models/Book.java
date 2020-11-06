@@ -66,7 +66,7 @@ public class Book implements Serializable {
         this.author = author;
         this.ISBN = ISBN;
         this.owner = owner;
-        this.borrower = null;
+        this.borrower = borrower;
         status = AVAILABLE;
     }
 
