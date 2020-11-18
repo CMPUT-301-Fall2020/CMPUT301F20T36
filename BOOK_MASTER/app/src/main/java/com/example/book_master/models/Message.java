@@ -6,11 +6,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Message  implements Serializable {
-    private ArrayList<String> messageList;
-    private String Username;
+    private String Sender;
+    private String Reciever;
+    private String Message;
 
     public Message() {
-        messageList = new ArrayList<String>();
+
+
     }
 
     public void Add_New_Message(){
