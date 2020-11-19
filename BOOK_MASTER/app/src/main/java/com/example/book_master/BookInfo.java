@@ -25,6 +25,7 @@ public class BookInfo extends AppCompatActivity {
     private int visibility;
 
     private ArrayList<Image> imageList;
+    private CustomImageList imageAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,15 +48,14 @@ public class BookInfo extends AppCompatActivity {
         BookAuthor.setText("Author: " + book.getAuthor());
         BookISBN.setText("ISBN: " + book.getISBN());
         BookStatus.setText("Status: " + book.getStatus());
-        CurrentBorrower.setText("Currnet Borrower: " + book.getBorrower());
+        CurrentBorrower.setText("Current Borrower: " + book.getBorrower());
 
         imageList = new ArrayList<Image>();
-        CustomImageList imageAdapter = new CustomImageList(imageList);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        imageAdapter = new CustomImageList(imageList);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.book_description_imagineRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
         recyclerView.setAdapter(imageAdapter);
-
-        DBHelper.retrieveImagine(imageList, imageAdapter, this);
+        DBHelper.retrieveImagine(imageList, imageAdapter, book.getISBN(), this);
 
         // check if the user is owner or borrower
         if (visibility == 2) {
