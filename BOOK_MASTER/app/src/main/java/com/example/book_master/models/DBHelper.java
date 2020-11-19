@@ -3,18 +3,16 @@ package com.example.book_master.models;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.book_master.MainActivity;
-import com.example.book_master.R;
-import com.example.book_master.adapter.ImageAdapter;
+import com.example.book_master.adapter.CustomImageList;
 import com.example.book_master.main_menu_activity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -32,6 +30,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 import javax.annotation.Nullable;
 
@@ -400,30 +401,39 @@ public class DBHelper {
     /**
      * Retrieve imagines from Firebase Storage
      */
-    public static void retrieveImagine(final ImageAdapter.ImageViewHolder holder, final Context context) {
-        final String firebaseRefURL = "gs://book-master-c3227.appspot.com";
-        final String imagePath = "1123";
+    public static void retrieveImagine(final ArrayList<Image> imageList, final CustomImageList imageAdapter, final Context context) {
+        imageList.clear();
+
+//        final String firebaseRefURL = "gs://book-master-c3227.appspot.com";
+//        final String imagePath = "1123";
 
         // Reference to an image file in Cloud Storage
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReferenceFromUrl(firebaseRefURL).child(imagePath);
+        final String firebaseRefURL = "gs://book-master-c3227.appspot.com/1123";
+        final FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference gsReference = storage.getReferenceFromUrl(firebaseRefURL);
 
-
-        storageRef.listAll()
+        final Random rand = new Random();
+        gsReference.listAll()
                 .addOnSuccessListener(new OnSuccessListener<ListResult>() {
                     @Override
                     public void onSuccess(ListResult listResult) {
-                        for (StorageReference prefix : listResult.getPrefixes()) {
-                            // All the prefixes under listRef.
-                            // You may call listAll() recursively on them.
-                        }
                         for (StorageReference item : listResult.getItems()) {
-                            // All the items under listRef.
-                            // Download directly from StorageReference using Glide
-                            // (See MyAppGlideModule for Loader registration)
-                            Glide.with(context)
-                                    .load(item)
-                                    .into(holder.image);
+//                            // All the items under listRef.
+//                            item.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                                @Override
+//                                public void onSuccess(Uri uri) {
+//                                    Log.w(TAG, "downloadUrl:" + uri.toString());
+//                                    Toast.makeText(context, "downloadUrl:" + uri.toString(),
+//                                            Toast.LENGTH_SHORT).show();
+//                                    StorageReference ref = storage.getReferenceFromUrl("https://firebasestorage.googleapis.com/v0/b/book-master-c3227.appspot.com/o/1123%2F722384.png");
+//                                    imageList.add(new Image(Double.toString(rand.nextDouble()), ref));
+//                                    adapter.setItems(imageList);
+//                                    adapter.notifyDataSetChanged();
+//                                }
+//                            });
+                            imageList.add(new Image(Double.toString(rand.nextDouble()), item));
+                            imageAdapter.setItems(imageList);
+                            imageAdapter.notifyDataSetChanged();
                         }
                     }
                 })
@@ -433,5 +443,12 @@ public class DBHelper {
                         // Uh-oh, an error occurred!
                     }
                 });
+
+//        final Random rand = new Random();
+//        final String firebaseRefURL = "https://firebasestorage.googleapis.com/v0/b/book-master-c3227.appspot.com/o/1123%2F722384.png";
+//        FirebaseStorage storage = FirebaseStorage.getInstance();
+//        StorageReference gsReference = storage.getReferenceFromUrl(firebaseRefURL);
+//        imageList.add(new Image(Double.toString(rand.nextDouble()), gsReference));
+//        imageList.add(new Image(Double.toString(rand.nextDouble()), gsReference));
     }
 }

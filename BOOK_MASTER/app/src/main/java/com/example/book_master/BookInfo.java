@@ -8,12 +8,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.*;
 
-import com.example.book_master.adapter.ImageAdapter;
+import com.example.book_master.adapter.CustomImageList;
 import com.example.book_master.models.*;
 
 /**
@@ -25,6 +23,8 @@ public class BookInfo extends AppCompatActivity {
     private Button Edit, Delete;
     private Book book;
     private int visibility;
+
+    private ArrayList<Image> imageList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +49,13 @@ public class BookInfo extends AppCompatActivity {
         BookStatus.setText("Status: " + book.getStatus());
         CurrentBorrower.setText("Currnet Borrower: " + book.getBorrower());
 
-
+        imageList = new ArrayList<Image>();
+        CustomImageList imageAdapter = new CustomImageList(imageList);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
-        recyclerView.setAdapter(new ImageAdapter(new ArrayList<String>()));
+        recyclerView.setAdapter(imageAdapter);
 
+        DBHelper.retrieveImagine(imageList, imageAdapter, this);
 
         // check if the user is owner or borrower
         if (visibility == 2) {
