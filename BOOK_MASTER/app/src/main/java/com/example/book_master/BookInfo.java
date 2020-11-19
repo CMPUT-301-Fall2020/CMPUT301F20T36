@@ -1,14 +1,19 @@
 package com.example.book_master;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.*;
+
+import com.example.book_master.adapter.ImageAdapter;
 import com.example.book_master.models.*;
 
 /**
@@ -43,6 +48,12 @@ public class BookInfo extends AppCompatActivity {
         BookISBN.setText("ISBN: " + book.getISBN());
         BookStatus.setText("Status: " + book.getStatus());
         CurrentBorrower.setText("Currnet Borrower: " + book.getBorrower());
+
+
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
+        recyclerView.setAdapter(new ImageAdapter(new ArrayList<String>()));
+
 
         // check if the user is owner or borrower
         if (visibility == 2) {
