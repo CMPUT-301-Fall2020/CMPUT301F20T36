@@ -42,8 +42,8 @@ public class edit_book_activity extends AppCompatActivity {
     // Uri indicates, where the image will be picked from
     private Uri filePath;
 
-    // request code
-    private final int PICK_IMAGE_REQUEST = 22;
+    // request code, pick a lucky number
+    private final int PICK_IMAGE_REQUEST = 17;
 
     Book book;
 
@@ -129,7 +129,7 @@ public class edit_book_activity extends AppCompatActivity {
         deleteImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DBHelper.deleteImage(imageList.get(position).getTitle(), book.getISBN(), edit_book_activity.this);
+                DBHelper.deleteImage(imageList, imageAdapter, position, book.getISBN(), edit_book_activity.this);
             }
         });
     }
@@ -164,7 +164,7 @@ public class edit_book_activity extends AppCompatActivity {
             filePath = data.getData();
 
             if (filePath != null) {
-                DBHelper.uploadImagine(filePath, book.getISBN(), edit_book_activity.this);
+                DBHelper.uploadImagine(imageList, imageAdapter, filePath, book.getISBN(), edit_book_activity.this);
             }
         }
     }
