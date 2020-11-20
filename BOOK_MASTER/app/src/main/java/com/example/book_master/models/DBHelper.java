@@ -1,6 +1,7 @@
 package com.example.book_master.models;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -8,9 +9,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
+import com.example.book_master.BookInfo;
 import com.example.book_master.MainActivity;
 import com.example.book_master.adapter.CustomImageList;
 import com.example.book_master.main_menu_activity;
@@ -29,10 +29,12 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.util.UUID;
 import java.util.ArrayList;
-import java.util.Random;
 
 import javax.annotation.Nullable;
 
@@ -44,8 +46,9 @@ import javax.annotation.Nullable;
  * o(*≧▽≦)ツ┏━┓
  */
 public class DBHelper {
-    private static final String TAG = DBHelper.class.getSimpleName();
+    private static final String firebaseRefURL = "gs://book-master-c3227.appspot.com/";
     private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private static final String TAG = DBHelper.class.getSimpleName();
 
     /**
      * Create an new user account through Firebase Authentication
@@ -66,14 +69,14 @@ public class DBHelper {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Log.d(TAG, "createUserWithEmailAndPassword:success");
+                            Log.d(TAG, "createUserWithEmailAndPassword: success");
                             Toast.makeText(context, "Authentication succeeded.",
                                     Toast.LENGTH_SHORT).show();
 
                             // include the user in the Firebase
                             setUserDoc(new User(email, password, username, contactInfo), context);
                         } else {
-                            Log.w(TAG, "createUserWithEmailAndPassword:failure", task.getException());
+                            Log.w(TAG, "createUserWithEmailAndPassword: failure", task.getException());
                             Toast.makeText(context, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
@@ -92,7 +95,7 @@ public class DBHelper {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Log.d(TAG, "delete account:success");
+                            Log.d(TAG, "delete account: success");
                             Toast.makeText(context, "User account deleting succeeded.",
                                     Toast.LENGTH_SHORT).show();
 
@@ -102,7 +105,7 @@ public class DBHelper {
                             Intent intent = new Intent(context, MainActivity.class);
                             context.startActivity(intent);
                         } else {
-                            Log.w(TAG, "delete account:failure", task.getException());
+                            Log.w(TAG, "delete account: failure", task.getException());
                             Toast.makeText(context, "User account deleting failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
@@ -122,7 +125,7 @@ public class DBHelper {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Log.d(TAG, "signInWithEmailAndPassword:success");
+                            Log.d(TAG, "signInWithEmailAndPassword: success");
                             Toast.makeText(context, "Authentication succeeded.",
                                     Toast.LENGTH_SHORT).show();
 
@@ -133,7 +136,7 @@ public class DBHelper {
                             context.startActivity(intent);
                             ((Activity) context).finish();
                         } else {
-                            Log.w(TAG, "signInWithEmailAndPassword:failure", task.getException());
+                            Log.w(TAG, "signInWithEmailAndPassword: failure", task.getException());
                             Toast.makeText(context, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
@@ -164,7 +167,7 @@ public class DBHelper {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "set(user):success");
+                        Log.d(TAG, "set(user): success");
                         Toast.makeText(context, "User info updating succeeded.",
                                 Toast.LENGTH_SHORT).show();
                     }
@@ -172,7 +175,7 @@ public class DBHelper {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "set(user):failure", e);
+                        Log.w(TAG, "set(user): failure", e);
                         Toast.makeText(context, "User info updating failed.",
                                 Toast.LENGTH_SHORT).show();
                     }
@@ -194,7 +197,7 @@ public class DBHelper {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "set(book):success");
+                        Log.d(TAG, "set(book): success");
                         Toast.makeText(context, "Book info updating succeeded.",
                                 Toast.LENGTH_SHORT).show();
                     }
@@ -202,7 +205,7 @@ public class DBHelper {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "set(book):failure", e);
+                        Log.w(TAG, "set(book): failure", e);
                         Toast.makeText(context, "Book info updating failed.",
                                 Toast.LENGTH_SHORT).show();
                     }
@@ -224,7 +227,7 @@ public class DBHelper {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "set(msg):success");
+                        Log.d(TAG, "set(msg): success");
                         Toast.makeText(context, "Message info updating succeeded.",
                                 Toast.LENGTH_SHORT).show();
                     }
@@ -232,7 +235,7 @@ public class DBHelper {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "set(msg):failure", e);
+                        Log.w(TAG, "set(msg): failure", e);
                         Toast.makeText(context, "Message info updating failed.",
                                 Toast.LENGTH_SHORT).show();
                     }
@@ -252,7 +255,7 @@ public class DBHelper {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "delete User:success");
+                        Log.d(TAG, "delete User: success");
                         Toast.makeText(context, "User instance deleting succeeded.",
                                 Toast.LENGTH_SHORT).show();
                     }
@@ -260,7 +263,7 @@ public class DBHelper {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "delete User:failure", e);
+                        Log.w(TAG, "delete User: failure", e);
                         Toast.makeText(context, "User instance deleting failed.",
                                 Toast.LENGTH_SHORT).show();
                     }
@@ -280,7 +283,7 @@ public class DBHelper {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "delete Book:success");
+                        Log.d(TAG, "delete Book: success");
                         Toast.makeText(context, "Book instance deleting succeeded.",
                                 Toast.LENGTH_SHORT).show();
                     }
@@ -288,7 +291,7 @@ public class DBHelper {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "delete Book:failure", e);
+                        Log.w(TAG, "delete Book: failure", e);
                         Toast.makeText(context, "Book instance deleting failed.",
                                 Toast.LENGTH_SHORT).show();
                     }
@@ -308,7 +311,7 @@ public class DBHelper {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "delete Message:success");
+                        Log.d(TAG, "delete Message: success");
                         Toast.makeText(context, "Message instance deleting succeeded.",
                                 Toast.LENGTH_SHORT).show();
                     }
@@ -316,7 +319,7 @@ public class DBHelper {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "delete Message:failure", e);
+                        Log.w(TAG, "delete Message: failure", e);
                         Toast.makeText(context, "Message instance deleting failed.",
                                 Toast.LENGTH_SHORT).show();
                     }
@@ -391,7 +394,6 @@ public class DBHelper {
                     String status = (String) doc.getData().get("status");
                     String longitude = (String) doc.getData().get("longitude");
                     String latitude = (String) doc.getData().get("latitude");
-                    // TODO: include structure storing image
                     MessageList.addMessage(new Message(sender, receiver, ISBN, status, longitude, latitude));
                 }
             }
@@ -399,56 +401,90 @@ public class DBHelper {
     }
 
     /**
-     * Retrieve imagines from Firebase Storage
+     * Upload image to Firebase Storage
      */
-    public static void retrieveImagine(final ArrayList<Image> imageList, final CustomImageList imageAdapter, final Context context) {
-        imageList.clear();
-
-//        final String firebaseRefURL = "gs://book-master-c3227.appspot.com";
-//        final String imagePath = "1123";
+    public static void uploadImagine(final Uri URI, final String ISBN, final Context context) {
+        // Code for showing progressDialog while uploading
+        final ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setTitle("Uploading...");
+        progressDialog.show();
 
         // Reference to an image file in Cloud Storage
-        final String firebaseRefURL = "gs://book-master-c3227.appspot.com/1123";
+        final String imageRef = ISBN + "/" + UUID.randomUUID().toString() + ".png";
         final FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference gsReference = storage.getReferenceFromUrl(firebaseRefURL);
+        gsReference = gsReference.child(imageRef);
 
-        final Random rand = new Random();
+        gsReference.putFile(URI)
+                .addOnSuccessListener(
+                        new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                // Image uploaded successfully
+                                // Dismiss dialog
+                                progressDialog.dismiss();
+                                Log.d(TAG, "putFile(URI): success");
+                                Toast.makeText(context, "Imagine uploading succeeded.",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Error, Image not uploaded
+                        progressDialog.dismiss();
+                        Log.w(TAG, "putFile(URI): failure", e);
+                        Toast.makeText(context, "Imagine uploading failed.",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnProgressListener(
+                        new OnProgressListener<UploadTask.TaskSnapshot>() {
+                            // Progress Listener for loading
+                            // percentage on the dialog box
+                            @Override
+                            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                                double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                                progressDialog.setMessage(
+                                        "Uploaded " + (int)progress + "%");
+                            }
+                        });
+    }
+
+    /**
+     * Retrieve imagines from Firebase Storage
+     */
+    public static void retrieveImagine(final ArrayList<Image> imageList, final CustomImageList imageAdapter,
+                                       final String ISBN, final Context context) {
+        // Reference to an image file in Cloud Storage
+        final String imageRef = ISBN;
+        final FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference gsReference = storage.getReferenceFromUrl(firebaseRefURL);
+        gsReference = gsReference.child(imageRef);
+
         gsReference.listAll()
                 .addOnSuccessListener(new OnSuccessListener<ListResult>() {
                     @Override
                     public void onSuccess(ListResult listResult) {
+                        imageList.clear();
+
                         for (StorageReference item : listResult.getItems()) {
-//                            // All the items under listRef.
-//                            item.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                                @Override
-//                                public void onSuccess(Uri uri) {
-//                                    Log.w(TAG, "downloadUrl:" + uri.toString());
-//                                    Toast.makeText(context, "downloadUrl:" + uri.toString(),
-//                                            Toast.LENGTH_SHORT).show();
-//                                    StorageReference ref = storage.getReferenceFromUrl("https://firebasestorage.googleapis.com/v0/b/book-master-c3227.appspot.com/o/1123%2F722384.png");
-//                                    imageList.add(new Image(Double.toString(rand.nextDouble()), ref));
-//                                    adapter.setItems(imageList);
-//                                    adapter.notifyDataSetChanged();
-//                                }
-//                            });
-                            imageList.add(new Image(Double.toString(rand.nextDouble()), item));
-                            imageAdapter.setItems(imageList);
-                            imageAdapter.notifyDataSetChanged();
+                            imageList.add(new Image(item.getName(), item));
                         }
+                        imageAdapter.setItems(imageList);
+                        imageAdapter.notifyDataSetChanged();
+                        Log.d(TAG, "listAll(): success");
+                        Toast.makeText(context, "Imagine retrieving succeeded.",
+                                Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        // Uh-oh, an error occurred!
+                        Log.w(TAG, "listAll(): failure", e);
+                        Toast.makeText(context, "Imagine retrieving failed.",
+                                Toast.LENGTH_SHORT).show();
                     }
                 });
-
-//        final Random rand = new Random();
-//        final String firebaseRefURL = "https://firebasestorage.googleapis.com/v0/b/book-master-c3227.appspot.com/o/1123%2F722384.png";
-//        FirebaseStorage storage = FirebaseStorage.getInstance();
-//        StorageReference gsReference = storage.getReferenceFromUrl(firebaseRefURL);
-//        imageList.add(new Image(Double.toString(rand.nextDouble()), gsReference));
-//        imageList.add(new Image(Double.toString(rand.nextDouble()), gsReference));
     }
 }
