@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.example.book_master.BookInfo;
 import com.example.book_master.MainActivity;
 import com.example.book_master.adapter.CustomImageList;
 import com.example.book_master.main_menu_activity;
@@ -403,18 +402,21 @@ public class DBHelper {
     /**
      * Upload image to Firebase Storage
      */
-    public static void uploadImagine(final Uri URI, final String ISBN, final Context context) {
+    public static void uploadImagine(final ArrayList<Image> imageList, final CustomImageList imageAdapter,
+            final Uri URI, final String ISBN, final Context context) {
         // Code for showing progressDialog while uploading
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("Uploading...");
         progressDialog.show();
 
         // Reference to an image file in Cloud Storage
-        final String imageRef = ISBN + "/" + UUID.randomUUID().toString() + ".png";
+        final String index = UUID.randomUUID().toString() + ".png";
+        final String imageRef = ISBN + "/" + index;
         final FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference gsReference = storage.getReferenceFromUrl(firebaseRefURL);
         gsReference = gsReference.child(imageRef);
 
+        final StorageReference finalGsReference = gsReference;
         gsReference.putFile(URI)
                 .addOnSuccessListener(
                         new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -426,6 +428,9 @@ public class DBHelper {
                                 Log.d(TAG, "putFile(URI): success");
                                 Toast.makeText(context, "Imagine uploading succeeded.",
                                         Toast.LENGTH_SHORT).show();
+                                imageList.add(new Image(index, finalGsReference));
+                                imageAdapter.setItems(imageList);
+                                imageAdapter.notifyDataSetChanged();
                             }
                         })
                 .addOnFailureListener(new OnFailureListener() {
@@ -454,8 +459,10 @@ public class DBHelper {
     /**
      * Delete imagines from Firebase Storage
      */
-    public static void deleteImage(final String index, final String ISBN, final Context context) {
+    public static void deleteImage(final ArrayList<Image> imageList, final CustomImageList imageAdapter,
+            final int pos, final String ISBN, final Context context) {
         // Reference to an image file in Cloud Storage
+        final String index = imageList.get(pos).getTitle();
         final String imageRef = ISBN + "/" + index;
         final FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference gsReference = storage.getReferenceFromUrl(firebaseRefURL);
@@ -469,14 +476,16 @@ public class DBHelper {
                         Log.d(TAG, "delete(): success");
                         Toast.makeText(context, "Imagine deleting succeeded.",
                                 Toast.LENGTH_SHORT).show();
+                        imageList.remove(pos);
+                        imageAdapter.setItems(imageList);
+                        imageAdapter.notifyDataSetChanged();
                 }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "delete(): failure", e);
-                        Toast.makeText(context, "Imagine deleting failed.",
-                                Toast.LENGTH_SHORT).show();
+                    public void onFailure(@NonNull Exception exception) {
+                        // Uh-oh, an error occurred!
+                        Log.d(TAG, "onFailure: did not delete file");
                     }
                 });
     }
