@@ -1,8 +1,10 @@
 package com.example.book_master.models;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -27,9 +29,11 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
-
+import java.util.UUID;
 import java.util.ArrayList;
 
 import javax.annotation.Nullable;
@@ -42,8 +46,9 @@ import javax.annotation.Nullable;
  * o(*≧▽≦)ツ┏━┓
  */
 public class DBHelper {
-    private static final String TAG = DBHelper.class.getSimpleName();
+    private static final String firebaseRefURL = "gs://book-master-c3227.appspot.com/";
     private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private static final String TAG = DBHelper.class.getSimpleName();
 
     /**
      * Create an new user account through Firebase Authentication
@@ -396,14 +401,66 @@ public class DBHelper {
     }
 
     /**
+     * Upload image to Firebase Storage
+     */
+    public static void uploadImagine(final Uri URI, final String ISBN, final Context context) {
+        // Code for showing progressDialog while uploading
+        final ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setTitle("Uploading...");
+        progressDialog.show();
+
+        // Reference to an image file in Cloud Storage
+        final String imageRef = ISBN + "/" + UUID.randomUUID().toString() + ".png";
+        final FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference gsReference = storage.getReferenceFromUrl(firebaseRefURL);
+        gsReference = gsReference.child(imageRef);
+
+        gsReference.putFile(URI)
+                .addOnSuccessListener(
+                        new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                // Image uploaded successfully
+                                // Dismiss dialog
+                                progressDialog.dismiss();
+                                Log.d(TAG, "putFile(URI): success");
+                                Toast.makeText(context, "Imagine uploading succeeded.",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Error, Image not uploaded
+                        progressDialog.dismiss();
+                        Log.w(TAG, "putFile(URI): failure", e);
+                        Toast.makeText(context, "Imagine uploading failed.",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnProgressListener(
+                        new OnProgressListener<UploadTask.TaskSnapshot>() {
+                            // Progress Listener for loading
+                            // percentage on the dialog box
+                            @Override
+                            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                                double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                                progressDialog.setMessage(
+                                        "Uploaded " + (int)progress + "%");
+                            }
+                        });
+    }
+
+    /**
      * Retrieve imagines from Firebase Storage
      */
     public static void retrieveImagine(final ArrayList<Image> imageList, final CustomImageList imageAdapter,
-                                       String ISBN, final Context context) {
+                                       final String ISBN, final Context context) {
         // Reference to an image file in Cloud Storage
-        final String firebaseRefURL = "gs://book-master-c3227.appspot.com/ ";
+        final String imageRef = ISBN;
         final FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference gsReference = storage.getReferenceFromUrl(firebaseRefURL + ISBN);
+        StorageReference gsReference = storage.getReferenceFromUrl(firebaseRefURL);
+        gsReference = gsReference.child(imageRef);
 
         gsReference.listAll()
                 .addOnSuccessListener(new OnSuccessListener<ListResult>() {
