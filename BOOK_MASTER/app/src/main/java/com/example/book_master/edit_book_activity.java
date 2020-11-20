@@ -2,6 +2,7 @@ package com.example.book_master;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -32,9 +33,11 @@ public class edit_book_activity extends AppCompatActivity {
     private Button Confirm;
     private Button Discard;
     private Button uploadImage;
+    private Button deleteImage;
 
     private ArrayList<Image> imageList;
     private CustomImageList imageAdapter;
+    private int position;
 
     // Uri indicates, where the image will be picked from
     private Uri filePath;
@@ -58,6 +61,7 @@ public class edit_book_activity extends AppCompatActivity {
         Confirm = (Button) findViewById(R.id.edit_confirm_button);
         Discard = (Button) findViewById(R.id.edit_discard_buttom);
         uploadImage = (Button) findViewById(R.id.edit_book_uploadImage);
+        deleteImage = (Button) findViewById(R.id.edit_book_deleteImage);
 
         imageList = new ArrayList<Image>();
         imageAdapter = new CustomImageList(imageList);
@@ -65,6 +69,20 @@ public class edit_book_activity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
         recyclerView.setAdapter(imageAdapter);
         DBHelper.retrieveImagine(imageList, imageAdapter, book.getISBN(), this);
+
+        position = 0;
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (newState == RecyclerView.SCROLL_STATE_IDLE){
+                    position = ((LinearLayoutManager)recyclerView.getLayoutManager())
+                            .findFirstVisibleItemPosition();
+                }
+            }
+        });
+        PagerSnapHelper snapHelper = new PagerSnapHelper();
+        snapHelper.attachToRecyclerView(recyclerView);
 
         Title.setText(book.getTitle());
         Author.setText(book.getAuthor());
@@ -105,6 +123,13 @@ public class edit_book_activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 selectImage();
+            }
+        });
+
+        deleteImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DBHelper.deleteImage(imageList.get(position).getTitle(), book.getISBN(), edit_book_activity.this);
             }
         });
     }
