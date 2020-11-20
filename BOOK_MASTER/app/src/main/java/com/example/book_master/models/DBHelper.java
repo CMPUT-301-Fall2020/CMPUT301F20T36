@@ -452,6 +452,36 @@ public class DBHelper {
     }
 
     /**
+     * Delete imagines from Firebase Storage
+     */
+    public static void deleteImage(final String index, final String ISBN, final Context context) {
+        // Reference to an image file in Cloud Storage
+        final String imageRef = ISBN + "/" + index;
+        final FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference gsReference = storage.getReferenceFromUrl(firebaseRefURL);
+        gsReference = gsReference.child(imageRef);
+
+        gsReference.delete().
+                addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                    // File deleted successfully
+                        Log.d(TAG, "delete(): success");
+                        Toast.makeText(context, "Imagine deleting succeeded.",
+                                Toast.LENGTH_SHORT).show();
+                }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "delete(): failure", e);
+                        Toast.makeText(context, "Imagine deleting failed.",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    /**
      * Retrieve imagines from Firebase Storage
      */
     public static void retrieveImagine(final ArrayList<Image> imageList, final CustomImageList imageAdapter,
