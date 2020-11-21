@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.book_master.models.Book;
-import com.example.book_master.models.CustomBookList;
+import com.example.book_master.adapter.CustomBookList;
 import com.example.book_master.models.Owner;
 
 import java.util.ArrayList;

@@ -45,7 +45,6 @@ import javax.annotation.Nullable;
  * o(*≧▽≦)ツ┏━┓
  */
 public class DBHelper {
-
     private static final String firebaseRefURL = "gs://book-master-c3227.appspot.com/";
     private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private static final String TAG = DBHelper.class.getSimpleName();
@@ -64,13 +63,11 @@ public class DBHelper {
                                      final String username,
                                      final String contactInfo,
                                      final Context context) {
-
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener((Activity) context, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-
                             Log.d(TAG, "createUserWithEmailAndPassword: success");
                             Toast.makeText(context, "Authentication succeeded.",
                                     Toast.LENGTH_SHORT).show();
@@ -79,7 +76,6 @@ public class DBHelper {
                             setUserDoc(new User(email, password, username, contactInfo), context);
                         } else {
                             Log.w(TAG, "createUserWithEmailAndPassword: failure", task.getException());
-
                             Toast.makeText(context, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
@@ -407,7 +403,7 @@ public class DBHelper {
      * Upload image to Firebase Storage
      */
     public static void uploadImagine(final ArrayList<Image> imageList, final CustomImageList imageAdapter,
-            final Uri URI, final String ISBN, final Context context) {
+                                     final Uri URI, final String ISBN, final Context context) {
         // Code for showing progressDialog while uploading
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("Uploading...");
@@ -464,7 +460,7 @@ public class DBHelper {
      * Delete imagines from Firebase Storage
      */
     public static void deleteImage(final ArrayList<Image> imageList, final CustomImageList imageAdapter,
-            final int pos, final String ISBN, final Context context) {
+                                   final int pos, final String ISBN, final Context context) {
         // Reference to an image file in Cloud Storage
         final String index = imageList.get(pos).getTitle();
         final String imageRef = ISBN + "/" + index;
@@ -476,14 +472,14 @@ public class DBHelper {
                 addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                    // File deleted successfully
+                        // File deleted successfully
                         Log.d(TAG, "delete(): success");
                         Toast.makeText(context, "Imagine deleting succeeded.",
                                 Toast.LENGTH_SHORT).show();
                         imageList.remove(pos);
                         imageAdapter.setItems(imageList);
                         imageAdapter.notifyDataSetChanged();
-                }
+                    }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
