@@ -76,4 +76,14 @@ public class MessageList {
         }
         return temp;
     }
+
+    public static int count_Message_Recieved(String receiver) {
+        int count = 0;
+        for (Message msg : messageList) {
+            if (msg.getReceiver() != null && msg.getReceiver().equalsIgnoreCase(receiver)) {
+                count++;
+            }
+        }
+        return count;
+    }
 }

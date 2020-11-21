@@ -10,19 +10,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.book_master.adapter.CustomBorrowList;
 import com.example.book_master.models.Book;
 import com.example.book_master.models.BookList;
-import com.example.book_master.adapter.CustomBorrowList;
 import com.example.book_master.models.Message;
 import com.example.book_master.models.MessageList;
 import com.example.book_master.models.UserList;
 
 import java.util.ArrayList;
 
-/**
- * This activity class will show the book list which borrower is requested.
- */
-public class borrower_requested_list_activity extends AppCompatActivity {
+public class borrower_borrowed_book_list_activity extends AppCompatActivity {
     private ArrayList<Book> bookData;
     private ArrayAdapter<Book> bookAdapter;
     private ListView bookList;
@@ -31,11 +28,11 @@ public class borrower_requested_list_activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.borrow_requested_list);
+        setContentView(R.layout.borrowed_book_list);
 
-        bookList = findViewById(R.id.Borrow_list);
 
-        // get all the message which sender is the current user
+        bookList = findViewById(R.id.borrowed_book_list_listview);
+
         messagelist = MessageList.searchSender(UserList.getCurrentUser().getUsername());
         bookData = new ArrayList<Book>();
 
@@ -45,12 +42,12 @@ public class borrower_requested_list_activity extends AppCompatActivity {
             for (Message msg : messagelist) {
                 temp = BookList.getBook(msg.getISBN());
                 if (temp == null) {
-                    Toast.makeText(borrower_requested_list_activity.this,
+                    Toast.makeText(borrower_borrowed_book_list_activity.this,
                             "Error from reading message",
                             Toast.LENGTH_SHORT).show();
                 }
-                else if (temp.getStatus().equalsIgnoreCase(Book.REQUESTED) == false) {
-                    Toast.makeText(borrower_requested_list_activity.this,
+                else if (temp.getStatus().equalsIgnoreCase(Book.CONFIRM_BORROWED) == false) {
+                    Toast.makeText(borrower_borrowed_book_list_activity.this,
                             "Book is not in requesting status",
                             Toast.LENGTH_SHORT).show();
                 }
@@ -60,20 +57,19 @@ public class borrower_requested_list_activity extends AppCompatActivity {
             }
         }
         else {
-            Toast.makeText(borrower_requested_list_activity.this,
+            Toast.makeText(borrower_borrowed_book_list_activity.this,
                     "You do not have any requested book",
                     Toast.LENGTH_SHORT).show();
         }
 
-        bookAdapter = new CustomBorrowList(borrower_requested_list_activity.this, bookData);
-        bookList.setAdapter(bookAdapter);
+        bookAdapter = new CustomBorrowList(borrower_borrowed_book_list_activity.this, bookData);
         bookAdapter.notifyDataSetChanged();
+        bookList.setAdapter(bookAdapter);
 
-        // show the book detail when user click on it without the ability to edit the book details
         bookList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                Intent intent = new Intent(borrower_requested_list_activity.this, BookInfo.class);
+                Intent intent = new Intent(borrower_borrowed_book_list_activity.this, BookInfo.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("book", bookData.get(position));
                 bundle.putInt("VISIBILITY", 2);  // 2 for not show Edit button
@@ -83,5 +79,4 @@ public class borrower_requested_list_activity extends AppCompatActivity {
             }
         });
     }
-
 }

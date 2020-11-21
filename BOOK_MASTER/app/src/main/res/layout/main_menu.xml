@@ -46,11 +46,12 @@
         android:id="@+id/Logout_main_button"
         android:layout_width="111dp"
         android:layout_height="46dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginTop="8dp"
         android:text="Log Out"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.753"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_menu_borrower_show_requested" />
 
     <Button
         android:id="@+id/Return_main_button"
@@ -61,7 +62,7 @@
         android:layout_marginTop="40dp"
         android:text="Return"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Borrow_main_button" />
+        app:layout_constraintTop_toBottomOf="@+id/Receive_main_button" />
 
     <Button
         android:id="@+id/Receive_main_button"
@@ -133,7 +134,6 @@
         android:id="@+id/main_menu_request"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_marginTop="40dp"
         android:text="Request"
         app:layout_constraintEnd_toEndOf="parent"
@@ -141,5 +141,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Receive_main_button" />
 
+
+    <include
+        layout="@layout/main_menu_notification_bar"
+        android:id="@+id/main_menu_notification_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/main_menu_borrowed_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="show_borrowed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
