@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/login_background2"
     android:layout_height="match_parent">
 
     <TextView
@@ -49,7 +50,8 @@
         android:id="@+id/View_request_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Viw Request"
+        android:background="#80D4D5D6"
+        android:text="View Request"
         tools:layout_editor_absoluteX="209dp"
         tools:layout_editor_absoluteY="81dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
