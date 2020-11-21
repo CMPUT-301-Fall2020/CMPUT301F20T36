@@ -38,8 +38,6 @@ public class main_menu_activity extends AppCompatActivity {
 
         request = (Button) findViewById(R.id.main_menu_request);
 
-        show_requested = (Button) findViewById(R.id.main_menu_borrower_show_requested);
-
         check_mylist_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,16 +106,8 @@ public class main_menu_activity extends AppCompatActivity {
         request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(main_menu_activity.this, request_list.class);
+                Intent intent = new Intent(main_menu_activity.this, request_menu.class);
                 startActivity(intent);
-            }
-        });
-
-        show_requested.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent borrow_list__intent = new Intent(main_menu_activity.this, borrow_list_activity.class);
-                startActivity(borrow_list__intent);
             }
         });
     }
