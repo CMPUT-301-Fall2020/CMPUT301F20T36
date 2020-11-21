@@ -11,10 +11,10 @@
 
 
     <TextView
-        android:id="@+id/edit_book_photo_name"
+        android:id="@+id/Request_list_title"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:text="                 Request List"
+        android:text="                Request List"
         android:textSize="30sp" />
 
     <ListView

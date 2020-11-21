@@ -67,7 +67,7 @@ public class check_list_activity extends AppCompatActivity {
         bookAdapter = new CustomBookList(this, bookData);
         bookList.setAdapter(bookAdapter);
 
-        // if user click on a book, then display the entire dscription
+        // if user click on a book, then display the entire description
         bookList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){

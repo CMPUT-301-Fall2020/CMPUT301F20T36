@@ -12,6 +12,7 @@ import com.example.book_master.models.Book;
 import com.example.book_master.models.BookList;
 import com.example.book_master.models.DBHelper;
 import com.example.book_master.models.Message;
+import com.example.book_master.models.MessageList;
 
 public class request_description extends AppCompatActivity {
     TextView title, status, sender;
@@ -41,6 +42,10 @@ public class request_description extends AppCompatActivity {
                 DBHelper.deleteMessageDoc(String.valueOf(message.hashCode()), request_description.this);
                 message.setStatus(Book.ACCEPTED);
                 DBHelper.setMessageDoc(String.valueOf(message.hashCode()), message,request_description.this);
+                String isbn = message.getISBN();
+                Book b = BookList.getBook(isbn);
+                b.setStatus(Book.ACCEPTED);
+                DBHelper.setBookDoc(isbn,b,request_description.this);
                 Intent intent = new Intent(request_description.this, request_list.class);
                 startActivity(intent);
                 finish();
@@ -50,8 +55,16 @@ public class request_description extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DBHelper.deleteMessageDoc(String.valueOf(message.hashCode()), request_description.this);
-                message.setStatus("DECLINED");
-                DBHelper.setMessageDoc(String.valueOf(message.hashCode()), message,request_description.this);
+                String isbn = message.getISBN();
+                Book b = BookList.getBook(isbn);
+                b.setStatus(Book.AVAILABLE);
+                for(Message i : MessageList.searchISBN(isbn)){
+                    if(i.getStatus().equals(Book.REQUESTED)){
+                        b.setStatus(Book.REQUESTED);
+                        break;
+                    }
+                }
+                DBHelper.setBookDoc(isbn, b, request_description.this);
                 Intent intent = new Intent(request_description.this, request_list.class);
                 startActivity(intent);
                 finish();
