@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/image2"
     android:layout_height="match_parent">
 
     <TextView
@@ -12,6 +13,7 @@
         android:layout_height="28dp"
         android:layout_marginTop="264dp"
         android:text="email"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,6 +24,7 @@
         android:layout_height="28dp"
         android:layout_marginTop="208dp"
         android:text="Contact Info"
+        android:textColor="#000005"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,6 +35,8 @@
         android:layout_height="28dp"
         android:layout_marginTop="52dp"
         android:text="User Name"
+        android:textColor="#000000"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -41,6 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
+        android:background="#80D4D5D6"
         android:text="Back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
