@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 /**
  * Store one specific book info
+ * The book info includes Status as one of  available, requested, accepted, or borrowed.
  */
 public class Book implements Serializable {
 
