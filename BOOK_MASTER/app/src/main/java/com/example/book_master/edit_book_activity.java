@@ -101,6 +101,7 @@ public class edit_book_activity extends AppCompatActivity {
 
                     Intent intent = new Intent(edit_book_activity.this, check_list_activity.class);
                     startActivity(intent);
+                    finish();
                 }
                 else {
                     Toast.makeText(edit_book_activity.this, "Field is not filled.",
@@ -114,6 +115,7 @@ public class edit_book_activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(edit_book_activity.this, check_list_activity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -145,6 +147,7 @@ public class edit_book_activity extends AppCompatActivity {
                         intent,
                         "Select Image from here..."),
                 PICK_IMAGE_REQUEST);
+//        finish();
     }
 
     // Override onActivityResult method
