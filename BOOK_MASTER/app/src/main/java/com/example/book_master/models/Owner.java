@@ -46,5 +46,4 @@ public interface Owner {
 
     public Boolean Confirm_Return(String ISBN);
 
-
 }

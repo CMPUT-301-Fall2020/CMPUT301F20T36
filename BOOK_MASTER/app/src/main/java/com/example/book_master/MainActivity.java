@@ -11,7 +11,6 @@ import android.widget.EditText;
 
 import com.example.book_master.models.DBHelper;
 import com.example.book_master.models.User;
-
 import java.util.ArrayList;
 
 /**
@@ -27,6 +26,10 @@ public class MainActivity extends AppCompatActivity implements RegisterFrag.OnFr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//
+//        DBHelper.collectionListener();
+//        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+//        startActivity(intent);
 
         DBHelper.userCollectionListener();
         DBHelper.bookCollectionListener();
