@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.book_master.adapter.CustomBookList;
 import com.example.book_master.models.*;
 
 import java.util.*;
@@ -24,6 +25,7 @@ public class View_accepted_books extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         bookData = (ArrayList<Book>) bundle.getSerializable("accepted_books");
+
         bookAdapter = new CustomBookList(this, bookData);
         bookList.findViewById(R.id.accepted_book);
         bookList.setAdapter(bookAdapter);

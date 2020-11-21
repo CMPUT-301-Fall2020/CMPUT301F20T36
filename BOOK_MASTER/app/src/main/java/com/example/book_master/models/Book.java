@@ -2,102 +2,136 @@ package com.example.book_master.models;
 
 import java.io.Serializable;
 
+/**
+ * Store one specific book info
+ */
 public class Book implements Serializable {
-    enum Status {
-        available("available"), requested("requested"), accepted("accepted"), borrowed("borrowed"), confirming_B("confirming_B"), confirming_R("confirming_R");
-        private String statusName;
-        private Status(String s){
-            this.statusName = s;
-        }
-        @Override
-        public String toString(){
-            return statusName;
-        }
-    };
-  
+
+    public final static String AVAILABLE = "AVAILABLE";
+    public final static String REQUESTED = "REQUESTED";
+    public final static String ACCEPTED = "ACCEPTED";
+    public final static String BORROWED = "BORROWED";
+    public final static String CONFIRM_BORROWED = "CONFIRM_BORROWED";
+    public final static String CONFIRM_RETURN = "CONFIRM_RETURN";
+
     private String title;
     private String author;
     private String ISBN;
-    private User owner;
-    private User holder;
-    private PhotographList photolist;
-    private Status status = Status.available;
+    // use username to identify the user instance
+    // and then call UserList.getUser(username) to get User instance
+    private String owner;
+    private String borrower;
+    // TODO: implement a structure holding photograph
+//    private PhotographList photographList;
+    // status: available, requested, accepted, borrowed, confirming_B, confirming_R
+    private String status;
 
+    /**
+     * Empty constructor required by Firebase
+     */
     public Book() {
         title = "";
         author = "";
         ISBN = "";
+        status = AVAILABLE;
+        owner = "";
+        borrower = "";
     }
-  
+
+    /**
+     * Constructor
+     * @param title book title
+     * @param author book author
+     * @param ISBN book ISBN, unique
+     */
     public Book(String title, String author, String ISBN) {
         this.title = title;
         this.author = author;
         this.ISBN = ISBN;
+        this.status = AVAILABLE;
         this.owner = null;
-        this.holder = null;
+        this.borrower = null;
     }
 
-    public Book(String title, String author, String ISBN, User owner) {
+    /**
+     * Constructor
+     * @param title book title
+     * @param author book author
+     * @param ISBN book ISBN, unique
+     * @param owner current owner
+     * @param borrower current borrower
+     */
+    public Book(String title, String author, String ISBN, String owner, String borrower) {
         this.title = title;
         this.author = author;
         this.ISBN = ISBN;
         this.owner = owner;
-        this.holder = owner;
+        this.borrower = borrower;
+        status = AVAILABLE;
     }
 
-    public String getTitle() {
-        return title;
-    }
+    /**
+     * @return book title
+     */
+    public String getTitle() { return title; }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+    /**
+     * @param title book title
+     */
+    public void setTitle(String title) { this.title = title; }
 
-    public String getAuthor() {
-        return author;
-    }
+    /**
+     * @return book author
+     */
+    public String getAuthor() { return author; }
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
+    /**
+     * @param author book author
+     */
+    public void setAuthor(String author) { this.author = author; }
 
-    public String getISBN() {
-        return ISBN;
-    }
+    /**
+     * @return book ISBN
+     */
+    public String getISBN() { return ISBN; }
 
-    public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
-    }
+    /**
+     * @param ISBN book ISBN
+     */
+    public void setISBN(String ISBN) { this.ISBN = ISBN; }
 
-    public User getOwner() {
-        return owner;
-    }
+    /**
+     * @return current owner
+     */
+    public String getOwner() { return owner; }
 
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }
+    /**
+     * @param owner current owner
+     */
+    public void setOwner(String owner) { this.owner = owner; }
 
-    public User getHolder() {
-        return holder;
-    }
+    /**
+     * @return current borrower
+     */
+    public String getBorrower() { return borrower; }
 
-    public void setHolder(User holder) {
-        this.holder = holder;
-    }
+    /**
+     * @param borrower current borrower
+     */
+    public void setBorrower(String borrower) { this.borrower = borrower; }
 
-    public PhotographList getPhotolist() {
-        return photolist;
-    }
+//    public PhotographList getPhotographList() { return photographList; }
+//
+//    public void setPhotographList(PhotographList photographList) { this.photographList = photographList; }
 
-//    public void addPhotolist(Photographlist photolist) {
-//        this.photolist = photolist;
-//    }
+    /**
+     * @return current status
+     */
+    public String getStatus() { return status; }
 
-    public String getStatus() {
-        return status.toString();
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
+    /**
+     *
+     * @param status current status
+     */
+    public void setStatus(String status) { this.status = status; }
 }

@@ -40,6 +40,7 @@ public class owner_receive_activity extends AppCompatActivity{
                 integrator.initiateScan();
             }
         });
+
         Confirm_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,16 +48,6 @@ public class owner_receive_activity extends AppCompatActivity{
             }
         });
     }
-
-//    @Override
-//    public void onClick(View v) {
-//        IntentIntegrator integrator = new IntentIntegrator(this);
-//        integrator.setCaptureActivity(capture_activity.class);
-//        integrator.setOrientationLocked(false);
-//        integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
-//        integrator.setPrompt("Scanning ISBN");
-//        integrator.initiateScan();
-//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
@@ -73,34 +64,5 @@ public class owner_receive_activity extends AppCompatActivity{
             super.onActivityResult(requestCode, resultCode, intent);
         }
     }
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-//        if (result != null) {
-//            if (result.getContents() != null) {
-//                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//                builder.setMessage(result.getContents());
-//                builder.setTitle("Scanning Result: ");
-//                builder.setPositiveButton("Scan Again", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        scan();
-//                    }
-//                }).setNegativeButton("Finished", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        finish();
-//                    }
-//                });
-//                AlertDialog dialog = builder.create();
-//                dialog.show();
-//            }
-//            else {
-//                Toast.makeText(this, "No Results", Toast.LENGTH_LONG).show();
-//            }
-//        }
-//        else {
-//            super.onActivityResult(requestCode, resultCode, data);
-//        }
-//
-//    }
+
 }

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class PhotographList{
     private ArrayList<String> File_Paths;
 
-
     public PhotographList() {
         File_Paths = new ArrayList<String>();
     }
@@ -14,9 +13,7 @@ public class PhotographList{
 
     }
 
-
     public void Delete(){
-
 
     }
 
@@ -27,6 +24,4 @@ public class PhotographList{
     public void Remove(String File_Path){
 
     }
-
-
 }

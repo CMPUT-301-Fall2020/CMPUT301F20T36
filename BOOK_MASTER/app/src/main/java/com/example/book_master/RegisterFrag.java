@@ -8,14 +8,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.book_master.models.DBHelper;
+import com.example.book_master.models.UserList;
 
 import javax.annotation.Nullable;
 
+/**
+ * This fragment will all the user to sign up with all required inputs
+ */
 public class RegisterFrag extends DialogFragment {
     private EditText emailText;
     private EditText passwordText;
@@ -56,7 +61,7 @@ public class RegisterFrag extends DialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         // return super.onCreateDialog(savedInstanceState);
         // inflate the layout for this fragment
-        final View view = LayoutInflater.from(getActivity()).inflate(R.layout.frag_register, null);
+        final View view = LayoutInflater.from(getActivity()).inflate(R.layout.register, null);
 
         emailText = view.findViewById(R.id.email_register);
         passwordText = view.findViewById(R.id.password_register);
@@ -76,12 +81,18 @@ public class RegisterFrag extends DialogFragment {
                 .setPositiveButton("Create", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                        String email = emailText.getText().toString();
-                        String password = passwordText.getText().toString();
-                        String userName = usernameText.getText().toString();
-                        String contactInfo = contactInfoText.getText().toString();
+                        final String email = emailText.getText().toString();
+                        final String password = passwordText.getText().toString();
+                        final String username = usernameText.getText().toString();
+                        final String contactInfo = contactInfoText.getText().toString();
 
-                        DBHelper.createAccount(email, password, userName, contactInfo, view.getContext());
+                        // check if the username is unique
+                        if (UserList.checkUnique(username) == false) {
+                            Toast.makeText(view.getContext(), "Username already existed.",
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+                            DBHelper.createAccount(email, password, username, contactInfo, view.getContext());
+                        }
                     }
                 }).create();
     }
