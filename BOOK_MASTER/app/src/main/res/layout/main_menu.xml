@@ -180,4 +180,24 @@
         app:layout_constraintStart_toEndOf="@+id/Return_main_button"
         app:layout_constraintTop_toBottomOf="@+id/Borrow_main_button" />
 
+    <include
+        layout="@layout/main_menu_notification_bar"
+        android:id="@+id/main_menu_notification_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/main_menu_borrowed_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="show_borrowed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
