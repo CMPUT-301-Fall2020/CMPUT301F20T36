@@ -89,7 +89,7 @@ public class add_book_activity extends AppCompatActivity {
         IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
         if (scanningResult != null) {
             if (scanningResult.getContents() != null) {
-                 ISBN = scanningResult.getContents();
+                ISBN = scanningResult.getContents();
             } else {
                 Toast.makeText(this, "No Results", Toast.LENGTH_LONG).show();
             }
