@@ -31,6 +31,7 @@ public class main_menu_activity extends AppCompatActivity {
     private TextView notification_bar_display;
     private Button show_borrowed;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -129,10 +130,11 @@ public class main_menu_activity extends AppCompatActivity {
         request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(main_menu_activity.this, request_list.class);
+                Intent intent = new Intent(main_menu_activity.this, request_menu.class);
                 startActivity(intent);
             }
         });
+
 
         // this button will let borrower see what he has requested
         show_requested.setOnClickListener(new View.OnClickListener() {

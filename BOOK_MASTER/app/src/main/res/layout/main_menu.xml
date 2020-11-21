@@ -134,23 +134,13 @@
         android:id="@+id/main_menu_request"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="8dp"
-        android:text="Request"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Return_main_button" />
-
-    <Button
-        android:id="@+id/main_menu_borrower_show_requested"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
         android:layout_marginTop="40dp"
-        android:text="Show Requested"
-        app:layout_constraintStart_toEndOf="@+id/Return_main_button"
-        app:layout_constraintTop_toBottomOf="@+id/Borrow_main_button" />
+        android:text="Request"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.733"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Receive_main_button" />
+
 
     <include
         layout="@layout/main_menu_notification_bar"
