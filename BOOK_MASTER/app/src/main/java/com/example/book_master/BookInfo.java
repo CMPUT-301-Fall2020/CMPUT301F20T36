@@ -1,21 +1,31 @@
 package com.example.book_master;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import java.util.*;
+
+import com.example.book_master.adapter.CustomImageList;
 import com.example.book_master.models.*;
 
+/**
+ * this activity class will show the book information while if it is access by the owner
+ * then, the user can edit the book. (This is check by VISIBILITY input with in the bundle)
+ */
 public class BookInfo extends AppCompatActivity {
     private TextView BookTitle, BookAuthor, BookISBN, BookStatus, CurrentBorrower;
     private Button Edit, Delete;
     private Book book;
     private int visibility;
+
+    private ArrayList<Image> imageList;
+    private CustomImageList imageAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +48,16 @@ public class BookInfo extends AppCompatActivity {
         BookAuthor.setText("Author: " + book.getAuthor());
         BookISBN.setText("ISBN: " + book.getISBN());
         BookStatus.setText("Status: " + book.getStatus());
-        CurrentBorrower.setText("Currnet Borrower: " + book.getBorrower());
+        CurrentBorrower.setText("Current Borrower: " + book.getBorrower());
 
+        imageList = new ArrayList<Image>();
+        imageAdapter = new CustomImageList(imageList);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.book_description_imagineRecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
+        recyclerView.setAdapter(imageAdapter);
+        DBHelper.retrieveImagine(imageList, imageAdapter, book.getISBN(), this);
+
+        // check if the user is owner or borrower
         if (visibility == 2) {
             Edit.setVisibility(View.INVISIBLE);
         }

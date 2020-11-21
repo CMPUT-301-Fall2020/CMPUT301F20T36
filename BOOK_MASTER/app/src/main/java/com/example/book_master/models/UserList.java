@@ -21,7 +21,7 @@ public class UserList {
 
     /**
      * Add one User instance to userList
-     * @param user: User instance to be added
+     * @param user User instance to be added
      */
     public static void addUser(User user) {
         if (!userList.contains(user)) {
@@ -36,7 +36,7 @@ public class UserList {
 
     /**
      * Set currentUser to the User instance corresponding to the current logged account
-     * @param email: the current logged account email
+     * @param email the current logged account email
      */
     public static void setCurrentUser(String email) {
         for (User user : userList) {
@@ -55,7 +55,7 @@ public class UserList {
 
     /**
      * Search through userList to get the User instance which has the username specified
-     * @param username: username, unique
+     * @param username username, unique
      * @return User
      */
     public static User getUser(String username) {
@@ -69,7 +69,7 @@ public class UserList {
 
     /**
      * Check if the username is duplicated
-     * @param username: username to be checked
+     * @param username username to be checked
      * @return true if the username is unique, false otherwise
      */
     public static boolean checkUnique(String username) {

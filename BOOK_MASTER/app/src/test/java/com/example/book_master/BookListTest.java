@@ -2,8 +2,6 @@ package com.example.book_master;
 
 import com.example.book_master.models.Book;
 import com.example.book_master.models.BookList;
-import com.example.book_master.models.User;
-import com.example.book_master.models.UserList;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +25,7 @@ public class BookListTest {
     }
 
     /**
-     * addBook(Book book), getBook(String ISBN)
+     * Test: addBook(Book book), getBook(String ISBN)
      */
     @Test
     void testSetGet() {
@@ -39,7 +37,7 @@ public class BookListTest {
     }
 
     /**
-     * clearList()
+     * Test: clearList()
      */
     @Test
     void testClear() {
@@ -53,7 +51,7 @@ public class BookListTest {
     }
 
     /**
-     * getOwnedBook(String username), getBorrowedBook(String username)
+     * Test: getOwnedBook(String username), getBorrowedBook(String username)
      */
     @Test
     void testGetOwnedBorrowed() {
@@ -70,7 +68,7 @@ public class BookListTest {
     }
 
     /**
-     * getAvailableBook(String username)
+     * Test: getAvailableBook(String username)
      */
     @Test
     void testGetAvailableBook() {
@@ -86,17 +84,19 @@ public class BookListTest {
         assertTrue(available.size() == 0);
     }
 
-//    /**
-//     * searchDesc(String keyword, String username)
-//     */
-//    @Test
-//    void testSearchDesc() {
-//        Book temp = mockBook();
-//        String ISBN = temp.getISBN();
-//
-//        BookList.addBook(temp);
-//        ArrayList<Book> qualified = new ArrayList<>();
-//        qualified = BookList.searchDesc("410", "not Shrike");
-//
-//    }
+    /**
+     * Test: searchDesc(String keyword, String username)
+     */
+    @Test
+    void testSearchDesc() {
+        Book temp = mockBook();
+        String ISBN = temp.getISBN();
+
+        BookList.addBook(temp);
+        ArrayList<Book> qualified = new ArrayList<>();
+        qualified = BookList.searchDesc("410", "not Shrike");
+        assertTrue(qualified.size() != 0 && qualified.get(0).getISBN().equalsIgnoreCase(ISBN));
+        qualified = BookList.searchDesc("not gonna happen", "not Shrike");
+        assertTrue(qualified.size() == 0);
+    }
 }

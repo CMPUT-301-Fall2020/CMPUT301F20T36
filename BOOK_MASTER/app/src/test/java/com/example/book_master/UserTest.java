@@ -20,8 +20,11 @@ public class UserTest {
     }
 
     /**
-     * Test:    getEmail(), getPassword(), getUsername(), setUsername(String username),
+     * Test:    getEmail(),
+     *          getPassword(),
+     *          getUsername(), setUsername(String username),
      *          getContactInfo(), setContactInfo(String contactInfo)
+     * User could not modify its email and password once its initialized
      */
     @Test
     void testSetGet() {
@@ -32,9 +35,9 @@ public class UserTest {
         assertTrue(temp.getUsername().equalsIgnoreCase("Shrike"));
         assertTrue(temp.getContactInfo().equalsIgnoreCase("QAQ"));
 
-        temp.setUsername("(￣ε(#￣)☆");
+        temp.setUsername("Shrike190");
         temp.setContactInfo("ヽ(✿ﾟ▽ﾟ)ノ");
-        assertTrue(temp.getUsername().equalsIgnoreCase("(￣ε(#￣)☆"));
+        assertTrue(temp.getUsername().equalsIgnoreCase("Shrike190"));
         assertTrue(temp.getContactInfo().equalsIgnoreCase("ヽ(✿ﾟ▽ﾟ)ノ"));
     }
 }

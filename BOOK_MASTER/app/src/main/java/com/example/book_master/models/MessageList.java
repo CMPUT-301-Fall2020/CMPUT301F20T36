@@ -19,7 +19,7 @@ public class MessageList {
 
     /**
      * Add one Message instance to messageList
-     * @param msg: Message instance to be added
+     * @param msg Message instance to be added
      */
     public static void addMessage(Message msg) {
         if (!messageList.contains(msg)) {
@@ -30,11 +30,11 @@ public class MessageList {
     /**
      * clear the list, required by DBHelper
      */
-    public static void clearList(){ messageList.clear(); }
+    public static void clearList() { messageList.clear(); }
 
     /**
      * Get all Messages that one User sent
-     * @param sender: username of the desired User
+     * @param sender username of the desired User
      * @return ArrayList<Message>
      */
     public static ArrayList<Message> searchSender(String sender) {
@@ -49,7 +49,7 @@ public class MessageList {
 
     /**
      * Get all Messages that one User received
-     * @param receiver: username of the desired User
+     * @param receiver username of the desired User
      * @return ArrayList<Message>
      */
     public static ArrayList<Message> searchReceiver(String receiver) {
@@ -64,7 +64,7 @@ public class MessageList {
 
     /**
      * Get all Messages that has the desired ISBN
-     * @param ISBN: desired ISBN
+     * @param ISBN desired ISBN
      * @return ArrayList<Message>
      */
     public static ArrayList<Message> searchISBN(String ISBN) {

@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,9 +9,10 @@
         android:id="@+id/BookTitle"
         android:layout_width="199dp"
         android:layout_height="36dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="16dp"
         android:text="title"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,9 +20,10 @@
         android:id="@+id/BookAuthor"
         android:layout_width="201dp"
         android:layout_height="40dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="16dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/BookTitle" />
 
@@ -30,30 +31,21 @@
         android:id="@+id/BookStatus"
         android:layout_width="80dp"
         android:layout_height="33dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="status"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/BookAuthor" />
-
-    <Button
-        android:id="@+id/add_delete_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="112dp"
-        android:text="Delete"
-        app:layout_constraintStart_toEndOf="@+id/Edit_book_desc"
-        app:layout_constraintTop_toBottomOf="@+id/Book_Borrower" />
 
     <TextView
         android:id="@+id/BookISBN"
         android:layout_width="203dp"
         android:layout_height="45dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="16dp"
         android:text="ISBN"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/BookStatus" />
 
@@ -61,20 +53,53 @@
         android:id="@+id/Book_Borrower"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="16dp"
         android:text="Borrower"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/BookISBN" />
+
+    <Button
+        android:id="@+id/add_delete_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="192dp"
+        android:layout_marginLeft="192dp"
+        android:layout_marginTop="360dp"
+        android:text="Delete"
+        app:layout_constraintStart_toEndOf="@+id/Edit_book_desc"
+        app:layout_constraintTop_toBottomOf="@+id/Book_Borrower" />
 
     <Button
         android:id="@+id/Edit_book_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="201dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="396dp"
         android:text="Edit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/BookISBN" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="256dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="132dp"
+        android:gravity="center_horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/book_description_imagineRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,6 +18,9 @@ import com.example.book_master.models.UserList;
 
 import javax.annotation.Nullable;
 
+/**
+ * This fragment will all the user to sign up with all required inputs
+ */
 public class RegisterFrag extends DialogFragment {
     private EditText emailText;
     private EditText passwordText;
@@ -58,7 +61,7 @@ public class RegisterFrag extends DialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         // return super.onCreateDialog(savedInstanceState);
         // inflate the layout for this fragment
-        final View view = LayoutInflater.from(getActivity()).inflate(R.layout.frag_register, null);
+        final View view = LayoutInflater.from(getActivity()).inflate(R.layout.register, null);
 
         emailText = view.findViewById(R.id.email_register);
         passwordText = view.findViewById(R.id.password_register);

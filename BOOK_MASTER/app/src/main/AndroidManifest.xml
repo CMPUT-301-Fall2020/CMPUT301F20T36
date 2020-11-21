@@ -3,6 +3,8 @@
     package="com.example.book_master">
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
@@ -29,7 +31,7 @@
         <activity android:name=".search_page_activity" /> <!-- <activity android:name=".owner_receive_activity" /> -->
         <activity android:name=".borrow_return_activity" />
         <activity android:name=".return_activity" />
-        <activity android:name=".borrow_list_activity" />
+        <activity android:name=".borrower_requested_list_activity" />
         <activity android:name=".check_list_activity" />
         <activity android:name=".main_menu_activity" />
         <activity android:name=".BookInfo" />
