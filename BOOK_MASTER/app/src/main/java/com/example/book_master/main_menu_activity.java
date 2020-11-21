@@ -55,7 +55,6 @@ public class main_menu_activity extends AppCompatActivity {
         String notification ="You have " + Integer.toString(MessageList.count_Message_Recieved(UserList.getCurrentUser().getUsername())) + "messages";
         notification_bar_display.setText(notification);
 
-
         check_mylist_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
