@@ -21,9 +21,12 @@ public class BookTest {
     }
 
     /**
-     * getTitle(), setTitle(String title), getAuthor(), setAuthor(String author),
-     * getISBN(), setISBN(String ISBN), getStatus(), setStatus(String status)
-     * getOwner(), setOwner(String owner), getBorrower(), setBorrower(String borrower)
+     * Test:    getTitle(), setTitle(String title),
+     *          getAuthor(), setAuthor(String author),
+     *          getISBN(), setISBN(String ISBN),
+     *          getStatus(), setStatus(String status),
+     *          getOwner(), setOwner(String owner),
+     *          getBorrower(), setBorrower(String borrower)
      */
     @Test
     void testSetGet() {
@@ -36,16 +39,16 @@ public class BookTest {
         assertTrue(temp.getStatus().equalsIgnoreCase("AVAILABLE"));
 
         temp.setTitle("w(ﾟДﾟ)w");
-        temp.setAuthor("Σ( ° △ °|||)︴");
+        temp.setAuthor("Jie Han");
         temp.setISBN("978-3-16-148410-2");
-        temp.setOwner("╰(*°▽°*)╯");
-        temp.setBorrower("(￣_,￣ )");
+        temp.setOwner("Shrike's friend");
+        temp.setBorrower("Shrike");
         temp.setStatus("REQUESTED");
         assertTrue(temp.getTitle().equalsIgnoreCase("w(ﾟДﾟ)w"));
-        assertTrue(temp.getAuthor().equalsIgnoreCase("Σ( ° △ °|||)︴"));
+        assertTrue(temp.getAuthor().equalsIgnoreCase("Jie Han"));
         assertTrue(temp.getISBN().equalsIgnoreCase("978-3-16-148410-2"));
-        assertTrue(temp.getOwner().equalsIgnoreCase("╰(*°▽°*)╯"));
-        assertTrue(temp.getBorrower().equalsIgnoreCase("(￣_,￣ )"));
+        assertTrue(temp.getOwner().equalsIgnoreCase("Shrike's friend"));
+        assertTrue(temp.getBorrower().equalsIgnoreCase("Shrike"));
         assertTrue(temp.getStatus().equalsIgnoreCase("REQUESTED"));
     }
 }

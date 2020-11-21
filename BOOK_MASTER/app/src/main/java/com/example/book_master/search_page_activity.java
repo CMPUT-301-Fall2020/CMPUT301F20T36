@@ -15,6 +15,8 @@ import android.widget.Toast;
 import com.example.book_master.adapter.CustomBorrowList;
 import com.example.book_master.models.Book;
 import com.example.book_master.models.BookList;
+import com.example.book_master.models.Message;
+import com.example.book_master.models.MessageList;
 import com.example.book_master.models.UserList;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -45,7 +47,20 @@ public class search_page_activity extends AppCompatActivity {
         keyword = (TextView) findViewById(R.id.search_bar_keyword);
 
         ISBN = "";  // pre define it to be empty
-        bookData = bookData = BookList.getAvailableBook(UserList.getCurrentUser().getUsername());
+        bookData = BookList.getAvailableBook(UserList.getCurrentUser().getUsername());
+        ArrayList<Book> temp = BookList.getAvailableBook(UserList.getCurrentUser().getUsername());
+        for (Book book : bookData) {  // remove the book user requested
+            ArrayList<Message> msglist = MessageList.searchISBN(book.getISBN());
+            for (Message msg : msglist) {
+                if (msg.getSender().equalsIgnoreCase(UserList.getCurrentUser().getUsername()) &&
+                        msg.getStatus().equalsIgnoreCase(Book.REQUESTED)) {
+                    temp.remove(book);
+                    break;
+                }
+            }
+        }
+        bookData = temp;
+
         bookAdapter = new CustomBorrowList(search_page_activity.this, bookData);
         bookList.setAdapter(bookAdapter);
         bookAdapter.notifyDataSetChanged();
@@ -58,8 +73,8 @@ public class search_page_activity extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("book", bookData.get(position));
                 intent.putExtras(bundle);
-                startActivity(intent);
-                finish();
+                startActivityForResult(intent, 3);
+//                finish();
             }
         });
 
@@ -110,17 +125,40 @@ public class search_page_activity extends AppCompatActivity {
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        IntentResult scanISBN = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
-        if (scanISBN != null) {
-            if (scanISBN.getContents() != null) {
-                String ISBN = scanISBN.getContents();
-                keyword.setText(ISBN);  // display the ISBN to keyword textview
-            }
-            else {
-                Toast.makeText(this, "No Results", Toast.LENGTH_LONG).show();
+        if (requestCode != 3){
+            IntentResult scanISBN = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+            if (scanISBN != null) {
+                if (scanISBN.getContents() != null) {
+                    String ISBN = scanISBN.getContents();
+                    keyword.setText(ISBN);  // display the ISBN to keyword textview
+                }
+                else {
+                    Toast.makeText(this, "No Results", Toast.LENGTH_LONG).show();
+                }
             }
         } else {
             super.onActivityResult(requestCode, resultCode, intent);
+            if (requestCode == 3 || resultCode == RESULT_OK) {
+                bookAdapter.clear();
+                bookData = BookList.getAvailableBook(UserList.getCurrentUser().getUsername());
+                ArrayList<Book> temp = BookList.getAvailableBook(UserList.getCurrentUser().getUsername());
+
+                for (Book book : bookData) {  // remove the book user requested
+                    ArrayList<Message> msglist = MessageList.searchISBN(book.getISBN());
+                    for (Message msg : msglist) {
+                        if (msg.getSender().equalsIgnoreCase(UserList.getCurrentUser().getUsername()) &&
+                                msg.getStatus().equalsIgnoreCase(Book.REQUESTED)) {
+                            temp.remove(book);
+                            break;
+                        }
+                    }
+                }
+                bookData = temp;
+
+                bookAdapter = new CustomBorrowList(search_page_activity.this, bookData);
+                bookList.setAdapter(bookAdapter);
+                bookAdapter.notifyDataSetChanged();
+            }
         }
     }
 }

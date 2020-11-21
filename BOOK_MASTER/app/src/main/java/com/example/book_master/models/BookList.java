@@ -19,7 +19,7 @@ public class BookList {
 
     /**
      * Add one Book instance to bookList
-     * @param book: Book instance to be added
+     * @param book Book instance to be added
      */
     public static void addBook(Book book) {
         if (!bookList.contains(book)) {
@@ -34,7 +34,7 @@ public class BookList {
 
     /**
      * Get all Books that one User owned
-     * @param username: username of the desired User
+     * @param username username of the desired User
      * @return ArrayList<Book>
      */
     public static ArrayList<Book> getOwnedBook(String username) {
@@ -49,7 +49,7 @@ public class BookList {
 
     /**
      * Get all Books that one User borrowed
-     * @param username: username of the desired User
+     * @param username username of the desired User
      * @return ArrayList<Book>
      */
     public static ArrayList<Book> getBorrowedBook(String username) {
@@ -64,7 +64,7 @@ public class BookList {
 
     /**
      * Search through bookList to get the Book instance which has the ISBN specified
-     * @param ISBN: ISBN, unique
+     * @param ISBN ISBN, unique
      * @return Book
      */
     public static Book getBook(String ISBN) {
@@ -78,7 +78,7 @@ public class BookList {
 
     /**
      * Get all available Books which are NOT owned by one user
-     * @param username: username of the desired User
+     * @param username username of the desired User
      * @return ArrayList<Book>
      */
     public static ArrayList<Book> getAvailableBook(String username) {
@@ -96,7 +96,7 @@ public class BookList {
 
     /**
      * Get all Books which have the description specified and are NOT owned by one user
-     * @param keyword: keyword in description
+     * @param keyword keyword in description
      * @return ArrayList<Book>
      */
     public static ArrayList<Book> searchDesc(String keyword, String username) {

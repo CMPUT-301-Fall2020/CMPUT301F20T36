@@ -41,9 +41,9 @@ public class Book implements Serializable {
 
     /**
      * Constructor
-     * @param title: book title
-     * @param author: book author
-     * @param ISBN: book ISBN, unique
+     * @param title book title
+     * @param author book author
+     * @param ISBN book ISBN, unique
      */
     public Book(String title, String author, String ISBN) {
         this.title = title;
@@ -56,11 +56,11 @@ public class Book implements Serializable {
 
     /**
      * Constructor
-     * @param title: book title
-     * @param author: book author
-     * @param ISBN: book ISBN, unique
-     * @param owner: current owner
-     * @param borrower: current borrower
+     * @param title book title
+     * @param author book author
+     * @param ISBN book ISBN, unique
+     * @param owner current owner
+     * @param borrower current borrower
      */
     public Book(String title, String author, String ISBN, String owner, String borrower) {
         this.title = title;
@@ -87,7 +87,7 @@ public class Book implements Serializable {
     public String getAuthor() { return author; }
 
     /**
-     * @param author: book author
+     * @param author book author
      */
     public void setAuthor(String author) { this.author = author; }
 
@@ -97,7 +97,7 @@ public class Book implements Serializable {
     public String getISBN() { return ISBN; }
 
     /**
-     * @param ISBN: book ISBN
+     * @param ISBN book ISBN
      */
     public void setISBN(String ISBN) { this.ISBN = ISBN; }
 
@@ -107,7 +107,7 @@ public class Book implements Serializable {
     public String getOwner() { return owner; }
 
     /**
-     * @param owner: current owner
+     * @param owner current owner
      */
     public void setOwner(String owner) { this.owner = owner; }
 
@@ -117,7 +117,7 @@ public class Book implements Serializable {
     public String getBorrower() { return borrower; }
 
     /**
-     * @param borrower: current borrower
+     * @param borrower current borrower
      */
     public void setBorrower(String borrower) { this.borrower = borrower; }
 
@@ -131,7 +131,8 @@ public class Book implements Serializable {
     public String getStatus() { return status; }
 
     /**
-     * @param status: current status
+     *
+     * @param status current status
      */
     public void setStatus(String status) { this.status = status; }
 }
