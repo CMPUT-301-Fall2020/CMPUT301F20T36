@@ -42,13 +42,14 @@
         android:id="@+id/check_list_add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#80D4D5D6"
+        android:background="#FFFFFF"
         android:text="ADD" />
 
     <ListView
         android:id="@+id/books"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#CCD4D5D6"
         android:baselineAligned="false"
         tools:layout_conversion_absoluteHeight="731dp"
         tools:layout_conversion_absoluteWidth="411dp"
