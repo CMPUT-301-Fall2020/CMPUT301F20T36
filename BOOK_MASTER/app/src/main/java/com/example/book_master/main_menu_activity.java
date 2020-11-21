@@ -49,7 +49,7 @@ public class main_menu_activity extends AppCompatActivity {
         notification_bar_display = (TextView) findViewById(R.id.main_menu_notification_bar_display);
         request = (Button) findViewById(R.id.main_menu_request);
         show_requested = (Button) findViewById(R.id.main_menu_borrower_show_requested);
-        show_borrowed = (Button) findViewById(R.id.main_menu_borrowed_list);
+        //show_borrowed = (Button) findViewById(R.id.main_menu_borrowed_list);
 
         String notification ="You have " + Integer.toString(MessageList.count_Message_Recieved(UserList.getCurrentUser().getUsername())) + "messages";
         notification_bar_display.setText(notification);
