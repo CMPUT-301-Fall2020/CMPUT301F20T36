@@ -87,5 +87,4 @@ public class BookInfo extends AppCompatActivity {
             }
         });
     }
-
 }
