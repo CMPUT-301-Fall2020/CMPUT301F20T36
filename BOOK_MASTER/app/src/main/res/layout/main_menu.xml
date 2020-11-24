@@ -57,9 +57,9 @@
         android:layout_marginStart="44dp"
         android:layout_marginLeft="44dp"
         android:layout_marginTop="24dp"
-        android:textColor="#FF000000"
-        android:background="#80D4D5D6"
+        android:background="#B3D4D5D6"
         android:text="Log Out"
+        android:textColor="#FF000000"
         app:layout_constraintStart_toEndOf="@+id/main_menu_request"
         app:layout_constraintTop_toBottomOf="@+id/main_menu_borrower_show_requested" />
 
@@ -70,9 +70,9 @@
         android:layout_marginStart="68dp"
         android:layout_marginLeft="68dp"
         android:layout_marginTop="40dp"
-        android:textColor="#FF000000"
-        android:background="#80D4D5D6"
+        android:background="#B3D4D5D6"
         android:text="Return"
+        android:textColor="#FF000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Borrow_main_button" />
 
@@ -83,9 +83,9 @@
         android:layout_marginStart="68dp"
         android:layout_marginLeft="68dp"
         android:layout_marginTop="40dp"
-        android:textColor="#FF000000"
-        android:background="#80D4D5D6"
+        android:background="#B3D4D5D6"
         android:text="Recieve"
+        android:textColor="#FF000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CHECKMYLIST_button" />
 
@@ -96,9 +96,9 @@
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="40dp"
-        android:textColor="#FF000000"
-        android:background="#80D4D5D6"
+        android:background="#B3D4D5D6"
         android:text="Borrow"
+        android:textColor="#FF000000"
         app:layout_constraintStart_toEndOf="@+id/Receive_main_button"
         app:layout_constraintTop_toBottomOf="@+id/Search_main_button" />
 
@@ -109,9 +109,9 @@
         android:layout_marginStart="68dp"
         android:layout_marginLeft="68dp"
         android:layout_marginTop="40dp"
-        android:textColor="#FF000000"
-        android:background="#80D4D5D6"
+        android:background="#B3D4D5D6"
         android:text="Checkmylist"
+        android:textColor="#FF000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view_profile_button" />
 
@@ -122,9 +122,9 @@
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="40dp"
-        android:textColor="#FF000000"
-        android:background="#80D4D5D6"
+        android:background="#B3D4D5D6"
         android:text="Search Book"
+        android:textColor="#FF000000"
         app:layout_constraintStart_toEndOf="@+id/CHECKMYLIST_button"
         app:layout_constraintTop_toBottomOf="@+id/main_menu_retrieve_profile" />
 
@@ -135,7 +135,7 @@
         android:layout_marginStart="68dp"
         android:layout_marginLeft="68dp"
         android:layout_marginTop="40dp"
-        android:background="#80D4D5D6"
+        android:background="#B3D4D5D6"
         android:text="View Profile"
         android:textColor="#FF000000"
         app:layout_constraintStart_toStartOf="parent"
@@ -148,9 +148,9 @@
         android:layout_marginStart="44dp"
         android:layout_marginLeft="44dp"
         android:layout_marginTop="40dp"
-        android:textColor="#FF000000"
-        android:background="#80D4D5D6"
+        android:background="#B3D4D5D6"
         android:text="Search Profile"
+        android:textColor="#FF000000"
         app:layout_constraintStart_toEndOf="@+id/view_profile_button"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -161,9 +161,9 @@
         android:layout_marginStart="68dp"
         android:layout_marginLeft="68dp"
         android:layout_marginTop="24dp"
-        android:textColor="#FF000000"
-        android:background="#80D4D5D6"
+        android:background="#B3D4D5D6"
         android:text="Request"
+        android:textColor="#FF000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Return_main_button" />
 
@@ -174,9 +174,9 @@
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="40dp"
-        android:textColor="#FF000000"
-        android:background="#80D4D5D6"
+        android:background="#B3D4D5D6"
         android:text="Show Requested"
+        android:textColor="#FF000000"
         app:layout_constraintStart_toEndOf="@+id/Return_main_button"
         app:layout_constraintTop_toBottomOf="@+id/Borrow_main_button" />
 
