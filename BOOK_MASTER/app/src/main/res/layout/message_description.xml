@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/image0">
 
     <TextView
         android:id="@+id/textView12"
@@ -14,6 +15,7 @@
         android:layout_marginLeft="60dp"
         android:layout_marginTop="60dp"
         android:text="Sender:"
+        android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,6 +28,7 @@
         android:layout_marginLeft="60dp"
         android:layout_marginTop="40dp"
         android:text="Reciever:"
+        android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
@@ -38,6 +41,7 @@
         android:layout_marginLeft="60dp"
         android:layout_marginTop="40dp"
         android:text="Status:"
+        android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
@@ -50,6 +54,7 @@
         android:layout_marginLeft="60dp"
         android:layout_marginTop="40dp"
         android:text="Book Title:"
+        android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
@@ -62,6 +67,7 @@
         android:layout_marginLeft="60dp"
         android:layout_marginTop="40dp"
         android:text="Location"
+        android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
