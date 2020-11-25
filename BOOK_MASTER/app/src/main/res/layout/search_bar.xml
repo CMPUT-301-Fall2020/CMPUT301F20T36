@@ -7,11 +7,13 @@
     <EditText
         android:id="@+id/search_bar_keyword"
         android:layout_width="174dp"
-        android:layout_height="wrap_content"
+        android:layout_height="38dp"
         android:layout_weight="1"
+        android:background="#CCFFFFFF"
         android:ems="10"
         android:hint="Keywords:"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textColor="#000000" />
 
     <Button
         android:id="@+id/search_bar_ISBN"
