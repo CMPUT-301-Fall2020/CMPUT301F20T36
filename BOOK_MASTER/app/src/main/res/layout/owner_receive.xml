@@ -12,6 +12,7 @@
         android:layout_width="251dp"
         android:layout_height="30dp"
         android:layout_marginTop="48dp"
+        android:background="#CCFFFFFF"
         android:text="                              Owner"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,22 +21,24 @@
 
     <Button
         android:id="@+id/Owner_receive_ISBNbutton"
-        android:layout_width="147dp"
-        android:layout_height="106dp"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
         android:layout_marginTop="130dp"
-        android:background="#D4D5D6"
+        android:background="@drawable/buttonshape"
         android:text="Scan ISBN"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/owner_receive_name" />
 
     <Button
         android:id="@+id/Owner_receive_CofirmButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
         android:layout_marginTop="404dp"
-        android:background="#D4D5D6"
+        android:background="@drawable/buttonshape"
         android:text="Confirm"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/owner_receive_name" />
@@ -46,6 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:layout_marginBottom="76dp"
+        android:background="#CCFFFFFF"
         android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/Owner_receive_CofirmButton"
         app:layout_constraintEnd_toEndOf="parent"

@@ -5,13 +5,14 @@
     android:orientation="vertical">
 
 
-
     <TextView
         android:id="@+id/borrowed_book_list_title"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:text="                 BookMaster"
-        android:textSize="30sp" />
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/borrowed_book_list_name"
