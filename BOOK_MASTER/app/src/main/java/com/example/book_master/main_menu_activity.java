@@ -60,6 +60,7 @@ public class main_menu_activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent check_list_intent = new Intent(main_menu_activity.this, check_list_activity.class);
                 startActivity(check_list_intent);
+                overridePendingTransition(R.anim.fade, R.anim.anim1);
             }
         });
 
@@ -69,6 +70,7 @@ public class main_menu_activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent borrow_list_intent = new Intent(main_menu_activity.this, borrow_return_activity.class);
                 startActivity(borrow_list_intent);
+                overridePendingTransition(R.anim.fade, R.anim.anim1);
             }
         });
 
@@ -78,6 +80,7 @@ public class main_menu_activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent borrow_return_intent = new Intent(main_menu_activity.this, borrow_return_activity.class);
                 startActivity(borrow_return_intent);
+                overridePendingTransition(R.anim.fade, R.anim.anim1);
             }
         });
 
@@ -88,6 +91,7 @@ public class main_menu_activity extends AppCompatActivity {
                 Intent log_out_intent = new Intent(main_menu_activity.this, MainActivity.class);
                 DBHelper.signOut(main_menu_activity.this);
                 startActivity(log_out_intent);
+                overridePendingTransition(R.anim.fade, R.anim.anim1);
                 finish();
             }
         });
@@ -98,6 +102,7 @@ public class main_menu_activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent owner_receive_intent = new Intent(main_menu_activity.this, owner_receive_activity.class);
                 startActivity(owner_receive_intent);
+                overridePendingTransition(R.anim.fade, R.anim.anim1);
             }
         });
 
@@ -107,6 +112,7 @@ public class main_menu_activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent search_page__intent = new Intent(main_menu_activity.this, search_page_activity.class);
                 startActivity(search_page__intent);
+                overridePendingTransition(R.anim.fade, R.anim.anim1);
             }
         });
 
@@ -116,6 +122,7 @@ public class main_menu_activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent edit_profile__intent = new Intent(main_menu_activity.this, profile_page_activity.class);
                 startActivity(edit_profile__intent);
+                overridePendingTransition(R.anim.fade, R.anim.anim1);
             }
         });
 
@@ -125,6 +132,7 @@ public class main_menu_activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent retrieve_profile__intent = new Intent(main_menu_activity.this, retrieve_username_activity.class);
                 startActivity(retrieve_profile__intent);
+                overridePendingTransition(R.anim.fade, R.anim.anim1);
             }
         });
         request.setOnClickListener(new View.OnClickListener() {
@@ -132,6 +140,7 @@ public class main_menu_activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(main_menu_activity.this, request_menu.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fade, R.anim.anim1);
             }
         });
 
@@ -142,6 +151,7 @@ public class main_menu_activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent borrow_list__intent = new Intent(main_menu_activity.this, borrower_requested_list_activity.class);
                 startActivity(borrow_list__intent);
+                overridePendingTransition(R.anim.fade, R.anim.anim1);
             }
         });
 
@@ -150,6 +160,7 @@ public class main_menu_activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent borrow_list__intent = new Intent(main_menu_activity.this, show_notification_activity.class);
                 startActivity(borrow_list__intent);
+                overridePendingTransition(R.anim.fade, R.anim.anim1);
             }
         });
 
@@ -158,6 +169,7 @@ public class main_menu_activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent borrow_list__intent = new Intent(main_menu_activity.this, borrower_borrowed_book_list_activity.class);
                 startActivity(borrow_list__intent);
+                overridePendingTransition(R.anim.fade, R.anim.anim1);
             }
         });
     }
