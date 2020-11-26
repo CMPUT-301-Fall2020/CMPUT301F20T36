@@ -48,13 +48,13 @@ public class main_menu_activity extends AppCompatActivity {
         notification_bar_button = (Button) findViewById(R.id.main_menu_notification_bar_button);
         notification_bar_display = (TextView) findViewById(R.id.main_menu_notification_bar_display);
         request = (Button) findViewById(R.id.main_menu_request);
-        show_requested = (Button) findViewById(R.id.main_menu_borrower_show_requested);
+
+//        show_requested = (Button) findViewById(R.id.main_menu_borrower_show_requested);
         show_borrowed = (Button) findViewById(R.id.main_menu_borrowed_list);
 
         String notification ="You have " + Integer.toString(MessageList.count_Message_Recieved(UserList.getCurrentUser().getUsername())) + " messages";
         notification_bar_display.setText(notification);
 
-        // this will lead the user to view and edit the book one owned
         check_mylist_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -135,15 +135,14 @@ public class main_menu_activity extends AppCompatActivity {
             }
         });
 
-
         // this button will let borrower see what he has requested
-        show_requested.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent borrow_list__intent = new Intent(main_menu_activity.this, borrower_requested_list_activity.class);
-                startActivity(borrow_list__intent);
-            }
-        });
+//        show_requested.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent borrow_list__intent = new Intent(main_menu_activity.this, borrower_requested_list_activity.class);
+//                startActivity(borrow_list__intent);
+//            }
+//        });
 
         notification_bar_button.setOnClickListener(new View.OnClickListener() {
             @Override

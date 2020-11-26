@@ -66,6 +66,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_menu_borrower_show_requested" />
 
+
     <Button
         android:id="@+id/Return_main_button"
         android:layout_width="120dp"
