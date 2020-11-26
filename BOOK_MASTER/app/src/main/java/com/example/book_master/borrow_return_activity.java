@@ -23,7 +23,7 @@ public class borrow_return_activity extends AppCompatActivity implements View.On
         setContentView(R.layout.borrower_return);
         ISBN = "";
 
-        Scann_Button = (Button) findViewById(R.id.Borrrower_return_ISBNbutton);
+        Scann_Button = (Button) findViewById(R.id.borrrower_return_ISBNbutton);
         ISBN_Display = (TextView) findViewById(R.id.Borrower_return_name);
 
         Scann_Button.setOnClickListener(this);

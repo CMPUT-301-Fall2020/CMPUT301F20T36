@@ -31,7 +31,7 @@ public class borrower_borrowed_book_list_activity extends AppCompatActivity {
         setContentView(R.layout.borrowed_book_list);
 
 
-        bookList = findViewById(R.id.borrowed_book_list_listview);
+        bookList = findViewById(R.id.borrowed_book_list);
 
         messagelist = MessageList.searchSender(UserList.getCurrentUser().getUsername());
         bookData = new ArrayList<Book>();
@@ -46,10 +46,10 @@ public class borrower_borrowed_book_list_activity extends AppCompatActivity {
                             "Error from reading message",
                             Toast.LENGTH_SHORT).show();
                 }
-                else if (temp.getStatus().equalsIgnoreCase(Book.CONFIRM_BORROWED) == false) {
-                    Toast.makeText(borrower_borrowed_book_list_activity.this,
-                            "Book is not in requesting status",
-                            Toast.LENGTH_SHORT).show();
+                else if (msg.getStatus().equalsIgnoreCase(Book.CONFIRM_BORROWED) == false) {
+//                    Toast.makeText(borrower_borrowed_book_list_activity.this,
+//                            "Book is not in borrowed status",
+//                            Toast.LENGTH_SHORT).show();
                 }
                 else {
                     bookData.add(temp);

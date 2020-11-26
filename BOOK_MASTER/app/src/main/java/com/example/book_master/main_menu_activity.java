@@ -52,7 +52,7 @@ public class main_menu_activity extends AppCompatActivity {
 //        show_requested = (Button) findViewById(R.id.main_menu_borrower_show_requested);
         show_borrowed = (Button) findViewById(R.id.main_menu_borrowed_list);
 
-        String notification ="You have " + Integer.toString(MessageList.count_Message_Recieved(UserList.getCurrentUser().getUsername())) + "messages";
+        String notification ="You have " + Integer.toString(MessageList.count_Message_Recieved(UserList.getCurrentUser().getUsername())) + " messages";
         notification_bar_display.setText(notification);
 
         check_mylist_button.setOnClickListener(new View.OnClickListener() {
@@ -164,7 +164,7 @@ public class main_menu_activity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        String notification ="You have " + Integer.toString(MessageList.count_Message_Recieved(UserList.getCurrentUser().getUsername())) + "messages";
+        String notification ="You have " + Integer.toString(MessageList.count_Message_Recieved(UserList.getCurrentUser().getUsername())) + " messages";
         notification_bar_display.setText(notification);
     }
 }

@@ -5,24 +5,29 @@
     android:orientation="vertical">
 
 
-
     <TextView
         android:id="@+id/borrowed_book_list_title"
         android:layout_width="match_parent"
         android:layout_height="45dp"
+        android:background="#CCFFFFFF"
         android:text="                 BookMaster"
-        android:textSize="30sp" />
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/borrowed_book_list_name"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:text="Books                                Descriptions                             Owner       " />
+        android:background="#CCA6A4A4"
+        android:text="Books                                Descriptions                             Owner       "
+        android:textColor="#CC000000" />
 
     <ListView
-        android:id="@+id/borrowed_book_list_listview"
+        android:id="@+id/borrowed_book_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="#CCFFFFFF" />
 
 
 </LinearLayout>

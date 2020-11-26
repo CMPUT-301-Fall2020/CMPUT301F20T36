@@ -4,48 +4,57 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/image3"
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/add_discard_buttom"
+        android:id="@+id/add_edit_book_discard"
         android:layout_width="114dp"
         android:layout_height="49dp"
         android:layout_marginStart="248dp"
         android:layout_marginLeft="248dp"
         android:layout_marginTop="184dp"
+        android:background="@drawable/buttonshape"
         android:text="Discard"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scan_isbn_add_book" />
+        app:layout_constraintTop_toBottomOf="@+id/add_edit_book_scan_isbn" />
 
     <Button
-        android:id="@+id/add_confirm_button"
+        android:id="@+id/add_edit_book_confirm"
         android:layout_width="114dp"
         android:layout_height="49dp"
         android:layout_marginStart="44dp"
         android:layout_marginLeft="44dp"
         android:layout_marginTop="184dp"
+        android:background="@drawable/buttonshape"
         android:text="Confirm"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scan_isbn_add_book" />
+        app:layout_constraintTop_toBottomOf="@+id/add_edit_book_scan_isbn" />
 
     <Button
-        android:id="@+id/scan_isbn_add_book"
+        android:id="@+id/add_edit_book_scan_isbn"
         android:layout_width="145dp"
         android:layout_height="53dp"
         android:layout_marginTop="16dp"
+        android:background="@drawable/buttonshape"
         android:text="SCAN ISBN"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_book_author" />
 
     <EditText
         android:id="@+id/add_book_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="214dp"
+        android:layout_height="41dp"
         android:layout_marginTop="16dp"
+        android:background="#CCFFFFFF"
         android:ems="10"
         android:hint="Name:"
         android:inputType="textPersonName"
+        android:textColorHint="#CC000037"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,12 +62,14 @@
 
     <EditText
         android:id="@+id/add_book_author"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="215dp"
+        android:layout_height="44dp"
         android:layout_marginTop="16dp"
+        android:background="#CCFFFFFF"
         android:ems="10"
         android:hint="Author:"
         android:inputType="textPersonName"
+        android:textColorHint="#CC000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"

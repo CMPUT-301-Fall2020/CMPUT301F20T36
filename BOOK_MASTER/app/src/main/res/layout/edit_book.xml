@@ -4,27 +4,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/image3"
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/edit_discard_buttom"
+        android:id="@+id/edit_book_discard"
         android:layout_width="114dp"
         android:layout_height="49dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginRight="60dp"
+        android:background="@drawable/buttonshape"
         android:text="Discard"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_book_author" />
 
     <Button
-        android:id="@+id/edit_confirm_button"
+        android:id="@+id/edit_book_confirm"
         android:layout_width="114dp"
         android:layout_height="49dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
         android:layout_marginTop="16dp"
+        android:background="@drawable/buttonshape"
         android:text="Confirm"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_book_author" />
 
@@ -32,10 +37,12 @@
         android:id="@+id/edit_book_uploadImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
         android:layout_marginTop="16dp"
+        android:background="@drawable/buttonshape"
         android:text="UploadImage"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
 
@@ -44,9 +51,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginRight="60dp"
+        android:background="@drawable/buttonshape"
         android:text="DeleteImage"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
 
@@ -58,6 +67,7 @@
         android:ems="10"
         android:hint="Name:"
         android:inputType="textPersonName"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,6 +81,7 @@
         android:ems="10"
         android:hint="Author:"
         android:inputType="textPersonName"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -95,6 +106,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/edit_book_imagineRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:background="#CCFFFFFF" />
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/image1"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout2"
@@ -20,7 +21,7 @@
         android:id="@+id/search_page_include"
         layout="@layout/search_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="48dp" />
 
     <TextView
         android:id="@+id/search_page_desc"
@@ -32,6 +33,7 @@
         android:id="@+id/search_page_booklist"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#FFFFFF"
         android:baselineAligned="false"
         tools:layout_conversion_absoluteHeight="731dp"
         tools:layout_conversion_absoluteWidth="411dp"
