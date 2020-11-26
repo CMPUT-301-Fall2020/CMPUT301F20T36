@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/image3"
     android:layout_height="match_parent">
 
     <TextView
@@ -14,6 +15,7 @@
         android:layout_marginLeft="4dp"
         android:layout_marginTop="16dp"
         android:text="BookName"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,6 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:text="sender"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Request_list_bookname" />
 
@@ -33,6 +36,7 @@
         android:layout_marginLeft="4dp"
         android:layout_marginTop="8dp"
         android:text="Description"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Request_list_sender" />
 
@@ -42,6 +46,7 @@
         android:layout_height="30dp"
         android:layout_marginTop="8dp"
         android:text="Status"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Request_list_sender" />
 </androidx.constraintlayout.widget.ConstraintLayout>

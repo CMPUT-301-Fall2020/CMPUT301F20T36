@@ -13,7 +13,9 @@
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
         android:layout_marginTop="4dp"
+        android:background="#CCFFFFFF"
         android:text="Books"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,7 +26,9 @@
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
         android:layout_marginTop="4dp"
+        android:background="#CCFFFFFF"
         android:text="Author"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/Borrow_list_name"
         app:layout_constraintTop_toTopOf="parent" />
 

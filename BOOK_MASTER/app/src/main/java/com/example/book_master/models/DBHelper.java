@@ -393,7 +393,8 @@ public class DBHelper {
                     String status = (String) doc.getData().get("status");
                     String longitude = (String) doc.getData().get("longitude");
                     String latitude = (String) doc.getData().get("latitude");
-                    MessageList.addMessage(new Message(sender, receiver, ISBN, status, longitude, latitude));
+                    String shownIndicator = (String) doc.getData().get("shownIndicator");
+                    MessageList.addMessage(new Message(sender, receiver, ISBN, status, longitude, latitude, shownIndicator));
                 }
             }
         });
@@ -403,7 +404,7 @@ public class DBHelper {
      * Upload image to Firebase Storage
      */
     public static void uploadImagine(final ArrayList<Image> imageList, final CustomImageList imageAdapter,
-            final Uri URI, final String ISBN, final Context context) {
+                                     final Uri URI, final String ISBN, final Context context) {
         // Code for showing progressDialog while uploading
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("Uploading...");
@@ -460,7 +461,7 @@ public class DBHelper {
      * Delete imagines from Firebase Storage
      */
     public static void deleteImage(final ArrayList<Image> imageList, final CustomImageList imageAdapter,
-            final int pos, final String ISBN, final Context context) {
+                                   final int pos, final String ISBN, final Context context) {
         // Reference to an image file in Cloud Storage
         final String index = imageList.get(pos).getTitle();
         final String imageRef = ISBN + "/" + index;
@@ -472,14 +473,14 @@ public class DBHelper {
                 addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                    // File deleted successfully
+                        // File deleted successfully
                         Log.d(TAG, "delete(): success");
                         Toast.makeText(context, "Imagine deleting succeeded.",
                                 Toast.LENGTH_SHORT).show();
                         imageList.remove(pos);
                         imageAdapter.setItems(imageList);
                         imageAdapter.notifyDataSetChanged();
-                }
+                    }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override

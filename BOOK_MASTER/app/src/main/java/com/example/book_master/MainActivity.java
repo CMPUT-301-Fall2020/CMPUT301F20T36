@@ -2,7 +2,10 @@ package com.example.book_master;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
 import android.view.View;
@@ -11,8 +14,6 @@ import android.widget.EditText;
 
 import com.example.book_master.models.DBHelper;
 import com.example.book_master.models.User;
-
-import java.util.ArrayList;
 
 /**
  * This activity class is used to handle login and sign up stage
@@ -27,6 +28,10 @@ public class MainActivity extends AppCompatActivity implements RegisterFrag.OnFr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//
+//        DBHelper.collectionListener();
+//        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+//        startActivity(intent);
 
         DBHelper.userCollectionListener();
         DBHelper.bookCollectionListener();
@@ -34,8 +39,8 @@ public class MainActivity extends AppCompatActivity implements RegisterFrag.OnFr
 
         final EditText emailText = (EditText) findViewById(R.id.email_text);
         final EditText passwordText = (EditText) findViewById(R.id.password_text);
-        Button loginBtn  = findViewById(R.id.login_button);
-        Button signUpBtn = findViewById(R.id.signUp_button);
+        Button loginBtn  = findViewById(R.id.activity_main_login);
+        Button signUpBtn = findViewById(R.id.activity_main_signup);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             // the sign in and intent start will be handled by DBhelper
@@ -57,5 +62,19 @@ public class MainActivity extends AppCompatActivity implements RegisterFrag.OnFr
                         .show(getSupportFragmentManager(), "Create_Account");
             }
         });
+    }
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name ="Book Master";
+            String description = "Request and notification info";
+            String CHANNEL_ID = "Book_master_channel_ID";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 }

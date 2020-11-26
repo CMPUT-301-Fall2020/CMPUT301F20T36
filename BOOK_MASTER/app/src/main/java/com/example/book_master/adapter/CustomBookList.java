@@ -32,8 +32,8 @@ public class CustomBookList extends ArrayAdapter<Book> {
             view = LayoutInflater.from(context).inflate(R.layout.book_content, parent,false);
         }
         Book book = bookData.get(position);
-        TextView title = view.findViewById(R.id.list_Title);
-        TextView status = view.findViewById(R.id.list_status);
+        TextView title = view.findViewById(R.id.book_contentl_title);
+        TextView status = view.findViewById(R.id.book_content_status);
 
         title.setText(book.getTitle());
         status.setText(book.getStatus());

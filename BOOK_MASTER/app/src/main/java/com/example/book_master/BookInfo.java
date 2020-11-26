@@ -23,6 +23,7 @@ public class BookInfo extends AppCompatActivity {
     private Button Edit, Delete;
     private Book book;
     private int visibility;
+    private RecyclerView recyclerView;
 
     private ArrayList<Image> imageList;
     private CustomImageList imageAdapter;
@@ -52,7 +53,7 @@ public class BookInfo extends AppCompatActivity {
 
         imageList = new ArrayList<Image>();
         imageAdapter = new CustomImageList(imageList);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.book_description_imagineRecyclerView);
+        recyclerView = (RecyclerView) findViewById(R.id.book_description_imagineRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
         recyclerView.setAdapter(imageAdapter);
         DBHelper.retrieveImagine(imageList, imageAdapter, book.getISBN(), this);
@@ -73,7 +74,7 @@ public class BookInfo extends AppCompatActivity {
                 bundle.putSerializable("book_edit", book);
                 intent.putExtras(bundle);
                 startActivity(intent);
-                finish();
+//                finish();
             }
         });
 
@@ -83,9 +84,23 @@ public class BookInfo extends AppCompatActivity {
                 UserList.getCurrentUser().Remove_Owned_Book(book.getISBN(), BookInfo.this);
                 Intent intent = new Intent(BookInfo.this, check_list_activity.class);
                 startActivity(intent);
-                finish();
+//                finish();
             }
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        BookTitle.setText("Title: " + book.getTitle());
+        BookAuthor.setText("Author: " + book.getAuthor());
+        BookISBN.setText("ISBN: " + book.getISBN());
+        BookStatus.setText("Status: " + book.getStatus());
+        CurrentBorrower.setText("Current Borrower: " + book.getBorrower());
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
+        recyclerView.setAdapter(imageAdapter);
+        DBHelper.retrieveImagine(imageList, imageAdapter, book.getISBN(), this);
+    }
 }

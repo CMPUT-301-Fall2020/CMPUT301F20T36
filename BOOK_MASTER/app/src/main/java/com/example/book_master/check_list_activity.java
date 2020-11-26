@@ -77,7 +77,7 @@ public class check_list_activity extends AppCompatActivity {
                 bundle.putInt("VISIBILITY", 1);  // 1 for show Edit button
                 intent.putExtras(bundle);
                 startActivity(intent);
-                finish();
+//                finish();
             }
         });
 
@@ -145,6 +145,17 @@ public class check_list_activity extends AppCompatActivity {
         } else {
             super.onActivityResult(requestCode, resultCode, intent);
         }
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        final String name = UserList.getCurrentUser().getUsername();
+        bookData = BookList.getOwnedBook(name);
+        bookAdapter = new CustomBookList(this, bookData);
+        bookList.setAdapter(bookAdapter);
     }
 }
 

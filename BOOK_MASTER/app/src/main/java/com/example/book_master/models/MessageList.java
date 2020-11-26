@@ -32,6 +32,16 @@ public class MessageList {
      */
     public static void clearList() { messageList.clear(); }
 
+    public static boolean delete_msg(Message msg) {
+        if (messageList.contains(msg)) {
+            messageList.remove(msg);
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     /**
      * Get all Messages that one User sent
      * @param sender username of the desired User
@@ -75,5 +85,15 @@ public class MessageList {
             }
         }
         return temp;
+    }
+
+    public static int count_Message_Recieved(String receiver) {
+        int count = 0;
+        for (Message msg : messageList) {
+            if (msg.getReceiver() != null && msg.getReceiver().equalsIgnoreCase(receiver)) {
+                count++;
+            }
+        }
+        return count;
     }
 }
