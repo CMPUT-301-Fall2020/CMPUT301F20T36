@@ -8,19 +8,20 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/edit_discard_buttom"
+        android:id="@+id/edit_book_discard"
         android:layout_width="114dp"
         android:layout_height="49dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="60dp"
         android:layout_marginRight="60dp"
-        android:text="Discard"
         android:background="@drawable/buttonshape"
+        android:text="Discard"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_book_author" />
 
     <Button
-        android:id="@+id/edit_confirm_button"
+        android:id="@+id/edit_book_confirm"
         android:layout_width="114dp"
         android:layout_height="49dp"
         android:layout_marginStart="60dp"
@@ -28,6 +29,7 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/buttonshape"
         android:text="Confirm"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_book_author" />
 
@@ -40,6 +42,7 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/buttonshape"
         android:text="UploadImage"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
 
@@ -52,6 +55,7 @@
         android:layout_marginRight="60dp"
         android:background="@drawable/buttonshape"
         android:text="DeleteImage"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
 

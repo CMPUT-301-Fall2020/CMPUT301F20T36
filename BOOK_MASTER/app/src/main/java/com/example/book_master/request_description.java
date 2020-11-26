@@ -15,9 +15,10 @@ import com.example.book_master.models.Message;
 import com.example.book_master.models.MessageList;
 
 public class request_description extends AppCompatActivity {
-    TextView title, status, sender;
+    TextView title, status, sender, receiver;
     Button accept, decline, back;
     Message message;
+    String s, m;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,17 +26,28 @@ public class request_description extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         message = (Message) bundle.getSerializable("message");
+        s = (String) bundle.getSerializable("status");
+        m = (String) bundle.getSerializable("mode");
+
         title = findViewById(R.id.Request_BookTitle);
         status = findViewById(R.id.Request_BookStatus);
         sender = findViewById(R.id.Request_BookSender);
         accept = findViewById(R.id.Request_ButtonAccept);
         decline = findViewById(R.id.Request_ButtonDecline);
         back = findViewById(R.id.Request_ButtonBack);
+        receiver = findViewById(R.id.Request_BookReceiver);
         if(BookList.getBook(message.getISBN()) != null) {
             title.setText(BookList.getBook(message.getISBN()).getTitle());
         }
         status.setText(message.getStatus());
         sender.setText(message.getSender());
+        receiver.setText(message.getReceiver());
+
+        if(s.equals("SENT") || !m.equals(Book.REQUESTED)){
+            accept.setVisibility(View.GONE);
+            decline.setVisibility(View.GONE);
+        }
+
         accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,7 +58,7 @@ public class request_description extends AppCompatActivity {
                 Book b = BookList.getBook(isbn);
                 b.setStatus(Book.ACCEPTED);
                 DBHelper.setBookDoc(isbn,b,request_description.this);
-                Intent intent = new Intent(request_description.this, request_list.class);
+                Intent intent = new Intent(request_description.this, request_menu.class);
                 startActivity(intent);
                 finish();
             }
@@ -65,7 +77,7 @@ public class request_description extends AppCompatActivity {
                     }
                 }
                 DBHelper.setBookDoc(isbn, b, request_description.this);
-                Intent intent = new Intent(request_description.this, request_list.class);
+                Intent intent = new Intent(request_description.this, request_menu.class);
                 startActivity(intent);
                 finish();
             }
@@ -73,7 +85,7 @@ public class request_description extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(request_description.this, request_list.class);
+                Intent intent = new Intent(request_description.this, request_menu.class);
                 startActivity(intent);
                 finish();
             }

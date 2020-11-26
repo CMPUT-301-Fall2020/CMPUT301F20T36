@@ -52,7 +52,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/View_request_button"
+        android:id="@+id/view_request_button"
         android:layout_width="120dp"
         android:layout_height="40dp"
         android:layout_marginStart="80dp"
@@ -60,6 +60,7 @@
         android:layout_marginTop="4dp"
         android:background="@drawable/buttonshape"
         android:text="Viw Request"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 

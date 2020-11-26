@@ -8,11 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.book_master.adapter.CustomImageList;
@@ -20,10 +18,6 @@ import com.example.book_master.models.Book;
 import com.example.book_master.models.DBHelper;
 import com.example.book_master.models.Image;
 import com.example.book_master.models.UserList;
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -58,8 +52,8 @@ public class edit_book_activity extends AppCompatActivity {
 
         Title = (EditText) findViewById(R.id.edit_book_name);
         Author = (EditText) findViewById(R.id.edit_book_author);
-        Confirm = (Button) findViewById(R.id.edit_confirm_button);
-        Discard = (Button) findViewById(R.id.edit_discard_buttom);
+        Confirm = (Button) findViewById(R.id.edit_book_confirm);
+        Discard = (Button) findViewById(R.id.edit_book_discard);
         uploadImage = (Button) findViewById(R.id.edit_book_uploadImage);
         deleteImage = (Button) findViewById(R.id.edit_book_deleteImage);
 
