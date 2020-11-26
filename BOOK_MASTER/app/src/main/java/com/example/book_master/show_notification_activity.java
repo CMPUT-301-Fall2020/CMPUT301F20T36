@@ -37,17 +37,17 @@ public class show_notification_activity extends AppCompatActivity {
         messageAdapter.notifyDataSetChanged();
         messageList.setAdapter(messageAdapter);
 
-        messageList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                Intent intent = new Intent(show_notification_activity.this, message_description.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("message", messageData.get(position));
-                intent.putExtras(bundle);
-                startActivityForResult(intent, 3);
-//                finish();
-            }
-        });
+//        messageList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+//                Intent intent = new Intent(show_notification_activity.this, message_description.class);
+//                Bundle bundle = new Bundle();
+//                bundle.putSerializable("message", messageData.get(position));
+//                intent.putExtras(bundle);
+//                startActivityForResult(intent, 3);
+////                finish();
+//            }
+//        });
     }
 
     @Override

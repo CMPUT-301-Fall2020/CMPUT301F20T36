@@ -69,7 +69,7 @@ public class search_page_activity extends AppCompatActivity {
         bookList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                Intent intent = new Intent(search_page_activity.this, search_description.class);
+                Intent intent = new Intent(search_page_activity.this, search_page_book_description.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("book", bookData.get(position));
                 intent.putExtras(bundle);

@@ -9,6 +9,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.book_master.models.Book;
+import com.example.book_master.models.BookList;
+import com.example.book_master.models.Message;
+import com.example.book_master.models.MessageList;
+import com.example.book_master.models.UserList;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -46,12 +51,36 @@ public class borrow_return_activity extends AppCompatActivity implements View.On
             if (scanningResult.getContents() != null) {
                 ISBN = scanningResult.getContents();
                 ISBN_Display.setText("ISBN: " + ISBN);
+                send_request();
             }
             else {
                 Toast.makeText(this, "No Results", Toast.LENGTH_LONG).show();
             }
         } else {
             super.onActivityResult(requestCode, resultCode, intent);
+        }
+    }
+
+    private void send_request() {
+        if (BookList.getBook(ISBN) != null) {
+            Book book = BookList.getBook(ISBN);
+            if (book.getBorrower().equalsIgnoreCase(UserList.getCurrentUser().getUsername()) == false) {
+                if (book.getStatus().equalsIgnoreCase(Book.CONFIRM_BORROWED)) {
+                    Message msg = new Message(book.getOwner(), book.getBorrower(), ISBN, Book.RETURN, "", "", Message.NOTIFCATION_NOT_SHOWN);
+                    book.setStatus(Book.RETURN);
+                    MessageList.addMessage(msg);
+                    finish();
+                }
+                else {
+                    Toast.makeText(this, "The book is not in the correct status", Toast.LENGTH_SHORT).show();
+                }
+            }
+            else {
+                Toast.makeText(this, "You are not the current borrower", Toast.LENGTH_SHORT).show();
+            }
+        }
+        else {
+            Toast.makeText(this, "The book is not existed", Toast.LENGTH_SHORT).show();
         }
     }
 }

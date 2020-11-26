@@ -1,6 +1,8 @@
 package com.example.book_master;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,9 +10,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.book_master.models.Book;
+import com.example.book_master.models.BookList;
 import com.example.book_master.models.DBHelper;
+import com.example.book_master.models.Message;
 import com.example.book_master.models.MessageList;
 import com.example.book_master.models.UserList;
+
+import java.util.ArrayList;
 
 /**
  * This activity class will be handle all switching activity. The user can click on the button
@@ -30,6 +37,7 @@ public class main_menu_activity extends AppCompatActivity {
     private Button notification_bar_button;
     private TextView notification_bar_display;
     private Button show_borrowed;
+    private static int notificationID;
 
 
     @Override
@@ -50,6 +58,9 @@ public class main_menu_activity extends AppCompatActivity {
         request = (Button) findViewById(R.id.main_menu_request);
         show_requested = (Button) findViewById(R.id.main_menu_borrower_show_requested);
         show_borrowed = (Button) findViewById(R.id.main_menu_borrowed_list);
+
+        notificationID = 0;
+        search_not_shown_msg();
 
         String notification ="You have " + Integer.toString(MessageList.count_Message_Recieved(UserList.getCurrentUser().getUsername())) + " messages";
         notification_bar_display.setText(notification);
@@ -167,5 +178,52 @@ public class main_menu_activity extends AppCompatActivity {
         super.onResume();
         String notification ="You have " + Integer.toString(MessageList.count_Message_Recieved(UserList.getCurrentUser().getUsername())) + " messages";
         notification_bar_display.setText(notification);
+
+        search_not_shown_msg();
+    }
+
+    private void search_not_shown_msg() {
+        ArrayList<Message> message = MessageList.searchReceiver(UserList.getCurrentUser().getUsername());
+        for (Message msg : message) {
+            if (msg.getShownIndicator() != null && msg.getShownIndicator().equalsIgnoreCase(Message.NOTIFCATION_NOT_SHOWN)) {
+                String title = "";
+                String short_Message = "";
+                String long_Message = "";
+
+                if (msg.getStatus().equalsIgnoreCase(Book.REQUESTED)) {
+                    title = "New Request";
+                    short_Message = "Your book " + BookList.getBook(msg.getISBN()).getTitle() + " is requested by " + msg.getSender();
+                    long_Message = short_Message;
+                }
+                else if (msg.getStatus().equalsIgnoreCase(Book.ACCEPTED)) {
+                    title = "Request Accepted";
+                    short_Message = "Your request for book " + BookList.getBook(msg.getISBN()).getTitle() + " is accepted by the owner";
+                    long_Message = short_Message;
+                }
+                else if (msg.getStatus().equalsIgnoreCase(Book.BORROWED)) {
+                    title = "Borrowing Begin!";
+                    short_Message = "The book " + BookList.getBook(msg.getISBN()).getTitle() + " is handing to you!";
+                    long_Message = "The owner of the book " + BookList.getBook(msg.getISBN()).getTitle() + "Is handing the book to you. You can comfirm the borrowing process by scan the ISBN.";
+                }
+                else if (msg.getStatus().equalsIgnoreCase(Book.RETURN)) {
+                    title = "Borrowing Begin!";
+                    short_Message = "The borrower of the book " + BookList.getBook(msg.getISBN()).getTitle() + " is handing the book to you!";
+                    long_Message = "The borrower of the book " + BookList.getBook(msg.getISBN()).getTitle() + "Is handing the book to you. You can comfirm the returning process by scan the ISBN.";
+                }
+
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "Book_master_channel_ID")
+                        .setContentTitle(title)
+                        .setContentText(short_Message)
+                        .setStyle(new NotificationCompat.BigTextStyle()
+                                .bigText(long_Message))
+                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                        .setAutoCancel(true);
+
+                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+                notificationManager.notify(notificationID, builder.build());
+                notificationID++;
+                msg.setShownIndicator(Message.NOTIFCATION_SHOWN);
+            }
+        }
     }
 }

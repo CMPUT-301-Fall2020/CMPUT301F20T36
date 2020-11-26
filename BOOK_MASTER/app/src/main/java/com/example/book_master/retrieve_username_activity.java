@@ -36,7 +36,7 @@ public class retrieve_username_activity extends AppCompatActivity {
                     Toast.makeText(retrieve_username_activity.this, "The Person Does not Exist", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Intent retrieve_profile__intent = new Intent(retrieve_username_activity.this, RetrieveProfile.class);
+                    Intent retrieve_profile__intent = new Intent(retrieve_username_activity.this, retrive_pofile_activity.class);
                     retrieve_profile__intent.putExtra("userName", username.getText().toString());
                     startActivity(retrieve_profile__intent);
                     finish();
