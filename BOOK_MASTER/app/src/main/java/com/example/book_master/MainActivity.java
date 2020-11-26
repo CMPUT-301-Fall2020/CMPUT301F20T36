@@ -2,7 +2,6 @@ package com.example.book_master;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.View;
@@ -11,7 +10,6 @@ import android.widget.EditText;
 
 import com.example.book_master.models.DBHelper;
 import com.example.book_master.models.User;
-import java.util.ArrayList;
 
 /**
  * This activity class is used to handle login and sign up stage
@@ -37,8 +35,8 @@ public class MainActivity extends AppCompatActivity implements RegisterFrag.OnFr
 
         final EditText emailText = (EditText) findViewById(R.id.email_text);
         final EditText passwordText = (EditText) findViewById(R.id.password_text);
-        Button loginBtn  = findViewById(R.id.login_button);
-        Button signUpBtn = findViewById(R.id.signUp_button);
+        Button loginBtn  = findViewById(R.id.activity_main_login);
+        Button signUpBtn = findViewById(R.id.activity_main_signup);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             // the sign in and intent start will be handled by DBhelper

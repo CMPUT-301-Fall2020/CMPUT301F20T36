@@ -5,7 +5,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 import android.widget.EditText;
-import android.widget.ListView;
+
 import com.robotium.solo.Solo;
 import org.junit.After;
 import org.junit.Before;
@@ -56,7 +56,7 @@ public class MainMenuActivityTest {
         solo.enterText((EditText) solo.getView(R.id.email_text), "lyon233333@gmail.com");
         solo.enterText((EditText) solo.getView(R.id.password_text), "ntd10086");
         // enter to main_menu_activity
-        solo.clickOnView(solo.getView(R.id.login_button));
+        solo.clickOnView(solo.getView(R.id.activity_main_login));
         solo.assertCurrentActivity("Wrong Activity", main_menu_activity.class);
         // enter to check_list_activity
         solo.clickOnView(solo.getView(R.id.view_profile_button));
@@ -75,7 +75,7 @@ public class MainMenuActivityTest {
         solo.enterText((EditText) solo.getView(R.id.email_text), "lyon233333@gmail.com");
         solo.enterText((EditText) solo.getView(R.id.password_text), "ntd10086");
         // enter to main_menu_activity
-        solo.clickOnView(solo.getView(R.id.login_button));
+        solo.clickOnView(solo.getView(R.id.activity_main_login));
         solo.assertCurrentActivity("Wrong Activity", main_menu_activity.class);
         // enter to check_list_activity
         solo.clickOnView(solo.getView(R.id.CHECKMYLIST_button));

@@ -29,7 +29,7 @@
         android:id="@+id/city_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#CCFFFFFF"
+        android:background="#CC292828"
         android:baselineAligned="false"
         tools:layout_conversion_absoluteHeight="731dp"
         tools:layout_conversion_absoluteWidth="411dp"

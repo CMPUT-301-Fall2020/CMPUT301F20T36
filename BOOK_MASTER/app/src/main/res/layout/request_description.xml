@@ -52,7 +52,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="140dp"
+        android:background="@drawable/buttonshape"
         android:text="Decline"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Request_BookSender" />
@@ -66,7 +68,9 @@
         android:layout_marginTop="140dp"
         android:layout_marginEnd="36dp"
         android:layout_marginRight="36dp"
+        android:background="@drawable/buttonshape"
         android:text="Accept"
+        android:textColor="#000000"
         app:layout_constraintEnd_toStartOf="@+id/Request_ButtonDecline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Request_BookSender" />
@@ -80,7 +84,9 @@
         android:layout_marginTop="140dp"
         android:layout_marginEnd="40dp"
         android:layout_marginRight="40dp"
+        android:background="@drawable/buttonshape"
         android:text="Back"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/Request_ButtonDecline"
         app:layout_constraintTop_toBottomOf="@+id/Request_BookSender" />
