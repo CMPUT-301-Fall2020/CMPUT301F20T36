@@ -49,7 +49,7 @@ public class request_menu extends AppCompatActivity {
                 Intent intent = new Intent(request_menu.this, request_description.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("message", messData.get(position));
-                bundle.putSerializable("status", spinner_status.getSelectedItem().toString());
+                bundle.putSerializable("status", messData.get(position).getStatus());
                 bundle.putSerializable("mode", spinner_mode.getSelectedItem().toString());
                 intent.putExtras(bundle);
                 startActivity(intent);

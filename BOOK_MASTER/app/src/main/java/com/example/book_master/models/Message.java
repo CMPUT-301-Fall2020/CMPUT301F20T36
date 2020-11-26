@@ -112,5 +112,5 @@ public class Message implements Serializable {
      * Message identifier
      * @return hash code for the Message
      */
-    public int hashCode() { return sender.hashCode() * receiver.hashCode() * ISBN.hashCode(); }
+    public int hashCode() { return sender.hashCode() * receiver.hashCode() * ISBN.hashCode() * status.hashCode(); }
 }
