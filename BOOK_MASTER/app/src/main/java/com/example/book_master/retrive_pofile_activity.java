@@ -13,7 +13,7 @@ import com.example.book_master.models.*;
 /**
  * This activity class will show the user profile without the edit button
  */
-public class RetrieveProfile extends AppCompatActivity {
+public class retrive_pofile_activity extends AppCompatActivity {
     TextView name, contact, email;
     Button back;
     @Override

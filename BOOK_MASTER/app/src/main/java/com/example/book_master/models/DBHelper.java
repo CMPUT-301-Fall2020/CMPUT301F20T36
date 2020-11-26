@@ -393,7 +393,8 @@ public class DBHelper {
                     String status = (String) doc.getData().get("status");
                     String longitude = (String) doc.getData().get("longitude");
                     String latitude = (String) doc.getData().get("latitude");
-                    MessageList.addMessage(new Message(sender, receiver, ISBN, status, longitude, latitude));
+                    String shownIndicator = (String) doc.getData().get("shownIndicator");
+                    MessageList.addMessage(new Message(sender, receiver, ISBN, status, longitude, latitude, shownIndicator));
                 }
             }
         });

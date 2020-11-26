@@ -2,6 +2,10 @@ package com.example.book_master;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
 import android.view.View;
@@ -58,5 +62,19 @@ public class MainActivity extends AppCompatActivity implements RegisterFrag.OnFr
                         .show(getSupportFragmentManager(), "Create_Account");
             }
         });
+    }
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name ="Book Master";
+            String description = "Request and notification info";
+            String CHANNEL_ID = "Book_master_channel_ID";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 }
