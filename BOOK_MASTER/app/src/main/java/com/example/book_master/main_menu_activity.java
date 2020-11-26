@@ -24,6 +24,8 @@ public class main_menu_activity extends AppCompatActivity {
     private Button retrieve_profile;
     private Button request;
     private Button show_requested;
+    private Button hand_over;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,8 @@ public class main_menu_activity extends AppCompatActivity {
         search_button = (Button) findViewById(R.id.Search_main_button);
         edit_profile = (Button) findViewById(R.id.view_profile_button);
         retrieve_profile = (Button) findViewById(R.id.main_menu_retrieve_profile);
+        hand_over = (Button) findViewById(R.id.Hand_over_main_button);
+
 
         request = (Button) findViewById(R.id.main_menu_request);
 
@@ -53,6 +57,7 @@ public class main_menu_activity extends AppCompatActivity {
         });
 
         // this button is not implemented yet
+        // this will..borrower borrow book from the owner
         borrow_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,6 +67,7 @@ public class main_menu_activity extends AppCompatActivity {
         });
 
         // this button is not implemented
+        // this will borrower return book to the owner
         return_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,6 +88,7 @@ public class main_menu_activity extends AppCompatActivity {
         });
 
         // This button did not implemented yet
+        // this button will let owner receive books by scanning
         receive_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,6 +97,15 @@ public class main_menu_activity extends AppCompatActivity {
             }
         });
 
+        // ***this button is not implemented yet
+        // *** this button will let owner hand over book to borrower by scanning
+        hand_over.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent owner__handover_intent = new Intent(main_menu_activity.this, owner_handover_activity.class);
+                startActivity(owner__handover_intent);
+            }
+        });
         // this button will lead the search book and ask to borrow.
         search_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,7 +124,7 @@ public class main_menu_activity extends AppCompatActivity {
             }
         });
 
-        // this button will let user to search for other usr
+        // this button will let user to search for other user
         retrieve_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
