@@ -17,7 +17,9 @@ import com.example.book_master.models.UserList;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-public class borrow_return_activity extends AppCompatActivity implements View.OnClickListener{
+import java.util.ArrayList;
+
+public class borrower_return_activity extends AppCompatActivity implements View.OnClickListener{
     private Button Scann_Button;
     private TextView ISBN_Display;
     private String ISBN;
@@ -64,12 +66,27 @@ public class borrow_return_activity extends AppCompatActivity implements View.On
     private void send_request() {
         if (BookList.getBook(ISBN) != null) {
             Book book = BookList.getBook(ISBN);
-            if (book.getBorrower().equalsIgnoreCase(UserList.getCurrentUser().getUsername()) == false) {
+            if (book.getBorrower().equalsIgnoreCase(UserList.getCurrentUser().getUsername())) {
                 if (book.getStatus().equalsIgnoreCase(Book.CONFIRM_BORROWED)) {
                     Message msg = new Message(book.getOwner(), book.getBorrower(), ISBN, Book.RETURN, "", "", Message.NOTIFCATION_NOT_SHOWN);
                     book.setStatus(Book.RETURN);
                     MessageList.addMessage(msg);
                     finish();
+                }
+                else {
+                    Toast.makeText(this, "The book is not in the correct status", Toast.LENGTH_SHORT).show();
+                }
+            }
+            else if (book.getOwner().equalsIgnoreCase(UserList.getCurrentUser().getUsername())) {
+                if (book.getStatus().equalsIgnoreCase(Book.RETURN)) {
+                    ArrayList<Message> msglist = MessageList.searchReceiver(UserList.getCurrentUser().getUsername());
+                    for (Message msg : msglist) {
+                        if (msg.getISBN().equalsIgnoreCase(book.getISBN())) {
+                            MessageList.delete_msg(msg);
+                            finish();
+                        }
+                    }
+                    Toast.makeText(this, "There is an error with internal system", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Toast.makeText(this, "The book is not in the correct status", Toast.LENGTH_SHORT).show();

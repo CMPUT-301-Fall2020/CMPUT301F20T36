@@ -78,7 +78,7 @@ public class main_menu_activity extends AppCompatActivity {
         borrow_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent borrow_list_intent = new Intent(main_menu_activity.this, borrow_return_activity.class);
+                Intent borrow_list_intent = new Intent(main_menu_activity.this, borrower_return_activity.class);
                 startActivity(borrow_list_intent);
             }
         });
@@ -87,7 +87,7 @@ public class main_menu_activity extends AppCompatActivity {
         return_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent borrow_return_intent = new Intent(main_menu_activity.this, borrow_return_activity.class);
+                Intent borrow_return_intent = new Intent(main_menu_activity.this, borrower_return_activity.class);
                 startActivity(borrow_return_intent);
             }
         });

@@ -29,7 +29,7 @@
         <activity android:name=".retrieve_username_activity" />
         <activity android:name=".search_page_book_description" />
         <activity android:name=".search_page_activity" /> <!-- <activity android:name=".owner_receive_activity" /> -->
-        <activity android:name=".borrow_return_activity" />
+        <activity android:name=".borrower_return_activity" />
         <activity android:name=".return_activity" />
         <activity android:name=".borrower_requested_list_activity" />
         <activity android:name=".check_list_activity" />
