@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,9 +33,9 @@ public class add_book_activity extends AppCompatActivity {
 
         Title = (EditText) findViewById(R.id.add_book_name);
         Author = (EditText) findViewById(R.id.add_book_author);
-        ScanISBN = (Button) findViewById(R.id.scan_isbn_add_book);
-        Confirm = (Button) findViewById(R.id.add_confirm_button);
-        Discard = (Button) findViewById(R.id.add_discard_buttom);
+        ScanISBN = (Button) findViewById(R.id.add_edit_book_scan_isbn);
+        Confirm = (Button) findViewById(R.id.add_edit_book_confirm);
+        Discard = (Button) findViewById(R.id.add_edit_book_discard);
         ISBN = "";
         // ------For testing------
         Random rand = new Random();

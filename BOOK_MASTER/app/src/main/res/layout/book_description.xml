@@ -81,6 +81,7 @@
         android:layout_marginRight="32dp"
         android:background="@drawable/buttonshape"
         android:text="Delete"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout2" />
 
@@ -93,6 +94,7 @@
         android:layout_marginTop="28dp"
         android:background="@drawable/buttonshape"
         android:text="Edit"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout2" />
 
@@ -116,6 +118,6 @@
             android:id="@+id/book_description_imagineRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#D9D4D5D6" />
+            android:background="#D9424343" />
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
