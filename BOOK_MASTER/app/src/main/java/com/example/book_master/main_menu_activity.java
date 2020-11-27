@@ -216,27 +216,28 @@ public class main_menu_activity extends AppCompatActivity {
                 }
                 else if (msg.getStatus().equalsIgnoreCase(Book.BORROWED)) {
                     title = "Borrowing Begin!";
-                    short_Message = "The book " + BookList.getBook(msg.getISBN()).getTitle() + " is handing to you!";
-                    long_Message = "The owner of the book " + BookList.getBook(msg.getISBN()).getTitle() + "Is handing the book to you. You can comfirm the borrowing process by scan the ISBN.";
-                }
-                else if (msg.getStatus().equalsIgnoreCase(Book.RETURN)) {
-                    title = "Borrowing Begin!";
-                    short_Message = "The borrower of the book " + BookList.getBook(msg.getISBN()).getTitle() + " is handing the book to you!";
-                    long_Message = "The borrower of the book " + BookList.getBook(msg.getISBN()).getTitle() + "Is handing the book to you. You can comfirm the returning process by scan the ISBN.";
-                }
+                short_Message = "The book " + BookList.getBook(msg.getISBN()).getTitle() + " is handing to you!";
+                long_Message = "The owner of the book " + BookList.getBook(msg.getISBN()).getTitle() + "Is handing the book to you. You can comfirm the borrowing process by scan the ISBN.";
+            }
+            else if (msg.getStatus().equalsIgnoreCase(Book.RETURN)) {
+                title = "Borrowing Begin!";
+                short_Message = "The borrower of the book " + BookList.getBook(msg.getISBN()).getTitle() + " is handing the book to you!";
+                long_Message = "The borrower of the book " + BookList.getBook(msg.getISBN()).getTitle() + "Is handing the book to you. You can comfirm the returning process by scan the ISBN.";
+            }
 
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "Book_master_channel_ID")
-                        .setContentTitle(title)
-                        .setContentText(short_Message)
-                        .setStyle(new NotificationCompat.BigTextStyle()
-                                .bigText(long_Message))
-                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                        .setAutoCancel(true);
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "Book_master_channel_ID")
+                    .setSmallIcon(R.id.icon_only)
+                    .setContentTitle(title)
+                    .setContentText(short_Message)
+                    .setStyle(new NotificationCompat.BigTextStyle()
+                            .bigText(long_Message))
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                    .setAutoCancel(true);
 
-                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-                notificationManager.notify(notificationID, builder.build());
-                notificationID++;
-                msg.setShownIndicator(Message.NOTIFCATION_SHOWN);
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+            notificationManager.notify(notificationID, builder.build());
+            notificationID++;
+            msg.setShownIndicator(Message.NOTIFCATION_SHOWN);
             }
         }
     }
