@@ -58,6 +58,7 @@ public class request_description extends AppCompatActivity {
                     String isbn = message.getISBN();
                     Book b = BookList.getBook(isbn);
                     b.setStatus(Book.ACCEPTED);
+                    b.setBorrower(message.getSender());
                     DBHelper.setBookDoc(isbn,b,request_description.this);
                     Intent intent = new Intent(request_description.this, request_menu.class);
                     startActivity(intent);
