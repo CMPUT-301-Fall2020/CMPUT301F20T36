@@ -1,19 +1,32 @@
 package com.example.book_master.models;
 
-import android.net.Uri;
-
 import com.google.firebase.storage.StorageReference;
 
+/**
+ * store one specific image info.
+ */
 public class Image {
-    public String title;
+    public String index;
+    // the image could be directly displayed by Glide.load(imageRef)
     public StorageReference imageRef;
 
-    public Image(String title, StorageReference imageRef) {
-        this.title = title;
+    /**
+     * Constructor
+     * @param index index of the image specified on Firebase Storage (e.g., file name)
+     * @param imageRef reference to the image specified on Firebase Storage
+     */
+    public Image(String index, StorageReference imageRef) {
+        this.index = index;
         this.imageRef = imageRef;
     }
 
-    public String getTitle() { return title; }
+    /**
+     * @return index
+     */
+    public String getIndex() { return index; }
 
+    /**
+     * @return imageRef
+     */
     public StorageReference getImageRef() { return imageRef; }
 }

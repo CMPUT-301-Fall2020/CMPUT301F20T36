@@ -3,7 +3,7 @@ package com.example.book_master.models;
 import java.io.Serializable;
 
 /**
- * Store one specific book info
+ * Store one specific book info.
  * The book info includes Status as one of  available, requested, accepted, or borrowed.
  */
 public class Book implements Serializable {
@@ -23,9 +23,6 @@ public class Book implements Serializable {
     // and then call UserList.getUser(username) to get User instance
     private String owner;
     private String borrower;
-    // TODO: implement a structure holding photograph
-//    private PhotographList photographList;
-    // status: available, requested, accepted, borrowed, confirming_B, confirming_R
     private String status;
 
     /**
@@ -121,10 +118,6 @@ public class Book implements Serializable {
      * @param borrower current borrower
      */
     public void setBorrower(String borrower) { this.borrower = borrower; }
-
-//    public PhotographList getPhotographList() { return photographList; }
-//
-//    public void setPhotographList(PhotographList photographList) { this.photographList = photographList; }
 
     /**
      * @return current status

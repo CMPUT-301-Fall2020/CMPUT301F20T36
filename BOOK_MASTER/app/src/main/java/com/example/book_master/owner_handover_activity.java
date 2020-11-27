@@ -19,7 +19,7 @@ import com.example.book_master.models.Message;
 
 
 public class owner_handover_activity extends AppCompatActivity implements View.OnClickListener{
-    private Button Scann_Button;
+    private Button Scan_Button;
     private Button Hand_Over;
     private TextView ISBN_Display;
     private String ISBN;
@@ -34,12 +34,12 @@ public class owner_handover_activity extends AppCompatActivity implements View.O
         ISBN = "";
 //        message = (Message) bundle.getSerializable("message");
 
-        Scann_Button = (Button) findViewById(R.id.Owner_handover_ISBNbutton);
+        Scan_Button = (Button) findViewById(R.id.Owner_handover_ISBNbutton);
         Hand_Over = (Button) findViewById(R.id.Owner_handover_deliverButton);
 
         ISBN_Display = (TextView) findViewById(R.id.Owner_handover_name);
 
-        Scann_Button.setOnClickListener(new View.OnClickListener(){
+        Scan_Button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 IntentIntegrator integrator = new IntentIntegrator(this);

@@ -85,7 +85,7 @@ public class borrower_return_activity extends AppCompatActivity{
             String current_username = UserList.getCurrentUser().getUsername();
             if (current_username.equalsIgnoreCase(book.getBorrower())) {
                 if (book.getStatus().equalsIgnoreCase(Book.CONFIRM_BORROWED)) {
-                    Message msg = new Message(book.getOwner(), book.getBorrower(), ISBN, Book.RETURN, "", "", Message.NOTIFCATION_NOT_SHOWN);
+                    Message msg = new Message(book.getOwner(), book.getBorrower(), ISBN, Book.RETURN, "", "", Message.NOTIFICATION_NOT_SHOWN);
                     book.setStatus(Book.RETURN);
                     DBHelper.setBookDoc(book.getISBN(), book, borrower_return_activity.this);
                     DBHelper.setMessageDoc(Integer.toString(msg.hashCode()), msg, borrower_return_activity.this);
@@ -123,7 +123,7 @@ public class borrower_return_activity extends AppCompatActivity{
                     Toast.makeText(this, "There is an error with internal system", Toast.LENGTH_SHORT).show();
                 }
                 else if (book.getStatus().equalsIgnoreCase(Book.ACCEPTED)) {
-                    Message msg = new Message(book.getOwner(), book.getBorrower(), ISBN, Book.BORROWED, "", "", Message.NOTIFCATION_NOT_SHOWN);
+                    Message msg = new Message(book.getOwner(), book.getBorrower(), ISBN, Book.BORROWED, "", "", Message.NOTIFICATION_NOT_SHOWN);
                     book.setStatus(Book.BORROWED);
                     DBHelper.setBookDoc(book.getISBN(), book, borrower_return_activity.this);
                     DBHelper.setMessageDoc(Integer.toString(msg.hashCode()), msg, borrower_return_activity.this);

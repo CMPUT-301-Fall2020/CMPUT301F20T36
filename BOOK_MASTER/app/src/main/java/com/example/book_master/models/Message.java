@@ -6,8 +6,9 @@ import java.io.Serializable;
  * Store one specific book info
  */
 public class Message implements Serializable {
-    public final static String NOTIFCATION_SHOWN = "NOTIFCATION_SHOWN";
-    public final static String NOTIFCATION_NOT_SHOWN = "NOTIFCATION_NOT_SHOWN";
+    public final static String NOTIFICATION_SHOWN = "NOTIFICATION_SHOWN";
+    public final static String NOTIFICATION_NOT_SHOWN = "NOTIFICATION_NOT_SHOWN";
+
     private String sender;
     private String receiver;
     private String ISBN;
@@ -50,7 +51,7 @@ public class Message implements Serializable {
         this.status = status;
         this.longitude = longitude;
         this.latitude = latitude;
-        this.shownIndicator = NOTIFCATION_NOT_SHOWN;
+        this.shownIndicator = NOTIFICATION_NOT_SHOWN;
     }
 
     /**
@@ -61,6 +62,7 @@ public class Message implements Serializable {
      * @param status related Book status
      * @param longitude longitude of the sender location
      * @param latitude latitude of the receiver location
+     * @param shownIndicator notify the user if shownIndicator = NOTIFICATION_SHOWN
      */
     public Message(String sender,
                    String receiver,
@@ -75,14 +77,6 @@ public class Message implements Serializable {
         this.status = status;
         this.longitude = longitude;
         this.latitude = latitude;
-        this.shownIndicator = shownIndicator;
-    }
-
-    public String getShownIndicator() {
-        return shownIndicator;
-    }
-
-    public void setShownIndicator(String shownIndicator) {
         this.shownIndicator = shownIndicator;
     }
 
@@ -145,6 +139,20 @@ public class Message implements Serializable {
      * @param latitude latitude of the receiver location
      */
     public void setLatitude(String latitude) {this.latitude = latitude;}
+
+    /**
+     * @param shownIndicator notify the user if shownIndicator = NOTIFICATION_SHOWN
+     */
+    public void setShownIndicator(String shownIndicator) {
+        this.shownIndicator = shownIndicator;
+    }
+
+    /**
+     * @return shownIndicator
+     */
+    public String getShownIndicator() {
+        return shownIndicator;
+    }
 
     /**
      * Message identifier

@@ -4,8 +4,8 @@ package com.example.book_master.models;
 import java.util.ArrayList;
 
 /**
- * Static class receiving the asynchronous data updating from Firebase
- * Class and Activity should retrieve desired User info from here rather than invoking DBHelper
+ * Static class receiving the asynchronous data updating from Firebase.
+ * Class and Activity should retrieve desired User info from here rather than invoking DBHelper.
  */
 public class UserList {
     private static ArrayList<User> userList= new ArrayList<>();
@@ -67,7 +67,12 @@ public class UserList {
         return null;
     }
 
-    public static ArrayList<User> searchByKeyword(String keyword) {
+    /**
+     * Get all Users which have the description specified
+     * @param keyword keyword in description
+     * @return ArrayList<User>
+     */
+    public static ArrayList<User> searchDesc(String keyword) {
         ArrayList<User> temp = new ArrayList<>();
         for (User user : userList) {
             if (user.getUsername().toLowerCase().contains(keyword.toLowerCase())) {

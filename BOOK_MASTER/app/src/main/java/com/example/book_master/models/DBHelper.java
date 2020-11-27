@@ -42,12 +42,15 @@ import javax.annotation.Nullable;
  * Notice that the data retrieving is asynchronous with the main process.
  * Therefore we create listener and send the fetched data into static classes.
  * (UserList, BookList, MessageList)
+ * Connect image to Firebase Storage.
  * o(*≧▽≦)ツ┏━┓
  */
 public class DBHelper {
-    private static final String firebaseRefURL = "gs://book-master-c3227.appspot.com/";
-    private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private static final String TAG = DBHelper.class.getSimpleName();
+    // Firebase Authentication
+    private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    // Firebase Storage
+    private static final String firebaseRefURL = "gs://book-master-c3227.appspot.com/";
 
     /**
      * Create an new user account through Firebase Authentication
@@ -149,6 +152,9 @@ public class DBHelper {
      */
     public static void signOut(final Context context) {
         mAuth.signOut();
+        Log.d(TAG, "signOut account: success");
+        Toast.makeText(context, "Account signing out succeeded.",
+                Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -336,6 +342,7 @@ public class DBHelper {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException error) {
                 UserList.clearList();
+
                 for(QueryDocumentSnapshot doc: queryDocumentSnapshots) {
                     String email = (String) doc.getData().get("email");
                     String password = (String) doc.getData().get("password");
@@ -358,8 +365,8 @@ public class DBHelper {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException error) {
                 BookList.clearList();
-                for(QueryDocumentSnapshot doc: queryDocumentSnapshots) {
 
+                for(QueryDocumentSnapshot doc: queryDocumentSnapshots) {
                     String title = (String) doc.getData().get("title");
                     String author = (String) doc.getData().get("author");
                     String ISBN = (String) doc.getData().get("isbn");
@@ -385,8 +392,8 @@ public class DBHelper {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException error) {
                 MessageList.clearList();
-                for(QueryDocumentSnapshot doc: queryDocumentSnapshots) {
 
+                for(QueryDocumentSnapshot doc: queryDocumentSnapshots) {
                     String sender = (String) doc.getData().get("sender");
                     String receiver = (String) doc.getData().get("receiver");
                     String ISBN = (String) doc.getData().get("isbn");
@@ -401,21 +408,25 @@ public class DBHelper {
     }
 
     /**
-     * Upload image to Firebase Storage
+     * Upload the image being bundled to the book specified to Firebase Storage
+     * @param imageList Image ArrayList stores all images being bundled to the book specified
+     * @param imageAdapter recyclerView displays the image
+     * @param URI URI of the image (specifies the local storage path)
+     * @param ISBN ISBN of the book that the image bundled
+     * @param context Context of the window where Toast should be displayed
      */
     public static void uploadImagine(final ArrayList<Image> imageList, final CustomImageList imageAdapter,
                                      final Uri URI, final String ISBN, final Context context) {
-        // Code for showing progressDialog while uploading
+        // show upload progress
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("Uploading...");
         progressDialog.show();
 
-        // Reference to an image file in Cloud Storage
-        final String index = UUID.randomUUID().toString() + ".png";
+        // Reference to an image in Firebase Storage
+        final String index = UUID.randomUUID().toString() + ".png"; // create unique image index
         final String imageRef = ISBN + "/" + index;
         final FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference gsReference = storage.getReferenceFromUrl(firebaseRefURL);
-        gsReference = gsReference.child(imageRef);
+        StorageReference gsReference = storage.getReferenceFromUrl(firebaseRefURL).child(imageRef);
 
         final StorageReference finalGsReference = gsReference;
         gsReference.putFile(URI)
@@ -423,12 +434,11 @@ public class DBHelper {
                         new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                // Image uploaded successfully
-                                // Dismiss dialog
                                 progressDialog.dismiss();
                                 Log.d(TAG, "putFile(URI): success");
                                 Toast.makeText(context, "Imagine uploading succeeded.",
                                         Toast.LENGTH_SHORT).show();
+                                // add the image to local storage
                                 imageList.add(new Image(index, finalGsReference));
                                 imageAdapter.setItems(imageList);
                                 imageAdapter.notifyDataSetChanged();
@@ -437,7 +447,6 @@ public class DBHelper {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        // Error, Image not uploaded
                         progressDialog.dismiss();
                         Log.w(TAG, "putFile(URI): failure", e);
                         Toast.makeText(context, "Imagine uploading failed.",
@@ -446,37 +455,40 @@ public class DBHelper {
                 })
                 .addOnProgressListener(
                         new OnProgressListener<UploadTask.TaskSnapshot>() {
-                            // Progress Listener for loading
-                            // percentage on the dialog box
                             @Override
                             public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                                // show current process in percentage
                                 double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-                                progressDialog.setMessage(
-                                        "Uploaded " + (int)progress + "%");
+                                progressDialog.setMessage("Uploaded " + (int) progress + "%");
                             }
                         });
     }
 
     /**
-     * Delete imagines from Firebase Storage
+     * Delete ONE imagine from Firebase Storage
+     * @param imageList Image ArrayList stores all images being bundled to the book specified
+     * @param imageAdapter recyclerView displays the image
+     * @param pos position of the image to be deleted in Image ArrayList
+     * @param ISBN ISBN of the book that the image bundled
+     * @param context Context of the window where Toast should be displayed
      */
     public static void deleteImage(final ArrayList<Image> imageList, final CustomImageList imageAdapter,
                                    final int pos, final String ISBN, final Context context) {
-        // Reference to an image file in Cloud Storage
-        final String index = imageList.get(pos).getTitle();
+        // Reference to an image in Firebase Storage
+        final String index = imageList.get(pos).getIndex(); // image index
         final String imageRef = ISBN + "/" + index;
         final FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference gsReference = storage.getReferenceFromUrl(firebaseRefURL);
-        gsReference = gsReference.child(imageRef);
+        StorageReference gsReference = storage.getReferenceFromUrl(firebaseRefURL).child(imageRef);
 
         gsReference.delete().
                 addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         // File deleted successfully
-                        Log.d(TAG, "delete(): success");
+                        Log.d(TAG, "delete image: success");
                         Toast.makeText(context, "Imagine deleting succeeded.",
                                 Toast.LENGTH_SHORT).show();
+                        // delete the image from local storage
                         imageList.remove(pos);
                         imageAdapter.setItems(imageList);
                         imageAdapter.notifyDataSetChanged();
@@ -484,23 +496,27 @@ public class DBHelper {
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        // Uh-oh, an error occurred!
-                        Log.d(TAG, "onFailure: did not delete file");
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "delete image: failure", e);
+                        Toast.makeText(context, "Imagine deleting failed.",
+                                Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
     /**
-     * Retrieve imagines from Firebase Storage
+     * Retrieve imagines being bundled to the book specified from Firebase Storage
+     * @param imageList Image ArrayList stores all images being bundled to the book specified
+     * @param imageAdapter recyclerView displays the image
+     * @param ISBN ISBN of the book that the image bundled
+     * @param context Context of the window where Toast should be displayed
      */
     public static void retrieveImagine(final ArrayList<Image> imageList, final CustomImageList imageAdapter,
                                        final String ISBN, final Context context) {
-        // Reference to an image file in Cloud Storage
+        // Reference to an image collection in Firebase Storage
         final String imageRef = ISBN;
         final FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference gsReference = storage.getReferenceFromUrl(firebaseRefURL);
-        gsReference = gsReference.child(imageRef);
+        StorageReference gsReference = storage.getReferenceFromUrl(firebaseRefURL).child(imageRef);
 
         gsReference.listAll()
                 .addOnSuccessListener(new OnSuccessListener<ListResult>() {
@@ -511,6 +527,7 @@ public class DBHelper {
                         for (StorageReference item : listResult.getItems()) {
                             imageList.add(new Image(item.getName(), item));
                         }
+                        // add the image to local storage
                         imageAdapter.setItems(imageList);
                         imageAdapter.notifyDataSetChanged();
                         Log.d(TAG, "listAll(): success");

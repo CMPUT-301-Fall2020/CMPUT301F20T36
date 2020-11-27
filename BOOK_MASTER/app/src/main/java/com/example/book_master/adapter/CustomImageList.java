@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,7 +36,7 @@ public class CustomImageList extends RecyclerView.Adapter {
     @NonNull
     @Override
     public ImageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // Create a new view, which defines the UI of the list item
+        // create a new View, which defines the UI of the image list
         View view = (View) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.image_content, parent, false);
         context = view.getContext();
@@ -50,8 +49,9 @@ public class CustomImageList extends RecyclerView.Adapter {
         Image image = imageList.get(position);
         ImageView imageView = ((ImageViewHolder) holder).imageView;
 
-        imageView.setContentDescription(image.getTitle());
+        imageView.setContentDescription(image.getIndex());
         StorageReference imageRef = image.getImageRef();
+        // display the image
         Glide.with(context)
                 .load(imageRef)
                 .into(imageView);
@@ -61,7 +61,7 @@ public class CustomImageList extends RecyclerView.Adapter {
         this.imageList = imageList;
     }
 
-    // Return the size of your data set (invoked by the layout manager)
+    // return the data set size (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return imageList.size();
