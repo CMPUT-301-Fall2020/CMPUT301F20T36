@@ -67,6 +67,16 @@ public class UserList {
         return null;
     }
 
+    public static ArrayList<User> searchByKeyword(String keyword) {
+        ArrayList<User> temp = new ArrayList<>();
+        for (User user : userList) {
+            if (user.getUsername().toLowerCase().contains(keyword.toLowerCase())) {
+                temp.add(user);
+            }
+        }
+        return temp;
+    }
+
     /**
      * Check if the username is duplicated
      * @param username username to be checked
