@@ -128,6 +128,7 @@ public class borrower_return_activity extends AppCompatActivity{
                     book.setBorrower("");
                     DBHelper.setBookDoc(book.getISBN(), book, borrower_return_activity.this);
                     DBHelper.setMessageDoc(Integer.toString(msg.hashCode()), msg, borrower_return_activity.this);
+//                    DBHelper.deleteMessageDoc();
                     finish();
                     return;
                 }else {

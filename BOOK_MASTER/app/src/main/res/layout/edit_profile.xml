@@ -33,6 +33,8 @@
         android:background="#CCFFFFFF"
         android:ems="10"
         android:inputType="textPersonName"
+        android:textColorHint="#66000000"
+        android:textColor="#FF000000"
         app:layout_constraintStart_toEndOf="@+id/textView10"
         app:layout_constraintTop_toTopOf="parent" />
 

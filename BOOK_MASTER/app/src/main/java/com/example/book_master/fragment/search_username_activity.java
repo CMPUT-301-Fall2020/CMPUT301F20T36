@@ -27,7 +27,7 @@ import java.util.ArrayList;
  * This activity class will allow user to input the username which they wants to search
  * then the profile of that user will be shown in a seperate activity
  */
-public class retrieve_username_activity extends Fragment {
+public class search_username_activity extends Fragment {
     private TextView username;
     private Button search;
     private ArrayList<User> userData;
@@ -76,7 +76,7 @@ public class retrieve_username_activity extends Fragment {
 
                 Intent intent = new Intent(getActivity(), profile_description_activity.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("Visibility", 2);
+                bundle.putInt("Visibility", 2);
                 bundle.putSerializable("user", userData.get(position));
                 intent.putExtras(bundle);
                 startActivity(intent);

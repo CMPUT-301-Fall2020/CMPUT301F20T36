@@ -95,7 +95,8 @@ public class main_menu_activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent edit_profile__intent = new Intent(main_menu_activity.this, profile_description_activity.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("Visibility", 1);
+                bundle.putInt("Visibility", 1);
+                edit_profile__intent.putExtras(bundle);
                 startActivity(edit_profile__intent);
                 overridePendingTransition(R.anim.fade, R.anim.anim1);
             }
