@@ -28,9 +28,9 @@ public class profile_page_activity extends AppCompatActivity {
         contact_info = (TextView) findViewById(R.id.profile_page_contact_info);
         email = (TextView) findViewById(R.id.profile_page_email);
 
-        username.setText("Username: " + UserList.getCurrentUser().getUsername());
-        contact_info.setText("Contact_info: " + UserList.getCurrentUser().getContactInfo());
-        email.setText("Email: " + UserList.getCurrentUser().getEmail());
+        username.setText("  " +UserList.getCurrentUser().getUsername());
+        contact_info.setText( "  " +UserList.getCurrentUser().getContactInfo());
+        email.setText( "  " +UserList.getCurrentUser().getEmail());
 
         // close the activity and back to main menu
         back.setOnClickListener(new View.OnClickListener() {

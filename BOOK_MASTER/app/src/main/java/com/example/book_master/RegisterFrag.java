@@ -1,13 +1,17 @@
 package com.example.book_master;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -74,9 +78,17 @@ public class RegisterFrag extends DialogFragment {
         if (password != null) { passwordText.setText(password); }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+        LayoutInflater layoutInflater = LayoutInflater.from(getContext());
+        View mTitleView = layoutInflater.inflate(R.layout.alertdialog_title, null);
+
+        ((TextView)mTitleView.findViewById(R.id.txtPatient)).setText("Create Account");
+        builder.setCustomTitle(mTitleView);
+
+
         return builder
                 .setView(view)
-                .setTitle("Create_Account")
+                //.setTitle("Create Account")
                 .setNegativeButton("Cancel", null)
                 .setPositiveButton("Create", new DialogInterface.OnClickListener() {
                     @Override
