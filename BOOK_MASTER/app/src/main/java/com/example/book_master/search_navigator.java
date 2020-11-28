@@ -55,10 +55,6 @@ public class search_navigator extends AppCompatActivity {
         List<Fragment> list = new ArrayList<>();
         list.add(new search_page_activity());
         list.add(new retrieve_username_activity());
-
-//        list.add(TestFragment.newInstance("钱包"));
-//        list.add(TestFragment.newInstance("卡片"));
-//        list.add(TestFragment.newInstance("个人"));
         viewPagerAdapter.setList(list);
 
     }

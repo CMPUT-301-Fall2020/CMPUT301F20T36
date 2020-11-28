@@ -17,10 +17,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.book_master.R;
 import com.example.book_master.adapter.CustomUserList;
-import com.example.book_master.models.Book;
 import com.example.book_master.models.User;
 import com.example.book_master.models.UserList;
-import com.example.book_master.retrieve_profile;
+import com.example.book_master.profile_description_activity;
 
 import java.util.ArrayList;
 
@@ -75,8 +74,9 @@ public class retrieve_username_activity extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
 
-                Intent intent = new Intent(getActivity(), retrieve_profile.class);
+                Intent intent = new Intent(getActivity(), profile_description_activity.class);
                 Bundle bundle = new Bundle();
+                bundle.putSerializable("Visibility", 2);
                 bundle.putSerializable("user", userData.get(position));
                 intent.putExtras(bundle);
                 startActivity(intent);

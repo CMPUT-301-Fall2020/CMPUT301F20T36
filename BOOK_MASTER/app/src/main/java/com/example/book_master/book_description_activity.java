@@ -20,7 +20,7 @@ import com.example.book_master.models.*;
  * Show the book information if it is accessed by the owner.
  * The user then could edit the book (checked by VISIBILITY input within the bundle).
  */
-public class BookInfo extends AppCompatActivity {
+public class book_description_activity extends AppCompatActivity {
     private TextView BookTitle, BookAuthor, BookISBN, BookStatus, CurrentBorrower;
     private Button Edit, Delete;
     private Book book;
@@ -73,7 +73,7 @@ public class BookInfo extends AppCompatActivity {
         Edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(BookInfo.this, edit_book_activity.class);
+                Intent intent= new Intent(book_description_activity.this, edit_book_activity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("book_edit", book);
                 intent.putExtras(bundle);
@@ -88,8 +88,8 @@ public class BookInfo extends AppCompatActivity {
         Delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UserList.getCurrentUser().Remove_Owned_Book(book.getISBN(), BookInfo.this);
-                Intent intent = new Intent(BookInfo.this, check_list_activity.class);
+                UserList.getCurrentUser().Remove_Owned_Book(book.getISBN(), book_description_activity.this);
+                Intent intent = new Intent(book_description_activity.this, check_list_activity.class);
                 startActivity(intent);
             }
         });

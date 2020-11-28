@@ -44,7 +44,7 @@ public class check_list_activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 IntentIntegrator integrator = new IntentIntegrator(check_list_activity.this);
-                integrator.setCaptureActivity(capture_activity.class);
+                integrator.setCaptureActivity(capture_ISBN__activity.class);
                 integrator.setOrientationLocked(false);
                 integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
                 integrator.setPrompt("Scanning ISBN");
@@ -72,7 +72,7 @@ public class check_list_activity extends AppCompatActivity {
         bookList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                Intent intent = new Intent(check_list_activity.this, BookInfo.class);
+                Intent intent = new Intent(check_list_activity.this, book_description_activity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("book", bookData.get(position));
                 bundle.putInt("VISIBILITY", 1);  // 1 for show Edit button
@@ -131,7 +131,7 @@ public class check_list_activity extends AppCompatActivity {
                     Toast.makeText(this, "Book Does not Exist", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Intent book_info_intent = new Intent(check_list_activity.this, BookInfo.class);
+                    Intent book_info_intent = new Intent(check_list_activity.this, book_description_activity.class);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("book", book);
                     if (book.getOwner().equalsIgnoreCase(UserList.getCurrentUser().getUsername())) {

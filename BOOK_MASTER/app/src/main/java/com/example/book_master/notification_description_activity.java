@@ -11,7 +11,7 @@ import com.example.book_master.models.BookList;
 import com.example.book_master.models.Message;
 
 
-public class message_description extends AppCompatActivity {
+public class notification_description_activity extends AppCompatActivity {
     private Message message;
     private TextView title, sender, reciver, status, location;
     private Button back;
