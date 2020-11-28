@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.book_master.fragment.request_menu;
 import com.example.book_master.models.Book;
 import com.example.book_master.models.BookList;
 import com.example.book_master.models.DBHelper;
@@ -26,17 +27,12 @@ import java.util.ArrayList;
 public class main_menu_activity extends AppCompatActivity {
     private Button check_mylist_button;
     private Button borrow_button;
-    private Button return_button;
     private Button log_out_button;
-    private Button receive_button;
     private Button search_button;
     private Button edit_profile;
-    private Button retrieve_profile;
     private Button request;
-    private Button show_requested;
     private Button notification_bar_button;
     private TextView notification_bar_display;
-    private Button show_borrowed;
     private static int notificationID;
 
 
@@ -52,7 +48,7 @@ public class main_menu_activity extends AppCompatActivity {
 
         search_button = (Button) findViewById(R.id.Search_main_button);
         edit_profile = (Button) findViewById(R.id.view_profile_button);
-        retrieve_profile = (Button) findViewById(R.id.main_menu_retrieve_profile);
+
         notification_bar_button = (Button) findViewById(R.id.main_menu_notification_bar_button);
         notification_bar_display = (TextView) findViewById(R.id.main_menu_notification_bar_display);
         request = (Button) findViewById(R.id.main_menu_request);
@@ -81,17 +77,6 @@ public class main_menu_activity extends AppCompatActivity {
                 overridePendingTransition(R.anim.fade, R.anim.anim1);
             }
         });
-
-
-        // this button is not implemented
-//        return_button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent borrow_return_intent = new Intent(main_menu_activity.this, borrower_return_activity.class);
-//                startActivity(borrow_return_intent);
-//                overridePendingTransition(R.anim.fade, R.anim.anim1);
-//            }
-//        });
 
 
         // this button will log out the current user and ask user to log in
@@ -128,19 +113,11 @@ public class main_menu_activity extends AppCompatActivity {
             }
         });
 
-        // this button will let user to search for other usr
-//        retrieve_profile.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent retrieve_profile__intent = new Intent(main_menu_activity.this, retrieve_username_activity.class);
-//                startActivity(retrieve_profile__intent);
-//                overridePendingTransition(R.anim.fade, R.anim.anim1);
-//            }
-//        });
+
         request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(main_menu_activity.this, request_menu.class);
+                Intent intent = new Intent(main_menu_activity.this, request_navigator.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade, R.anim.anim1);
             }
