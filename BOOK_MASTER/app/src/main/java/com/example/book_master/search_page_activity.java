@@ -1,10 +1,15 @@
 package com.example.book_master;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,13 +28,17 @@ import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
 
+import static android.app.Activity.RESULT_OK;
+
 /**
  * US 03.01.01
  * As a borrower, I want to specify a keyword, and search for all books that are not currently accepted or borrowed whose description contains the keyword.
  * This activity class will let the user search the book which is not owned by him,
  * and is not in accepted and borrowed status
  */
-public class search_page_activity extends AppCompatActivity {
+public class search_page_activity extends Fragment {
+    private Context mContext;
+
     private Button scan_ISBN;
     private Button search;
     private TextView keyword;
@@ -38,15 +47,30 @@ public class search_page_activity extends AppCompatActivity {
     private ArrayAdapter<Book> bookAdapter;
     private ListView bookList;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.search_page);
+    public static search_page_activity newInstance(String param1, String param2){
+        search_page_activity fragment = new search_page_activity();
+        Bundle args = new Bundle();
+        args.putString("1", param1);
+        args.putString("2", param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
-        bookList = (ListView) findViewById(R.id.search_page_booklist);
-        scan_ISBN = (Button) findViewById(R.id.search_bar_ISBN);
-        search = (Button) findViewById(R.id.search_bar_confirm);
-        keyword = (TextView) findViewById(R.id.search_bar_keyword);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.search_page, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        bookList = (ListView) view.findViewById(R.id.search_page_booklist);
+        scan_ISBN = (Button) view.findViewById(R.id.search_bar_ISBN);
+        search = (Button) view.findViewById(R.id.search_bar_confirm);
+        keyword = (TextView) view.findViewById(R.id.search_bar_keyword);
 
         ISBN = "";  // pre define it to be empty
         bookData = BookList.getAvailableBook(UserList.getCurrentUser().getUsername());
@@ -63,7 +87,7 @@ public class search_page_activity extends AppCompatActivity {
         }
         bookData = temp;
 
-        bookAdapter = new CustomBorrowList(search_page_activity.this, bookData);
+        bookAdapter = new CustomBorrowList(getActivity(), bookData);
         bookList.setAdapter(bookAdapter);
         bookAdapter.notifyDataSetChanged();
 
@@ -71,7 +95,8 @@ public class search_page_activity extends AppCompatActivity {
         bookList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                Intent intent = new Intent(search_page_activity.this, search_page_book_description.class);
+                
+                Intent intent = new Intent(getActivity(), search_description.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("book", bookData.get(position));
                 intent.putExtras(bundle);
@@ -84,7 +109,7 @@ public class search_page_activity extends AppCompatActivity {
         scan_ISBN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IntentIntegrator integrator = new IntentIntegrator(search_page_activity.this);
+                IntentIntegrator integrator = new IntentIntegrator(getActivity());
                 integrator.setCaptureActivity(capture_activity.class);
                 integrator.setOrientationLocked(false);
                 integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
@@ -101,18 +126,18 @@ public class search_page_activity extends AppCompatActivity {
                 bookAdapter.clear();
 
                 if (text == null) {  // check if the text is reading error
-                    Toast.makeText(search_page_activity.this, "The input is null", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "The input is null", Toast.LENGTH_SHORT).show();
                 }
                 else if (text.equalsIgnoreCase("")) {
                     bookData = BookList.getAvailableBook(UserList.getCurrentUser().getUsername());
-                    Toast.makeText(search_page_activity.this,
+                    Toast.makeText(getActivity(),
                             "Show all Book",
                             Toast.LENGTH_SHORT).show();
                 }
                 else {
                     bookData = BookList.searchDesc(text, UserList.getCurrentUser().getUsername());
                 }
-                bookAdapter = new CustomBorrowList(search_page_activity.this, bookData);
+                bookAdapter = new CustomBorrowList(getActivity(), bookData);
                 bookList.setAdapter(bookAdapter);
                 bookAdapter.notifyDataSetChanged();
             }
@@ -126,7 +151,7 @@ public class search_page_activity extends AppCompatActivity {
      * @param intent the intent which contains the data in regular case
      */
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (requestCode != 3){
             IntentResult scanISBN = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
             if (scanISBN != null) {
@@ -135,7 +160,7 @@ public class search_page_activity extends AppCompatActivity {
                     keyword.setText(ISBN);  // display the ISBN to keyword textview
                 }
                 else {
-                    Toast.makeText(this, "No Results", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "No Results", Toast.LENGTH_LONG).show();
                 }
             }
         } else {
@@ -157,10 +182,16 @@ public class search_page_activity extends AppCompatActivity {
                 }
                 bookData = temp;
 
-                bookAdapter = new CustomBorrowList(search_page_activity.this, bookData);
+                bookAdapter = new CustomBorrowList(getActivity(), bookData);
                 bookList.setAdapter(bookAdapter);
                 bookAdapter.notifyDataSetChanged();
             }
         }
+    }
+
+    @Override
+    public void onAttach(Context a){
+        super.onAttach(a);
+        mContext = a;
     }
 }
