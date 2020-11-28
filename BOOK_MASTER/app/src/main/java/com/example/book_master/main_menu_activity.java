@@ -63,7 +63,7 @@ public class main_menu_activity extends AppCompatActivity {
         notificationID = 0;
         search_not_shown_msg();
 
-        String notification ="You have " + Integer.toString(MessageList.count_Message_Recieved(UserList.getCurrentUser().getUsername())) + " messages";
+        String notification ="You have " + Integer.toString(MessageList.countMsgReceived(UserList.getCurrentUser().getUsername())) + " messages";
         notification_bar_display.setText(notification);
 
         check_mylist_button.setOnClickListener(new View.OnClickListener() {
@@ -190,7 +190,7 @@ public class main_menu_activity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        String notification ="You have " + Integer.toString(MessageList.count_Message_Recieved(UserList.getCurrentUser().getUsername())) + " messages";
+        String notification ="You have " + Integer.toString(MessageList.countMsgReceived(UserList.getCurrentUser().getUsername())) + " messages";
         notification_bar_display.setText(notification);
 
         search_not_shown_msg();
@@ -199,7 +199,7 @@ public class main_menu_activity extends AppCompatActivity {
     private void search_not_shown_msg() {
         ArrayList<Message> message = MessageList.searchReceiver(UserList.getCurrentUser().getUsername());
         for (Message msg : message) {
-            if (msg.getShownIndicator() != null && msg.getShownIndicator().equalsIgnoreCase(Message.NOTIFCATION_NOT_SHOWN)) {
+            if (msg.getShownIndicator() != null && msg.getShownIndicator().equalsIgnoreCase(Message.NOTIFICATION_NOT_SHOWN)) {
                 String title = "";
                 String short_Message = "";
                 String long_Message = "";
@@ -237,7 +237,7 @@ public class main_menu_activity extends AppCompatActivity {
             NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
             notificationManager.notify(notificationID, builder.build());
             notificationID++;
-            msg.setShownIndicator(Message.NOTIFCATION_SHOWN);
+            msg.setShownIndicator(Message.NOTIFICATION_SHOWN);
             }
         }
     }

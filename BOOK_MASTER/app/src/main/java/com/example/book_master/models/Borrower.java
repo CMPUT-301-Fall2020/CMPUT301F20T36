@@ -1,7 +1,6 @@
 package com.example.book_master.models;
 
 import java.util.ArrayList;
-import java.io.Serializable;
 
 /**
  * Borrower methods
