@@ -1,9 +1,7 @@
 package com.example.book_master;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -60,7 +58,7 @@ public class search_page_activity extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.search_page, container, false);
+        return inflater.inflate(R.layout.search_book_page, container, false);
     }
 
     @Override
@@ -95,8 +93,8 @@ public class search_page_activity extends Fragment {
         bookList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                
-                Intent intent = new Intent(getActivity(), search_description.class);
+
+                Intent intent = new Intent(getActivity(), search_page_book_description.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("book", bookData.get(position));
                 intent.putExtras(bundle);
@@ -193,5 +191,28 @@ public class search_page_activity extends Fragment {
     public void onAttach(Context a){
         super.onAttach(a);
         mContext = a;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        bookAdapter.clear();
+        bookData = BookList.getAvailableBook(UserList.getCurrentUser().getUsername());
+        ArrayList<Book> temp = BookList.getAvailableBook(UserList.getCurrentUser().getUsername());
+
+        for (Book book : bookData) {  // remove the book user requested
+            ArrayList<Message> msglist = MessageList.searchISBN(book.getISBN());
+            for (Message msg : msglist) {
+                if (msg.getSender().equalsIgnoreCase(UserList.getCurrentUser().getUsername()) &&
+                        msg.getStatus().equalsIgnoreCase(Book.REQUESTED)) {
+                    temp.remove(book);
+                    break;
+                }
+            }
+        }
+        bookData = temp;
+
+        bookAdapter = new CustomBorrowList(getActivity(), bookData);
+        bookList.setAdapter(bookAdapter);
     }
 }

@@ -76,8 +76,6 @@ public class search_page_book_description extends AppCompatActivity {
                 Toast.makeText(search_page_book_description.this, "Request sent", Toast.LENGTH_SHORT).show();
                 book.setStatus(Book.REQUESTED);
                 DBHelper.setBookDoc(book.getISBN(), book, search_page_book_description.this);
-//                Intent intent = new Intent(search_description.this, borrower_requested_list_activity.class);
-//                startActivity(intent);
                 setResult(RESULT_OK);
                 finish();
             }
