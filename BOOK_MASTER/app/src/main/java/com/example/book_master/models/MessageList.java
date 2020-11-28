@@ -3,8 +3,8 @@ package com.example.book_master.models;
 import java.util.ArrayList;
 
 /**
- * Static class receiving the asynchronous data updating from Firebase
- * Class and Activity should retrieve desired User info from here rather than invoking DBHelper
+ * Static class receiving the asynchronous data updating from Firebase.
+ * Class and Activity should retrieve desired User info from here rather than invoking DBHelper.
  */
 public class MessageList {
     private static ArrayList<Message> messageList= new ArrayList<>();
@@ -77,7 +77,12 @@ public class MessageList {
         return temp;
     }
 
-    public static int count_Message_Recieved(String receiver) {
+    /**
+     * Count the total message one has received
+     * @param receiver receiver specified
+     * @return count
+     */
+    public static int countMsgReceived(String receiver) {
         int count = 0;
         for (Message msg : messageList) {
             if (msg.getReceiver() != null && msg.getReceiver().equalsIgnoreCase(receiver)) {

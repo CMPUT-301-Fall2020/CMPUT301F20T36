@@ -17,10 +17,12 @@ import com.example.book_master.models.*;
 import java.util.ArrayList;
 
 /**
+ * US 03.02.01
+ * As a borrower, I want search results to show each book with its description, owner username, and status.
  * This activity page will display all description to user and ask user if he want to borrow it
  * User can click on Borrow to send a request to the owner
  */
-public class search_description extends AppCompatActivity {
+public class search_page_book_description extends AppCompatActivity {
     private Book book;
     private TextView title, author, isbn, status, owner;
     private Button borrow, back;
@@ -50,8 +52,15 @@ public class search_description extends AppCompatActivity {
         isbn.setText("ISBN: " + book.getISBN());
         status.setText("States: " + book.getStatus());
         owner.setText("Owner: " + book.getOwner());
+        borrow.setText("Request");
 
-        imageList = new ArrayList<Image>();
+        /**
+         * US 08.03.01
+         * As an owner or borrower, I want to view any attached photograph for a book.
+         */
+        // retrieve images being bundles to the current book from Firebase Storage
+        // and display them in recyclerView
+        imageList = new ArrayList<>();
         imageAdapter = new CustomImageList(imageList);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.borrow_description_imagineRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
@@ -63,10 +72,10 @@ public class search_description extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 Message m = new Message(UserList.getCurrentUser().getUsername(), book.getOwner(), book.getISBN(), Book.REQUESTED, "0", "0");
-                DBHelper.setMessageDoc(String.valueOf(m.hashCode()), m, search_description.this);
-                Toast.makeText(search_description.this, "Request sent", Toast.LENGTH_SHORT).show();
+                DBHelper.setMessageDoc(String.valueOf(m.hashCode()), m, search_page_book_description.this);
+                Toast.makeText(search_page_book_description.this, "Request sent", Toast.LENGTH_SHORT).show();
                 book.setStatus(Book.REQUESTED);
-                DBHelper.setBookDoc(book.getISBN(), book, search_description.this);
+                DBHelper.setBookDoc(book.getISBN(), book, search_page_book_description.this);
 //                Intent intent = new Intent(search_description.this, borrower_requested_list_activity.class);
 //                startActivity(intent);
                 setResult(RESULT_OK);

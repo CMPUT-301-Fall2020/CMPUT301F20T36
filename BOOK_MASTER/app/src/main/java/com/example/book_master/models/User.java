@@ -7,8 +7,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * Store one specific user info
- * Could invoke methods as Owner & Borrower
+ * Store one specific user info.
+ * Could invoke methods as Owner & Borrower.
  */
 public class User implements Serializable, Owner, Borrower {
     private String email;
@@ -33,9 +33,13 @@ public class User implements Serializable, Owner, Borrower {
      * @param username username, its uniqueness is checked in RegisterFrag
      * @param contactInfo user contact information
      */
-    public User(String email, String password, String username, String contactInfo){
-        this.email = email;         // could not be modified
-        this.password = password;   // could not be modified
+    public User(String email, String password, String username, String contactInfo) {
+        /**
+         * US 02.01.01
+         * As an owner or borrower, I want a profile with a unique username and my contact information.
+         */
+        this.email = email;         // should not be modified
+        this.password = password;   // should not be modified
         this.username = username;
         this.contactInfo = contactInfo;
     }
@@ -73,7 +77,6 @@ public class User implements Serializable, Owner, Borrower {
     public String getContactInfo() { return contactInfo; }
 
     /**
-     * User can edit contect info in my profile
      * @param contactInfo: user contact information
      */
     public void setContactInfo(String contactInfo) { this.contactInfo = contactInfo; }
@@ -132,14 +135,15 @@ public class User implements Serializable, Owner, Borrower {
         DBHelper.setBookDoc(book.getISBN(), book, context);
         return true;
     }
-  
-    /**
-     * Owner view a list of all my books filtered by status
-     */
 
-    public ArrayList<Book> Get_Owned_Books(String status){ // Must and only select one status
+    /**
+     * Retrieve owned books with the status specified from firebase
+     * @param status status specified, must and only select one status
+     * @return ArrayList<Book>
+     */
+    public ArrayList<Book> Get_Owned_Books(String status) {
         ArrayList<Book> ownedBookList = BookList.getOwnedBook(username);
-        ArrayList<Book> temp = new ArrayList<Book>();
+        ArrayList<Book> temp = new ArrayList<>();
         for (Book book : ownedBookList) {
             if (book.getStatus().equalsIgnoreCase(status)) {
                 temp.add(book);
