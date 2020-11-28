@@ -43,45 +43,87 @@ public class request_description extends AppCompatActivity {
         sender.setText(message.getSender());
         receiver.setText(message.getReceiver());
 
-        if(s.equals("SENT") || !m.equals(Book.REQUESTED)){
-            accept.setVisibility(View.GONE);
-            decline.setVisibility(View.GONE);
+        accept.setVisibility(View.GONE);
+        decline.setVisibility(View.GONE);
+
+        if(m.equals("RECEIVED") && s.equals(Book.REQUESTED)){
+            accept.setVisibility(View.VISIBLE);
+            decline.setVisibility(View.VISIBLE);
+            accept.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DBHelper.deleteMessageDoc(String.valueOf(message.hashCode()), request_description.this);
+                    message.setStatus(Book.ACCEPTED);
+                    DBHelper.setMessageDoc(String.valueOf(message.hashCode()), message,request_description.this);
+                    String isbn = message.getISBN();
+                    Book b = BookList.getBook(isbn);
+                    b.setStatus(Book.ACCEPTED);
+                    b.setBorrower(message.getSender());
+                    DBHelper.setBookDoc(isbn,b,request_description.this);
+                    Intent intent = new Intent(request_description.this, request_menu.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+            decline.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DBHelper.deleteMessageDoc(String.valueOf(message.hashCode()), request_description.this);
+                    String isbn = message.getISBN();
+                    Book b = BookList.getBook(isbn);
+                    b.setStatus(Book.AVAILABLE);
+                    for(Message i : MessageList.searchISBN(isbn)){
+                        if(i.getStatus().equals(Book.REQUESTED)){
+                            b.setStatus(Book.REQUESTED);
+                            break;
+                        }
+                    }
+                    DBHelper.setBookDoc(isbn, b, request_description.this);
+                    Intent intent = new Intent(request_description.this, request_menu.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+        }else if(m.equals("SENT") && s.equals(Book.ACCEPTED)){
+            accept.setVisibility(View.VISIBLE);
+            decline.setVisibility(View.VISIBLE);
+            accept.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DBHelper.deleteMessageDoc(String.valueOf(message.hashCode()), request_description.this);
+                    message.setStatus(Book.BORROWED);
+                    DBHelper.setMessageDoc(String.valueOf(message.hashCode()), message,request_description.this);
+                    String isbn = message.getISBN();
+                    Book b = BookList.getBook(isbn);
+                    b.setStatus(Book.BORROWED);
+                    DBHelper.setBookDoc(isbn,b,request_description.this);
+                    Intent intent = new Intent(request_description.this, request_menu.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+            decline.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DBHelper.deleteMessageDoc(String.valueOf(message.hashCode()), request_description.this);
+                    String isbn = message.getISBN();
+                    Book b = BookList.getBook(isbn);
+                    b.setStatus(Book.AVAILABLE);
+                    for(Message i : MessageList.searchISBN(isbn)){
+                        if(i.getStatus().equals(Book.REQUESTED)){
+                            b.setStatus(Book.REQUESTED);
+                            break;
+                        }
+                    }
+                    DBHelper.setBookDoc(isbn, b, request_description.this);
+                    Intent intent = new Intent(request_description.this, request_menu.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
         }
 
-        accept.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DBHelper.deleteMessageDoc(String.valueOf(message.hashCode()), request_description.this);
-                message.setStatus(Book.ACCEPTED);
-                DBHelper.setMessageDoc(String.valueOf(message.hashCode()), message,request_description.this);
-                String isbn = message.getISBN();
-                Book b = BookList.getBook(isbn);
-                b.setStatus(Book.ACCEPTED);
-                DBHelper.setBookDoc(isbn,b,request_description.this);
-                Intent intent = new Intent(request_description.this, request_menu.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-        decline.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DBHelper.deleteMessageDoc(String.valueOf(message.hashCode()), request_description.this);
-                String isbn = message.getISBN();
-                Book b = BookList.getBook(isbn);
-                b.setStatus(Book.AVAILABLE);
-                for(Message i : MessageList.searchISBN(isbn)){
-                    if(i.getStatus().equals(Book.REQUESTED)){
-                        b.setStatus(Book.REQUESTED);
-                        break;
-                    }
-                }
-                DBHelper.setBookDoc(isbn, b, request_description.this);
-                Intent intent = new Intent(request_description.this, request_menu.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

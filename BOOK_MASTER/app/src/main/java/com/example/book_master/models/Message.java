@@ -6,12 +6,16 @@ import java.io.Serializable;
  * Store one specific book info
  */
 public class Message implements Serializable {
+    public final static String NOTIFICATION_SHOWN = "NOTIFICATION_SHOWN";
+    public final static String NOTIFICATION_NOT_SHOWN = "NOTIFICATION_NOT_SHOWN";
+
     private String sender;
     private String receiver;
     private String ISBN;
     private String status;
     private String longitude;
     private String latitude;
+    private String shownIndicator;
 
     /**
      * Empty constructor required by Firebase
@@ -23,6 +27,7 @@ public class Message implements Serializable {
         this.status = "";
         this.longitude = "";
         this.latitude = "";
+        this.shownIndicator = "";
     }
 
     /**
@@ -46,6 +51,33 @@ public class Message implements Serializable {
         this.status = status;
         this.longitude = longitude;
         this.latitude = latitude;
+        this.shownIndicator = NOTIFICATION_NOT_SHOWN;
+    }
+
+    /**
+     * Constructor
+     * @param sender message sender
+     * @param receiver message receiver
+     * @param ISBN related Book ISBN
+     * @param status related Book status
+     * @param longitude longitude of the sender location
+     * @param latitude latitude of the receiver location
+     * @param shownIndicator notify the user if shownIndicator = NOTIFICATION_SHOWN
+     */
+    public Message(String sender,
+                   String receiver,
+                   String ISBN,
+                   String status,
+                   String longitude,
+                   String latitude,
+                   String shownIndicator) {
+        this.sender = sender;
+        this.receiver = receiver;
+        this.ISBN = ISBN;
+        this.status = status;
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.shownIndicator = shownIndicator;
     }
 
     /**
@@ -109,8 +141,22 @@ public class Message implements Serializable {
     public void setLatitude(String latitude) {this.latitude = latitude;}
 
     /**
+     * @param shownIndicator notify the user if shownIndicator = NOTIFICATION_SHOWN
+     */
+    public void setShownIndicator(String shownIndicator) {
+        this.shownIndicator = shownIndicator;
+    }
+
+    /**
+     * @return shownIndicator
+     */
+    public String getShownIndicator() {
+        return shownIndicator;
+    }
+
+    /**
      * Message identifier
      * @return hash code for the Message
      */
-    public int hashCode() { return sender.hashCode() * receiver.hashCode() * ISBN.hashCode(); }
+    public int hashCode() { return sender.hashCode() * receiver.hashCode() * ISBN.hashCode() * status.hashCode(); }
 }

@@ -3,8 +3,8 @@ package com.example.book_master.models;
 import java.util.ArrayList;
 
 /**
- * Static class receiving the asynchronous data updating from Firebase
- * Class and Activity should retrieve desired User info from here rather than invoking DBHelper
+ * Static class receiving the asynchronous data updating from Firebase.
+ * Class and Activity should retrieve desired User info from here rather than invoking DBHelper.
  */
 public class BookList {
     private static ArrayList<Book> bookList = new ArrayList<>();;
@@ -92,7 +92,6 @@ public class BookList {
         }
         return temp;
     }
-
 
     /**
      * Get all Books which have the description specified and are NOT owned by one user

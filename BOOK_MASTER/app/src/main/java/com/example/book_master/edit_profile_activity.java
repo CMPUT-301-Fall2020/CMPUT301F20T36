@@ -11,6 +11,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.book_master.models.DBHelper;
 import com.example.book_master.models.UserList;
 
+/**
+ * US 02.02.01
+ * As an owner or borrower, I want to edit the contact information in my profile.
+ */
 public class edit_profile_activity extends AppCompatActivity {
     private Button confirm;
     private TextView contact_info;
