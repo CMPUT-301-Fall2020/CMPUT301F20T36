@@ -1,45 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/image2">
+    android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/Borrower_return_name"
+        android:id="@+id/Owner_handover_name"
         android:layout_width="303dp"
         android:layout_height="44dp"
         android:layout_marginTop="48dp"
-        android:text="                         Borrower"
-        android:textColor="#000000"
-        android:textSize="18sp"
+        android:text="                                    Owner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/borrrower_return_ISBNbutton"
+        android:id="@+id/Owner_handover_ISBNbutton"
         android:layout_width="129dp"
         android:layout_height="105dp"
         android:layout_marginTop="130dp"
-        android:background="@drawable/buttonshape"
         android:text="Scan ISBN"
-        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Borrower_return_name" />
+        app:layout_constraintTop_toBottomOf="@+id/Owner_handover_name" />
 
     <Button
-        android:id="@+id/Borrower_return_deliverButton"
+        android:id="@+id/Owner_handover_deliverButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
-        android:background="@drawable/buttonshape"
+        android:layout_marginTop="404dp"
         android:text="Hand Over"
-        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/borrrower_return_ISBNbutton" />
+        app:layout_constraintTop_toBottomOf="@+id/Owner_handover_name" />
 </androidx.constraintlayout.widget.ConstraintLayout>

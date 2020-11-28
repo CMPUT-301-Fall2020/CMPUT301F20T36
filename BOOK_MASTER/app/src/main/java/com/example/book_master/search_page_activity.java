@@ -31,8 +31,10 @@ import java.util.ArrayList;
 import static android.app.Activity.RESULT_OK;
 
 /**
- * This activity class will let the user search the book which is not owned by him, and is not in
- * accepted and borrowed status
+ * US 03.01.01
+ * As a borrower, I want to specify a keyword, and search for all books that are not currently accepted or borrowed whose description contains the keyword.
+ * This activity class will let the user search the book which is not owned by him,
+ * and is not in accepted and borrowed status
  */
 public class search_page_activity extends Fragment {
     private Context mContext;
@@ -93,6 +95,7 @@ public class search_page_activity extends Fragment {
         bookList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+                
                 Intent intent = new Intent(getActivity(), search_description.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("book", bookData.get(position));

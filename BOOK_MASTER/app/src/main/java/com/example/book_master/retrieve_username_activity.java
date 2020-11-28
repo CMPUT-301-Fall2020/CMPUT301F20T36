@@ -47,6 +47,7 @@ public class retrieve_username_activity extends Fragment {
                 }
                 else {
                     Intent retrieve_profile__intent = new Intent(getActivity(), retrieve_profile.class);
+
                     retrieve_profile__intent.putExtra("userName", username.getText().toString());
                     startActivity(retrieve_profile__intent);
                 }

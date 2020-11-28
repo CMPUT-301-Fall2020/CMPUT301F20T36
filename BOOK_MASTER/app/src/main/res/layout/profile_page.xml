@@ -11,54 +11,28 @@
     <TextView
         android:id="@+id/profile_page_contact_info"
         android:layout_width="237dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginLeft="88dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="89dp"
-        android:layout_marginRight="89dp"
-        android:background="#CCFFFFFF"
-        android:text="Contact_info"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/buttonshape"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_page_username" />
 
     <TextView
         android:id="@+id/profile_page_username"
         android:layout_width="237dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginLeft="88dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="89dp"
-        android:layout_marginRight="89dp"
-        android:background="#CCFFFFFF"
-        android:text="Username"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/buttonshape"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/profile_page_email"
-        android:layout_width="237dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="101dp"
-        android:layout_marginRight="101dp"
-        android:background="#CCFFFFFF"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Email"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_page_contact_info" />
 
     <Button
         android:id="@+id/profile_page_back"
@@ -85,5 +59,60 @@
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/profile_page_email"
+        android:layout_width="237dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/buttonshape"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_page_contact_info" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="125dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/buttonshape"
+        android:text="  Username:"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="125dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/buttonshape"
+        android:text="  Contact Info:"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="125dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/buttonshape"
+        android:text="  Email:"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
