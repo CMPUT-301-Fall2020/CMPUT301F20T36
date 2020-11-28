@@ -1,24 +1,30 @@
 package com.example.book_master;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+
+import com.example.book_master.adapter.FragmentAdapter;
 import com.example.book_master.models.Book;
 import com.example.book_master.models.BookList;
 import com.example.book_master.models.DBHelper;
 import com.example.book_master.models.Message;
 import com.example.book_master.models.MessageList;
+import com.google.android.material.tabs.TabLayout;
 
 public class request_description extends AppCompatActivity {
     TextView title, status, sender, receiver;
     Button accept, decline, back;
     Message message;
     String s, m;
+
+    ViewPager viewPager;
+    TabLayout tabLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +42,17 @@ public class request_description extends AppCompatActivity {
         decline = findViewById(R.id.Request_ButtonDecline);
         back = findViewById(R.id.Request_ButtonBack);
         receiver = findViewById(R.id.Request_BookReceiver);
+
+        viewPager = findViewById(R.id.viewPager);
+        tabLayout = findViewById(R.id.tabLayout);
+
+        FragmentAdapter fragmentAdapter = new FragmentAdapter(getSupportFragmentManager(), this);
+        viewPager.setAdapter(fragmentAdapter);
+
+        tabLayout.setupWithViewPager(viewPager);
+
+
+
         if(BookList.getBook(message.getISBN()) != null) {
             title.setText(BookList.getBook(message.getISBN()).getTitle());
         }
@@ -131,5 +148,6 @@ public class request_description extends AppCompatActivity {
                 finish();
             }
         });
+
     }
 }
