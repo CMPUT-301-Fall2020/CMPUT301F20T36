@@ -53,7 +53,7 @@ public class search_navigator extends AppCompatActivity {
         viewPager.setAdapter(viewPagerAdapter);
         List<Fragment> list = new ArrayList<>();
         list.add(new search_page_activity());
-        list.add(new retrieve_username_activity());
+        list.add(new search_username_activity());
         viewPagerAdapter.setList(list);
     }
 
