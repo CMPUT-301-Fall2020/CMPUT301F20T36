@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3CFFFFFF"
+    android:background="@drawable/image1"
     android:orientation="vertical">
 
     <TextView
@@ -10,18 +10,22 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:text="                 BookMaster"
+        android:textColor="#000000"
         android:textSize="30sp" />
 
     <TextView
         android:id="@+id/search_page_desc"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:text="Sender                                Descriptions                             Books       " />
+        android:background="#CCFFFFFF"
+        android:text="Sender                                Descriptions                             Books       "
+        android:textColor="#000000"
+        android:textStyle="bold" />
 
     <ListView
         android:id="@+id/show_message_list_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#5A5858" />
+        android:background="#CC5A5858" />
 
 </LinearLayout>

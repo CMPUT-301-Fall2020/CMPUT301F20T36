@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#CCFFFFFF"
     android:orientation="vertical">
 
     <!-- Email Label -->
@@ -10,11 +11,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp">
-        <EditText android:id="@+id/email_register"
+
+        <EditText
+            android:id="@+id/email_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Email"
             android:inputType="textEmailAddress"
-            android:hint="Email" />
+            android:textColor="#000000"
+            android:textColorHint="#C0C0C0" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Password Label -->
@@ -23,11 +28,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp">
-        <EditText android:id="@+id/password_register"
+
+        <EditText
+            android:id="@+id/password_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Password"
             android:inputType="textEmailAddress"
-            android:hint="Password" />
+            android:textColor="#000000"
+            android:textColorHint="#C0C0C0" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Username Label -->
@@ -36,11 +45,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp">
-        <EditText android:id="@+id/username_register"
+
+        <EditText
+            android:id="@+id/username_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Username"
             android:inputType="textEmailAddress"
-            android:hint="Username" />
+            android:textColor="#000000"
+            android:textColorHint="#C0C0C0" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- ContactInfo Label -->
@@ -49,10 +62,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp">
-        <EditText android:id="@+id/contactInfo_register"
+
+        <EditText
+            android:id="@+id/contactInfo_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="ContactInfo"
             android:inputType="textEmailAddress"
-            android:hint="ContactInfo" />
+            android:textColor="#000000"
+            android:textColorHint="#C0C0C0" />
     </com.google.android.material.textfield.TextInputLayout>
 </LinearLayout>

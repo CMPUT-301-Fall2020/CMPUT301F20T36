@@ -47,9 +47,9 @@ public class main_menu_activity extends AppCompatActivity {
 
         check_mylist_button = (Button) findViewById(R.id.CHECKMYLIST_button);
         borrow_button = (Button) findViewById(R.id.Borrow_main_button);
-        return_button = (Button) findViewById(R.id.Return_main_button);
+
         log_out_button = (Button) findViewById(R.id.Logout_main_button);
-        receive_button = (Button) findViewById(R.id.Receive_main_button);
+
         search_button = (Button) findViewById(R.id.Search_main_button);
         edit_profile = (Button) findViewById(R.id.view_profile_button);
         retrieve_profile = (Button) findViewById(R.id.main_menu_retrieve_profile);
@@ -57,8 +57,6 @@ public class main_menu_activity extends AppCompatActivity {
         notification_bar_display = (TextView) findViewById(R.id.main_menu_notification_bar_display);
         request = (Button) findViewById(R.id.main_menu_request);
 
-//        show_requested = (Button) findViewById(R.id.main_menu_borrower_show_requested);
-        show_borrowed = (Button) findViewById(R.id.main_menu_borrowed_list);
 
         notificationID = 0;
         search_not_shown_msg();
@@ -85,15 +83,17 @@ public class main_menu_activity extends AppCompatActivity {
             }
         });
 
+
         // this button is not implemented
-        return_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent borrow_return_intent = new Intent(main_menu_activity.this, borrower_return_activity.class);
-                startActivity(borrow_return_intent);
-                overridePendingTransition(R.anim.fade, R.anim.anim1);
-            }
-        });
+//        return_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent borrow_return_intent = new Intent(main_menu_activity.this, borrower_return_activity.class);
+//                startActivity(borrow_return_intent);
+//                overridePendingTransition(R.anim.fade, R.anim.anim1);
+//            }
+//        });
+
 
         // this button will log out the current user and ask user to log in
         log_out_button.setOnClickListener(new View.OnClickListener() {
@@ -107,15 +107,6 @@ public class main_menu_activity extends AppCompatActivity {
             }
         });
 
-        // This button did not implemented yet
-        receive_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent owner_receive_intent = new Intent(main_menu_activity.this, owner_receive_activity.class);
-                startActivity(owner_receive_intent);
-                overridePendingTransition(R.anim.fade, R.anim.anim1);
-            }
-        });
 
         // this button will lead the search book and ask to borrow.
         search_button.setOnClickListener(new View.OnClickListener() {
@@ -155,16 +146,6 @@ public class main_menu_activity extends AppCompatActivity {
             }
         });
 
-        // this button will let borrower see what he has requested
-//
-//        show_requested.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent borrow_list__intent = new Intent(main_menu_activity.this, borrower_requested_list_activity.class);
-//                startActivity(borrow_list__intent);
-//                overridePendingTransition(R.anim.fade, R.anim.anim1);
-//            }
-//        });
 
 
 
@@ -177,14 +158,6 @@ public class main_menu_activity extends AppCompatActivity {
             }
         });
 
-        show_borrowed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent borrow_list__intent = new Intent(main_menu_activity.this, borrower_borrowed_book_list_activity.class);
-                startActivity(borrow_list__intent);
-                overridePendingTransition(R.anim.fade, R.anim.anim1);
-            }
-        });
     }
 
     @Override

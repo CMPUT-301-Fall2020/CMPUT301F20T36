@@ -9,7 +9,7 @@
     <TextView
         android:id="@+id/Request_BookTitle"
         android:layout_width="228dp"
-        android:layout_height="44dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:background="#ffd4d5d6"
         android:text="Title"
@@ -38,93 +38,96 @@
         android:id="@+id/Request_BookSender"
         android:layout_width="153dp"
         android:layout_height="36dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
         android:layout_marginTop="50dp"
         android:background="#ffd4d5d6"
         android:text="Sender"
+        android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/textView20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Request_BookStatus" />
 
     <Button
         android:id="@+id/Request_ButtonDecline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
         android:background="@drawable/buttonshape"
         android:text="Decline"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Request_BookSender" />
+        app:layout_constraintTop_toBottomOf="@+id/Request_BookReceiver" />
 
     <Button
         android:id="@+id/Request_ButtonAccept"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="140dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="80dp"
         android:background="@drawable/buttonshape"
         android:text="Accept"
         android:textColor="#000000"
-        app:layout_constraintEnd_toStartOf="@+id/Request_ButtonDecline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Request_BookSender" />
+        app:layout_constraintTop_toBottomOf="@+id/Request_BookReceiver" />
 
     <Button
         android:id="@+id/Request_ButtonBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginTop="140dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginTop="164dp"
         android:background="@drawable/buttonshape"
         android:text="Back"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Request_ButtonDecline"
-        app:layout_constraintTop_toBottomOf="@+id/Request_BookSender" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Request_BookReceiver" />
 
     <TextView
         android:id="@+id/Request_BookReceiver"
         android:layout_width="153dp"
         android:layout_height="36dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
+
         android:layout_marginTop="50dp"
+        android:background="#ffd4d5d6"
         android:text="Receiver"
+        android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/textView21"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Request_BookSender" />
+
 
     <TextView
         android:id="@+id/textView20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
+        android:layout_width="80dp"
+        android:layout_height="36dp"
+
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="260dp"
+        android:background="#00FFFFFF"
         android:text="Sender:"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/Request_BookSender"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView21"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="50dp"
+        android:layout_width="80dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="348dp"
         android:text="Receiver:"
         android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/Request_BookReceiver"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,7 +13,8 @@
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="140dp"
-        android:text="Username: "
+        android:background="@drawable/buttonshape"
+        android:text="   Username: "
         android:textColor="#000000"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -22,17 +23,17 @@
 
     <EditText
         android:id="@+id/retrieve_profile_username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
+        android:layout_width="218dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="140dp"
         android:background="#CCFFFFFF"
         android:ems="10"
-        android:hint="Username"
         android:inputType="textPersonName"
         android:textColor="#000000"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView11"
-        app:layout_constraintStart_toEndOf="@+id/textView11" />
+        app:layout_constraintStart_toEndOf="@+id/textView11"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/retrieve_profile_confirm"
