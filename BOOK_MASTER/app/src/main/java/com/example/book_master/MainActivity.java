@@ -43,8 +43,11 @@ public class MainActivity extends AppCompatActivity implements RegisterFrag.OnFr
             // the sign in and intent start will be handled by DBhelper
             @Override
             public void onClick(View v) {
-                if (emailText == null | emailText.getText().equals("") | passwordText == null | passwordText.getText().equals("")) {
-                    Toast.makeText(MainActivity.this, "The input is null", Toast.LENGTH_SHORT).show();
+                if (emailText.getText().toString().equals("")) {
+                    Toast.makeText(MainActivity.this, "The username is null", Toast.LENGTH_SHORT).show();
+                }
+                else if (passwordText.getText().toString().equals("")) {
+                    Toast.makeText(MainActivity.this, "The password is null", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     DBHelper.signIn(emailText.getText().toString(),
@@ -58,15 +61,10 @@ public class MainActivity extends AppCompatActivity implements RegisterFrag.OnFr
             // the sign up will be handled by DBhelper, then user should login from MainActivity
             @Override
             public void onClick(View v) {
-                if (emailText == null | emailText.getText().equals("") | passwordText == null | passwordText.getText().equals("")) {
-                    Toast.makeText(MainActivity.this, "The input is null", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    RegisterFrag
-                            .newInstance(emailText.getText().toString(),
-                                    passwordText.getText().toString())
-                            .show(getSupportFragmentManager(), "Create_Account");
-                }
+                RegisterFrag
+                        .newInstance(emailText.getText().toString(),
+                                passwordText.getText().toString())
+                        .show(getSupportFragmentManager(), "Create_Account");
             }
         });
     }
