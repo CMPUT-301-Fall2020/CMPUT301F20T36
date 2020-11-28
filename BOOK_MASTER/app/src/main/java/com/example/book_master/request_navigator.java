@@ -15,17 +15,23 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class search_navigator extends AppCompatActivity {
+public class request_navigator extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private ViewPagerAdapter viewPagerAdapter;
     private ViewPager viewPager;
     private MenuItem menuItem;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_bottom_nav);
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        bottomNavigationView.getMenu().getItem(0).setTitle("Sender");
+        bottomNavigationView.getMenu().getItem(0).setIcon(R.drawable.icon_send);
+        bottomNavigationView.getMenu().getItem(1).setTitle("Receiver");
+        bottomNavigationView.getMenu().getItem(1).setIcon(R.drawable.icon_receive);
+
         viewPager = (ViewPager) findViewById(R.id.vp);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -52,8 +58,9 @@ public class search_navigator extends AppCompatActivity {
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPagerAdapter);
         List<Fragment> list = new ArrayList<>();
-        list.add(new search_page_activity());
-        list.add(new retrieve_username_activity());
+        list.add(request_menu.newInstance("SENT"));
+        list.add(request_menu.newInstance("RECEIVED"));
+
         viewPagerAdapter.setList(list);
     }
 

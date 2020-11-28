@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.book_master.fragment.request_menu;
+import com.example.book_master.models.Book;
+import com.example.book_master.models.BookList;
 import com.example.book_master.models.DBHelper;
 import com.example.book_master.models.MessageList;
 import com.example.book_master.models.UserList;
@@ -101,7 +104,7 @@ public class main_menu_activity extends AppCompatActivity {
         request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(main_menu_activity.this, request_menu.class);
+                Intent intent = new Intent(main_menu_activity.this, request_navigator.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade, R.anim.anim1);
             }

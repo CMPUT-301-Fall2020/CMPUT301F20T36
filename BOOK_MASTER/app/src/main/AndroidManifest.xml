@@ -19,6 +19,7 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".request_navigator"></activity>
         <activity android:name=".search_navigator" />
         <activity android:name=".request_description" />
         <activity android:name=".add_book_activity" />
