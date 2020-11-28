@@ -28,10 +28,12 @@
         <activity android:name=".search_page_book_description"/>
         <activity android:name=".borrower_return_activity"/>
         <activity android:name=".retrieve_profile" />
+        <activity android:name=".borrower_return_activity"/>
         <activity android:name=".borrower_borrowed_book_list_activity" />
-        <!-- <activity android:name=".owner_receive_activity" /> -->
+        <activity android:name=".search_page_book_description" />
 
         <activity android:name=".return_activity" />
+        <activity android:name=".capture_activity"/>
         <activity android:name=".check_list_activity" />
         <activity android:name=".main_menu_activity" />
         <activity android:name=".BookInfo" />
