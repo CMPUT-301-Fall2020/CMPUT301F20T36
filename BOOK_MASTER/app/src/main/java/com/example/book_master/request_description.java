@@ -58,6 +58,7 @@ public class request_description extends AppCompatActivity {
                     String isbn = message.getISBN();
                     Book b = BookList.getBook(isbn);
                     b.setStatus(Book.ACCEPTED);
+                    b.setBorrower(message.getSender());
                     DBHelper.setBookDoc(isbn,b,request_description.this);
                     Intent intent = new Intent(request_description.this, request_menu.class);
                     startActivity(intent);
@@ -115,6 +116,22 @@ public class request_description extends AppCompatActivity {
                         }
                     }
                     DBHelper.setBookDoc(isbn, b, request_description.this);
+                    Intent intent = new Intent(request_description.this, request_menu.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+        }else if(m.equals("RECEIVED") && s.equals(Book.RETURN)){
+            accept.setVisibility(View.VISIBLE);
+            accept.setText("CONFIRM");
+            accept.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DBHelper.deleteMessageDoc(String.valueOf(message.hashCode()), request_description.this);
+                    String isbn = message.getISBN();
+                    Book b = BookList.getBook(isbn);
+                    b.setStatus(Book.AVAILABLE);
+                    DBHelper.setBookDoc(isbn,b,request_description.this);
                     Intent intent = new Intent(request_description.this, request_menu.class);
                     startActivity(intent);
                     finish();

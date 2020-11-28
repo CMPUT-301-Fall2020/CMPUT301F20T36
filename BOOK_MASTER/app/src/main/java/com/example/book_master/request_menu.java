@@ -38,7 +38,7 @@ public class request_menu extends AppCompatActivity {
         spinner_mode = findViewById(R.id.request_mode_spinner);
         requestListTitle.setText("           Request List");
         final String name = UserList.getCurrentUser().getUsername();
-        final String[] status = {"All", Book.REQUESTED, Book.ACCEPTED, Book.BORROWED};
+        final String[] status = {"All", Book.REQUESTED, Book.ACCEPTED, Book.BORROWED, Book.RETURN};
         final String[] mode = {"SENT", "RECEIVED"};
         messData = MessageList.searchSender(name);
         messAdapter = new CustomRequestList(this, messData);
