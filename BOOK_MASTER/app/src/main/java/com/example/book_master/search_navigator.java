@@ -8,8 +8,8 @@ import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.book_master.R;
 import com.example.book_master.adapter.*;
+import com.example.book_master.fragment.*;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;

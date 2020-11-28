@@ -1,4 +1,4 @@
-package com.example.book_master;
+package com.example.book_master.fragment;
 
 import androidx.fragment.app.Fragment;
 
@@ -15,12 +15,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.book_master.R;
 import com.example.book_master.adapter.CustomBorrowList;
+import com.example.book_master.capture_activity;
 import com.example.book_master.models.Book;
 import com.example.book_master.models.BookList;
 import com.example.book_master.models.Message;
 import com.example.book_master.models.MessageList;
 import com.example.book_master.models.UserList;
+import com.example.book_master.search_page_book_description;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -93,7 +96,6 @@ public class search_page_activity extends Fragment {
         bookList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-
                 Intent intent = new Intent(getActivity(), search_page_book_description.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("book", bookData.get(position));
