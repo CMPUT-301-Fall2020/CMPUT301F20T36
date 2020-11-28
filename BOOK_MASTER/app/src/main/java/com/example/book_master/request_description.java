@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.example.book_master.models.Book;
 import com.example.book_master.models.BookList;
 import com.example.book_master.models.DBHelper;
@@ -60,7 +59,7 @@ public class request_description extends AppCompatActivity {
                     b.setStatus(Book.ACCEPTED);
                     b.setBorrower(message.getSender());
                     DBHelper.setBookDoc(isbn,b,request_description.this);
-                    Intent intent = new Intent(request_description.this, request_menu.class);
+                    Intent intent = new Intent(request_description.this, request_navigator.class);
                     startActivity(intent);
                     finish();
                 }
@@ -79,7 +78,7 @@ public class request_description extends AppCompatActivity {
                         }
                     }
                     DBHelper.setBookDoc(isbn, b, request_description.this);
-                    Intent intent = new Intent(request_description.this, request_menu.class);
+                    Intent intent = new Intent(request_description.this, request_navigator.class);
                     startActivity(intent);
                     finish();
                 }
@@ -97,7 +96,7 @@ public class request_description extends AppCompatActivity {
                     Book b = BookList.getBook(isbn);
                     b.setStatus(Book.BORROWED);
                     DBHelper.setBookDoc(isbn,b,request_description.this);
-                    Intent intent = new Intent(request_description.this, request_menu.class);
+                    Intent intent = new Intent(request_description.this, request_navigator.class);
                     startActivity(intent);
                     finish();
                 }
@@ -116,7 +115,7 @@ public class request_description extends AppCompatActivity {
                         }
                     }
                     DBHelper.setBookDoc(isbn, b, request_description.this);
-                    Intent intent = new Intent(request_description.this, request_menu.class);
+                    Intent intent = new Intent(request_description.this, request_navigator.class);
                     startActivity(intent);
                     finish();
                 }
@@ -132,7 +131,7 @@ public class request_description extends AppCompatActivity {
                     Book b = BookList.getBook(isbn);
                     b.setStatus(Book.AVAILABLE);
                     DBHelper.setBookDoc(isbn,b,request_description.this);
-                    Intent intent = new Intent(request_description.this, request_menu.class);
+                    Intent intent = new Intent(request_description.this, request_navigator.class);
                     startActivity(intent);
                     finish();
                 }
@@ -143,7 +142,7 @@ public class request_description extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(request_description.this, request_menu.class);
+                Intent intent = new Intent(request_description.this, request_navigator.class);
                 startActivity(intent);
                 finish();
             }
