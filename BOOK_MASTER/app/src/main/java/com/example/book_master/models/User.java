@@ -34,6 +34,10 @@ public class User implements Serializable, Owner, Borrower {
      * @param contactInfo user contact information
      */
     public User(String email, String password, String username, String contactInfo) {
+        /**
+         * US 02.01.01
+         * As an owner or borrower, I want a profile with a unique username and my contact information.
+         */
         this.email = email;         // should not be modified
         this.password = password;   // should not be modified
         this.username = username;
