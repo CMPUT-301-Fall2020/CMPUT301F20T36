@@ -20,7 +20,7 @@
 
     <include
         android:id="@+id/search_page_include"
-        layout="@layout/search_bar"
+        layout="@layout/search_book_bar"
         android:layout_width="match_parent"
         android:layout_height="48dp" />
 

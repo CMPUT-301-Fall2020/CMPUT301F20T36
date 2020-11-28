@@ -55,7 +55,6 @@ public class main_menu_activity extends AppCompatActivity {
 
 
         notificationID = 0;
-        search_not_shown_msg();
 
         String notification ="You have " + Integer.toString(MessageList.countMsgReceived(UserList.getCurrentUser().getUsername())) + " messages";
         notification_bar_display.setText(notification);
@@ -143,53 +142,6 @@ public class main_menu_activity extends AppCompatActivity {
         super.onResume();
         String notification ="You have " + Integer.toString(MessageList.countMsgReceived(UserList.getCurrentUser().getUsername())) + " messages";
         notification_bar_display.setText(notification);
-
-        search_not_shown_msg();
     }
 
-    private void search_not_shown_msg() {
-        ArrayList<Message> message = MessageList.searchReceiver(UserList.getCurrentUser().getUsername());
-        for (Message msg : message) {
-            if (msg.getShownIndicator() != null && msg.getShownIndicator().equalsIgnoreCase(Message.NOTIFICATION_NOT_SHOWN)) {
-                String title = "";
-                String short_Message = "";
-                String long_Message = "";
-
-                if (msg.getStatus().equalsIgnoreCase(Book.REQUESTED)) {
-                    title = "New Request";
-                    short_Message = "Your book " + BookList.getBook(msg.getISBN()).getTitle() + " is requested by " + msg.getSender();
-                    long_Message = short_Message;
-                }
-                else if (msg.getStatus().equalsIgnoreCase(Book.ACCEPTED)) {
-                    title = "Request Accepted";
-                    short_Message = "Your request for book " + BookList.getBook(msg.getISBN()).getTitle() + " is accepted by the owner";
-                    long_Message = short_Message;
-                }
-                else if (msg.getStatus().equalsIgnoreCase(Book.BORROWED)) {
-                    title = "Borrowing Begin!";
-                short_Message = "The book " + BookList.getBook(msg.getISBN()).getTitle() + " is handing to you!";
-                long_Message = "The owner of the book " + BookList.getBook(msg.getISBN()).getTitle() + "Is handing the book to you. You can comfirm the borrowing process by scan the ISBN.";
-            }
-            else if (msg.getStatus().equalsIgnoreCase(Book.RETURN)) {
-                title = "Borrowing Begin!";
-                short_Message = "The borrower of the book " + BookList.getBook(msg.getISBN()).getTitle() + " is handing the book to you!";
-                long_Message = "The borrower of the book " + BookList.getBook(msg.getISBN()).getTitle() + "Is handing the book to you. You can comfirm the returning process by scan the ISBN.";
-            }
-
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "Book_master_channel_ID")
-                    .setSmallIcon(R.id.icon_only)
-                    .setContentTitle(title)
-                    .setContentText(short_Message)
-                    .setStyle(new NotificationCompat.BigTextStyle()
-                            .bigText(long_Message))
-                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                    .setAutoCancel(true);
-
-            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-            notificationManager.notify(notificationID, builder.build());
-            notificationID++;
-            msg.setShownIndicator(Message.NOTIFICATION_SHOWN);
-            }
-        }
-    }
 }

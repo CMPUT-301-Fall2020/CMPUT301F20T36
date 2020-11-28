@@ -6,57 +6,83 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.book_master.R;
+import com.example.book_master.adapter.CustomUserList;
+import com.example.book_master.models.Book;
+import com.example.book_master.models.User;
 import com.example.book_master.models.UserList;
 import com.example.book_master.retrieve_profile;
+
+import java.util.ArrayList;
 
 /**
  * This activity class will allow user to input the username which they wants to search
  * then the profile of that user will be shown in a seperate activity
  */
 public class retrieve_username_activity extends Fragment {
-    TextView username;
-    Button confirm, back;
+    private TextView username;
+    private Button search;
+    private ArrayList<User> userData;
+    private ArrayAdapter<User> userAdapter;
+    private ListView userList;
     Context mContext;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.retrieve_username, container, false);
+        return inflater.inflate(R.layout.search_username_page, container, false);
     }
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        username = (TextView) view.findViewById(R.id.retrieve_profile_username);
-        confirm = (Button) view.findViewById(R.id.retrieve_profile_confirm);
-        back = (Button) view.findViewById(R.id.retrieve_profile_discard);;
+        username = (TextView) view.findViewById(R.id.search_username_bar_keyword);
+        search = (Button) view.findViewById(R.id.search_username_bar_confirm);
+        userList = (ListView) view.findViewById(R.id.search_username_page_userlist);
 
-        // go to the page which shows the searched user
-        confirm.setOnClickListener(new View.OnClickListener() {
+        userData = new ArrayList<User>();
+        userAdapter = new CustomUserList(getActivity(), userData);
+        userAdapter.notifyDataSetChanged();
+        userList.setAdapter(userAdapter);
+        userAdapter.notifyDataSetChanged();
+
+        search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name = username.getText().toString();
-                if (name == null || UserList.getUser(name) == null) {
-                    Toast.makeText(getActivity(), "The Person Does not Exist", Toast.LENGTH_SHORT).show();
+                if (username == null | username.getText().equals("")) {
+                    Toast.makeText(getActivity(),"The input is null", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Intent retrieve_profile__intent = new Intent(getActivity(), retrieve_profile.class);
-
-                    retrieve_profile__intent.putExtra("userName", username.getText().toString());
-                    startActivity(retrieve_profile__intent);
+                    userAdapter.clear();
+                    userData = UserList.searchDesc(username.getText().toString());
+                    userAdapter = new CustomUserList(getActivity(), userData);
+                    userAdapter.notifyDataSetChanged();
+                    userList.setAdapter(userAdapter);
                 }
             }
         });
-        // back to main menu
 
+        userList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+
+                Intent intent = new Intent(getActivity(), retrieve_profile.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("user", userData.get(position));
+                intent.putExtras(bundle);
+                startActivity(intent);
+//                finish();
+            }
+        });
     }
 
     @Override

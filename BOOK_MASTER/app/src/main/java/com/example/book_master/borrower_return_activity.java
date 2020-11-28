@@ -125,6 +125,7 @@ public class borrower_return_activity extends AppCompatActivity{
                 else if (book.getStatus().equalsIgnoreCase(Book.ACCEPTED)) {
                     Message msg = new Message(book.getOwner(), book.getBorrower(), ISBN, Book.BORROWED, "", "", Message.NOTIFICATION_NOT_SHOWN);
                     book.setStatus(Book.BORROWED);
+                    book.setBorrower("");
                     DBHelper.setBookDoc(book.getISBN(), book, borrower_return_activity.this);
                     DBHelper.setMessageDoc(Integer.toString(msg.hashCode()), msg, borrower_return_activity.this);
                     finish();
