@@ -3,15 +3,12 @@
     android:layout_height="wrap_content"
     android:layout_width="match_parent">
     <item
-        android:id="@+id/navigation_home"
-        android:title="首页" />
+        android:id="@+id/navigation_book"
+        android:icon="@drawable/icon_book"
+        android:title="Book" />
     <item
-        android:id="@+id/navigation_dashboard"
-        android:title="钱包" />
-    <item
-        android:id="@+id/navigation_notifications"
-        android:title="卡片" />
-    <item
-        android:id="@+id/navigation_person"
-        android:title="个人" />
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/icon_people"
+        android:title="Profile" />
+
 </menu>

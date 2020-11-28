@@ -128,14 +128,14 @@ public class main_menu_activity extends AppCompatActivity {
         });
 
         // this button will let user to search for other usr
-        retrieve_profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent retrieve_profile__intent = new Intent(main_menu_activity.this, retrieve_username_activity.class);
-                startActivity(retrieve_profile__intent);
-                overridePendingTransition(R.anim.fade, R.anim.anim1);
-            }
-        });
+//        retrieve_profile.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent retrieve_profile__intent = new Intent(main_menu_activity.this, retrieve_username_activity.class);
+//                startActivity(retrieve_profile__intent);
+//                overridePendingTransition(R.anim.fade, R.anim.anim1);
+//            }
+//        });
         request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -53,10 +53,9 @@ public class Bottom_nav_test extends AppCompatActivity {
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPagerAdapter);
         List<Fragment> list = new ArrayList<>();
-        list.add(search_page_activity.newInstance("1","2"));
-        list.add(search_page_activity.newInstance("2","2"));
-        list.add(search_page_activity.newInstance("3","2"));
-        list.add(search_page_activity.newInstance("4","2"));
+        list.add(new search_page_activity());
+        list.add(new retrieve_username_activity());
+
 //        list.add(TestFragment.newInstance("钱包"));
 //        list.add(TestFragment.newInstance("卡片"));
 //        list.add(TestFragment.newInstance("个人"));
@@ -70,17 +69,11 @@ public class Bottom_nav_test extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             menuItem = item;
             switch (item.getItemId()) {
-                case R.id.navigation_home:
+                case R.id.navigation_book:
                     viewPager.setCurrentItem(0);
                     return true;
-                case R.id.navigation_dashboard:
+                case R.id.navigation_profile:
                     viewPager.setCurrentItem(1);
-                    return true;
-                case R.id.navigation_notifications:
-                    viewPager.setCurrentItem(2);
-                    return true;
-                case R.id.navigation_person:
-                    viewPager.setCurrentItem(3);
                     return true;
             }
             return false;
