@@ -1,9 +1,7 @@
-package com.example.book_master;
+package com.example.book_master.fragment;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,12 +15,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.book_master.R;
 import com.example.book_master.adapter.CustomBorrowList;
+import com.example.book_master.capture_activity;
 import com.example.book_master.models.Book;
 import com.example.book_master.models.BookList;
 import com.example.book_master.models.Message;
 import com.example.book_master.models.MessageList;
 import com.example.book_master.models.UserList;
+import com.example.book_master.search_page_book_description;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
