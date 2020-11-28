@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.example.book_master.R;
 import com.example.book_master.adapter.CustomBorrowList;
-import com.example.book_master.capture_activity;
+import com.example.book_master.capture_ISBN__activity;
 import com.example.book_master.models.Book;
 import com.example.book_master.models.BookList;
 import com.example.book_master.models.Message;
@@ -110,7 +110,7 @@ public class search_page_activity extends Fragment {
             @Override
             public void onClick(View v) {
                 IntentIntegrator integrator = new IntentIntegrator(getActivity());
-                integrator.setCaptureActivity(capture_activity.class);
+                integrator.setCaptureActivity(capture_ISBN__activity.class);
                 integrator.setOrientationLocked(false);
                 integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
                 integrator.setPrompt("Scanning ISBN");

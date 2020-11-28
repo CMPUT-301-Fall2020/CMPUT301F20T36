@@ -25,21 +25,15 @@
         <activity android:name=".add_book_activity" />
         <activity android:name=".edit_book_activity" />
         <activity android:name=".edit_profile_activity" />
-        <activity android:name=".profile_page_activity" />
-        <activity android:name=".search_page_book_description" />
-        <activity android:name=".borrower_return_activity" />
-        <activity android:name=".retrieve_profile" />
-
-        <activity android:name=".borrower_borrowed_book_list_activity" /> <!-- <activity android:name=".owner_receive_activity" /> -->
-        <activity android:name=".capture_activity" />
-
-        <activity android:name=".return_activity" />
-        <activity android:name=".capture_activity"/>
+        <activity android:name=".profile_description_activity" />
+        <activity android:name=".search_page_book_description"/>
+        <activity android:name=".borrower_return_activity"/>
+        <activity android:name=".capture_ISBN__activity"/>
         <activity android:name=".check_list_activity" />
         <activity android:name=".main_menu_activity" />
-        <activity android:name=".BookInfo" />
-        <activity android:name=".message_description" />
-        <activity android:name=".fragment.request_menu" />
+        <activity android:name=".book_description_activity" />
+        <activity android:name=".notification_description_activity" />
+        <activity android:name=".request_menu" />
         <activity android:name=".show_notification_activity" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -48,11 +42,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".owner_receive_activity"
-            android:screenOrientation="fullSensor"
-            android:stateNotNeeded="true"
-            android:windowSoftInputMode="stateAlwaysHidden" />
     </application>
 
 </manifest>

@@ -54,7 +54,7 @@ public class add_book_activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 IntentIntegrator integrator = new IntentIntegrator(add_book_activity.this);
-                integrator.setCaptureActivity(capture_activity.class);
+                integrator.setCaptureActivity(capture_ISBN__activity.class);
                 integrator.setOrientationLocked(false);
                 integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
                 integrator.setPrompt("Scanning ISBN");

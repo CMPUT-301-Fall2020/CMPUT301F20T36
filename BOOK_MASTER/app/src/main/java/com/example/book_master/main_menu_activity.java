@@ -1,8 +1,6 @@
 package com.example.book_master;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,11 +12,8 @@ import com.example.book_master.fragment.request_menu;
 import com.example.book_master.models.Book;
 import com.example.book_master.models.BookList;
 import com.example.book_master.models.DBHelper;
-import com.example.book_master.models.Message;
 import com.example.book_master.models.MessageList;
 import com.example.book_master.models.UserList;
-
-import java.util.ArrayList;
 
 /**
  * This activity class will be handle all switching activity. The user can click on the button
@@ -33,7 +28,6 @@ public class main_menu_activity extends AppCompatActivity {
     private Button request;
     private Button notification_bar_button;
     private TextView notification_bar_display;
-    private static int notificationID;
 
 
     @Override
@@ -43,18 +37,12 @@ public class main_menu_activity extends AppCompatActivity {
 
         check_mylist_button = (Button) findViewById(R.id.CHECKMYLIST_button);
         borrow_button = (Button) findViewById(R.id.Borrow_main_button);
-
         log_out_button = (Button) findViewById(R.id.Logout_main_button);
-
         search_button = (Button) findViewById(R.id.Search_main_button);
         edit_profile = (Button) findViewById(R.id.view_profile_button);
-
         notification_bar_button = (Button) findViewById(R.id.main_menu_notification_bar_button);
         notification_bar_display = (TextView) findViewById(R.id.main_menu_notification_bar_display);
         request = (Button) findViewById(R.id.main_menu_request);
-
-
-        notificationID = 0;
 
         String notification ="You have " + Integer.toString(MessageList.countMsgReceived(UserList.getCurrentUser().getUsername())) + " messages";
         notification_bar_display.setText(notification);
@@ -78,7 +66,6 @@ public class main_menu_activity extends AppCompatActivity {
             }
         });
 
-
         // this button will log out the current user and ask user to log in
         log_out_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +77,6 @@ public class main_menu_activity extends AppCompatActivity {
                 finish();
             }
         });
-
 
         // this button will lead the search book and ask to borrow.
         search_button.setOnClickListener(new View.OnClickListener() {
@@ -107,12 +93,13 @@ public class main_menu_activity extends AppCompatActivity {
         edit_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent edit_profile__intent = new Intent(main_menu_activity.this, profile_page_activity.class);
+                Intent edit_profile__intent = new Intent(main_menu_activity.this, profile_description_activity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("Visibility", 1);
                 startActivity(edit_profile__intent);
                 overridePendingTransition(R.anim.fade, R.anim.anim1);
             }
         });
-
 
         request.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,9 +109,6 @@ public class main_menu_activity extends AppCompatActivity {
                 overridePendingTransition(R.anim.fade, R.anim.anim1);
             }
         });
-
-
-
 
         notification_bar_button.setOnClickListener(new View.OnClickListener() {
             @Override

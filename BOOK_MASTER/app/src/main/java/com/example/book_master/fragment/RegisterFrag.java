@@ -1,12 +1,9 @@
-package com.example.book_master;
+package com.example.book_master.fragment;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.book_master.R;
 import com.example.book_master.models.DBHelper;
 import com.example.book_master.models.UserList;
 
@@ -39,7 +37,7 @@ public class RegisterFrag extends DialogFragment {
 
     // take in an Item and store it in the Fragment's Bundle object
     // other methods could access the Bundle using getArguments() and retrieve the Item object
-    static RegisterFrag newInstance(String email, String password) {
+    public static RegisterFrag newInstance(String email, String password) {
         Bundle args = new Bundle();
         args.putSerializable("email", email);
         args.putSerializable("password", password);

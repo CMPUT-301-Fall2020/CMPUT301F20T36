@@ -40,7 +40,7 @@ public class borrower_return_activity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 IntentIntegrator integrator = new IntentIntegrator(borrower_return_activity.this);
-                integrator.setCaptureActivity(capture_activity.class);
+                integrator.setCaptureActivity(capture_ISBN__activity.class);
                 integrator.setOrientationLocked(false);
                 integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
                 integrator.setPrompt("Scanning ISBN");

@@ -7,13 +7,15 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.book_master.models.Book;
 import com.example.book_master.models.UserList;
 
 /**
  * This activity class will show the user's username, contact info, & email and prompt a button to
  * allow user to edit his profile
  */
-public class profile_page_activity extends AppCompatActivity {
+public class profile_description_activity extends AppCompatActivity {
     private Button edit, back;
     private TextView username, contact_info, email;
 
@@ -21,6 +23,10 @@ public class profile_page_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_page);
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        int visibility = (int) bundle.getSerializable("Visibility");
 
         edit = (Button) findViewById(R.id.profile_page_edit);
         back = (Button) findViewById(R.id.profile_page_back);
@@ -44,10 +50,17 @@ public class profile_page_activity extends AppCompatActivity {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(profile_page_activity.this, edit_profile_activity.class);
+                Intent intent = new Intent(profile_description_activity.this, edit_profile_activity.class);
                 startActivity(intent);
                 finish();
             }
         });
+
+        if (visibility == 1) {
+            edit.setVisibility(View.VISIBLE);
+        }
+        else {
+            edit.setVisibility(View.GONE);
+        }
     }
 }

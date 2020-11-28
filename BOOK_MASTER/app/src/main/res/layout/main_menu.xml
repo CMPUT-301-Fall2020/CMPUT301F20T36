@@ -50,15 +50,16 @@
 
     <Button
         android:id="@+id/Logout_main_button"
-        android:layout_width="160dp"
-        android:layout_height="55dp"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
         android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
         android:background="@drawable/buttonshape"
         android:text="Log Out"
         android:textColor="#FF000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_menu_request" />
+        app:layout_constraintTop_toBottomOf="@+id/Borrow_main_button" />
 
     <Button
         android:id="@+id/Borrow_main_button"
@@ -68,7 +69,7 @@
         android:layout_marginEnd="40dp"
         android:layout_marginRight="40dp"
         android:background="@drawable/buttonshape"
-        android:text="Borrow"
+        android:text="Scan ISBN"
         android:textColor="#FF000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Search_main_button" />
@@ -97,7 +98,7 @@
         android:text="Search"
         android:textColor="#FF000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_menu_retrieve_profile" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <Button
         android:id="@+id/view_profile_button"
@@ -113,19 +114,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <Button
-        android:id="@+id/main_menu_retrieve_profile"
-        android:layout_width="140dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
-        android:background="@drawable/buttonshape"
-        android:text="Search Profile"
-        android:textColor="#FF000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-    <Button
         android:id="@+id/main_menu_request"
         android:layout_width="140dp"
         android:layout_height="50dp"
@@ -133,7 +121,7 @@
         android:layout_marginLeft="40dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/buttonshape"
-        android:text="Request"
+        android:text="View Request"
         android:textColor="#FF000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CHECKMYLIST_button" />
