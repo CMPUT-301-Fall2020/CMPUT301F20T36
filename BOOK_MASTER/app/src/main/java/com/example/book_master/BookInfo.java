@@ -15,18 +15,20 @@ import com.example.book_master.adapter.CustomImageList;
 import com.example.book_master.models.*;
 
 /**
- * this activity class will show the book information while if it is access by the owner
- * then, the user can edit the book. (This is check by VISIBILITY input with in the bundle)
+ * US 01.06.01
+ * As an owner, I want to view and edit a book description in my books.
+ * Show the book information if it is accessed by the owner.
+ * The user then could edit the book (checked by VISIBILITY input within the bundle).
  */
 public class BookInfo extends AppCompatActivity {
     private TextView BookTitle, BookAuthor, BookISBN, BookStatus, CurrentBorrower;
     private Button Edit, Delete;
     private Book book;
     private int visibility;
-    private RecyclerView recyclerView;
 
     private ArrayList<Image> imageList;
     private CustomImageList imageAdapter;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,8 @@ public class BookInfo extends AppCompatActivity {
         BookStatus.setText("Status: " + book.getStatus());
         CurrentBorrower.setText("Current Borrower: " + book.getBorrower());
 
+        // retrieve images being bundles to the current book from Firebase Storage
+        // and display them in recyclerView
         imageList = new ArrayList<Image>();
         imageAdapter = new CustomImageList(imageList);
         recyclerView = (RecyclerView) findViewById(R.id.book_description_imagineRecyclerView);
@@ -74,17 +78,19 @@ public class BookInfo extends AppCompatActivity {
                 bundle.putSerializable("book_edit", book);
                 intent.putExtras(bundle);
                 startActivity(intent);
-//                finish();
             }
         });
 
+        /**
+         * US 01.07.01
+         * As an owner, I want to delete a book in my books.
+         */
         Delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 UserList.getCurrentUser().Remove_Owned_Book(book.getISBN(), BookInfo.this);
                 Intent intent = new Intent(BookInfo.this, check_list_activity.class);
                 startActivity(intent);
-//                finish();
             }
         });
     }

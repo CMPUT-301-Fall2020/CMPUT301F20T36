@@ -7,7 +7,10 @@ import java.io.Serializable;
  * The book info includes Status as one of  available, requested, accepted, or borrowed.
  */
 public class Book implements Serializable {
-
+    /**
+     * US 01.03.01
+     * As an owner or borrower, I want a book to have a status to be one of: available, requested, accepted, or borrowed.
+     */
     public final static String AVAILABLE = "AVAILABLE";
     public final static String REQUESTED = "REQUESTED";
     public final static String ACCEPTED = "ACCEPTED";

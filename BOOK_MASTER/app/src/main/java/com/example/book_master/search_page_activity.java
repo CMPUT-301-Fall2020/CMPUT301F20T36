@@ -24,8 +24,10 @@ import com.google.zxing.integration.android.IntentResult;
 import java.util.ArrayList;
 
 /**
- * This activity class will let the user search the book which is not owned by him, and is not in
- * accepted and borrowed status
+ * US 03.01.01
+ * As a borrower, I want to specify a keyword, and search for all books that are not currently accepted or borrowed whose description contains the keyword.
+ * This activity class will let the user search the book which is not owned by him,
+ * and is not in accepted and borrowed status
  */
 public class search_page_activity extends AppCompatActivity {
     private Button scan_ISBN;

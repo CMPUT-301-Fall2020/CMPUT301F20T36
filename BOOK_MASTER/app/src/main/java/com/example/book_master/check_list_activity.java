@@ -22,7 +22,8 @@ import com.google.zxing.integration.android.IntentResult;
 import java.util.*;
 
 /**
- * this activity class will show the owner what he owned (can be filtered by status)
+ * US 01.04.01
+ * As an owner, I want to view a list of all my books, and their descriptions, statuses, and current borrowers.
  */
 public class check_list_activity extends AppCompatActivity {
     private Button add_button;
@@ -77,10 +78,13 @@ public class check_list_activity extends AppCompatActivity {
                 bundle.putInt("VISIBILITY", 1);  // 1 for show Edit button
                 intent.putExtras(bundle);
                 startActivity(intent);
-//                finish();
             }
         });
 
+        /**
+         * US 01.05.01
+         * As an owner, I want to view a list of all my books, filtered by status.
+         */
         // Owner can filtered book by status which is handled by spinner
         spinner = findViewById(R.id.status_spinner);
         final String[] status = {"All", Book.AVAILABLE, Book.REQUESTED, Book.ACCEPTED, Book.BORROWED, Book.CONFIRM_BORROWED, Book.CONFIRM_RETURN};
@@ -147,7 +151,6 @@ public class check_list_activity extends AppCompatActivity {
         }
     }
 
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -158,5 +161,3 @@ public class check_list_activity extends AppCompatActivity {
         bookList.setAdapter(bookAdapter);
     }
 }
-
-
