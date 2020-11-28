@@ -96,7 +96,7 @@ public class search_page_activity extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
                 
-                Intent intent = new Intent(getActivity(), search_description.class);
+                Intent intent = new Intent(getActivity(), search_page_book_description.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("book", bookData.get(position));
                 intent.putExtras(bundle);
