@@ -29,6 +29,8 @@ public class map_select_activity extends AppCompatActivity implements OnMapReady
         setContentView(R.layout.geo_to_deliver);
 
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.geo_map);
+        mapFragment.getMapAsync(this);
+
         ISBN = (TextView) findViewById(R.id.geo_ISBN);
         borrower = (TextView)findViewById(R.id.geo_borrower);
         bookName = (TextView) findViewById(R.id.Geo_borrower_Bookname);

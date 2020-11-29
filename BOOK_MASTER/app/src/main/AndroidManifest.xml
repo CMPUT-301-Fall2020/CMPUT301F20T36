@@ -29,7 +29,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDzuN7gswLST1E1LZoLLKReH-dO14GZuPg" />
+            android:value="@string/maps_api_key" />
 
         <activity android:name=".add_book_activity" />
         <activity android:name=".book_description_activity" />
@@ -39,7 +39,6 @@
         <activity android:name=".edit_book_activity" />
         <activity android:name=".edit_profile_activity" />
         <activity android:name=".main_menu_activity" />
-        <activity android:name=".book_description_activity" />
         <activity android:name=".notification_description_activity" />
         <activity android:name=".show_notification_activity" />
 
