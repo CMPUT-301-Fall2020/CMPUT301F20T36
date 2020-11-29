@@ -32,12 +32,12 @@ import java.util.ArrayList;
 import static android.app.Activity.RESULT_OK;
 
 /**
- * US 03.01.01
- * As a borrower, I want to specify a keyword, and search for all books that are not currently accepted or borrowed whose description contains the keyword.
  * This activity class will let the user search the book which is not owned by him,
  * and is not in accepted and borrowed status
  */
-public class search_page_activity extends Fragment {
+// As a borrower, I want to specify a keyword,
+// and search for all books that are not currently accepted or borrowed whose description contains the keyword.
+public class search_page extends Fragment {
     private Context mContext;
 
     private Button scan_ISBN;
@@ -48,8 +48,8 @@ public class search_page_activity extends Fragment {
     private ArrayAdapter<Book> bookAdapter;
     private ListView bookList;
 
-    public static search_page_activity newInstance(String param1, String param2){
-        search_page_activity fragment = new search_page_activity();
+    public static search_page newInstance(String param1, String param2){
+        search_page fragment = new search_page();
         Bundle args = new Bundle();
         args.putString("1", param1);
         args.putString("2", param2);
@@ -68,17 +68,17 @@ public class search_page_activity extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        bookList = (ListView) view.findViewById(R.id.search_page_booklist);
-        scan_ISBN = (Button) view.findViewById(R.id.search_bar_ISBN);
-        search = (Button) view.findViewById(R.id.search_bar_confirm);
-        keyword = (TextView) view.findViewById(R.id.search_bar_keyword);
+        bookList = view.findViewById(R.id.search_page_booklist);
+        scan_ISBN = view.findViewById(R.id.search_bar_ISBN);
+        search = view.findViewById(R.id.search_bar_confirm);
+        keyword = view.findViewById(R.id.search_bar_keyword);
 
         ISBN = "";  // pre define it to be empty
         bookData = BookList.getAvailableBook(UserList.getCurrentUser().getUsername());
         ArrayList<Book> temp = BookList.getAvailableBook(UserList.getCurrentUser().getUsername());
         for (Book book : bookData) {  // remove the book user requested
-            ArrayList<Message> msglist = MessageList.searchISBN(book.getISBN());
-            for (Message msg : msglist) {
+            ArrayList<Message> msgList = MessageList.searchISBN(book.getISBN());
+            for (Message msg : msgList) {
                 if (msg.getSender().equalsIgnoreCase(UserList.getCurrentUser().getUsername()) &&
                         msg.getStatus().equalsIgnoreCase(Book.REQUESTED)) {
                     temp.remove(book);
@@ -101,11 +101,10 @@ public class search_page_activity extends Fragment {
                 bundle.putSerializable("book", bookData.get(position));
                 intent.putExtras(bundle);
                 startActivityForResult(intent, 3);
-//                finish();
             }
         });
 
-        // scan the ISBN from the book and store it in the keyword textview
+        // scan the ISBN from the book and store it in the keyword textView
         scan_ISBN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,14 +126,12 @@ public class search_page_activity extends Fragment {
 
                 if (text == null) {  // check if the text is reading error
                     Toast.makeText(getActivity(), "The input is null", Toast.LENGTH_SHORT).show();
-                }
-                else if (text.equalsIgnoreCase("")) {
+                } else if (text.equalsIgnoreCase("")) {
                     bookData = BookList.getAvailableBook(UserList.getCurrentUser().getUsername());
                     Toast.makeText(getActivity(),
                             "Show all Book",
                             Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     bookData = BookList.searchDesc(text, UserList.getCurrentUser().getUsername());
                 }
                 bookAdapter = new CustomBorrowList(getActivity(), bookData);
@@ -157,7 +154,7 @@ public class search_page_activity extends Fragment {
             if (scanISBN != null) {
                 if (scanISBN.getContents() != null) {
                     String ISBN = scanISBN.getContents();
-                    keyword.setText(ISBN);  // display the ISBN to keyword textview
+                    keyword.setText(ISBN);  // display the ISBN to keyword textView
                 }
                 else {
                     Toast.makeText(getActivity(), "No Results", Toast.LENGTH_LONG).show();

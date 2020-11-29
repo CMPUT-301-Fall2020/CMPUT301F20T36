@@ -8,70 +8,114 @@
 
     <TextView
         android:id="@+id/Request_list_bookname"
-        android:layout_width="395dp"
-        android:layout_height="30dp"
+        android:layout_width="410dp"
+        android:layout_height="40dp"
+        android:autoSizeMaxTextSize="30dp"
+        android:autoSizeMinTextSize="2dp"
+        android:background="#969696"
+        android:gravity="center"
+        android:maxLines="1"
         android:text="BookName"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/Request_list_sender"
-        android:layout_width="395dp"
-        android:layout_height="30dp"
+        android:layout_width="410dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="1dp"
+        android:autoSizeMaxTextSize="30dp"
+        android:autoSizeMinTextSize="2dp"
+        android:background="#969696"
+        android:gravity="center"
+        android:maxLines="1"
         android:text="sender"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
 
     <TextView
-        android:id="@+id/Borrower_desc"
-        android:layout_width="235dp"
-        android:layout_height="wrap_content"
-        android:text="Description"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toStartOf="@+id/Request_list_status"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
-
-    <TextView
-        android:id="@+id/Request_list_status"
-        android:layout_width="158dp"
-        android:layout_height="30dp"
-        android:text="Status"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
-
-    <TextView
         android:id="@+id/editTextTextPersonName"
-        android:layout_width="395dp"
+        android:layout_width="410dp"
         android:layout_height="2dp"
         android:background="#000000"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/editTextTextPersonName2"
-        android:layout_width="395dp"
+        android:layout_width="410dp"
         android:layout_height="1dp"
         android:background="#969696"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Request_list_bookname" />
 
     <TextView
         android:id="@+id/editTextTextPersonName3"
-        android:layout_width="395dp"
+        android:layout_width="410dp"
         android:layout_height="1dp"
-        android:layout_marginTop="12dp"
         android:background="#969696"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Request_list_sender" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="410dp"
+        android:layout_height="60dp"
+        android:background="#CC000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+
+    <TextView
+        android:id="@+id/Borrower_desc"
+        android:layout_width="277dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="1dp"
+        android:autoSizeMaxTextSize="30dp"
+        android:autoSizeMinTextSize="2dp"
+        android:background="#969696"
+        android:gravity="center"
+        android:maxLines="4"
+        android:text="Description"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+
+    <TextView
+        android:id="@+id/Request_list_status"
+        android:layout_width="130dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="1dp"
+        android:background="#616161"
+        android:gravity="center"
+        android:text="Status"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView7" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="410dp"
+        android:layout_height="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Request_list_sender" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

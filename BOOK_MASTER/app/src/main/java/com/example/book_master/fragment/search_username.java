@@ -19,7 +19,7 @@ import com.example.book_master.R;
 import com.example.book_master.adapter.CustomUserList;
 import com.example.book_master.models.User;
 import com.example.book_master.models.UserList;
-import com.example.book_master.profile_description_activity;
+import com.example.book_master.profile_description;
 
 import java.util.ArrayList;
 
@@ -27,7 +27,7 @@ import java.util.ArrayList;
  * This activity class will allow user to input the username which they wants to search
  * then the profile of that user will be shown in a seperate activity
  */
-public class search_username_activity extends Fragment {
+public class search_username extends Fragment {
     private TextView username;
     private Button search;
     private ArrayList<User> userData;
@@ -40,15 +40,16 @@ public class search_username_activity extends Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.search_username_page, container, false);
     }
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        username = (TextView) view.findViewById(R.id.search_username_bar_keyword);
-        search = (Button) view.findViewById(R.id.search_username_bar_confirm);
-        userList = (ListView) view.findViewById(R.id.search_username_page_userlist);
+        username = view.findViewById(R.id.search_username_bar_keyword);
+        search = view.findViewById(R.id.search_username_bar_confirm);
+        userList = view.findViewById(R.id.search_username_page_userlist);
 
-        userData = new ArrayList<User>();
+        userData = new ArrayList<>();
         userAdapter = new CustomUserList(getActivity(), userData);
         userAdapter.notifyDataSetChanged();
         userList.setAdapter(userAdapter);
@@ -59,8 +60,7 @@ public class search_username_activity extends Fragment {
             public void onClick(View v) {
                 if (username == null | username.getText().equals("")) {
                     Toast.makeText(getActivity(),"The input is null", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     userAdapter.clear();
                     userData = UserList.searchDesc(username.getText().toString());
                     userAdapter = new CustomUserList(getActivity(), userData);
@@ -73,21 +73,15 @@ public class search_username_activity extends Fragment {
         userList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-
-                Intent intent = new Intent(getActivity(), profile_description_activity.class);
-                Bundle bundle = new Bundle();
-                bundle.putInt("Visibility", 2);
-                bundle.putSerializable("user", userData.get(position));
-                intent.putExtras(bundle);
+                Intent intent = new Intent(getActivity(), profile_description.class);
                 startActivity(intent);
-//                finish();
             }
         });
     }
 
     @Override
-    public void onAttach(Context a){
-        super.onAttach(a);
-        mContext = a;
+    public void onAttach(Context context){
+        super.onAttach(context);
+        mContext = context;
     }
 }

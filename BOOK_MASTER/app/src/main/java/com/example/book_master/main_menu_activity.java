@@ -8,9 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.book_master.fragment.request_menu;
-import com.example.book_master.models.Book;
-import com.example.book_master.models.BookList;
 import com.example.book_master.models.DBHelper;
 import com.example.book_master.models.MessageList;
 import com.example.book_master.models.UserList;
@@ -20,7 +17,6 @@ import com.example.book_master.models.UserList;
  * to direct to the page they wants
  */
 public class main_menu_activity extends AppCompatActivity {
-    private Button check_mylist_button;
     private Button borrow_button;
     private Button log_out_button;
     private Button search_button;
@@ -35,26 +31,18 @@ public class main_menu_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
 
-        check_mylist_button = (Button) findViewById(R.id.CHECKMYLIST_button);
-        borrow_button = (Button) findViewById(R.id.Borrow_main_button);
-        log_out_button = (Button) findViewById(R.id.Logout_main_button);
-        search_button = (Button) findViewById(R.id.Search_main_button);
-        edit_profile = (Button) findViewById(R.id.view_profile_button);
-        notification_bar_button = (Button) findViewById(R.id.main_menu_notification_bar_button);
-        notification_bar_display = (TextView) findViewById(R.id.main_menu_notification_bar_display);
-        request = (Button) findViewById(R.id.main_menu_request);
+        borrow_button = findViewById(R.id.Borrow_main_button);
+        log_out_button = findViewById(R.id.Logout_main_button);
+        search_button = findViewById(R.id.Search_main_button);
+        edit_profile = findViewById(R.id.view_profile_button);
+        notification_bar_button = findViewById(R.id.main_menu_notification_bar_button);
+        notification_bar_display = findViewById(R.id.main_menu_notification_bar_display);
+        request = findViewById(R.id.main_menu_request);
 
-        String notification ="You have " + Integer.toString(MessageList.countMsgReceived(UserList.getCurrentUser().getUsername())) + " messages";
-        notification_bar_display.setText(notification);
+         String notification ="You have " + MessageList.countMsgReceived(UserList.getCurrentUser().getUsername()) + " messages";
+         notification_bar_display.setText(notification);
 
-        check_mylist_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent check_list_intent = new Intent(main_menu_activity.this, check_list_activity.class);
-                startActivity(check_list_intent);
-                overridePendingTransition(R.anim.fade, R.anim.anim1);
-            }
-        });
+
 
         // this button is not implemented yet
         borrow_button.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +70,6 @@ public class main_menu_activity extends AppCompatActivity {
         search_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent search_page__intent = new Intent(main_menu_activity.this, search_page_activity.class);
                 Intent search_page__intent = new Intent(main_menu_activity.this, search_navigator.class);
                 startActivity(search_page__intent);
                 overridePendingTransition(R.anim.fade, R.anim.anim1);
@@ -93,10 +80,7 @@ public class main_menu_activity extends AppCompatActivity {
         edit_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent edit_profile__intent = new Intent(main_menu_activity.this, profile_description_activity.class);
-                Bundle bundle = new Bundle();
-                bundle.putInt("Visibility", 1);
-                edit_profile__intent.putExtras(bundle);
+                Intent edit_profile__intent = new Intent(main_menu_activity.this, my_account_navigator.class);
                 startActivity(edit_profile__intent);
                 overridePendingTransition(R.anim.fade, R.anim.anim1);
             }
@@ -119,14 +103,12 @@ public class main_menu_activity extends AppCompatActivity {
                 overridePendingTransition(R.anim.fade, R.anim.anim1);
             }
         });
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        String notification ="You have " + Integer.toString(MessageList.countMsgReceived(UserList.getCurrentUser().getUsername())) + " messages";
+        String notification ="You have " + MessageList.countMsgReceived(UserList.getCurrentUser().getUsername()) + " messages";
         notification_bar_display.setText(notification);
     }
-
 }

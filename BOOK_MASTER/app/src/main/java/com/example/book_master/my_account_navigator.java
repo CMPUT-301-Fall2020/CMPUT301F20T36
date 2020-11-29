@@ -15,7 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class request_navigator extends AppCompatActivity {
+public class my_account_navigator extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private ViewPagerAdapter viewPagerAdapter;
     private ViewPager viewPager;
@@ -25,13 +25,13 @@ public class request_navigator extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_bottom_nav);
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        bottomNavigationView.getMenu().getItem(0).setTitle("Sender");
-        bottomNavigationView.getMenu().getItem(0).setIcon(R.drawable.icon_send);
-        bottomNavigationView.getMenu().getItem(1).setTitle("Receiver");
-        bottomNavigationView.getMenu().getItem(1).setIcon(R.drawable.icon_receive);
 
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.getMenu().getItem(0).setTitle("My Profile");
+        bottomNavigationView.getMenu().getItem(0).setIcon(R.drawable.icon_people);
+        bottomNavigationView.getMenu().getItem(1).setTitle("My Book");
+        bottomNavigationView.getMenu().getItem(1).setIcon(R.drawable.icon_book);
+        bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         viewPager = findViewById(R.id.vp);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -49,14 +49,15 @@ public class request_navigator extends AppCompatActivity {
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) { }
+            public void onPageScrollStateChanged(int state) {
+
+            }
         });
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPagerAdapter);
         List<Fragment> list = new ArrayList<>();
-        list.add(request_menu.newInstance("SENT"));
-        list.add(request_menu.newInstance("RECEIVED"));
-
+        list.add(new user_profile());
+        list.add(new check_list());
         viewPagerAdapter.setList(list);
     }
 
