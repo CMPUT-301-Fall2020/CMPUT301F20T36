@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.book_master.fragment.check_list;
 import com.example.book_master.models.Book;
 import com.example.book_master.models.BookList;
 import com.example.book_master.models.UserList;
@@ -77,7 +78,7 @@ public class add_book_activity extends AppCompatActivity {
                     Book book = new Book(book_title, book_Author, ISBN);
                     UserList.getCurrentUser().Add_Book_Owned(book, add_book_activity.this);
 
-                    Intent intent = new Intent(add_book_activity.this, check_list_activity.class);
+                    Intent intent = new Intent(add_book_activity.this, check_list.class);
                     startActivity(intent);
                     finish();
                 } else {
@@ -90,7 +91,7 @@ public class add_book_activity extends AppCompatActivity {
         DiscardBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(add_book_activity.this, check_list_activity.class);
+                Intent intent = new Intent(add_book_activity.this, check_list.class);
                 startActivity(intent);
                 finish();
             }
