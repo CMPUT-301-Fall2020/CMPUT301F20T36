@@ -10,6 +10,9 @@
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <uses-configuration android:noHistory="true" />
+    <permission
+        android:name="your_pakage_name.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
 
     <application
         android:allowBackup="true"
@@ -23,8 +26,12 @@
         <activity android:name=".my_account_navigator" />
 
         <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="531b0704f0bdab3d" />
+            android:value="@string/maps_api_key" />
 
         <activity android:name=".add_book_activity" />
         <activity android:name=".book_description_activity" />
@@ -34,8 +41,6 @@
         <activity android:name=".edit_book_activity" />
         <activity android:name=".edit_profile_activity" />
         <activity android:name=".main_menu_activity" />
-        <activity android:name=".notification_description_activity" />
-        <activity android:name=".show_notification_activity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,7 +48,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".profile_description" />
+        <activity android:name=".map_select_activity"/>
+        <activity android:name=".notification_description_activity" />
+        <activity android:name=".profile_description_activity" />
         <activity android:name=".request_description" />
         <activity android:name=".request_navigator" />
         <activity android:name=".search_navigator" />

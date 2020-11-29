@@ -61,8 +61,8 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        MapsInitializer.initialize(getContext());
-        map = googleMap;
+//        MapsInitializer.initialize(getContext());
+//        map = googleMap;
 
 
     }

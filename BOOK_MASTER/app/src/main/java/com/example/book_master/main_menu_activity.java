@@ -70,7 +70,6 @@ public class main_menu_activity extends AppCompatActivity {
         search_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent search_page__intent = new Intent(main_menu_activity.this, search_page_activity.class);
                 Intent search_page__intent = new Intent(main_menu_activity.this, search_navigator.class);
                 startActivity(search_page__intent);
                 overridePendingTransition(R.anim.fade, R.anim.anim1);
