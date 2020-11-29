@@ -19,28 +19,34 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".request_navigator"></activity>
-        <activity android:name=".search_navigator" />
-        <activity android:name=".request_description" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="531b0704f0bdab3d"/>
+
         <activity android:name=".add_book_activity" />
-        <activity android:name=".edit_book_activity" />
-        <activity android:name=".edit_profile_activity" />
-        <activity android:name=".profile_description_activity" />
-        <activity android:name=".search_page_book_description"/>
+        <activity android:name=".book_description_activity" />
         <activity android:name=".borrower_return_activity"/>
         <activity android:name=".capture_ISBN__activity"/>
         <activity android:name=".check_list_activity" />
+        <activity android:name=".edit_book_activity" />
+        <activity android:name=".edit_profile_activity" />
         <activity android:name=".main_menu_activity" />
-        <activity android:name=".book_description_activity" />
         <activity android:name=".notification_description_activity" />
         <activity android:name=".show_notification_activity" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".profile_description_activity" />
+        <activity android:name=".request_description" />
+        <activity android:name=".request_navigator" />
+        <activity android:name=".search_navigator" />
+        <activity android:name=".search_page_book_description"/>
+
     </application>
 
 </manifest>

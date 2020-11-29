@@ -85,18 +85,16 @@ public class borrower_return_activity extends AppCompatActivity{
             String current_username = UserList.getCurrentUser().getUsername();
             if (current_username.equalsIgnoreCase(book.getBorrower())) {
                 if (book.getStatus().equalsIgnoreCase(Book.CONFIRM_BORROWED)) {
-                    Message msg = new Message(book.getOwner(), book.getBorrower(), ISBN, Book.RETURN, "", "", Message.NOTIFICATION_NOT_SHOWN);
+                    Message msg = new Message(book.getBorrower(), book.getOwner(), ISBN, Book.RETURN, "", "", Message.NOTIFICATION_NOT_SHOWN);
                     book.setStatus(Book.RETURN);
                     DBHelper.setBookDoc(book.getISBN(), book, borrower_return_activity.this);
-                    DBHelper.setMessageDoc(Integer.toString(msg.hashCode()), msg, borrower_return_activity.this);
-                    finish();
-                    return;
+                    DBHelper.setMessageDoc(String.valueOf(msg.hashCode()), msg, borrower_return_activity.this);
                 }
                 else if (book.getStatus().equalsIgnoreCase(Book.BORROWED)) {
                     ArrayList<Message> msglist = MessageList.searchReceiver(current_username);
                     for (Message msg : msglist) {
                         if (msg.getISBN().equalsIgnoreCase(book.getISBN())) {
-                            DBHelper.deleteMessageDoc(Integer.toString(msg.hashCode()),borrower_return_activity.this);
+                            DBHelper.deleteMessageDoc(String.valueOf(msg.hashCode()),borrower_return_activity.this);
                             book.setStatus(Book.CONFIRM_BORROWED);
                             DBHelper.setBookDoc(book.getISBN(), book, borrower_return_activity.this);
                             finish();
@@ -113,23 +111,31 @@ public class borrower_return_activity extends AppCompatActivity{
                     ArrayList<Message> msglist = MessageList.searchReceiver(current_username);
                     for (Message msg : msglist) {
                         if (msg.getISBN().equalsIgnoreCase(book.getISBN())) {
-                            DBHelper.deleteMessageDoc(Integer.toString(msg.hashCode()),borrower_return_activity.this);
+                            DBHelper.deleteMessageDoc(String.valueOf(msg.hashCode()),borrower_return_activity.this);
                             book.setStatus(Book.AVAILABLE);
+                            book.setBorrower("");
                             DBHelper.setBookDoc(book.getISBN(), book, borrower_return_activity.this);
                             finish();
                             return;
                         }
                     }
-                    Toast.makeText(this, "There is an error with internal system", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "There is an error with internal system. Could not find message", Toast.LENGTH_SHORT).show();
                 }
                 else if (book.getStatus().equalsIgnoreCase(Book.ACCEPTED)) {
-                    Message msg = new Message(book.getOwner(), book.getBorrower(), ISBN, Book.BORROWED, "", "", Message.NOTIFICATION_NOT_SHOWN);
-                    book.setStatus(Book.BORROWED);
-                    book.setBorrower("");
-                    DBHelper.setBookDoc(book.getISBN(), book, borrower_return_activity.this);
-                    DBHelper.setMessageDoc(Integer.toString(msg.hashCode()), msg, borrower_return_activity.this);
-                    finish();
-                    return;
+                    ArrayList<Message> msgList = MessageList.searchReceiver(current_username);
+                    for (Message temp : msgList) {
+                        if (temp.getISBN().equals(book.getISBN())) {
+                            DBHelper.deleteMessageDoc(String.valueOf(temp.hashCode()), this);
+
+                            Message msg = new Message(book.getOwner(), book.getBorrower(), ISBN, Book.BORROWED, "", "", Message.NOTIFICATION_NOT_SHOWN);
+                            book.setStatus(Book.BORROWED);
+                            DBHelper.setBookDoc(book.getISBN(), book, borrower_return_activity.this);
+                            DBHelper.setMessageDoc(String.valueOf(msg.hashCode()), msg, borrower_return_activity.this);
+
+                            finish();
+                            return;
+                        }
+                    }
                 }else {
                     Toast.makeText(this, "The book is not in the correct status", Toast.LENGTH_SHORT).show();
                 }
