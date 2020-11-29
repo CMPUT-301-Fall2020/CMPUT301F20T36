@@ -7,22 +7,25 @@
 
     <TextView
         android:id="@+id/book_contentl_title"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_width="276dp"
+        android:layout_height="match_parent"
+        android:autoSizeMaxTextSize="30dp"
+        android:autoSizeMinTextSize="2dp"
         android:background="#E3E2E2"
-        android:padding="20dp"
+        android:gravity="left"
+        android:maxLines="1"
+        android:padding="16dp"
         android:text="Book Title"
-        android:textColor="#000000"
-        android:textSize="20sp" />
+        android:textColor="#000000" />
 
     <TextView
         android:id="@+id/book_content_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_width="135dp"
+        android:layout_height="match_parent"
         android:background="#FFFFFF"
+        android:gravity="center"
         android:text="Status"
         android:textColor="#000000"
-        android:textSize="20sp" />
+        android:textSize="16sp" />
 
 </LinearLayout>

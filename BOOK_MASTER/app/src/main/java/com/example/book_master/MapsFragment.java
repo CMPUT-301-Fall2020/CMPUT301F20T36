@@ -48,12 +48,14 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
 //        mapView = view.findViewById(R.id.mapsView);
 
-        if (mapView != null){
-            mapView.onCreate(null);
-            mapView.onResume();
-            mapView.getMapAsync(this);
+//
+//        if (mapView != null){
+//            mapView.onCreate(null);
+//            mapView.onResume();
+//            mapView.getMapAsync(this);
+//
+//        }
 
-        }
 
     }
 

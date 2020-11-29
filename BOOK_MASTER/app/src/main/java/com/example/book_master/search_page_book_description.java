@@ -17,11 +17,11 @@ import com.example.book_master.models.*;
 import java.util.ArrayList;
 
 /**
- * US 03.02.01
- * As a borrower, I want search results to show each book with its description, owner username, and status.
  * This activity page will display all description to user and ask user if he want to borrow it
  * User can click on Borrow to send a request to the owner
  */
+// As a borrower,
+// I want search results to show each book with its description, owner username, and status.
 public class search_page_book_description extends AppCompatActivity {
     private Book book;
     private TextView title, author, isbn, status, owner;
@@ -54,10 +54,7 @@ public class search_page_book_description extends AppCompatActivity {
         owner.setText("Owner: " + book.getOwner());
         borrow.setText("Request");
 
-        /**
-         * US 08.03.01
-         * As an owner or borrower, I want to view any attached photograph for a book.
-         */
+        // As an owner or borrower, I want to view any attached photograph for a book.
         // retrieve images being bundles to the current book from Firebase Storage
         // and display them in recyclerView
         imageList = new ArrayList<>();
@@ -85,8 +82,6 @@ public class search_page_book_description extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-//                Intent intent = new Intent(search_description.this, borrower_requested_list_activity.class);
-//                startActivity(intent);
                 finish();
             }
         });

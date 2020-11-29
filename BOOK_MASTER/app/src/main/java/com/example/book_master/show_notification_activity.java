@@ -26,8 +26,7 @@ public class show_notification_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_message_list);
 
-        messageList = (ListView) findViewById(R.id.show_message_list_listview);
-
+        messageList = findViewById(R.id.show_message_list_listview);
         messageData = MessageList.searchReceiver(UserList.getCurrentUser().getUsername());
 
         messageAdapter = new CustomMessageList(show_notification_activity.this, messageData);
@@ -42,7 +41,6 @@ public class show_notification_activity extends AppCompatActivity {
                bundle.putSerializable("message", messageData.get(position));
                intent.putExtras(bundle);
                startActivityForResult(intent, 3);
-//                finish();
            }
        });
     }

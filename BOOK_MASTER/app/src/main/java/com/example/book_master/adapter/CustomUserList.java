@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.example.book_master.R;
-import com.example.book_master.models.Book;
 import com.example.book_master.models.User;
 
 import java.util.ArrayList;
