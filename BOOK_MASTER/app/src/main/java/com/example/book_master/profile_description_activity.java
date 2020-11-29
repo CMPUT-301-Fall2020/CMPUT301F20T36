@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.book_master.models.Book;
 import com.example.book_master.models.UserList;
 
 /**
@@ -28,11 +27,11 @@ public class profile_description_activity extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
         int visibility = bundle.getInt("Visibility");
 
-        edit = (Button) findViewById(R.id.profile_page_edit);
-        back = (Button) findViewById(R.id.profile_page_back);
-        username = (TextView) findViewById(R.id.profile_page_username);
-        contact_info = (TextView) findViewById(R.id.profile_page_contact_info);
-        email = (TextView) findViewById(R.id.profile_page_email);
+        edit = findViewById(R.id.profile_page_edit);
+        back = findViewById(R.id.profile_page_back);
+        username = findViewById(R.id.profile_page_username);
+        contact_info = findViewById(R.id.profile_page_contact_info);
+        email = findViewById(R.id.profile_page_email);
 
         username.setText("  " +UserList.getCurrentUser().getUsername());
         contact_info.setText( "  " +UserList.getCurrentUser().getContactInfo());
@@ -52,14 +51,12 @@ public class profile_description_activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(profile_description_activity.this, edit_profile_activity.class);
                 startActivity(intent);
-//                finish();
             }
         });
 
         if (visibility == 1) {
             edit.setVisibility(View.VISIBLE);
-        }
-        else {
+        } else {
             edit.setVisibility(View.GONE);
         }
     }
