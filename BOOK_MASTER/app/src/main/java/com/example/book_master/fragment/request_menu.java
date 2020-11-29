@@ -76,7 +76,7 @@ public class request_menu extends Fragment {
                     bundle.putSerializable("mode", mode);
                     intent.putExtras(bundle);
                     startActivity(intent);
-                    getActivity().finish();
+//                    getActivity().finish();
                 }
             });
 
@@ -125,5 +125,14 @@ public class request_menu extends Fragment {
     public void onAttach(Context context){
         super.onAttach(context);
         mContext = context;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        messData = MessageList.searchSender(UserList.getCurrentUser().getUsername());
+        messAdapter = new CustomRequestList(getActivity(), messData);
+        requestList.setAdapter(messAdapter);
     }
 }

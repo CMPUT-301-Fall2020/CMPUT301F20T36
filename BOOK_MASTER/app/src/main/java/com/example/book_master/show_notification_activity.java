@@ -27,8 +27,8 @@ public class show_notification_activity extends AppCompatActivity {
         setContentView(R.layout.show_message_list);
 
         messageList = findViewById(R.id.show_message_list_listview);
-        messageData = MessageList.searchReceiver(UserList.getCurrentUser().getUsername());
 
+        messageData = MessageList.searchReceiver(UserList.getCurrentUser().getUsername());
         messageAdapter = new CustomMessageList(show_notification_activity.this, messageData);
         messageAdapter.notifyDataSetChanged();
         messageList.setAdapter(messageAdapter);
@@ -36,9 +36,11 @@ public class show_notification_activity extends AppCompatActivity {
        messageList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
            @Override
            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-               Intent intent = new Intent(show_notification_activity.this, notification_description_activity.class);
+               Intent intent = new Intent(show_notification_activity.this, request_description.class);
                Bundle bundle = new Bundle();
                bundle.putSerializable("message", messageData.get(position));
+               bundle.putSerializable("status", messageData.get(position).getStatus());
+               bundle.putSerializable("mode", "RECEIVED");
                intent.putExtras(bundle);
                startActivityForResult(intent, 3);
            }
@@ -56,5 +58,15 @@ public class show_notification_activity extends AppCompatActivity {
             messageAdapter.notifyDataSetChanged();
             messageList.setAdapter(messageAdapter);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        messageData = MessageList.searchReceiver(UserList.getCurrentUser().getUsername());
+        messageAdapter = new CustomMessageList(show_notification_activity.this, messageData);
+        messageAdapter.notifyDataSetChanged();
+        messageList.setAdapter(messageAdapter);
     }
 }

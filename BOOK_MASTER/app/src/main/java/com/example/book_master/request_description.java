@@ -51,7 +51,7 @@ public class request_description extends AppCompatActivity {
         decline.setVisibility(View.GONE);
         show_map.setVisibility(View.GONE);
 
-        if(m.equals("RECEIVED") && s.equals(Book.REQUESTED)){
+        if(m.equals("RECEIVED") && s.equals(Book.REQUESTED)) { // owner recieve a request
             accept.setVisibility(View.VISIBLE);
             decline.setVisibility(View.VISIBLE);
             accept.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +61,13 @@ public class request_description extends AppCompatActivity {
                     Book b = BookList.getBook(isbn);
 
                     DBHelper.deleteMessageDoc(String.valueOf(message.hashCode()), request_description.this);
+
+                    for(Message i : MessageList.searchISBN(isbn)){
+                        if(i.getStatus().equals(Book.REQUESTED)){
+                            DBHelper.deleteMessageDoc(String.valueOf(i.hashCode()), request_description.this);
+                        }
+                    }
+
                     message.setStatus(Book.ACCEPTED);
                     message.setReceiver(message.getSender());
                     message.setSender(b.getOwner());
@@ -104,67 +111,30 @@ public class request_description extends AppCompatActivity {
                 }
             });
         } else if (m.equals("SENT") && s.equals(Book.ACCEPTED)) {
+            show_map.setVisibility(View.VISIBLE);
             accept.setVisibility(View.VISIBLE);
-            decline.setVisibility(View.VISIBLE);
+            accept.setText("Hand Over");
             accept.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String isbn = message.getISBN();
-                    Book b = BookList.getBook(isbn);
-
-                    DBHelper.deleteMessageDoc(String.valueOf(message.hashCode()), request_description.this);
-                    message.setStatus(Book.BORROWED);
-                    DBHelper.setMessageDoc(String.valueOf(message.hashCode()), message,request_description.this);
-
-                    b.setStatus(Book.BORROWED);
-                    DBHelper.setBookDoc(isbn,b,request_description.this);
-
-                    Intent intent = new Intent(request_description.this, request_navigator.class);
-                    startActivity(intent);
-                    finish();
+                    Intent borrower_return_intent = new Intent(request_description.this, borrower_return_activity.class);
+                    startActivity(borrower_return_intent);
                 }
             });
-            decline.setOnClickListener(new View.OnClickListener() {
+            show_map.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String isbn = message.getISBN();
-                    Book b = BookList.getBook(isbn);
-
-                    DBHelper.deleteMessageDoc(String.valueOf(message.hashCode()), request_description.this);
-
-                    b.setStatus(Book.AVAILABLE);
-                    for(Message i : MessageList.searchISBN(isbn)){
-                        if(i.getStatus().equals(Book.REQUESTED)){
-                            b.setStatus(Book.REQUESTED);
-                            break;
-                        }
-                    }
-                    DBHelper.setBookDoc(isbn, b, request_description.this);
-
-                    Intent intent = new Intent(request_description.this, request_navigator.class);
-                    startActivity(intent);
-                    finish();
+                    Intent map_view_intent = new Intent(request_description.this, map_select_activity.class);
+                    Bundle map_view_bundle = new Bundle();
+                    map_view_bundle.putSerializable("Message", message);
+                    map_view_bundle.putInt("Visibility", 2);
+                    map_view_bundle.putDouble("Latitude", Double.valueOf(message.getLatitude()));
+                    map_view_bundle.putDouble("Longitude", Double.valueOf(message.getLongitude()));
+                    map_view_intent.putExtras(map_view_bundle);
+                    startActivity(map_view_intent);
                 }
             });
-        } else if (m.equals("RECEIVED") && s.equals(Book.RETURN)) {
-            accept.setVisibility(View.VISIBLE);
-            accept.setText("CONFIRM");
-            accept.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    DBHelper.deleteMessageDoc(String.valueOf(message.hashCode()), request_description.this);
-                    String isbn = message.getISBN();
-                    Book b = BookList.getBook(isbn);
-                    b.setStatus(Book.AVAILABLE);
-                    DBHelper.setBookDoc(isbn,b,request_description.this);
-                    Intent intent = new Intent(request_description.this, request_navigator.class);
-                    startActivity(intent);
-                    finish();
-                }
-            });
-        }
-
-        if (s.equals(Book.ACCEPTED)) {
+        } else if (m.equals("RECEIVED") && s.equals(Book.ACCEPTED)) {
             show_map.setVisibility(View.VISIBLE);
             show_map.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -179,13 +149,73 @@ public class request_description extends AppCompatActivity {
                     startActivity(map_view_intent);
                 }
             });
+        } else if (m.equals("SENT") && s.equals(Book.BORROWED)) {
+            accept.setVisibility(View.VISIBLE);
+            accept.setText("Hand Over");
+            accept.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent borrower_return_intent = new Intent(request_description.this, borrower_return_activity.class);
+                    startActivity(borrower_return_intent);
+                }
+            });
+        } else if (m.equals("RECEIVED") && s.equals(Book.BORROWED)) {
+            accept.setVisibility(View.VISIBLE);
+            accept.setText("Hand Over");
+            accept.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent borrower_return_intent = new Intent(request_description.this, borrower_return_activity.class);
+                    startActivity(borrower_return_intent);
+                }
+            });
+        } else if (m.equals("SENT") && s.equals(Book.CONFIRM_BORROWED)) {
+            accept.setVisibility(View.VISIBLE);
+            accept.setText("Hand Over");
+            accept.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent borrower_return_intent = new Intent(request_description.this, borrower_return_activity.class);
+                    startActivity(borrower_return_intent);
+                }
+            });
+        } else if (m.equals("RECEIVED") && s.equals(Book.CONFIRM_BORROWED)) {
+            accept.setVisibility(View.VISIBLE);
+            accept.setText("Hand Over");
+            accept.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent borrower_return_intent = new Intent(request_description.this, borrower_return_activity.class);
+                    startActivity(borrower_return_intent);
+                }
+            });
+        } else if (m.equals("SENT") && s.equals(Book.RETURN)) {
+            accept.setVisibility(View.VISIBLE);
+            accept.setText("Hand Over");
+            accept.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent borrower_return_intent = new Intent(request_description.this, borrower_return_activity.class);
+                    startActivity(borrower_return_intent);
+                }
+            });
+        } else if (m.equals("RECEIVED") && s.equals(Book.RETURN)) {
+            accept.setVisibility(View.VISIBLE);
+            accept.setText("Hand Over");
+            accept.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent borrower_return_intent = new Intent(request_description.this, borrower_return_activity.class);
+                    startActivity(borrower_return_intent);
+                }
+            });
         }
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(request_description.this, request_navigator.class);
-                startActivity(intent);
+//                Intent intent = new Intent(request_description.this, request_navigator.class);
+//                startActivity(intent);
                 finish();
             }
         });
