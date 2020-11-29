@@ -20,6 +20,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
 
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="531b0704f0bdab3d"/>
+
         <activity android:name=".add_book_activity" />
         <activity android:name=".book_description_activity" />
         <activity android:name=".borrower_return_activity"/>
