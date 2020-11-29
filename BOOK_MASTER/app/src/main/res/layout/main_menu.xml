@@ -53,12 +53,11 @@
         android:layout_width="140dp"
         android:layout_height="50dp"
         android:layout_marginTop="64dp"
-        android:layout_marginEnd="136dp"
-        android:layout_marginRight="136dp"
         android:background="@drawable/button_s"
         android:text="Log Out"
         android:textColor="#FF000000"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Borrow_main_button" />
 
     <Button
@@ -112,8 +111,8 @@
         android:id="@+id/main_menu_request"
         android:layout_width="140dp"
         android:layout_height="100dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginLeft="52dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
         android:layout_marginTop="96dp"
         android:background="@drawable/button_s"
         android:drawableTop="@drawable/icon_request"
