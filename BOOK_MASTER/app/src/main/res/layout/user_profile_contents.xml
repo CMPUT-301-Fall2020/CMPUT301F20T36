@@ -18,10 +18,10 @@
     <TextView
         android:id="@+id/userprofile_content_contact_info"
         android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_height="43dp"
         android:background="#FFFFFF"
         android:text="Status"
+        android:gravity="center"
         android:textColor="#000000"
         android:textSize="18sp" />
 

@@ -18,7 +18,10 @@
         android:text="Title"
         android:textColor="#000000"
         android:textStyle="bold"
+
         android:maxLines="4"
+        android:textSize="18sp"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,6 +37,8 @@
         android:textColor="#000000"
         android:textStyle="bold"
         android:maxLines="4"
+
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Borrow_BookTitle" />
 
@@ -43,14 +48,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginTop="344dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginRight="52dp"
-        android:background="@drawable/buttonshape"
+        android:layout_marginEnd="56dp"
+        android:layout_marginRight="56dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/button_s"
         android:text="Back"
         android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Borrow_BookISBN" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/Borrow_BookISBN"
@@ -63,6 +68,7 @@
         android:text="ISBN"
         android:textColor="#000000"
         android:textStyle="bold"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Borrow_BookOwner" />
 
@@ -70,14 +76,14 @@
         android:id="@+id/Borrow_borrow_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginLeft="52dp"
-        android:layout_marginTop="344dp"
-        android:background="@drawable/buttonshape"
+        android:layout_marginStart="56dp"
+        android:layout_marginLeft="56dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/button_s"
         android:text="Borrow"
         android:textColor="#000000"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Borrow_BookISBN" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/Borrow_BookStatus"
@@ -92,6 +98,7 @@
         android:text="Status"
         android:textColor="#000000"
         android:textStyle="bold"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Borrow_BookAuthor" />
 
@@ -108,6 +115,7 @@
         android:text="Owner"
         android:textColor="#000000"
         android:textStyle="bold"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Borrow_BookStatus" />
 

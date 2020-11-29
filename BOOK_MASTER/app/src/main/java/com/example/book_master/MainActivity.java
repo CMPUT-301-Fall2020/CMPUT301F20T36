@@ -2,10 +2,6 @@ package com.example.book_master;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 
 import android.view.View;
@@ -13,8 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.book_master.fragment.RegisterFrag;
 import com.example.book_master.models.DBHelper;
-import com.example.book_master.models.User;
 
 /**
  * This activity class is used to handle login and sign up stage
@@ -61,8 +57,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFrag.OnFr
             // the sign up will be handled by DBhelper, then user should login from MainActivity
             @Override
             public void onClick(View v) {
-                RegisterFrag
-                        .newInstance(emailText.getText().toString(),
+                RegisterFrag.newInstance(emailText.getText().toString(),
                                 passwordText.getText().toString())
                         .show(getSupportFragmentManager(), "Create_Account");
             }

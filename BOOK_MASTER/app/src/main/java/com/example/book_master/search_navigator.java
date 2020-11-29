@@ -23,10 +23,9 @@ public class search_navigator extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bottom_nav_test);
+        setContentView(R.layout.search_bottom_nav);
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        //BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         viewPager = (ViewPager) findViewById(R.id.vp);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -54,13 +53,8 @@ public class search_navigator extends AppCompatActivity {
         viewPager.setAdapter(viewPagerAdapter);
         List<Fragment> list = new ArrayList<>();
         list.add(new search_page_activity());
-        list.add(new retrieve_username_activity());
-
-//        list.add(TestFragment.newInstance("钱包"));
-//        list.add(TestFragment.newInstance("卡片"));
-//        list.add(TestFragment.newInstance("个人"));
+        list.add(new search_username_activity());
         viewPagerAdapter.setList(list);
-
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {

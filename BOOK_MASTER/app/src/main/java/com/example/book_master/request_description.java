@@ -1,30 +1,40 @@
 package com.example.book_master;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.book_master.models.Book;
 import com.example.book_master.models.BookList;
 import com.example.book_master.models.DBHelper;
 import com.example.book_master.models.Message;
 import com.example.book_master.models.MessageList;
+import com.google.android.gms.maps.SupportMapFragment;
 
 public class request_description extends AppCompatActivity {
     TextView title, status, sender, receiver;
     Button accept, decline, back;
     Message message;
     String s, m;
+    SupportMapFragment supportMapFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.request_description);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
+
+     //   supportMapFragment = (SupportMapFragment) getSupportFragmentManager()
+    //           .findFragmentById(R.id.mapsView);
+
+
+
+
         message = (Message) bundle.getSerializable("message");
         s = (String) bundle.getSerializable("status");
         m = (String) bundle.getSerializable("mode");
@@ -60,7 +70,7 @@ public class request_description extends AppCompatActivity {
                     b.setStatus(Book.ACCEPTED);
                     b.setBorrower(message.getSender());
                     DBHelper.setBookDoc(isbn,b,request_description.this);
-                    Intent intent = new Intent(request_description.this, request_menu.class);
+                    Intent intent = new Intent(request_description.this, request_navigator.class);
                     startActivity(intent);
                     finish();
                 }
@@ -79,7 +89,7 @@ public class request_description extends AppCompatActivity {
                         }
                     }
                     DBHelper.setBookDoc(isbn, b, request_description.this);
-                    Intent intent = new Intent(request_description.this, request_menu.class);
+                    Intent intent = new Intent(request_description.this, request_navigator.class);
                     startActivity(intent);
                     finish();
                 }
@@ -97,7 +107,7 @@ public class request_description extends AppCompatActivity {
                     Book b = BookList.getBook(isbn);
                     b.setStatus(Book.BORROWED);
                     DBHelper.setBookDoc(isbn,b,request_description.this);
-                    Intent intent = new Intent(request_description.this, request_menu.class);
+                    Intent intent = new Intent(request_description.this, request_navigator.class);
                     startActivity(intent);
                     finish();
                 }
@@ -116,7 +126,7 @@ public class request_description extends AppCompatActivity {
                         }
                     }
                     DBHelper.setBookDoc(isbn, b, request_description.this);
-                    Intent intent = new Intent(request_description.this, request_menu.class);
+                    Intent intent = new Intent(request_description.this, request_navigator.class);
                     startActivity(intent);
                     finish();
                 }
@@ -132,7 +142,7 @@ public class request_description extends AppCompatActivity {
                     Book b = BookList.getBook(isbn);
                     b.setStatus(Book.AVAILABLE);
                     DBHelper.setBookDoc(isbn,b,request_description.this);
-                    Intent intent = new Intent(request_description.this, request_menu.class);
+                    Intent intent = new Intent(request_description.this, request_navigator.class);
                     startActivity(intent);
                     finish();
                 }
@@ -143,7 +153,7 @@ public class request_description extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(request_description.this, request_menu.class);
+                Intent intent = new Intent(request_description.this, request_navigator.class);
                 startActivity(intent);
                 finish();
             }

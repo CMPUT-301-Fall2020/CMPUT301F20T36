@@ -37,11 +37,12 @@ public class edit_profile_activity extends AppCompatActivity {
                     UserList.getCurrentUser().setContactInfo(new_contact);
                     DBHelper.setUserDoc(UserList.getCurrentUser(), edit_profile_activity.this);
 
-                    Intent intent = new Intent(edit_profile_activity.this, profile_page_activity.class);
-                    startActivity(intent);
+//                    Intent intent = new Intent(edit_profile_activity.this, profile_description_activity.class);
+//                    startActivity(intent);
                     finish();
                 }
             }
         });
     }
+
 }
