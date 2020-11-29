@@ -121,7 +121,7 @@ public class edit_book_activity extends AppCompatActivity {
 
                     DBHelper.setBookDoc(book.getISBN(), book, edit_book_activity.this);
 
-                    Intent intent = new Intent(edit_book_activity.this, check_list_activity.class);
+                    Intent intent = new Intent(edit_book_activity.this, my_account_navigator.class);
                     startActivity(intent);
                     finish();
                 }
@@ -135,7 +135,7 @@ public class edit_book_activity extends AppCompatActivity {
         Discard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(edit_book_activity.this, check_list_activity.class);
+                Intent intent = new Intent(edit_book_activity.this, my_account_navigator.class);
                 startActivity(intent);
                 finish();
             }

@@ -37,7 +37,7 @@ import static android.app.Activity.RESULT_OK;
  */
 // As a borrower, I want to specify a keyword,
 // and search for all books that are not currently accepted or borrowed whose description contains the keyword.
-public class search_page_activity extends Fragment {
+public class search_page extends Fragment {
     private Context mContext;
 
     private Button scan_ISBN;
@@ -48,8 +48,8 @@ public class search_page_activity extends Fragment {
     private ArrayAdapter<Book> bookAdapter;
     private ListView bookList;
 
-    public static search_page_activity newInstance(String param1, String param2){
-        search_page_activity fragment = new search_page_activity();
+    public static search_page newInstance(String param1, String param2){
+        search_page fragment = new search_page();
         Bundle args = new Bundle();
         args.putString("1", param1);
         args.putString("2", param2);
