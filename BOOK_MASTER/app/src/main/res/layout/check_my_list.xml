@@ -33,24 +33,16 @@
 
         <Spinner
             android:id="@+id/status_spinner"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:layout_width="112dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="240dp" />
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/check_list_add"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#CCFFFFFF"
-        android:text="ADD"
-        android:textColor="#000000" />
-
     <ListView
         android:id="@+id/books"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="610dp"
         android:background="#CC3A3B3C"
         android:baselineAligned="false"
         tools:layout_conversion_absoluteHeight="731dp"
@@ -59,5 +51,13 @@
         tools:layout_editor_absoluteY="0dp">
 
     </ListView>
+
+    <Button
+        android:id="@+id/check_list_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttonshape"
+        android:text="ADD"
+        android:textColor="#000000" />
 
 </LinearLayout>
