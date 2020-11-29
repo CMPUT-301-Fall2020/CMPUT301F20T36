@@ -20,7 +20,6 @@ public class request_description extends AppCompatActivity {
     Button accept, decline, back;
     Message message;
     String s, m;
-    SupportMapFragment supportMapFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +27,6 @@ public class request_description extends AppCompatActivity {
         setContentView(R.layout.request_description);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-
-        supportMapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.mapsView);
-
-
-
 
         message = (Message) bundle.getSerializable("message");
         s = (String) bundle.getSerializable("status");
@@ -70,7 +63,7 @@ public class request_description extends AppCompatActivity {
                     b.setStatus(Book.ACCEPTED);
                     b.setBorrower(message.getSender());
                     DBHelper.setBookDoc(isbn,b,request_description.this);
-                    Intent intent = new Intent(request_description.this, request_navigator.class);
+                    Intent intent = new Intent(request_description.this, map_select_activity.class);
                     startActivity(intent);
                     finish();
                 }

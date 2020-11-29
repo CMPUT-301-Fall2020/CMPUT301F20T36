@@ -46,7 +46,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
     public void onViewCreated(@NonNull View view, @Nullable Bundle saveInstanceState){
         super.onViewCreated(view, saveInstanceState);
 
-        mapView = view.findViewById(R.id.mapsView);
+//        mapView = view.findViewById(R.id.mapsView);
 
         if (mapView != null){
             mapView.onCreate(null);
@@ -59,8 +59,8 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        MapsInitializer.initialize(getContext());
-        map = googleMap;
+//        MapsInitializer.initialize(getContext());
+//        map = googleMap;
 
 
     }
