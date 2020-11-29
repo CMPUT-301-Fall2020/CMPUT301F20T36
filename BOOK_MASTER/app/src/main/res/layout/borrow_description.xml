@@ -18,8 +18,10 @@
         android:text="Title"
         android:textColor="#000000"
         android:textStyle="bold"
-
-        android:maxLines="4"
+        android:gravity="left"
+        android:maxLines="1"
+        android:autoSizeMaxTextSize="30dp"
+        android:autoSizeMinTextSize="2dp"
         android:textSize="18sp"
 
         app:layout_constraintStart_toStartOf="parent"
@@ -36,8 +38,10 @@
         android:text="Author"
         android:textColor="#000000"
         android:textStyle="bold"
-        android:maxLines="4"
-
+        android:gravity="left"
+        android:maxLines="1"
+        android:autoSizeMaxTextSize="30dp"
+        android:autoSizeMinTextSize="2dp"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Borrow_BookTitle" />
@@ -68,7 +72,10 @@
         android:text="ISBN"
         android:textColor="#000000"
         android:textStyle="bold"
-        android:textSize="18sp"
+        android:gravity="left"
+        android:maxLines="1"
+        android:autoSizeMaxTextSize="30dp"
+        android:autoSizeMinTextSize="2dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Borrow_BookOwner" />
 
@@ -94,7 +101,6 @@
         android:layout_marginTop="36dp"
         android:background="#CCD4D5D6"
         android:ems="10"
-        android:hint="Status"
         android:text="Status"
         android:textColor="#000000"
         android:textStyle="bold"
@@ -111,8 +117,10 @@
         android:layout_marginTop="36dp"
         android:background="#CCD4D5D6"
         android:ems="10"
-        android:hint="Owner"
         android:text="Owner"
+        android:maxLines="1"
+        android:autoSizeMaxTextSize="30dp"
+        android:autoSizeMinTextSize="2dp"
         android:textColor="#000000"
         android:textStyle="bold"
         android:textSize="18sp"
