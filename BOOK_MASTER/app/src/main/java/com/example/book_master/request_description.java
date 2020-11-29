@@ -28,9 +28,11 @@ public class request_description extends AppCompatActivity {
         setContentView(R.layout.request_description);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
+
         
 //        supportMapFragment = (SupportMapFragment) getSupportFragmentManager()
 //                .findFragmentById(R.id.mapsView);
+
 
         message = (Message) bundle.getSerializable("message");
         s = (String) bundle.getSerializable("status");

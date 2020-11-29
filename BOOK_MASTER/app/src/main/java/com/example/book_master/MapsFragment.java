@@ -47,6 +47,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         super.onViewCreated(view, saveInstanceState);
 
 //        mapView = view.findViewById(R.id.mapsView);
+
 //
 //        if (mapView != null){
 //            mapView.onCreate(null);
@@ -54,6 +55,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 //            mapView.getMapAsync(this);
 //
 //        }
+
 
     }
 
