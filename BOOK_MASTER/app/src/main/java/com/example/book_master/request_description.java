@@ -29,8 +29,8 @@ public class request_description extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
-        supportMapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.mapsView);
+//        supportMapFragment = (SupportMapFragment) getSupportFragmentManager()
+//                .findFragmentById(R.id.mapsView);
 
 
 

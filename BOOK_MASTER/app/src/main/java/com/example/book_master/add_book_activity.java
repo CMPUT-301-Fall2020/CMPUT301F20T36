@@ -2,6 +2,7 @@ package com.example.book_master;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.book_master.models.Book;
@@ -24,6 +26,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -64,13 +67,7 @@ public class add_book_activity extends AppCompatActivity {
         ISBN = "0061964360";
         // ------End Here------
 
-        String title = "";
-        String author = "";
-        try {
-            retrieveBookInfo(title, author);
-            TitleView.setText(title);
-            AuthorView.setText(author);
-        } catch (JSONException e) { e.printStackTrace(); }
+        retrieveBookInfo ();
 
         /**
          * TODO: US 01.02.01
@@ -85,16 +82,6 @@ public class add_book_activity extends AppCompatActivity {
                 integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
                 integrator.setPrompt("Scanning ISBN");
                 integrator.initiateScan();
-
-//                String title = "";
-//                String author = "";
-//                try {
-//                    retrieveBookInfo(title, author);
-//                    TitleView.setText(title);
-//                    AuthorView.setText(author);
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
             }
         });
 
@@ -142,85 +129,74 @@ public class add_book_activity extends AppCompatActivity {
         }
     }
 
-    void retrieveBookInfo (String title, String author) throws JSONException {
-        JSONObject responseJson = new GoogleApiRequest().doInBackground(ISBN);
-        JSONObject item = responseJson
-                .getJSONArray("items")
-                .getJSONObject(0)
-                .getJSONObject("volumeInfo");
-        title = item.getString("title");
-        JSONArray authorJSONArray = item.getJSONArray("authors");
-        for (int i = 0; i < authorJSONArray.length(); i++) {
-            if (i == 1) {author = authorJSONArray.getJSONObject(i).toString();}
-            else {author += " & " + authorJSONArray.getJSONObject(i).toString();}
-        }
+    void retrieveBookInfo () {
+        String bookApiUrl = "https://www.googleapis.com/books/v1/volumes?q=isbn:" + ISBN;
+        new JsonTask().execute(bookApiUrl);
     }
 
+    // retrieve JASON file from URL
     // Reference:
-    // https://stackoverflow.com/questions/14571478/using-google-books-api-in-android/45000302#45000302
-    // Received ISBN from Barcode Scanner. Send to GoogleBooks to obtain book information.
-    class GoogleApiRequest extends AsyncTask<String, Object, JSONObject>{
-        @Override
-        protected JSONObject doInBackground(String... ISBN) {
-            // Stop if cancelled
-            if(isCancelled()) {
-                return null;
-            }
+    //  https://stackoverflow.com/questions/33229869/get-json-data-from-url-using-android
+    private class JsonTask extends AsyncTask<String, String, String> {
+        protected String doInBackground(String... params) {
+            HttpURLConnection connection = null;
+            BufferedReader reader = null;
 
-            String apiUrlString = "https://www.googleapis.com/books/v1/volumes?q=isbn:" + ISBN;
+            try {
+                URL url = new URL(params[0]);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.connect();
 
-            try{
-                HttpURLConnection connection = null;
-                // Build Connection.
-                try{
-                    URL url = new URL(apiUrlString);
-                    connection = (HttpURLConnection) url.openConnection();
-                    connection.setRequestMethod("GET");
-                    connection.setReadTimeout(5000); // 5 seconds
-                    connection.setConnectTimeout(5000); // 5 seconds
-                } catch (MalformedURLException e) {
-                    // Impossible: The only two URLs used in the app are taken from string resources.
-                    e.printStackTrace();
-                } catch (ProtocolException e) {
-                    // Impossible: "GET" is a perfectly valid request method.
-                    e.printStackTrace();
+
+                InputStream stream = connection.getInputStream();
+
+                reader = new BufferedReader(new InputStreamReader(stream));
+
+                StringBuffer buffer = new StringBuffer();
+                String line = "";
+
+                while ((line = reader.readLine()) != null) {
+                    buffer.append(line + "\n");
+                    Log.d("Response: ", "> " + line);   //here u ll get whole response...... :-)
+                }
+
+                return buffer.toString();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (connection != null) {
+                    connection.disconnect();
+                }
+                try {
+                    if (reader != null) {
+                        reader.close();
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            }
+            return null;
+        }
 
-                int responseCode = connection.getResponseCode();
-                if(responseCode != 200){
-                    Log.w(getClass().getName(), "GoogleBooksAPI request failed. Response Code: " + responseCode);
-                    connection.disconnect();
-                    return null;
-                }
-
-                // Read data from response.
-                StringBuilder builder = new StringBuilder();
-                BufferedReader responseReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                String line = responseReader.readLine();
-                while (line != null){
-                    builder.append(line);
-                    line = responseReader.readLine();
-                }
-                String responseString = builder.toString();
-                Log.d(getClass().getName(), "Response String: " + responseString);
-                JSONObject responseJson = new JSONObject(responseString);
-
-                // Close connection and return response code.
-                connection.disconnect();
-                return responseJson;
-            } catch (SocketTimeoutException e) {
-                Log.w(getClass().getName(), "Connection timed out. Returning null");
-                return null;
-            } catch(IOException e) {
-                Log.d(getClass().getName(), "IOException when connecting to Google Books API.");
-                e.printStackTrace();
-                return null;
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            try {
+                JSONObject obj = new JSONObject(result);
+                JSONObject item = obj
+                    .getJSONArray("items")
+                    .getJSONObject(0)
+                    .getJSONObject("volumeInfo");
+                TitleView.setText(item.getString("title"));
+                String author = item.getString("authors");
+                author.replaceAll("[\\[\\]\"]", "");
+                AuthorView.setText(author);
+                Toast.makeText(add_book_activity.this, author,
+                        Toast.LENGTH_LONG).show();
             } catch (JSONException e) {
-                Log.d(getClass().getName(), "JSONException when connecting to Google Books API.");
                 e.printStackTrace();
-                return null;
             }
         }
     }
