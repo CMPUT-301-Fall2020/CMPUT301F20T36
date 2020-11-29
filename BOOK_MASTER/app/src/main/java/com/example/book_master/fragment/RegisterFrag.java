@@ -31,8 +31,6 @@ public class RegisterFrag extends DialogFragment {
 
     private OnFragmentInteractionListener listener;
     public interface OnFragmentInteractionListener {
-//        void onRegisterPressed();
-//        void onCancelPressed();
     }
 
     // take in an Item and store it in the Fragment's Bundle object

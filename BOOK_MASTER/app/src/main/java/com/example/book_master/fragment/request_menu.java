@@ -1,6 +1,5 @@
 package com.example.book_master.fragment;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.content.Context;
@@ -11,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -27,10 +25,9 @@ import com.example.book_master.request_description;
 import java.util.ArrayList;
 
 public class request_menu extends Fragment {
-
     ListView requestList;
     TextView requestListTitle;
-    ArrayList<Message> messData = new ArrayList<Message>();
+    ArrayList<Message> messData = new ArrayList<>();
     ArrayAdapter<Message> messAdapter;
     Spinner spinner_status;
     ArrayAdapter<String> spinnerAdapter_status, spinnerAdapter_mode;
@@ -38,7 +35,6 @@ public class request_menu extends Fragment {
     Context mContext;
 
     public static request_menu newInstance(String name) {
-
         Bundle args = new Bundle();
         args.putString("mode", name);
         request_menu fragment = new request_menu();
@@ -59,13 +55,14 @@ public class request_menu extends Fragment {
         requestList = view.findViewById(R.id.Request_list);
         requestListTitle = view.findViewById(R.id.Request_list_title);
         spinner_status = view.findViewById(R.id.request_status_spinner);
+
         Bundle bundle = getArguments();
         if (bundle != null) {
             mode = bundle.get("mode").toString();
-
             requestListTitle.setText("           Request List");
             final String name = UserList.getCurrentUser().getUsername();
             final String[] status = {"All", Book.REQUESTED, Book.ACCEPTED, Book.BORROWED, Book.RETURN};
+
             messData = MessageList.searchSender(name);
             messAdapter = new CustomRequestList(getActivity(), messData);
             requestList.setAdapter(messAdapter);
@@ -80,14 +77,12 @@ public class request_menu extends Fragment {
                     intent.putExtras(bundle);
                     startActivity(intent);
                     getActivity().finish();
-
                 }
             });
 
-            spinnerAdapter_status = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, status);
+            spinnerAdapter_status = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, status);
             spinnerAdapter_status.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinner_status.setAdapter(spinnerAdapter_status);
-
 
             spinner_status.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
@@ -100,7 +95,7 @@ public class request_menu extends Fragment {
                             messData = MessageList.searchReceiver(name);
                         }
                     } else {
-                        ArrayList<Message> temp = new ArrayList<Message>();
+                        ArrayList<Message> temp = new ArrayList<>();
                         if (mode.equals("SENT")) {
                             for (Message i : MessageList.searchSender(name)) {
                                 if (i.getStatus().equals(status[position])) {
@@ -121,16 +116,14 @@ public class request_menu extends Fragment {
                 }
 
                 @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
+                public void onNothingSelected(AdapterView<?> parent) { }
             });
-
         }
     }
+
     @Override
-    public void onAttach(Context a){
-        super.onAttach(a);
-        mContext = a;
+    public void onAttach(Context context){
+        super.onAttach(context);
+        mContext = context;
     }
 }
