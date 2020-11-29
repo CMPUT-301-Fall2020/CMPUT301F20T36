@@ -1,0 +1,327 @@
+Index: app/src/main/java/com/example/book_master/owner_handover_activity.java
+===================================================================
+--- app/src/main/java/com/example/book_master/owner_handover_activity.java	(revision 10a67ea77b3f33537a3b75ef4773dafda313cd73)
++++ app/src/main/java/com/example/book_master/owner_handover_activity.java	(revision 10a67ea77b3f33537a3b75ef4773dafda313cd73)
+@@ -1,85 +0,0 @@
+-package com.example.book_master;
+-
+-import androidx.appcompat.app.AppCompatActivity;
+-
+-import android.content.Intent;
+-import android.os.Bundle;
+-import android.view.View;
+-import android.widget.Button;
+-import android.widget.TextView;
+-import android.widget.Toast;
+-
+-import com.example.book_master.models.Book;
+-import com.example.book_master.models.BookList;
+-import com.example.book_master.models.DBHelper;
+-import com.google.zxing.integration.android.IntentIntegrator;
+-import com.google.zxing.integration.android.IntentResult;
+-import com.example.book_master.models.Message;
+-
+-
+-
+-public class owner_handover_activity extends AppCompatActivity implements View.OnClickListener{
+-    private Button Scan_Button;
+-    private Button Hand_Over;
+-    private TextView ISBN_Display;
+-    private String ISBN;
+-    private Book book;
+-    private Message message;
+-
+-
+-    @Override
+-    protected void onCreate(Bundle savedInstanceState) {
+-        super.onCreate(savedInstanceState);
+-        setContentView(R.layout.owner_handover);
+-        ISBN = "";
+-//        message = (Message) bundle.getSerializable("message");
+-
+-        Scan_Button = (Button) findViewById(R.id.Owner_handover_ISBNbutton);
+-        Hand_Over = (Button) findViewById(R.id.Owner_handover_deliverButton);
+-
+-        ISBN_Display = (TextView) findViewById(R.id.Owner_handover_name);
+-
+-        Scan_Button.setOnClickListener(new View.OnClickListener(){
+-            @Override
+-            public void onClick(View v) {
+-                IntentIntegrator integrator = new IntentIntegrator(this);
+-                integrator.setCaptureActivity(capture_activity.class);
+-                integrator.setOrientationLocked(false);
+-                integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
+-                integrator.setPrompt("Scanning ISBN");
+-                integrator.initiateScan();
+-            }
+-        });
+-        Hand_Over.setOnClickListener(new View.OnClickListener() {
+-//            @Override
+-//            public void onClick(View v) {
+-//
+-//                // Set status of the book with ISBN as "Borrowed" & send message to borrower
+-//                DBHelper.setUserDoc(String.valueOf(message.hashCode()), owner_handover_activity.this);
+-//                message.setStatus("BORROWED");
+-//                DBHelper.setMessageDoc(String.valueOf(message.hashCode()), message,owner_handover_activity.this);
+-//
+-//                finish();
+-//            }
+-        });
+-
+-    }
+-
+-
+-
+-    @Override
+-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+-        IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+-        if (scanningResult != null) {
+-            if (scanningResult.getContents() != null) {
+-                ISBN = scanningResult.getContents();
+-                ISBN_Display.setText("ISBN: " + ISBN);
+-            }
+-            else {
+-                Toast.makeText(this, "No Results", Toast.LENGTH_LONG).show();
+-            }
+-        } else {
+-            super.onActivityResult(requestCode, resultCode, intent);
+-        }
+-    }
+-}
+\ No newline at end of file
+Index: app/src/debug/res/values/google_maps_api.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/debug/res/values/google_maps_api.xml	(date 1606583662013)
++++ app/src/debug/res/values/google_maps_api.xml	(date 1606583662013)
+@@ -0,0 +1,24 @@
++<resources>
++    <!--
++    TODO: Before you run your application, you need a Google Maps API key.
++
++    To get one, follow this link, follow the directions and press "Create" at the end:
++
++    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=E1:22:36:E9:AF:98:2D:27:97:1D:BB:31:76:9C:CA:AC:21:D4:F8:80%3Bcom.example.book_master
++
++    You can also add your credentials to an existing key, using these values:
++
++    Package name:
++    com.example.book_master
++
++    SHA-1 certificate fingerprint:
++    E1:22:36:E9:AF:98:2D:27:97:1D:BB:31:76:9C:CA:AC:21:D4:F8:80
++
++    Alternatively, follow the directions here:
++    https://developers.google.com/maps/documentation/android/start#get-key
++
++    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
++    string in this file.
++    -->
++    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">YOUR_KEY_HERE</string>
++</resources>
+\ No newline at end of file
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    package=\"com.example.book_master\">\r\n\r\n    <uses-permission android:name=\"android.permission.CAMERA\" />\r\n    <uses-permission android:name=\"android.permission.INTERNET\" />\r\n    <uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />\r\n\r\n    <uses-feature android:name=\"android.hardware.camera\" />\r\n    <uses-feature android:name=\"android.hardware.camera.autofocus\" />\r\n\r\n    <uses-configuration android:noHistory=\"true\" />\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:icon=\"@drawable/logo\"\r\n        android:label=\"BookMaster\"\r\n        android:noHistory=\"true\"\r\n        android:roundIcon=\"@drawable/logo\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/Theme.AppCompat.NoActionBar\">\r\n\r\n\r\n        <activity android:name=\".request_description\" />\r\n\r\n        <activity android:name=\".add_book_activity\" />\r\n        <activity android:name=\".edit_book_activity\" />\r\n        <activity android:name=\".edit_profile_activity\" />\r\n        <activity android:name=\".profile_page_activity\" />\r\n        <activity android:name=\".retrive_pofile_activity\" />\r\n        <activity android:name=\".borrower_borrowed_book_list_activity\" />\r\n        <activity android:name=\".retrieve_username_activity\" />\r\n        <activity android:name=\".search_page_book_description\" />\r\n        <activity android:name=\".search_page_activity\" /> <!-- <activity android:name=\".owner_receive_activity\" /> -->\r\n        <activity android:name=\".borrower_return_activity\" />\r\n        <activity android:name=\".return_activity\" />\r\n        <activity android:name=\".check_list_activity\" />\r\n        <activity android:name=\".main_menu_activity\" />\r\n        <activity android:name=\".BookInfo\" />\r\n        <activity android:name=\".message_description\" />\r\n        <activity android:name=\".request_menu\" />\r\n        <activity android:name=\".show_notification_activity\" />\r\n        <activity android:name=\".MainActivity\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n        <activity\r\n            android:name=\".owner_receive_activity\"\r\n            android:screenOrientation=\"fullSensor\"\r\n            android:stateNotNeeded=\"true\"\r\n            android:windowSoftInputMode=\"stateAlwaysHidden\" />\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision 10a67ea77b3f33537a3b75ef4773dafda313cd73)
++++ app/src/main/AndroidManifest.xml	(date 1606583661597)
+@@ -2,6 +2,12 @@
+ <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+     package="com.example.book_master">
+ 
++    <!--
++         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
++         Google Maps Android API v2, but you must specify either coarse or fine
++         location permissions for the "MyLocation" functionality.
++    -->
++    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+     <uses-permission android:name="android.permission.CAMERA" />
+     <uses-permission android:name="android.permission.INTERNET" />
+     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+@@ -20,9 +26,19 @@
+         android:supportsRtl="true"
+         android:theme="@style/Theme.AppCompat.NoActionBar">
+ 
++        <!--
++             The API key for Google Maps-based APIs is defined as a string resource.
++             (See the file "res/values/google_maps_api.xml").
++             Note that the API key is linked to the encryption key used to sign the APK.
++             You need a different API key for each encryption key, including the release key that is used to
++             sign the APK for publishing.
++             You can define the keys for the debug and release targets in src/debug/ and src/release/.
++        -->
++        <meta-data
++            android:name="com.google.android.geo.API_KEY"
++            android:value="@string/google_maps_key" />
+ 
+         <activity android:name=".request_description" />
+-
+         <activity android:name=".add_book_activity" />
+         <activity android:name=".edit_book_activity" />
+         <activity android:name=".edit_profile_activity" />
+Index: app/src/release/res/values/google_maps_api.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/release/res/values/google_maps_api.xml	(date 1606583662046)
++++ app/src/release/res/values/google_maps_api.xml	(date 1606583662046)
+@@ -0,0 +1,20 @@
++<resources>
++    <!--
++    TODO: Before you release your application, you need a Google Maps API key.
++
++    To do this, you can either add your release key credentials to your existing
++    key, or create a new key.
++
++    Note that this file specifies the API key for the release build target.
++    If you have previously set up a key for the debug target with the debug signing certificate,
++    you will also need to set up a key for your release certificate.
++
++    Follow the directions here:
++
++    https://developers.google.com/maps/documentation/android/signup
++
++    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
++    string in this file.
++    -->
++    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">YOUR_KEY_HERE</string>
++</resources>
+\ No newline at end of file
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <string name=\"app_name\">BOOK_MASTER</string>\r\n\r\n    <string name=\"title_activity_main_menu_activity\">main_menu_activity</string>\r\n\r\n    <!-- Strings used for fragments for navigation -->\r\n    <string name=\"first_fragment_label\">First Fragment</string>\r\n    <string name=\"second_fragment_label\">Second Fragment</string>\r\n    <string name=\"next\">Next</string>\r\n    <string name=\"previous\">Previous</string>\r\n\r\n    <string name=\"hello_first_fragment\">Hello first fragment</string>\r\n    <string name=\"hello_second_fragment\">Hello second fragment. Arg: %1$s</string>\r\n    <string name=\"scan\">Scan</string>\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(revision 10a67ea77b3f33537a3b75ef4773dafda313cd73)
++++ app/src/main/res/values/strings.xml	(date 1606564270507)
+@@ -12,4 +12,6 @@
+     <string name="hello_first_fragment">Hello first fragment</string>
+     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+     <string name="scan">Scan</string>
++    <!-- TODO: Remove or change this placeholder text -->
++    <string name="hello_blank_fragment">Hello blank fragment</string>
+ </resources>
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_maps.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_maps.xml	(date 1606583661657)
++++ app/src/main/res/layout/fragment_maps.xml	(date 1606583661657)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="utf-8"?>
++<fragment xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:id="@+id/map"
++    android:name="com.google.android.gms.maps.SupportMapFragment"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".MapsFragment" />
+\ No newline at end of file
+Index: app/src/main/java/com/example/book_master/MapsFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/book_master/MapsFragment.java	(date 1606583661106)
++++ app/src/main/java/com/example/book_master/MapsFragment.java	(date 1606583661106)
+@@ -0,0 +1,57 @@
++package com.example.book_master;
++
++import androidx.annotation.NonNull;
++import androidx.annotation.Nullable;
++import androidx.fragment.app.Fragment;
++
++import android.os.Bundle;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++
++import com.google.android.gms.maps.CameraUpdateFactory;
++import com.google.android.gms.maps.GoogleMap;
++import com.google.android.gms.maps.OnMapReadyCallback;
++import com.google.android.gms.maps.SupportMapFragment;
++import com.google.android.gms.maps.model.LatLng;
++import com.google.android.gms.maps.model.MarkerOptions;
++
++public class MapsFragment extends Fragment {
++
++    private OnMapReadyCallback callback = new OnMapReadyCallback() {
++
++        /**
++         * Manipulates the map once available.
++         * This callback is triggered when the map is ready to be used.
++         * This is where we can add markers or lines, add listeners or move the camera.
++         * In this case, we just add a marker near Sydney, Australia.
++         * If Google Play services is not installed on the device, the user will be prompted to
++         * install it inside the SupportMapFragment. This method will only be triggered once the
++         * user has installed Google Play services and returned to the app.
++         */
++        @Override
++        public void onMapReady(GoogleMap googleMap) {
++            LatLng sydney = new LatLng(-34, 151);
++            googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
++            googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
++        }
++    };
++
++    @Nullable
++    @Override
++    public View onCreateView(@NonNull LayoutInflater inflater,
++                             @Nullable ViewGroup container,
++                             @Nullable Bundle savedInstanceState) {
++        return inflater.inflate(R.layout.fragment_maps, container, false);
++    }
++
++    @Override
++    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
++        super.onViewCreated(view, savedInstanceState);
++        SupportMapFragment mapFragment =
++                (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
++        if (mapFragment != null) {
++            mapFragment.getMapAsync(callback);
++        }
++    }
++}
+\ No newline at end of file
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>apply plugin: 'com.android.application'\r\napply plugin: 'com.google.gms.google-services'\r\n\r\nandroid {\r\n    compileSdkVersion 30\r\n    buildToolsVersion \"30.0.2\"\r\n\r\n    defaultConfig {\r\n        applicationId \"com.example.book_master\"\r\n        minSdkVersion 16\r\n        targetSdkVersion 30\r\n        versionCode 1\r\n        versionName \"1.0\"\r\n\r\n        multiDexEnabled true\r\n\r\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n}\r\n\r\ndependencies {\r\n    implementation fileTree(dir: \"libs\", include: [\"*.jar\"])\r\n    implementation 'androidx.appcompat:appcompat:1.2.0'\r\n    implementation 'androidx.constraintlayout:constraintlayout:2.0.2'\r\n\r\n    // ------Firebase------\r\n    implementation platform('com.google.firebase:firebase-bom:26.0.0')\r\n    implementation 'com.google.firebase:firebase-auth'\r\n    implementation 'com.google.firebase:firebase-firestore'\r\n    implementation 'com.google.firebase:firebase-storage'\r\n    implementation 'com.firebaseui:firebase-ui-storage:6.4.0'\r\n    implementation 'com.google.firebase:firebase-database'\r\n    implementation 'com.android.support:multidex:1.0.3'\r\n\r\n    // ------XML------\r\n    implementation 'com.google.android.gms:play-services-maps:17.0.0'\r\n    implementation 'com.google.android.material:material:1.2.1'\r\n    implementation 'androidx.navigation:navigation-fragment:2.3.1'\r\n    implementation 'androidx.navigation:navigation-ui:2.3.1'\r\n    implementation 'androidx.recyclerview:recyclerview:1.1.0'\r\n    implementation 'androidx.appcompat:appcompat:1.1.0'\r\n\r\n    // ------Display Imagine------\r\n    implementation 'com.github.bumptech.glide:glide:4.11.0'\r\n    implementation 'androidx.recyclerview:recyclerview:1.1.0'\r\n    // Glide v4 uses this new annotation processor\r\n    // see https://bumptech.github.io/glide/doc/generatedapi.html\r\n    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'\r\n\r\n    // ------Scanning------\r\n    implementation 'com.journeyapps:zxing-android-embedded:3.4.0'\r\n\r\n    // ------Unit Testing------\r\n    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.0.1'\r\n    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.0.1'\r\n\r\n    // ------Intent Testing------\r\n    androidTestImplementation 'com.jayway.android.robotium:robotium-solo:5.3.1'\r\n    androidTestImplementation 'com.android.support.test:rules:1.0.2'\r\n    androidTestImplementation 'com.android.support.test:runner:1.0.2'\r\n\r\n    implementation 'com.google.android.material:material:1.2.1'\r\n\r\n    testImplementation 'junit:junit:4.12'\r\n    androidTestImplementation 'androidx.test.ext:junit:1.1.2'\r\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'\r\n    implementation 'com.journeyapps:zxing-android-embedded:3.4.0'\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/build.gradle	(revision 10a67ea77b3f33537a3b75ef4773dafda313cd73)
++++ app/build.gradle	(date 1606583518490)
+@@ -50,6 +50,8 @@
+     // ------Display Imagine------
+     implementation 'com.github.bumptech.glide:glide:4.11.0'
+     implementation 'androidx.recyclerview:recyclerview:1.1.0'
++    implementation 'com.google.android.gms:play-services-maps:17.0.0'
++    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+     // Glide v4 uses this new annotation processor
+     // see https://bumptech.github.io/glide/doc/generatedapi.html
+     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+@@ -57,6 +59,12 @@
+     // ------Scanning------
+     implementation 'com.journeyapps:zxing-android-embedded:3.4.0'
+ 
++    // ------Geo Location------
++    implementation 'com.google.android.gms:play-services-maps:16.1.0'
++    implementation 'com.android.support:design:28.0.0:'
++
++
++
+     // ------Unit Testing------
+     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.0.1'
+     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.0.1'

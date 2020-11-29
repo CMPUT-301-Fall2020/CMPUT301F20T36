@@ -20,6 +20,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
 
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="531b0704f0bdab3d"/>
+
         <activity android:name=".add_book_activity" />
         <activity android:name=".book_description_activity" />
         <activity android:name=".borrower_return_activity"/>
@@ -28,6 +32,10 @@
         <activity android:name=".edit_book_activity" />
         <activity android:name=".edit_profile_activity" />
         <activity android:name=".main_menu_activity" />
+        <activity android:name=".book_description_activity" />
+        <activity android:name=".notification_description_activity" />
+        <activity android:name=".show_notification_activity" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
