@@ -97,15 +97,13 @@
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="48dp"
-        android:paddingTop="10sp"
         android:background="@drawable/button_s"
+        android:drawableTop="@drawable/icon_account"
+        android:paddingTop="10sp"
         android:text="My Account"
         android:textColor="#FF000000"
-        app:layout_constraintEnd_toStartOf="@+id/Search_main_button"
-        app:layout_constraintHorizontal_bias="0.228"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        android:drawableTop="@drawable/icon_account"/>
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <Button
         android:id="@+id/main_menu_request"

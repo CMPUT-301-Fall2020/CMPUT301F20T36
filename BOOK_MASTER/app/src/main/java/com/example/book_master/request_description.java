@@ -24,21 +24,23 @@ public class request_description extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.request_description);
+        setContentView(R.layout.message_description);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         message = (Message) bundle.getSerializable("message");
         s = (String) bundle.getSerializable("status");
         m = (String) bundle.getSerializable("mode");
 
-        title = findViewById(R.id.Request_BookTitle);
-        status = findViewById(R.id.Request_BookStatus);
-        sender = findViewById(R.id.Request_BookSender);
-        accept = findViewById(R.id.Request_ButtonAccept);
-        decline = findViewById(R.id.Request_ButtonDecline);
-        back = findViewById(R.id.Request_ButtonBack);
-        receiver = findViewById(R.id.Request_BookReceiver);
-        show_map = findViewById(R.id.Request_ButtonShowMap);
+        sender = findViewById(R.id.message_description_sender);
+        receiver = findViewById(R.id.message_description_reciever);
+        status = findViewById(R.id.message_description_status);
+        title = findViewById(R.id.message_description_title);
+
+        accept = findViewById(R.id.message_description_buttonAccept);
+        decline = findViewById(R.id.message_description_buttonDecline);
+        back = findViewById(R.id.message_description_back);
+        show_map = findViewById(R.id.message_description_buttonShowMap);
+
         if(BookList.getBook(message.getISBN()) != null) {
             title.setText(BookList.getBook(message.getISBN()).getTitle());
         }

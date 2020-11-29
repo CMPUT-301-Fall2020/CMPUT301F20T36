@@ -49,7 +49,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".map_select_activity"/>
-        <activity android:name=".notification_description_activity" />
         <activity android:name=".profile_description" />
         <activity android:name=".request_description" />
         <activity android:name=".request_navigator" />

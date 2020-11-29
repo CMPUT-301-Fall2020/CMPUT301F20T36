@@ -24,7 +24,7 @@ import java.util.ArrayList;
 // I want search results to show each book with its description, owner username, and status.
 public class search_page_book_description extends AppCompatActivity {
     private Book book;
-    private TextView title, author, isbn, status, owner;
+    private TextView title, author, isbn, status, owner, owner_description;
     private Button borrow, back;
 
     private ArrayList<Image> imageList;
@@ -33,33 +33,36 @@ public class search_page_book_description extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.borrow_description);
+        setContentView(R.layout.book_description);
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         book = (Book) bundle.getSerializable("book");
 
-        title = findViewById(R.id.Borrow_BookTitle);
-        author = findViewById(R.id.Borrow_BookAuthor);
-        isbn = findViewById(R.id.Borrow_BookISBN);
-        borrow = findViewById(R.id.Borrow_borrow_button);
-        back = findViewById(R.id.Borrow_back_button);
-        status = findViewById(R.id.Borrow_BookStatus);
-        owner = findViewById(R.id.Borrow_BookOwner);
+        title = findViewById(R.id.BookTitle);
+        author = findViewById(R.id.BookAuthor);
+        isbn = findViewById(R.id.BookISBN);
+        borrow = findViewById(R.id.Edit_book_desc);
+        back = findViewById(R.id.add_delete_button);
+        status = findViewById(R.id.BookStatus);
+        owner = findViewById(R.id.Book_Borrower);
+        owner_description = findViewById(R.id.Book_borrower_description);
 
-        title.setText("Title: " + book.getTitle());
-        author.setText("Author: " + book.getAuthor());
-        isbn.setText("ISBN: " + book.getISBN());
-        status.setText("States: " + book.getStatus());
-        owner.setText("Owner: " + book.getOwner());
         borrow.setText("Request");
+        back.setText("Back");
+        owner_description.setText("Owner");
+        title.setText(book.getTitle());
+        author.setText(book.getAuthor());
+        isbn.setText(book.getISBN());
+        status.setText(book.getStatus());
+        owner.setText(book.getOwner());
 
         // As an owner or borrower, I want to view any attached photograph for a book.
         // retrieve images being bundles to the current book from Firebase Storage
         // and display them in recyclerView
         imageList = new ArrayList<>();
         imageAdapter = new CustomImageList(imageList);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.borrow_description_imagineRecyclerView);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.book_description_imagineRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
         recyclerView.setAdapter(imageAdapter);
         DBHelper.retrieveImagine(imageList, imageAdapter, book.getISBN(), this);
