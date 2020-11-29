@@ -17,7 +17,7 @@ public class MessageListTest {
     private Message mockMsg() {
         final String sender = "shrike";
         final String receiver = "shrike's friend";
-        final String ISBN = "978-3-16-148410-0";
+        final String ISBN = "9783161484100";
         final String status = "AVAILABLE";
         final String longitude = "2° 29' E";
         final String latitude = "47° 55' W";

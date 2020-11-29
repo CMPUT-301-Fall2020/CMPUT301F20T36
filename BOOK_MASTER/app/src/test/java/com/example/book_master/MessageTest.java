@@ -14,7 +14,7 @@ public class MessageTest {
     private Message mockMsg() {
         final String sender = "shrike";
         final String receiver = "shrike's friend";
-        final String ISBN = "978-3-16-148410-0";
+        final String ISBN = "9783161484100";
         final String status = "AVAILABLE";
         final String longitude = "2° 29' E";
         final String latitude = "47° 55' W";
@@ -34,20 +34,20 @@ public class MessageTest {
         Message temp = mockMsg();
         assertTrue(temp.getSender().equalsIgnoreCase("shrike"));
         assertTrue(temp.getReceiver().equalsIgnoreCase("shrike's friend"));
-        assertTrue(temp.getISBN().equalsIgnoreCase("978-3-16-148410-0"));
+        assertTrue(temp.getISBN().equalsIgnoreCase("9783161484100"));
         assertTrue(temp.getStatus().equalsIgnoreCase("AVAILABLE"));
         assertTrue(temp.getLongitude().equalsIgnoreCase("2° 29' E"));
         assertTrue(temp.getLatitude().equalsIgnoreCase("47° 55' W"));
 
         temp.setSender("shrike's friend");
         temp.setReceiver("shrike");
-        temp.setISBN("978-3-16-148410-2");
+        temp.setISBN("9783161484102");
         temp.setStatus("REQUESTED");
         temp.setLongitude("47° 55' W");
         temp.setLatitude("2° 29' E");
         assertTrue(temp.getSender().equalsIgnoreCase("shrike's friend"));
         assertTrue(temp.getReceiver().equalsIgnoreCase("shrike"));
-        assertTrue(temp.getISBN().equalsIgnoreCase("978-3-16-148410-2"));
+        assertTrue(temp.getISBN().equalsIgnoreCase("9783161484102"));
         assertTrue(temp.getStatus().equalsIgnoreCase("REQUESTED"));
         assertTrue(temp.getLongitude().equalsIgnoreCase("47° 55' W"));
         assertTrue(temp.getLatitude().equalsIgnoreCase("2° 29' E"));
@@ -60,8 +60,11 @@ public class MessageTest {
     void testHashCode() {
         Message temp1 = mockMsg();
         Message temp2 = mockMsg();
-        temp2.setISBN("978-3-16-148410-2");
 
+        temp2.setStatus("BORROWED");
         assertTrue(temp1.hashCode() != temp2.hashCode());
+
+        temp2.setStatus("AVAILABLE");
+        assertTrue(temp1.hashCode() == temp2.hashCode());
     }
 }

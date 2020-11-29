@@ -93,10 +93,14 @@ public class BookListTest {
         String ISBN = temp.getISBN();
 
         BookList.addBook(temp);
-        ArrayList<Book> qualified = new ArrayList<>();
+        ArrayList<Book> qualified;
         qualified = BookList.searchDesc("410", "not Shrike");
         assertTrue(qualified.size() != 0 && qualified.get(0).getISBN().equalsIgnoreCase(ISBN));
+        qualified = BookList.searchDesc("", "not Shrike");
+        assertTrue(qualified.size() != 0 && qualified.get(0).getISBN().equalsIgnoreCase(ISBN));
         qualified = BookList.searchDesc("not gonna happen", "not Shrike");
+        assertTrue(qualified.size() == 0);
+        qualified = BookList.searchDesc("410", "Shrike");
         assertTrue(qualified.size() == 0);
     }
 }
