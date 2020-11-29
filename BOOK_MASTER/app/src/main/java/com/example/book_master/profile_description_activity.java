@@ -26,7 +26,7 @@ public class profile_description_activity extends AppCompatActivity {
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        int visibility = (int) bundle.getSerializable("Visibility");
+        int visibility = bundle.getInt("Visibility");
 
         edit = (Button) findViewById(R.id.profile_page_edit);
         back = (Button) findViewById(R.id.profile_page_back);
@@ -52,7 +52,7 @@ public class profile_description_activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(profile_description_activity.this, edit_profile_activity.class);
                 startActivity(intent);
-                finish();
+//                finish();
             }
         });
 
@@ -62,5 +62,11 @@ public class profile_description_activity extends AppCompatActivity {
         else {
             edit.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        contact_info.setText( "  " +UserList.getCurrentUser().getContactInfo());
     }
 }
