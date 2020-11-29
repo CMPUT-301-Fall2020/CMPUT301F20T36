@@ -64,20 +64,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <TextView
-        android:id="@+id/textView16"
-        android:layout_width="110dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/buttonshape2"
-        android:text="  Location"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
-
-    <TextView
         android:id="@+id/message_description_sender"
         android:layout_width="174dp"
         android:layout_height="30dp"
@@ -132,20 +118,6 @@
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/textView15"
         app:layout_constraintTop_toBottomOf="@+id/message_description_status" />
-
-    <TextView
-        android:id="@+id/message_description_location"
-        android:layout_width="174dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="40dp"
-        android:background="#AAFFFFFF"
-        android:text="Not implemented yet"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/textView16"
-        app:layout_constraintTop_toBottomOf="@+id/message_description_title" />
 
     <Button
         android:id="@+id/message_description_buttonAccept"

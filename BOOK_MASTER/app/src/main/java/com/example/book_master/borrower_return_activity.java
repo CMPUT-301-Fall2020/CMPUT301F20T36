@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class borrower_return_activity extends AppCompatActivity{
     private Button Scann_Button;
-    private TextView ISBN_Display;
+    private TextView title, author, ISBN_textview, borrower, status, owner;
     private Button HandOver;
     private String ISBN;
 
@@ -33,8 +33,13 @@ public class borrower_return_activity extends AppCompatActivity{
         ISBN = "0.13882280795084379";
 
         Scann_Button = (Button) findViewById(R.id.borrrower_return_ISBNbutton);
-        ISBN_Display = (TextView) findViewById(R.id.Borrower_return_name);
         HandOver = (Button) findViewById(R.id.Borrower_return_deliverButton);
+        title = (TextView) findViewById(R.id.borrower_return_BookTitle);
+        author = (TextView) findViewById(R.id.borrower_return_BookAuthor);
+        ISBN_textview = (TextView) findViewById(R.id.borrower_return_BookISBN);
+        borrower = (TextView) findViewById(R.id.borrower_return_Borrower);
+        status = (TextView) findViewById(R.id.borrower_return_BookStatus);
+        owner = (TextView) findViewById(R.id.borrower_return_Owner);
 
         Scann_Button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +74,23 @@ public class borrower_return_activity extends AppCompatActivity{
         if (scanningResult != null) {
             if (scanningResult.getContents() != null) {
                 ISBN = scanningResult.getContents();
-                ISBN_Display.setText("ISBN: " + ISBN);
+                Book book = BookList.getBook(ISBN);
+                if (book == null) {
+                    Toast.makeText(borrower_return_activity.this, "No book was found", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    title.setText(book.getTitle());
+                    author.setText(book.getAuthor());
+                    status.setText(book.getStatus());
+                    ISBN_textview.setText(book.getISBN());
+                    owner.setText(book.getOwner());
+                    if (book.getBorrower() == "") {
+                        borrower.setText(" ");
+                    }
+                    else {
+                        borrower.setText(book.getBorrower());
+                    }
+                }
             }
             else {
                 Toast.makeText(this, "No Results", Toast.LENGTH_LONG).show();
