@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.*;
 
 import com.example.book_master.adapter.CustomImageList;
+import com.example.book_master.fragment.check_list;
 import com.example.book_master.models.*;
 
 /**
@@ -89,7 +90,7 @@ public class book_description_activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 UserList.getCurrentUser().Remove_Owned_Book(book.getISBN(), book_description_activity.this);
-                Intent intent = new Intent(book_description_activity.this, check_list_activity.class);
+                Intent intent = new Intent(book_description_activity.this, check_list.class);
                 startActivity(intent);
             }
         });

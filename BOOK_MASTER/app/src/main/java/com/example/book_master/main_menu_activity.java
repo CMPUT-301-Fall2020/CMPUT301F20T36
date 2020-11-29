@@ -17,7 +17,6 @@ import com.example.book_master.models.UserList;
  * to direct to the page they wants
  */
 public class main_menu_activity extends AppCompatActivity {
-    private Button check_myList_button;
     private Button borrow_button;
     private Button log_out_button;
     private Button search_button;
@@ -32,7 +31,6 @@ public class main_menu_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
 
-        check_myList_button = findViewById(R.id.CHECKMYLIST_button);
         borrow_button = findViewById(R.id.Borrow_main_button);
         log_out_button = findViewById(R.id.Logout_main_button);
         search_button = findViewById(R.id.Search_main_button);
@@ -44,14 +42,7 @@ public class main_menu_activity extends AppCompatActivity {
          String notification ="You have " + MessageList.countMsgReceived(UserList.getCurrentUser().getUsername()) + " messages";
          notification_bar_display.setText(notification);
 
-        check_myList_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent check_list_intent = new Intent(main_menu_activity.this, check_list_activity.class);
-                startActivity(check_list_intent);
-                overridePendingTransition(R.anim.fade, R.anim.anim1);
-            }
-        });
+
 
         // this button is not implemented yet
         borrow_button.setOnClickListener(new View.OnClickListener() {
@@ -89,11 +80,7 @@ public class main_menu_activity extends AppCompatActivity {
         edit_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent edit_profile__intent = new Intent(main_menu_activity.this, profile_description_activity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("Visibility", 1);
-
-                edit_profile__intent.putExtras(bundle);
+                Intent edit_profile__intent = new Intent(main_menu_activity.this, my_account_navigator.class);
                 startActivity(edit_profile__intent);
                 overridePendingTransition(R.anim.fade, R.anim.anim1);
             }

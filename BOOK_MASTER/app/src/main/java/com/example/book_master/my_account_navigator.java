@@ -15,7 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class search_navigator extends AppCompatActivity {
+public class my_account_navigator extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private ViewPagerAdapter viewPagerAdapter;
     private ViewPager viewPager;
@@ -27,6 +27,10 @@ public class search_navigator extends AppCompatActivity {
         setContentView(R.layout.search_bottom_nav);
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.getMenu().getItem(0).setTitle("My Profile");
+        bottomNavigationView.getMenu().getItem(0).setIcon(R.drawable.icon_people);
+        bottomNavigationView.getMenu().getItem(1).setTitle("My Book");
+        bottomNavigationView.getMenu().getItem(1).setIcon(R.drawable.icon_book);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         viewPager = findViewById(R.id.vp);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -52,8 +56,8 @@ public class search_navigator extends AppCompatActivity {
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPagerAdapter);
         List<Fragment> list = new ArrayList<>();
-        list.add(new search_page());
-        list.add(new search_username());
+        list.add(new user_profile());
+        list.add(new check_list());
         viewPagerAdapter.setList(list);
     }
 
