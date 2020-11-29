@@ -47,13 +47,17 @@
 
     <EditText
         android:id="@+id/add_book_name"
-        android:layout_width="214dp"
-        android:layout_height="41dp"
+        android:layout_width="325dp"
+        android:layout_height="50dp"
         android:layout_marginTop="16dp"
         android:background="#CCFFFFFF"
         android:ems="10"
         android:hint="Name:"
-        android:inputType="textPersonName"
+
+        android:maxLength="90"
+        android:inputType="textMultiLine"
+        android:maxLines="3"
+
         android:textColor="#000000"
         android:textColorHint="#969696"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,13 +67,17 @@
 
     <EditText
         android:id="@+id/add_book_author"
-        android:layout_width="215dp"
-        android:layout_height="44dp"
+        android:layout_width="325dp"
+        android:layout_height="50dp"
         android:layout_marginTop="16dp"
         android:background="#CCFFFFFF"
         android:ems="10"
         android:hint="Author:"
-        android:inputType="textPersonName"
+
+        android:inputType="textMultiLine"
+        android:maxLength="90"
+        android:maxLines="3"
+
         android:textColor="#000000"
         android:textColorHint="#969696"
         app:layout_constraintEnd_toEndOf="parent"

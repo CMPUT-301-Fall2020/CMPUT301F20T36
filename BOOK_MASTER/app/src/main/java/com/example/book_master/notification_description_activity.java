@@ -25,12 +25,12 @@ public class notification_description_activity extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
         message = (Message) bundle.getSerializable("message");
 
-        title = (TextView) findViewById(R.id.message_description_title);
-        sender = (TextView) findViewById(R.id.message_description_sender);
-        reciver = (TextView) findViewById(R.id.message_description_reciever);
-        status = (TextView) findViewById(R.id.message_description_status);
-        location = (TextView) findViewById(R.id.message_description_location);
-        back = (Button) findViewById(R.id.message_description_back);
+        title = findViewById(R.id.message_description_title);
+        sender = findViewById(R.id.message_description_sender);
+        reciver = findViewById(R.id.message_description_reciever);
+        status = findViewById(R.id.message_description_status);
+        location = findViewById(R.id.message_description_location);
+        back = findViewById(R.id.message_description_back);
 
         title.setText(BookList.getBook(message.getISBN()).getTitle());
         sender.setText(message.getSender());
