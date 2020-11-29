@@ -44,8 +44,8 @@ public class main_menu_activity extends AppCompatActivity {
         notification_bar_display = (TextView) findViewById(R.id.main_menu_notification_bar_display);
         request = (Button) findViewById(R.id.main_menu_request);
 
-        String notification ="You have " + Integer.toString(MessageList.countMsgReceived(UserList.getCurrentUser().getUsername())) + " messages";
-        notification_bar_display.setText(notification);
+         String notification ="You have " + Integer.toString(MessageList.countMsgReceived(UserList.getCurrentUser().getUsername())) + " messages";
+         notification_bar_display.setText(notification);
 
         check_mylist_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,7 +125,7 @@ public class main_menu_activity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        String notification ="You have " + Integer.toString(MessageList.countMsgReceived(UserList.getCurrentUser().getUsername())) + " messages";
+        String notification ="You have " + MessageList.countMsgReceived(UserList.getCurrentUser().getUsername()) + " messages";
         notification_bar_display.setText(notification);
     }
 
