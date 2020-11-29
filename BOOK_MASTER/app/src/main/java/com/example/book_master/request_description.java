@@ -29,12 +29,6 @@ public class request_description extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
-//        supportMapFragment = (SupportMapFragment) getSupportFragmentManager()
-//                .findFragmentById(R.id.mapsView);
-
-
-
-
         message = (Message) bundle.getSerializable("message");
         s = (String) bundle.getSerializable("status");
         m = (String) bundle.getSerializable("mode");
@@ -49,6 +43,7 @@ public class request_description extends AppCompatActivity {
         if(BookList.getBook(message.getISBN()) != null) {
             title.setText(BookList.getBook(message.getISBN()).getTitle());
         }
+
         status.setText(message.getStatus());
         sender.setText(message.getSender());
         receiver.setText(message.getReceiver());
@@ -94,7 +89,7 @@ public class request_description extends AppCompatActivity {
                     finish();
                 }
             });
-        }else if(m.equals("SENT") && s.equals(Book.ACCEPTED)){
+        } else if (m.equals("SENT") && s.equals(Book.ACCEPTED)) {
             accept.setVisibility(View.VISIBLE);
             decline.setVisibility(View.VISIBLE);
             accept.setOnClickListener(new View.OnClickListener() {
@@ -131,7 +126,7 @@ public class request_description extends AppCompatActivity {
                     finish();
                 }
             });
-        }else if(m.equals("RECEIVED") && s.equals(Book.RETURN)){
+        } else if (m.equals("RECEIVED") && s.equals(Book.RETURN)) {
             accept.setVisibility(View.VISIBLE);
             accept.setText("CONFIRM");
             accept.setOnClickListener(new View.OnClickListener() {
@@ -148,7 +143,6 @@ public class request_description extends AppCompatActivity {
                 }
             });
         }
-
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override

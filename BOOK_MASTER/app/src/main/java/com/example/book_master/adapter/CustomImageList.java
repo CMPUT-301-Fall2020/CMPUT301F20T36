@@ -37,7 +37,7 @@ public class CustomImageList extends RecyclerView.Adapter {
     @Override
     public ImageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new View, which defines the UI of the image list
-        View view = (View) LayoutInflater.from(parent.getContext())
+        View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.image_content, parent, false);
         context = view.getContext();
 
@@ -67,4 +67,3 @@ public class CustomImageList extends RecyclerView.Adapter {
         return imageList.size();
     }
 }
-

@@ -30,10 +30,10 @@ public class MainActivity extends AppCompatActivity implements RegisterFrag.OnFr
         DBHelper.bookCollectionListener();
         DBHelper.messageCollectionListener();
 
-        final EditText emailText = (EditText) findViewById(R.id.email_text);
-        final EditText passwordText = (EditText) findViewById(R.id.password_text);
-        Button loginBtn  = findViewById(R.id.activity_main_login);
-        Button signUpBtn = findViewById(R.id.activity_main_signup);
+        emailText = findViewById(R.id.email_text);
+        passwordText = findViewById(R.id.password_text);
+        loginBtn  = findViewById(R.id.activity_main_login);
+        signUpBtn = findViewById(R.id.activity_main_signup);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             // the sign in and intent start will be handled by DBhelper
