@@ -39,8 +39,6 @@
         <activity android:name=".edit_book_activity" />
         <activity android:name=".edit_profile_activity" />
         <activity android:name=".main_menu_activity" />
-        <activity android:name=".notification_description_activity" />
-        <activity android:name=".show_notification_activity" />
 
         <activity android:name=".MainActivity">
             <intent-filter>

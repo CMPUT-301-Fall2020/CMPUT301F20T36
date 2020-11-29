@@ -16,10 +16,10 @@ import com.example.book_master.models.MessageList;
 import com.google.android.gms.maps.SupportMapFragment;
 
 public class request_description extends AppCompatActivity {
-    TextView title, status, sender, receiver;
-    Button accept, decline, back;
-    Message message;
-    String s, m;
+    private TextView title, status, sender, receiver;
+    private Button accept, decline, back, show_map;
+    private Message message;
+    private String s, m;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,7 @@ public class request_description extends AppCompatActivity {
         decline = findViewById(R.id.Request_ButtonDecline);
         back = findViewById(R.id.Request_ButtonBack);
         receiver = findViewById(R.id.Request_BookReceiver);
+        show_map = findViewById(R.id.Request_ButtonShowMap);
         if(BookList.getBook(message.getISBN()) != null) {
             title.setText(BookList.getBook(message.getISBN()).getTitle());
         }
@@ -48,6 +49,7 @@ public class request_description extends AppCompatActivity {
 
         accept.setVisibility(View.GONE);
         decline.setVisibility(View.GONE);
+        show_map.setVisibility(View.GONE);
 
         if(m.equals("RECEIVED") && s.equals(Book.REQUESTED)){
             accept.setVisibility(View.VISIBLE);
@@ -55,15 +57,26 @@ public class request_description extends AppCompatActivity {
             accept.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    DBHelper.deleteMessageDoc(String.valueOf(message.hashCode()), request_description.this);
-                    message.setStatus(Book.ACCEPTED);
-                    DBHelper.setMessageDoc(String.valueOf(message.hashCode()), message,request_description.this);
                     String isbn = message.getISBN();
                     Book b = BookList.getBook(isbn);
+
+                    DBHelper.deleteMessageDoc(String.valueOf(message.hashCode()), request_description.this);
+                    message.setStatus(Book.ACCEPTED);
+                    message.setReceiver(message.getSender());
+                    message.setSender(b.getOwner());
+                    DBHelper.setMessageDoc(String.valueOf(message.hashCode()), message,request_description.this);
+
                     b.setStatus(Book.ACCEPTED);
                     b.setBorrower(message.getSender());
                     DBHelper.setBookDoc(isbn,b,request_description.this);
+
                     Intent intent = new Intent(request_description.this, map_select_activity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("Message", message);
+                    bundle.putInt("Visibility", 1);
+                    bundle.putDouble("Latitude", map_select_activity.EDMONTON_LATITUDE);
+                    bundle.putDouble("Longitude", map_select_activity.EDMONTON_LONGITUDE);
+                    intent.putExtras(bundle);
                     startActivity(intent);
                     finish();
                 }
@@ -71,9 +84,11 @@ public class request_description extends AppCompatActivity {
             decline.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    DBHelper.deleteMessageDoc(String.valueOf(message.hashCode()), request_description.this);
                     String isbn = message.getISBN();
                     Book b = BookList.getBook(isbn);
+
+                    DBHelper.deleteMessageDoc(String.valueOf(message.hashCode()), request_description.this);
+
                     b.setStatus(Book.AVAILABLE);
                     for(Message i : MessageList.searchISBN(isbn)){
                         if(i.getStatus().equals(Book.REQUESTED)){
@@ -82,6 +97,7 @@ public class request_description extends AppCompatActivity {
                         }
                     }
                     DBHelper.setBookDoc(isbn, b, request_description.this);
+
                     Intent intent = new Intent(request_description.this, request_navigator.class);
                     startActivity(intent);
                     finish();
@@ -93,13 +109,16 @@ public class request_description extends AppCompatActivity {
             accept.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    String isbn = message.getISBN();
+                    Book b = BookList.getBook(isbn);
+
                     DBHelper.deleteMessageDoc(String.valueOf(message.hashCode()), request_description.this);
                     message.setStatus(Book.BORROWED);
                     DBHelper.setMessageDoc(String.valueOf(message.hashCode()), message,request_description.this);
-                    String isbn = message.getISBN();
-                    Book b = BookList.getBook(isbn);
+
                     b.setStatus(Book.BORROWED);
                     DBHelper.setBookDoc(isbn,b,request_description.this);
+
                     Intent intent = new Intent(request_description.this, request_navigator.class);
                     startActivity(intent);
                     finish();
@@ -108,9 +127,11 @@ public class request_description extends AppCompatActivity {
             decline.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    DBHelper.deleteMessageDoc(String.valueOf(message.hashCode()), request_description.this);
                     String isbn = message.getISBN();
                     Book b = BookList.getBook(isbn);
+
+                    DBHelper.deleteMessageDoc(String.valueOf(message.hashCode()), request_description.this);
+
                     b.setStatus(Book.AVAILABLE);
                     for(Message i : MessageList.searchISBN(isbn)){
                         if(i.getStatus().equals(Book.REQUESTED)){
@@ -119,6 +140,7 @@ public class request_description extends AppCompatActivity {
                         }
                     }
                     DBHelper.setBookDoc(isbn, b, request_description.this);
+
                     Intent intent = new Intent(request_description.this, request_navigator.class);
                     startActivity(intent);
                     finish();
@@ -138,6 +160,23 @@ public class request_description extends AppCompatActivity {
                     Intent intent = new Intent(request_description.this, request_navigator.class);
                     startActivity(intent);
                     finish();
+                }
+            });
+        }
+
+        if (s.equals(Book.ACCEPTED)) {
+            show_map.setVisibility(View.VISIBLE);
+            show_map.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent map_view_intent = new Intent(request_description.this, map_select_activity.class);
+                    Bundle map_view_bundle = new Bundle();
+                    map_view_bundle.putSerializable("Message", message);
+                    map_view_bundle.putInt("Visibility", 2);
+                    map_view_bundle.putDouble("Latitude", Double.valueOf(message.getLatitude()));
+                    map_view_bundle.putDouble("Longitude", Double.valueOf(message.getLongitude()));
+                    map_view_intent.putExtras(map_view_bundle);
+                    startActivity(map_view_intent);
                 }
             });
         }
