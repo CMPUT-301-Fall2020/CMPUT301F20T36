@@ -9,10 +9,7 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.book_master.adapter.CustomBorrowList;
 import com.example.book_master.adapter.CustomMessageList;
-import com.example.book_master.models.Book;
-import com.example.book_master.models.BookList;
 import com.example.book_master.models.Message;
 import com.example.book_master.models.MessageList;
 import com.example.book_master.models.UserList;
@@ -40,7 +37,7 @@ public class show_notification_activity extends AppCompatActivity {
        messageList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
            @Override
            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-               Intent intent = new Intent(show_notification_activity.this, message_description.class);
+               Intent intent = new Intent(show_notification_activity.this, notification_description_activity.class);
                Bundle bundle = new Bundle();
                bundle.putSerializable("message", messageData.get(position));
                intent.putExtras(bundle);

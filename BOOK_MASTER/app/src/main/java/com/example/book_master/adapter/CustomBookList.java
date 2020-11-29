@@ -19,11 +19,13 @@ import javax.annotation.Nullable;
 public class CustomBookList extends ArrayAdapter<Book> {
     private ArrayList<Book> bookData;
     private Context context;
-    public CustomBookList(Context context, ArrayList<Book> bookData){
+
+    public CustomBookList(Context context, ArrayList<Book> bookData) {
         super(context, 0, bookData);
         this.context = context;
         this.bookData = bookData;
     }
+
     @Nullable
     @Override
     public View getView(int position, @androidx.annotation.Nullable View convertView, @NonNull ViewGroup parent) {
@@ -31,6 +33,7 @@ public class CustomBookList extends ArrayAdapter<Book> {
         if(view == null){
             view = LayoutInflater.from(context).inflate(R.layout.book_content, parent,false);
         }
+
         Book book = bookData.get(position);
         TextView title = view.findViewById(R.id.book_contentl_title);
         TextView status = view.findViewById(R.id.book_content_status);

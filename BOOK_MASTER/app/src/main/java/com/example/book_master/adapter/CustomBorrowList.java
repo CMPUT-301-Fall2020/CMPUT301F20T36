@@ -18,11 +18,13 @@ import java.util.ArrayList;
 public class CustomBorrowList extends ArrayAdapter<Book> {
     private ArrayList<Book> bookData;
     private Context context;
+
     public CustomBorrowList(Context context, ArrayList<Book> bookData){
         super(context, 0, bookData);
         this.context = context;
         this.bookData = bookData;
     }
+
     @Nullable
     @Override
     public View getView(int position, @androidx.annotation.Nullable View convertView, @NonNull final ViewGroup parent){
@@ -30,6 +32,7 @@ public class CustomBorrowList extends ArrayAdapter<Book> {
         if(view == null){
             view = LayoutInflater.from(context).inflate(R.layout.borrow_list_content, parent,false);
         }
+
         final Book book = bookData.get(position);
         TextView name = view.findViewById(R.id.Borrow_list_name);
         TextView author = view.findViewById(R.id.Borrow_list_author);

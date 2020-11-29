@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
+    <item
+        android:id="@+id/navigation_book"
+        android:icon="@drawable/icon_book"
+        android:title="Book" />
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/icon_people"
+        android:title="Profile" />
+
+</menu>

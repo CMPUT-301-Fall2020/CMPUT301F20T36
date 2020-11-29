@@ -19,11 +19,13 @@ import java.util.ArrayList;
 public class CustomRequestList extends ArrayAdapter<Message> {
     private ArrayList<Message> messData;
     private Context context;
+
     public CustomRequestList(Context context, ArrayList<Message> messData){
         super(context, 0, messData);
         this.context = context;
         this.messData = messData;
     }
+
     @Nullable
     @Override
     public View getView(int position, @androidx.annotation.Nullable View convertView, @NonNull ViewGroup parent) {
@@ -35,11 +37,14 @@ public class CustomRequestList extends ArrayAdapter<Message> {
         TextView title = view.findViewById(R.id.Request_list_bookname);
         TextView sender = view.findViewById(R.id.Request_list_sender);
         TextView status = view.findViewById(R.id.Request_list_status);
+
         if(BookList.getBook(message.getISBN()) != null){
             title.setText(BookList.getBook(message.getISBN()).getTitle());
         }
+
         sender.setText(message.getSender());
         status.setText(message.getStatus());
+
         return view;
     }
 }

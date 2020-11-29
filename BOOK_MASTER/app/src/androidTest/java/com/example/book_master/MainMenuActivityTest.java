@@ -60,7 +60,7 @@ public class MainMenuActivityTest {
         solo.assertCurrentActivity("Wrong Activity", main_menu_activity.class);
         // enter to check_list_activity
         solo.clickOnView(solo.getView(R.id.view_profile_button));
-        solo.assertCurrentActivity("Wrong Activity", profile_page_activity.class);
+        solo.assertCurrentActivity("Wrong Activity", profile_description_activity.class);
         assertTrue(solo.waitForText("QAQ", 1, 2000));
     }
 

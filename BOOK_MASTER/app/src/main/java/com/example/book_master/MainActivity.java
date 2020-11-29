@@ -2,18 +2,15 @@ package com.example.book_master;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.example.book_master.fragment.RegisterFrag;
 import com.example.book_master.models.DBHelper;
-import com.example.book_master.models.User;
 
 /**
  * This activity class is used to handle login and sign up stage
@@ -28,10 +25,6 @@ public class MainActivity extends AppCompatActivity implements RegisterFrag.OnFr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//
-//        DBHelper.collectionListener();
-//        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-//        startActivity(intent);
 
         DBHelper.userCollectionListener();
         DBHelper.bookCollectionListener();
@@ -46,9 +39,17 @@ public class MainActivity extends AppCompatActivity implements RegisterFrag.OnFr
             // the sign in and intent start will be handled by DBhelper
             @Override
             public void onClick(View v) {
-                DBHelper.signIn(emailText.getText().toString(),
-                        passwordText.getText().toString(),
-                        MainActivity.this);
+                if (emailText.getText().toString().equals("")) {
+                    Toast.makeText(MainActivity.this, "The username is null", Toast.LENGTH_SHORT).show();
+                }
+                else if (passwordText.getText().toString().equals("")) {
+                    Toast.makeText(MainActivity.this, "The password is null", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    DBHelper.signIn(emailText.getText().toString(),
+                            passwordText.getText().toString(),
+                            MainActivity.this);
+                }
             }
         });
 
@@ -56,25 +57,11 @@ public class MainActivity extends AppCompatActivity implements RegisterFrag.OnFr
             // the sign up will be handled by DBhelper, then user should login from MainActivity
             @Override
             public void onClick(View v) {
-                RegisterFrag
-                        .newInstance(emailText.getText().toString(),
+                RegisterFrag.newInstance(emailText.getText().toString(),
                                 passwordText.getText().toString())
                         .show(getSupportFragmentManager(), "Create_Account");
             }
         });
     }
 
-    private void createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name ="Book Master";
-            String description = "Request and notification info";
-            String CHANNEL_ID = "Book_master_channel_ID";
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
-            channel.setDescription(description);
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
-    }
 }

@@ -11,13 +11,16 @@ import android.widget.Toast;
 
 import com.example.book_master.models.Book;
 import com.example.book_master.models.BookList;
-import com.example.book_master.models.DBHelper;
 import com.example.book_master.models.UserList;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import java.util.Random;
 
+/**
+ * US 01.01.01
+ * As an owner, I want to add a book in my books, each denoted with a clear, suitable description (at least title, author, and ISBN).
+ */
 public class add_book_activity extends AppCompatActivity {
     private EditText Title;
     private EditText Author;
@@ -37,15 +40,21 @@ public class add_book_activity extends AppCompatActivity {
         Confirm = (Button) findViewById(R.id.add_edit_book_confirm);
         Discard = (Button) findViewById(R.id.add_edit_book_discard);
         ISBN = "";
-        // ------For testing------
+
+        // ------For Testing------
         Random rand = new Random();
         ISBN = Double.toString(rand.nextDouble());
+        // ------End Here------
 
+        /**
+         * TODO: US 01.02.01
+         * As an owner, I want the book description by scanning it off the book (at least the ISBN).
+         */
         ScanISBN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 IntentIntegrator integrator = new IntentIntegrator(add_book_activity.this);
-                integrator.setCaptureActivity(capture_activity.class);
+                integrator.setCaptureActivity(capture_ISBN__activity.class);
                 integrator.setOrientationLocked(false);
                 integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
                 integrator.setPrompt("Scanning ISBN");

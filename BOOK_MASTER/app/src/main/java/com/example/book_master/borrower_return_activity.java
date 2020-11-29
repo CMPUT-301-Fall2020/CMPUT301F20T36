@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.book_master.models.Book;
 import com.example.book_master.models.BookList;
+import com.example.book_master.models.DBHelper;
 import com.example.book_master.models.Message;
 import com.example.book_master.models.MessageList;
 import com.example.book_master.models.UserList;
@@ -19,31 +20,47 @@ import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
 
-public class borrower_return_activity extends AppCompatActivity implements View.OnClickListener{
+public class borrower_return_activity extends AppCompatActivity{
     private Button Scann_Button;
     private TextView ISBN_Display;
+    private Button HandOver;
     private String ISBN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.borrower_return);
-        ISBN = "";
+        ISBN = "0.13882280795084379";
 
-        Scann_Button = (Button) findViewById(R.id.Borrrower_return_ISBNbutton);
+        Scann_Button = (Button) findViewById(R.id.borrrower_return_ISBNbutton);
         ISBN_Display = (TextView) findViewById(R.id.Borrower_return_name);
+        HandOver = (Button) findViewById(R.id.Borrower_return_deliverButton);
 
-        Scann_Button.setOnClickListener(this);
-    }
+        Scann_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IntentIntegrator integrator = new IntentIntegrator(borrower_return_activity.this);
+                integrator.setCaptureActivity(capture_ISBN__activity.class);
+                integrator.setOrientationLocked(false);
+                integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
+                integrator.setPrompt("Scanning ISBN");
+                integrator.initiateScan();
+            }
+        });
 
-    @Override
-    public void onClick(View v) {
-        IntentIntegrator integrator = new IntentIntegrator(this);
-        integrator.setCaptureActivity(capture_activity.class);
-        integrator.setOrientationLocked(false);
-        integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
-        integrator.setPrompt("Scanning ISBN");
-        integrator.initiateScan();
+        HandOver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ISBN != null) {
+                    send_request();
+                }
+                else {
+                    Toast.makeText(borrower_return_activity.this, "The Book Is Not Scanned!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
     }
 
     @Override
@@ -53,7 +70,6 @@ public class borrower_return_activity extends AppCompatActivity implements View.
             if (scanningResult.getContents() != null) {
                 ISBN = scanningResult.getContents();
                 ISBN_Display.setText("ISBN: " + ISBN);
-                send_request();
             }
             else {
                 Toast.makeText(this, "No Results", Toast.LENGTH_LONG).show();
@@ -66,24 +82,25 @@ public class borrower_return_activity extends AppCompatActivity implements View.
     private void send_request() {
         if (BookList.getBook(ISBN) != null) {
             Book book = BookList.getBook(ISBN);
-            if (book.getBorrower().equalsIgnoreCase(UserList.getCurrentUser().getUsername())) {
+            String current_username = UserList.getCurrentUser().getUsername();
+            if (current_username.equalsIgnoreCase(book.getBorrower())) {
                 if (book.getStatus().equalsIgnoreCase(Book.CONFIRM_BORROWED)) {
-                    Message msg = new Message(book.getOwner(), book.getBorrower(), ISBN, Book.RETURN, "", "", Message.NOTIFCATION_NOT_SHOWN);
+                    Message msg = new Message(book.getOwner(), book.getBorrower(), ISBN, Book.RETURN, "", "", Message.NOTIFICATION_NOT_SHOWN);
                     book.setStatus(Book.RETURN);
-                    MessageList.addMessage(msg);
+                    DBHelper.setBookDoc(book.getISBN(), book, borrower_return_activity.this);
+                    DBHelper.setMessageDoc(Integer.toString(msg.hashCode()), msg, borrower_return_activity.this);
                     finish();
+                    return;
                 }
-                else {
-                    Toast.makeText(this, "The book is not in the correct status", Toast.LENGTH_SHORT).show();
-                }
-            }
-            else if (book.getOwner().equalsIgnoreCase(UserList.getCurrentUser().getUsername())) {
-                if (book.getStatus().equalsIgnoreCase(Book.RETURN)) {
-                    ArrayList<Message> msglist = MessageList.searchReceiver(UserList.getCurrentUser().getUsername());
+                else if (book.getStatus().equalsIgnoreCase(Book.BORROWED)) {
+                    ArrayList<Message> msglist = MessageList.searchReceiver(current_username);
                     for (Message msg : msglist) {
                         if (msg.getISBN().equalsIgnoreCase(book.getISBN())) {
-                            MessageList.delete_msg(msg);
+                            DBHelper.deleteMessageDoc(Integer.toString(msg.hashCode()),borrower_return_activity.this);
+                            book.setStatus(Book.CONFIRM_BORROWED);
+                            DBHelper.setBookDoc(book.getISBN(), book, borrower_return_activity.this);
                             finish();
+                            return;
                         }
                     }
                     Toast.makeText(this, "There is an error with internal system", Toast.LENGTH_SHORT).show();
@@ -91,12 +108,36 @@ public class borrower_return_activity extends AppCompatActivity implements View.
                 else {
                     Toast.makeText(this, "The book is not in the correct status", Toast.LENGTH_SHORT).show();
                 }
-            }
-            else {
+            } else if (current_username.equalsIgnoreCase(book.getOwner())) {
+                if (book.getStatus().equalsIgnoreCase(Book.RETURN)) {
+                    ArrayList<Message> msglist = MessageList.searchReceiver(current_username);
+                    for (Message msg : msglist) {
+                        if (msg.getISBN().equalsIgnoreCase(book.getISBN())) {
+                            DBHelper.deleteMessageDoc(Integer.toString(msg.hashCode()),borrower_return_activity.this);
+                            book.setStatus(Book.AVAILABLE);
+                            DBHelper.setBookDoc(book.getISBN(), book, borrower_return_activity.this);
+                            finish();
+                            return;
+                        }
+                    }
+                    Toast.makeText(this, "There is an error with internal system", Toast.LENGTH_SHORT).show();
+                }
+                else if (book.getStatus().equalsIgnoreCase(Book.ACCEPTED)) {
+                    Message msg = new Message(book.getOwner(), book.getBorrower(), ISBN, Book.BORROWED, "", "", Message.NOTIFICATION_NOT_SHOWN);
+                    book.setStatus(Book.BORROWED);
+                    book.setBorrower("");
+                    DBHelper.setBookDoc(book.getISBN(), book, borrower_return_activity.this);
+                    DBHelper.setMessageDoc(Integer.toString(msg.hashCode()), msg, borrower_return_activity.this);
+//                    DBHelper.deleteMessageDoc();
+                    finish();
+                    return;
+                }else {
+                    Toast.makeText(this, "The book is not in the correct status", Toast.LENGTH_SHORT).show();
+                }
+            } else {
                 Toast.makeText(this, "You are not the current borrower", Toast.LENGTH_SHORT).show();
             }
-        }
-        else {
+        } else {
             Toast.makeText(this, "The book is not existed", Toast.LENGTH_SHORT).show();
         }
     }

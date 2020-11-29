@@ -11,6 +11,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.book_master.models.DBHelper;
 import com.example.book_master.models.UserList;
 
+/**
+ * US 02.02.01
+ * As an owner or borrower, I want to edit the contact information in my profile.
+ */
 public class edit_profile_activity extends AppCompatActivity {
     private Button confirm;
     private TextView contact_info;
@@ -33,11 +37,12 @@ public class edit_profile_activity extends AppCompatActivity {
                     UserList.getCurrentUser().setContactInfo(new_contact);
                     DBHelper.setUserDoc(UserList.getCurrentUser(), edit_profile_activity.this);
 
-                    Intent intent = new Intent(edit_profile_activity.this, profile_page_activity.class);
-                    startActivity(intent);
+//                    Intent intent = new Intent(edit_profile_activity.this, profile_description_activity.class);
+//                    startActivity(intent);
                     finish();
                 }
             }
         });
     }
+
 }

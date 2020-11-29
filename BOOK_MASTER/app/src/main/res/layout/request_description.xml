@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/image3"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/image3">
 
     <TextView
         android:id="@+id/Request_BookTitle"
         android:layout_width="228dp"
-        android:layout_height="44dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:background="#ffd4d5d6"
         android:text="Title"
@@ -31,6 +30,7 @@
         android:textColor="#000000"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.462"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Request_BookTitle" />
 
@@ -41,6 +41,7 @@
         android:layout_marginTop="50dp"
         android:background="#ffd4d5d6"
         android:text="Sender"
+        android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,85 +51,83 @@
         android:id="@+id/Request_ButtonDecline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
         android:background="@drawable/buttonshape"
         android:text="Decline"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Request_BookSender" />
+        app:layout_constraintTop_toBottomOf="@+id/Request_BookReceiver" />
 
     <Button
         android:id="@+id/Request_ButtonAccept"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="140dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="80dp"
         android:background="@drawable/buttonshape"
         android:text="Accept"
         android:textColor="#000000"
-        app:layout_constraintEnd_toStartOf="@+id/Request_ButtonDecline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Request_BookSender" />
+        app:layout_constraintTop_toBottomOf="@+id/Request_BookReceiver" />
 
     <Button
         android:id="@+id/Request_ButtonBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginTop="140dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginTop="164dp"
         android:background="@drawable/buttonshape"
         android:text="Back"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Request_ButtonDecline"
-        app:layout_constraintTop_toBottomOf="@+id/Request_BookSender" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Request_BookReceiver" />
 
     <TextView
         android:id="@+id/Request_BookReceiver"
         android:layout_width="153dp"
         android:layout_height="36dp"
-        android:layout_marginBottom="300dp"
+
+        android:layout_marginTop="50dp"
+        android:background="#ffd4d5d6"
         android:text="Receiver"
+        android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Request_BookSender" />
 
+
     <TextView
         android:id="@+id/textView20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="400dp"
+        android:layout_width="80dp"
+        android:layout_height="36dp"
+
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="260dp"
+        android:background="#00FFFFFF"
         android:text="Sender:"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/Request_BookSender"
-        app:layout_constraintHorizontal_bias="0.741"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Request_BookStatus"
-        app:layout_constraintVertical_bias="0.657" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView21"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="41dp"
+        android:layout_width="80dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="348dp"
         android:text="Receiver:"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/Request_BookReceiver"
-        app:layout_constraintHorizontal_bias="0.659"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Request_BookSender"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
