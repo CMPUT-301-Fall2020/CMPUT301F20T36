@@ -33,7 +33,6 @@
         <activity android:name=".main_menu_activity" />
         <activity android:name=".book_description_activity" />
         <activity android:name=".notification_description_activity" />
-        <activity android:name=".request_menu" />
         <activity android:name=".show_notification_activity" />
         <activity android:name=".MainActivity">
             <intent-filter>
