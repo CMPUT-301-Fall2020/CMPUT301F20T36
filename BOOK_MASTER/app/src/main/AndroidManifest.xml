@@ -50,11 +50,12 @@
         </activity>
         <activity android:name=".map_select_activity"/>
         <activity android:name=".notification_description_activity" />
-        <activity android:name=".profile_description_activity" />
+        <activity android:name=".profile_description" />
         <activity android:name=".request_description" />
         <activity android:name=".request_navigator" />
         <activity android:name=".search_navigator" />
         <activity android:name=".search_page_book_description" />
+        <activity android:name=".show_notification_activity"/>
     </application>
 
 </manifest>

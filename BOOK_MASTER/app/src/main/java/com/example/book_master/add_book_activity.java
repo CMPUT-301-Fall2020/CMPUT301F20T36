@@ -50,6 +50,8 @@ public class add_book_activity extends AppCompatActivity {
         ConfirmBtn = findViewById(R.id.add_edit_book_confirm);
         DiscardBtn = findViewById(R.id.add_edit_book_discard);
         ISBN = "";
+//        ISBN = "9781603094382";
+//        retrieveBookInfo();
 
         // ------For Testing------
         Random rand = new Random();
@@ -91,8 +93,8 @@ public class add_book_activity extends AppCompatActivity {
         DiscardBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(add_book_activity.this, check_list.class);
-                startActivity(intent);
+//                Intent intent = new Intent(add_book_activity.this, check_list.class);
+//                startActivity(intent);
                 finish();
             }
         });

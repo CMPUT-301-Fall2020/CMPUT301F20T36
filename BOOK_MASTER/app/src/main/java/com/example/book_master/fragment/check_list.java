@@ -70,7 +70,7 @@ public class check_list extends Fragment {
             public void onClick(View v) {
                 Intent check_list_intent = new Intent(getActivity(), add_book_activity.class);
                 startActivity(check_list_intent);
-                getActivity().finish();
+//                getActivity().finish();
             }
         });
 
