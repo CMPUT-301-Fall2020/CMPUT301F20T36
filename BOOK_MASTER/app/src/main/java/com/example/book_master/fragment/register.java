@@ -23,7 +23,7 @@ import javax.annotation.Nullable;
 /**
  * This fragment will all the user to sign up with all required inputs
  */
-public class RegisterFrag extends DialogFragment {
+public class register extends DialogFragment {
     private EditText emailText;
     private EditText passwordText;
     private EditText usernameText;
@@ -35,12 +35,12 @@ public class RegisterFrag extends DialogFragment {
 
     // take in an Item and store it in the Fragment's Bundle object
     // other methods could access the Bundle using getArguments() and retrieve the Item object
-    public static RegisterFrag newInstance(String email, String password) {
+    public static register newInstance(String email, String password) {
         Bundle args = new Bundle();
         args.putSerializable("email", email);
         args.putSerializable("password", password);
 
-        RegisterFrag fragment = new RegisterFrag();
+        register fragment = new register();
         fragment.setArguments(args);
         return fragment;
     }
@@ -94,8 +94,11 @@ public class RegisterFrag extends DialogFragment {
                         final String username = usernameText.getText().toString();
                         final String contactInfo = contactInfoText.getText().toString();
 
-                        // check if the username is unique
-                        if (UserList.checkUnique(username) == false) {
+                        if (email.equals("") || password.equals("") || username.equals("") || contactInfo.equals("")) {
+                            Toast.makeText(view.getContext(), "Field cannot be empty.",
+                                    Toast.LENGTH_SHORT).show();
+                        } else if (UserList.checkUnique(username) == false) {
+                            // check if the username is unique
                             Toast.makeText(view.getContext(), "Username already existed.",
                                     Toast.LENGTH_SHORT).show();
                         } else {

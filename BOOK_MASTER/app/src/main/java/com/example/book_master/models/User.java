@@ -30,7 +30,7 @@ public class User implements Serializable, Owner, Borrower {
      * Constructor
      * @param email user email, unique
      * @param password user password
-     * @param username username, its uniqueness is checked in RegisterFrag
+     * @param username username, its uniqueness is checked in register
      * @param contactInfo user contact information
      */
     public User(String email, String password, String username, String contactInfo) {

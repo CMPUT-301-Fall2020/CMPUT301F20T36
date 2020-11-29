@@ -9,13 +9,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.book_master.fragment.RegisterFrag;
+import com.example.book_master.fragment.register;
 import com.example.book_master.models.DBHelper;
 
 /**
  * This activity class is used to handle login and sign up stage
  */
-public class MainActivity extends AppCompatActivity implements RegisterFrag.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements register.OnFragmentInteractionListener {
     private EditText emailText;
     private EditText passwordText;
     private Button loginBtn;
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFrag.OnFr
             // the sign up will be handled by DBhelper, then user should login from MainActivity
             @Override
             public void onClick(View v) {
-                RegisterFrag.newInstance(emailText.getText().toString(),
+                register.newInstance(emailText.getText().toString(),
                                 passwordText.getText().toString())
                         .show(getSupportFragmentManager(), "Create_Account");
             }
