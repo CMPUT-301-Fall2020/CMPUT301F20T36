@@ -15,6 +15,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This activity is for controlling my account button page.
+ * It is able to control the user profile and a list of book he owned.
+ */
 public class my_account_navigator extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private ViewPagerAdapter viewPagerAdapter;
@@ -24,14 +28,16 @@ public class my_account_navigator extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // All bottom navigator share the same xml, so it is necessary to change menu items' titles
+        // and icons according to specific activities
         setContentView(R.layout.search_bottom_nav);
-
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.getMenu().getItem(0).setTitle("My Profile");
         bottomNavigationView.getMenu().getItem(0).setIcon(R.drawable.icon_people);
         bottomNavigationView.getMenu().getItem(1).setTitle("My Book");
         bottomNavigationView.getMenu().getItem(1).setIcon(R.drawable.icon_book);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        // The view pager is to display the fragment view
         viewPager = findViewById(R.id.vp);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -55,6 +61,7 @@ public class my_account_navigator extends AppCompatActivity {
         });
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPagerAdapter);
+        // Add two fragments for sent requests and received requests
         List<Fragment> list = new ArrayList<>();
         list.add(new user_profile());
         list.add(new check_list());
@@ -62,7 +69,7 @@ public class my_account_navigator extends AppCompatActivity {
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
+        // setting up the navigator listener
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             menuItem = item;

@@ -38,13 +38,14 @@ public class search_username extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.search_username_page, container, false);
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        // link the view to specific field ID
         username = view.findViewById(R.id.search_username_bar_keyword);
         search = view.findViewById(R.id.search_username_bar_confirm);
         userList = view.findViewById(R.id.search_username_page_userlist);
@@ -55,6 +56,7 @@ public class search_username extends Fragment {
         userList.setAdapter(userAdapter);
         userAdapter.notifyDataSetChanged();
 
+        // set up the search button for search other users' profile
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,6 +72,7 @@ public class search_username extends Fragment {
             }
         });
 
+        // set up the list view for user profile list
         userList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){

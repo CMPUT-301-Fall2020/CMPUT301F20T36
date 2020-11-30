@@ -38,8 +38,8 @@ import static android.app.Activity.RESULT_OK;
 // As a borrower, I want to specify a keyword,
 // and search for all books that are not currently accepted or borrowed whose description contains the keyword.
 public class search_page extends Fragment {
-    private Context mContext;
 
+    private Context mContext;
     private Button scan_ISBN;
     private Button search;
     private TextView keyword;
@@ -48,14 +48,6 @@ public class search_page extends Fragment {
     private ArrayAdapter<Book> bookAdapter;
     private ListView bookList;
 
-    public static search_page newInstance(String param1, String param2){
-        search_page fragment = new search_page();
-        Bundle args = new Bundle();
-        args.putString("1", param1);
-        args.putString("2", param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,8 +58,8 @@ public class search_page extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        // link the view to specific field ID
         super.onCreate(savedInstanceState);
-
         bookList = view.findViewById(R.id.search_page_booklist);
         scan_ISBN = view.findViewById(R.id.search_bar_ISBN);
         search = view.findViewById(R.id.search_bar_confirm);
@@ -86,8 +78,8 @@ public class search_page extends Fragment {
                 }
             }
         }
-        bookData = temp;
 
+        bookData = temp;
         bookAdapter = new CustomBorrowList(getActivity(), bookData);
         bookList.setAdapter(bookAdapter);
         bookAdapter.notifyDataSetChanged();
