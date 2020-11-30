@@ -55,6 +55,5 @@ public class profile_description extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        contact_info.setText( "  " +UserList.getCurrentUser().getContactInfo());
     }
 }
