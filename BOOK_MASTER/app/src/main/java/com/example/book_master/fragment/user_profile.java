@@ -24,11 +24,13 @@ public class user_profile extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.profile_page, container, false);
     }
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // link the view to specific field ID
         edit = view.findViewById(R.id.profile_page_edit);
         back = view.findViewById(R.id.profile_page_back);
         username = view.findViewById(R.id.profile_page_username);
@@ -37,7 +39,8 @@ public class user_profile extends Fragment {
         username.setText("  " + UserList.getCurrentUser().getUsername());
         contact_info.setText("  " + UserList.getCurrentUser().getContactInfo());
         email.setText("  " + UserList.getCurrentUser().getEmail());
-        // close the activity and back to main menu
+        // For self user profile page, no back button is needed
+        // since it is a fragment.
         back.setVisibility(View.GONE);
 
         // allow the user to go to edit profile page

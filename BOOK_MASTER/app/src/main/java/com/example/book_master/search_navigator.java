@@ -15,6 +15,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This activity is for controlling search button page.
+ * It is able to search for books that are available for borrow
+ * and other users' profile
+ */
 public class search_navigator extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private ViewPagerAdapter viewPagerAdapter;
@@ -28,6 +33,7 @@ public class search_navigator extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        // The view pager is to display the fragment view
         viewPager = findViewById(R.id.vp);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -52,6 +58,7 @@ public class search_navigator extends AppCompatActivity {
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPagerAdapter);
         List<Fragment> list = new ArrayList<>();
+        // Add two fragments for searching books and user profiles
         list.add(new search_page());
         list.add(new search_username());
         viewPagerAdapter.setList(list);
@@ -61,6 +68,7 @@ public class search_navigator extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            // setting up the navigator listener
             menuItem = item;
             switch (item.getItemId()) {
                 case R.id.navigation_book:
