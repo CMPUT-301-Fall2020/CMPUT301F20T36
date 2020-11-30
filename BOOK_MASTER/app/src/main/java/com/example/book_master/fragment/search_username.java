@@ -74,6 +74,9 @@ public class search_username extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
                 Intent intent = new Intent(getActivity(), profile_description.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("User", userData.get(position));
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });

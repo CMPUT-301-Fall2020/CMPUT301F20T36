@@ -92,6 +92,7 @@ public class DBHelper {
      */
     public static void deleteAccount(final Context context) {
         final FirebaseUser user = mAuth.getCurrentUser();
+        final String UID = user.getUid();
         user.delete()
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -102,7 +103,7 @@ public class DBHelper {
                                     Toast.LENGTH_SHORT).show();
 
                             // also, delete the correspond User instance in Firebase
-                            deleteUserDoc(context);
+                            deleteUserDoc(UID, context);
                             // direct UI to the login activity
                             Intent intent = new Intent(context, MainActivity.class);
                             context.startActivity(intent);
@@ -251,11 +252,11 @@ public class DBHelper {
      * Delete one User instance from Firebase
      * @param context Context of the window where Toast should be displayed
      */
-    public static void deleteUserDoc(final Context context) {
+    public static void deleteUserDoc(final String UID, final Context context) {
         final FirebaseUser user = mAuth.getCurrentUser();
         FirebaseFirestore mDB = FirebaseFirestore.getInstance();
         mDB.collection("User")
-                .document(user.getUid())
+                .document(UID)
                 .delete()
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
