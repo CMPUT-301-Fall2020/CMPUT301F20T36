@@ -90,8 +90,9 @@ public class book_description_activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 UserList.getCurrentUser().Remove_Owned_Book(book.getISBN(), book_description_activity.this);
-                Intent intent = new Intent(book_description_activity.this, check_list.class);
-                startActivity(intent);
+//                Intent intent = new Intent(book_description_activity.this, check_list.class);
+//                startActivity(intent);
+                finish();
             }
         });
     }
