@@ -76,7 +76,7 @@ public class request_description extends AppCompatActivity {
                     DBHelper.setMessageDoc(String.valueOf(message.hashCode()), message,request_description.this);
 
                     b.setStatus(Book.ACCEPTED);
-                    b.setBorrower(message.getSender());
+                    b.setBorrower(message.getReceiver());
                     DBHelper.setBookDoc(isbn,b,request_description.this);
 
                     Intent intent = new Intent(request_description.this, map_select_activity.class);

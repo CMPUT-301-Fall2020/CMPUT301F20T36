@@ -50,12 +50,12 @@ public class add_book_activity extends AppCompatActivity {
         ConfirmBtn = findViewById(R.id.add_edit_book_confirm);
         DiscardBtn = findViewById(R.id.add_edit_book_discard);
         ISBN = "";
-//        ISBN = "9781603094382";
+//        ISBN = "9781603092654";
 //        retrieveBookInfo();
 
         // ------For Testing------
-        Random rand = new Random();
-        ISBN = Double.toString(rand.nextDouble());
+//        Random rand = new Random();
+//        ISBN = Double.toString(rand.nextDouble());
         // ------End Here------
 
         ScanISBNBtn.setOnClickListener(new View.OnClickListener() {
