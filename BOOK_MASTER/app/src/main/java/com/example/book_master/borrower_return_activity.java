@@ -30,7 +30,8 @@ public class borrower_return_activity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.borrower_return);
-        ISBN = "0.13882280795084379";
+//        ISBN = "0.13882280795084379";
+        ISBN =  "9780881881394";
 
         Scann_Button = (Button) findViewById(R.id.borrrower_return_ISBNbutton);
         HandOver = (Button) findViewById(R.id.Borrower_return_deliverButton);
@@ -58,6 +59,8 @@ public class borrower_return_activity extends AppCompatActivity{
             public void onClick(View v) {
                 if (ISBN != null) {
                     send_request();
+                    Toast.makeText(borrower_return_activity.this, "button clicked", Toast.LENGTH_SHORT).show();
+                    finish();
                 }
                 else {
                     Toast.makeText(borrower_return_activity.this, "The Book Is Not Scanned!", Toast.LENGTH_SHORT).show();
@@ -84,7 +87,7 @@ public class borrower_return_activity extends AppCompatActivity{
                     status.setText(book.getStatus());
                     ISBN_textview.setText(book.getISBN());
                     owner.setText(book.getOwner());
-                    if (book.getBorrower() == "") {
+                    if (book.getBorrower().equals("")) {
                         borrower.setText(" ");
                     }
                     else {
@@ -143,7 +146,7 @@ public class borrower_return_activity extends AppCompatActivity{
                     Toast.makeText(this, "There is an error with internal system. Could not find message", Toast.LENGTH_SHORT).show();
                 }
                 else if (book.getStatus().equalsIgnoreCase(Book.ACCEPTED)) {
-                    ArrayList<Message> msgList = MessageList.searchReceiver(current_username);
+                    ArrayList<Message> msgList = MessageList.searchSender(current_username);
                     for (Message temp : msgList) {
                         if (temp.getISBN().equals(book.getISBN())) {
                             DBHelper.deleteMessageDoc(String.valueOf(temp.hashCode()), this);
