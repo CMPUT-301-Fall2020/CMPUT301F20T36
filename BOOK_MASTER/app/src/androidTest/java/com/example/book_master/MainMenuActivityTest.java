@@ -1,33 +1,23 @@
 package com.example.book_master;
 
-import android.app.Activity;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
-import androidx.transition.Transition;
 
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.book_master.fragment.*;
-import com.example.book_master.adapter.*;
 import com.example.book_master.models.*;
-//import com.example.book_master.*;
 
 import com.robotium.solo.Solo;
 
-import junit.framework.TestSuite;
 
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.FixMethodOrder;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static junit.framework.TestCase.assertTrue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 
 /**
  * Test class for LoginActivity, all UI tests are written here
@@ -110,7 +100,6 @@ public class MainMenuActivityTest {
         solo.clickOnView(solo.getView(R.id.edit_profile_confirm));
     }
 
-    /*
     @Test
     public void test_4_check_Book() {
         // start at MainActivity
@@ -126,31 +115,36 @@ public class MainMenuActivityTest {
         solo.clickOnView(solo.getView(R.id.bottomNavigationView));
         solo.clickOnMenuItem("My Book");
 
-        solo.clickOnView(solo.getView(R.id.status_spinner));
-        solo.clickOnMenuItem(Book.AVAILABLE);
+//        solo.clickOnView(solo.getView(R.id.status_spinner));
+//        solo.clickOnText(Book.AVAILABLE);
+        solo.pressSpinnerItem(0, 1);
         Assert.assertTrue("Available Book is not found", solo.searchText("Focus on Vocabulary"));
 
-        solo.clickOnView(solo.getView(R.id.status_spinner));
-        solo.clickOnText(Book.REQUESTED);
+//        solo.clickOnView(solo.getView(R.id.status_spinner));
+//        solo.clickOnText(Book.REQUESTED);
+        solo.pressSpinnerItem(0, 1);
         Assert.assertTrue("Requested Book is not found", solo.searchText("Advance Reading Power"));
-
-        solo.clickOnView(solo.getView(R.id.status_spinner));
-        solo.clickOnMenuItem(Book.ACCEPTED);
+//
+//        solo.clickOnView(solo.getView(R.id.status_spinner));
+//        solo.clickOnMenuItem(Book.ACCEPTED);
+        solo.pressSpinnerItem(0, 1);
         Assert.assertTrue("Accepted Book is not found", solo.searchText("High Country Hearts"));
-
-        solo.clickOnView(solo.getView(R.id.status_spinner));
-        solo.clickOnMenuItem(Book.BORROWED);
+//
+//        solo.clickOnView(solo.getView(R.id.status_spinner));
+//        solo.clickOnMenuItem(Book.BORROWED);
+        solo.pressSpinnerItem(0, 1);
         Assert.assertTrue("Borrowed Book is not found", solo.searchText("The Official Guide to the GRE General"));
-
-        solo.clickOnView(solo.getView(R.id.status_spinner));
-        solo.clickOnMenuItem(Book.CONFIRM_BORROWED);
+//
+//        solo.clickOnView(solo.getView(R.id.status_spinner));
+//        solo.clickOnMenuItem(Book.CONFIRM_BORROWED);
+        solo.pressSpinnerItem(0, 1);
         Assert.assertTrue("Confirm Borrowed Book is not found", solo.searchText("Chemistry: The Molecular Nature"));
-
-        solo.clickOnView(solo.getView(R.id.status_spinner));
-        solo.clickOnMenuItem(Book.RETURN);
-        Assert.assertTrue("Confirm Borrowed Book is not found", solo.searchText("The Official Guide to GRE"));
-
-    } */
+//
+//        solo.clickOnView(solo.getView(R.id.status_spinner));
+//        solo.clickOnMenuItem(Book.RETURN);
+//        solo.pressSpinnerItem(0, 1);
+//        Assert.assertTrue("Confirm Borrowed Book is not found", solo.searchText("The Official Guide to GRE"));
+    }
 
     @Test
     public void test_5_search_book() {
