@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.book_master.models.User;
 import com.example.book_master.models.UserList;
 
 /**
@@ -23,16 +24,21 @@ public class profile_description extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_page);
 
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        User user = (User) bundle.getSerializable("User");
+
         edit = findViewById(R.id.profile_page_edit);
         edit.setVisibility(View.GONE);
+
         back = findViewById(R.id.profile_page_back);
         username = findViewById(R.id.profile_page_username);
         contact_info = findViewById(R.id.profile_page_contact_info);
         email = findViewById(R.id.profile_page_email);
 
-        username.setText("  " +UserList.getCurrentUser().getUsername());
-        contact_info.setText( "  " +UserList.getCurrentUser().getContactInfo());
-        email.setText( "  " +UserList.getCurrentUser().getEmail());
+        username.setText("  " +user.getUsername());
+        contact_info.setText( "  " +user.getContactInfo());
+        email.setText( "  " +user.getEmail());
 
         // close the activity and back to main menu
         back.setOnClickListener(new View.OnClickListener() {
