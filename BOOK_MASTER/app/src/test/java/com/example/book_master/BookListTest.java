@@ -28,7 +28,9 @@ public class BookListTest {
      * Test: addBook(Book book), getBook(String ISBN)
      */
     @Test
-    void testSetGet() {
+    void testAddGet() {
+        BookList.clearList();
+
         Book temp = mockBook();
         String ISBN = temp.getISBN();
 
@@ -41,6 +43,8 @@ public class BookListTest {
      */
     @Test
     void testClear() {
+        BookList.clearList();
+
         Book temp = mockBook();
         String ISBN = temp.getISBN();
 
@@ -55,6 +59,8 @@ public class BookListTest {
      */
     @Test
     void testGetOwnedBorrowed() {
+        BookList.clearList();
+
         Book temp = mockBook();
         String ISBN = temp.getISBN();
 
@@ -62,9 +68,14 @@ public class BookListTest {
         ArrayList<Book> owned = new ArrayList<>();
         owned = BookList.getOwnedBook("Shrike");
         assertTrue(owned.size() != 0 && owned.get(0).getISBN().equalsIgnoreCase(ISBN));
+        owned = BookList.getOwnedBook("");
+        assertTrue(owned.size() == 0);
+
         ArrayList<Book> borrowed = new ArrayList<>();
         borrowed = BookList.getBorrowedBook("Shrike's friend");
         assertTrue(borrowed.size() != 0 && borrowed.get(0).getISBN().equalsIgnoreCase(ISBN));
+        borrowed = BookList.getBorrowedBook("");
+        assertTrue(borrowed.size() == 0);
     }
 
     /**
@@ -72,6 +83,8 @@ public class BookListTest {
      */
     @Test
     void testGetAvailableBook() {
+        BookList.clearList();
+
         Book temp = mockBook();
         String ISBN = temp.getISBN();
 
@@ -89,6 +102,8 @@ public class BookListTest {
      */
     @Test
     void testSearchDesc() {
+        BookList.clearList();
+
         Book temp = mockBook();
         String ISBN = temp.getISBN();
 
@@ -96,7 +111,12 @@ public class BookListTest {
         ArrayList<Book> qualified = new ArrayList<>();
         qualified = BookList.searchDesc("410", "not Shrike");
         assertTrue(qualified.size() != 0 && qualified.get(0).getISBN().equalsIgnoreCase(ISBN));
-        qualified = BookList.searchDesc("not gonna happen", "not Shrike");
+        qualified = BookList.searchDesc("410", "Shrike");
+        assertTrue(qualified.size() == 0);
+        // any book that is available
+        qualified = BookList.searchDesc("", "not Shrike");
+        assertTrue(qualified.size() != 0 && qualified.get(0).getISBN().equalsIgnoreCase(ISBN));
+        qualified = BookList.searchDesc("garbage input", "not Shrike");
         assertTrue(qualified.size() == 0);
     }
 }

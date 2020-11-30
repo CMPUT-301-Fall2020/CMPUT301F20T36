@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * Test class for User
  * Notice functionality related to Firebase could not be tested (it could not connect to cloud)
+ * Therefore, we did not test any function implementing Owner or Borrower interface
  */
 public class UserTest {
     private User mockUser() {

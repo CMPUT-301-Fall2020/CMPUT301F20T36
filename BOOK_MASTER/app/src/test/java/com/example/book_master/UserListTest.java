@@ -1,9 +1,14 @@
 package com.example.book_master;
 
+import com.example.book_master.models.Book;
+import com.example.book_master.models.BookList;
 import com.example.book_master.models.User;
 import com.example.book_master.models.UserList;
 
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -24,6 +29,8 @@ public class UserListTest {
      */
     @Test
     void testAddGet() {
+        UserList.clearList();
+
         User temp = mockUser();
         String username = temp.getUsername();
 
@@ -40,6 +47,8 @@ public class UserListTest {
      */
     @Test
     void testClear() {
+        UserList.clearList();
+
         User temp = mockUser();
         String username = temp.getUsername();
 
@@ -54,6 +63,8 @@ public class UserListTest {
      */
     @Test
     void testSetGetCurrentUser() {
+        UserList.clearList();
+
         User temp = mockUser();
         String email = temp.getEmail();
         String username = temp.getUsername();
@@ -69,11 +80,34 @@ public class UserListTest {
      */
     @Test
     void testCheckUnique() {
+        UserList.clearList();
+
         User temp = mockUser();
         String username = temp.getUsername();
 
         assertTrue(UserList.checkUnique(username));
         UserList.addUser(temp);
         assertFalse(UserList.checkUnique(username));
+    }
+
+    /**
+     * Test: searchDesc(String keyword)
+     */
+    @Test
+    void testSearchDesc() {
+        UserList.clearList();
+
+        User temp = mockUser();
+        String username = temp.getUsername();
+
+        UserList.addUser(temp);
+        ArrayList<User> qualified = new ArrayList<>();
+        qualified = UserList.searchDesc("Shrike");
+        assertTrue(qualified.size() != 0 && qualified.get(0).getUsername().equalsIgnoreCase(username));
+        // any User that is available
+        qualified = UserList.searchDesc("");
+        assertTrue(qualified.size() != 0 && qualified.get(0).getUsername().equalsIgnoreCase(username));
+        qualified = UserList.searchDesc("garbage input");
+        assertTrue(qualified.size() == 0);
     }
 }

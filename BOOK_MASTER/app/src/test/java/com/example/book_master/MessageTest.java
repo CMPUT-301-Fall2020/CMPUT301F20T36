@@ -28,6 +28,7 @@ public class MessageTest {
      * getStatus(), setStatus(String status),
      * getLongitude(), setLongitude(String longitude),
      * getLatitude(), setLatitude(String latitude)
+     * getShownIndicator(), setShownIndicator(String shownIndicator)
      */
     @Test
     void testSetGet() {
@@ -38,6 +39,7 @@ public class MessageTest {
         assertTrue(temp.getStatus().equalsIgnoreCase("AVAILABLE"));
         assertTrue(temp.getLongitude().equalsIgnoreCase("2° 29' E"));
         assertTrue(temp.getLatitude().equalsIgnoreCase("47° 55' W"));
+        assertTrue(temp.getShownIndicator().equalsIgnoreCase("NOTIFICATION_NOT_SHOWN"));
 
         temp.setSender("shrike's friend");
         temp.setReceiver("shrike");
@@ -45,12 +47,14 @@ public class MessageTest {
         temp.setStatus("REQUESTED");
         temp.setLongitude("47° 55' W");
         temp.setLatitude("2° 29' E");
+        temp.setShownIndicator("NOTIFICATION_SHOWN");
         assertTrue(temp.getSender().equalsIgnoreCase("shrike's friend"));
         assertTrue(temp.getReceiver().equalsIgnoreCase("shrike"));
         assertTrue(temp.getISBN().equalsIgnoreCase("978-3-16-148410-2"));
         assertTrue(temp.getStatus().equalsIgnoreCase("REQUESTED"));
         assertTrue(temp.getLongitude().equalsIgnoreCase("47° 55' W"));
         assertTrue(temp.getLatitude().equalsIgnoreCase("2° 29' E"));
+        assertTrue(temp.getShownIndicator().equalsIgnoreCase("NOTIFICATION_SHOWN"));
     }
 
     /**
@@ -60,8 +64,9 @@ public class MessageTest {
     void testHashCode() {
         Message temp1 = mockMsg();
         Message temp2 = mockMsg();
-        temp2.setISBN("978-3-16-148410-2");
+        assertTrue(temp1.hashCode() == temp2.hashCode());
 
+        temp2.setStatus("Borrowed");
         assertTrue(temp1.hashCode() != temp2.hashCode());
     }
 }
